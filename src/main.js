@@ -1,9 +1,32 @@
 require('file-loader?name=[name].[ext]!./index.html');
 import './css/style.css';
-const dummyStats = require('./data/stats-2019');
+// const dummyStats = require('./data/stats');
+// const dummyStats = require('./data/stats-2019');
 const poolData = require('./data/data');
 
-function test(value) {
+/*
+Jordan Spieth: 34046
+Jason Day: 28089
+Rory McIlroy: 28237
+Fowler: 32102
+Thomas: 33448
+Rose: 22405
+Rahm: 46970
+DJ: 30925
+Casey: 25364
+Molinari: 25198
+Woods: 08793
+Brooks Koepka: 36689
+Finau: 29725
+Fleetwood: 30911
+DeChambeau: 47959
+Matsuyama: 32839
+Kuchar: 23108
+Lowry: 33204
+Bubba: 25804
+*/
+
+function handleNullValues(value) {
   if (value === null) {
     return '-';
   } else {
@@ -14,12 +37,12 @@ function test(value) {
 function getGolferStatsFromLeaderboard(leaderboard) {
   return leaderboard.players.map(player => {
     return {
+      id: player.player_id,
       name: `${player.player_bio.first_name} ${player.player_bio.last_name}`,
-      // Get the players postions but parse any 'T'
       position: player.current_position || '-',
       total: player.total,
-      thru: test(player.thru),
-      today: test(player.today),
+      thru: handleNullValues(player.thru),
+      today: handleNullValues(player.today)
     };
   });
 }
@@ -35,7 +58,7 @@ function splitMoneyBetweenTiedPlayers(position, numberOfPlayersTied, prizeMoneyL
   // Grab the money to be shared by the tied players, e.g.
   // If three players are tied 3rd, they'll get the money for 3rd, 4th and 5th.
   for (let i = 0; i < numberOfPlayersTied; i++) {
-    totalPrizeMoneyForPosition += parseInt(prizeMoneyList[position + i]) || 0;
+    totalPrizeMoneyForPosition += parseInt(prizeMoneyList[position + i]) || 10000;
   }
   // Split the money between the players
   return Math.round(totalPrizeMoneyForPosition / numberOfPlayersTied, 2);
@@ -52,7 +75,7 @@ function calculatePrizeMoney(playersStats, player, position, prizeMoneyList) {
 async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyList) {
   let prizeMoneyBreakdown = {};
 
-  return await playersStats.forEach(player => {
+  const playersMoney = await playersStats.forEach(player => {
     const position = player.position.replace('T', '') - 1;
 
     // If there's no recorded value for the position calculate a value
@@ -72,12 +95,13 @@ async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyList) {
       player.prizeMoney = prizeMoneyBreakdown[position];
     }
   });
+  return playersMoney;
 }
 
 // Get the player data for each entrant's players
 function populateGolferData(entrants, playersStats) {
   entrants.forEach(entrant => {
-    entrant.players = playersStats.filter(player => entrant.players.includes(player.name));
+    entrant.players = playersStats.filter(player => entrant.players_ids.includes(player.id));
     entrant.prizeMoneyTotal = entrant.players.reduce((total, golfer) => total + golfer.prizeMoney, 0);
   });
 }
@@ -89,7 +113,6 @@ function httpGetAsync(theUrl, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-      console.log(xmlHttp.responseText);
       callback(JSON.parse(xmlHttp.responseText));
     }
   };
@@ -105,29 +128,32 @@ function determineScoreDisplayColour(playerScore) {
   } else if (playerScore > 0) {
     return 'black';
   } else {
-    return 'rgb(145, 124, 124);'
+    return 'rgb(145, 124, 124);';
   }
 }
 
 function displayNumberWithCommas(prizeMoney) {
-  return prizeMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return prizeMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function generateEntrantsPlayersRows(players) {
-  return players.map(player => {
-    const totalColour = determineScoreDisplayColour(player.total);
-    const todayColour = determineScoreDisplayColour(player.today);
-    return `
+  return players
+    .map(player => {
+      const totalStrokesDisplayColour = determineScoreDisplayColour(player.total);
+      const todaysStrokesDispayColour = determineScoreDisplayColour(player.today);
+      return `
       <tr> 
         <td>${player.position}</td>
         <td>${player.name}</td>
-        <td style="background-color:${totalColour}">${player.total}</td>
+        <td style="background-color:${totalStrokesDisplayColour}">${player.total}</td>
         <td>${player.thru}</td>
-        <td style="background-color:${todayColour}">${player.today}</td>
+        <td style="background-color:${todaysStrokesDispayColour}">${player.today}</td>
         <td>$${displayNumberWithCommas(player.prizeMoney)}</td>
       </tr>
-      `;}).join('');
-};
+      `;
+    })
+    .join('');
+}
 
 /**
  * Populate the leaderboard
@@ -157,8 +183,8 @@ function populateLeaderboard(entrants, leaderboardElement) {
       `;
     })
     .join('');
-    
-    leaderboardElement.innerHTML =
+
+  leaderboardElement.innerHTML =
     `<tr>
       <th>Pos</th>
       <th colspan="4" class='name'>Name</th>
@@ -192,15 +218,24 @@ function toggleDropdown() {
   }
 }
 
+function responsiveDesign() {
+  if (window.innerWidth < 600) {
+    document.querySelector('table').classList.add('mobile');
+  } else {
+    document.querySelector('table').classList.remove('mobile');
+  }
+}
+
 /** ############################################################################################## **/
 const leaderboardRequest = 'https://statdata.pgatour.com/r/014/2019/leaderboard-v2mini.json';
-// Grab the table
 
-// httpGetAsync(leaderboardRequest, stats => {
-async function main() {
+responsiveDesign();
+window.addEventListener('resize', responsiveDesign());
+
+httpGetAsync(leaderboardRequest, stats => {
+  // async function main() {
+  // const stats = dummyStats;
   const entrants = poolData.entrants;
-  console.log(entrants);
-  const stats = dummyStats;
   const leaderboard = stats.leaderboard;
   const prizeMoneyList = poolData.prizeMoney;
   const leaderboardTable = document.querySelector('table');
@@ -211,11 +246,11 @@ async function main() {
 
   // Sort by leaderboard by prize money
   entrants.sort((a, b) => (a.prizeMoneyTotal > b.prizeMoneyTotal ? -1 : 1));
-  console.table(entrants);
 
   populateLeaderboard(entrants, leaderboardTable);
   const tableRows = document.querySelectorAll('.row');
   tableRows.forEach(row => row.addEventListener('click', toggleDropdown));
-};
+  // }
+});
 
-main();
+// main();
