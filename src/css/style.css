@@ -4,11 +4,6 @@
 
 .dropdown-content {
   display: none;
-  /* position: absolute;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1; */
 }
 
 .dropdown-content td {
@@ -21,7 +16,6 @@
 }
 
 .dropdown-content td, .dropdown-content th {
-  font-size: 12px;
   padding: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -40,7 +34,6 @@ table {
   opacity: 0.6;
   width: 750px;
   border-collapse: collapse;
-  margin: 50px auto;
 }
 
 th {
@@ -68,4 +61,18 @@ td, th {
 
 .label tr td label {
   display: block;
+}
+
+table.mobile {
+  width: 321px;
+}
+
+.mobile .dropdown-content td, .mobile .dropdown-content th {
+  font-size: 12px;
+  padding: 3px;
+}
+
+.mobile td, .mobile th {
+  padding: 8px;
+  font-size: 16px;
 }
