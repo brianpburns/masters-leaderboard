@@ -1,19 +1,19 @@
 /* When the user clicks on the row, 
 toggle between hiding and showing the dropdown content */
-export function toggleDropdown() {
+export async function toggleDropdown() {
   const rows: any = document.querySelectorAll('.row');
-  rows.forEach(row => {
+  for(const row of rows) {
     row.style.background = 'white';
-  });
+  }
   this.style.background = '#ddd';
   const dropdown = this.parentElement.nextElementSibling;
   const isOpen = dropdown.classList.contains('show') ? true : false;
 
   // If there's any other dropdown open, close it
   var dropdowns = document.querySelectorAll('.dropdown-content');
-  dropdowns.forEach(dropdown => {
-    dropdown.classList.remove('show');
-  });
+  for(const dropdown of dropdowns) {
+    await dropdown.classList.remove('show');
+  }
 
   dropdown.classList.toggle('show');
   if (isOpen) {

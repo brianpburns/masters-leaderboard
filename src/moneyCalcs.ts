@@ -23,17 +23,21 @@ async function calculatePrizeMoney(playersStats, player, position, prizeMoneyLis
   return await splitMoneyBetweenTiedPlayers(position, numberOfPlayersInThisPosition, prizeMoneyList);
 }
 
+function missedCut(player, cutline) {
+
+}
+
 /**
  * Loop through all the players and update them with the prize money they're set to receive
  */
-export async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyList) {
+export async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyList, cutline) {
   let prizeMoneyBreakdown = {};
 
   for (const player of playersStats) {
     const position = player.position.replace('T', '') - 1;
 
     // If there's no recorded value for the position calculate a value
-    if (!prizeMoneyBreakdown[position]) {
+    if (!prizeMoneyBreakdown[position] || player.total > cutline) {
       // Check if the player's outside the top 50. Outside of top 50 get $10,000
       if (prizeMoneyList[position] === undefined) {
         prizeMoneyBreakdown[position] = 10000;

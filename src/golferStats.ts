@@ -14,7 +14,15 @@ export function getGolferStatsFromLeaderboardData(leaderboardData) {
       position: player.pos || '-',
       total: player.topar,
       thru: handleNullValues(player.thru),
-      today: handleNullValues(player.today)
+      today: handleNullValues(player.today),
+      teetime: player.teetime
     };
   });
+}
+
+export function determineCutLineValue(leaderboardData) {
+  if(leaderboardData.cutLine == 'E') {
+    return 0;
+  }
+  return parseInt(leaderboardData.cutLine);
 }
