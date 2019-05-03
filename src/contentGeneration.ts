@@ -15,28 +15,30 @@ function displayNumberWithCommas(prizeMoney) {
 }
 
 function determineThruValueToDisplay(player) {
-  if (player.thru == '') {
+  if (player.thru == '' && player.today == '') {
     return player.teetime;
   } else if (player.thru == 'F') {
     if (player.scoreToday !== 'E') {
-      return 72 + parseInt(player.scoreToday);
+      return 72 + parseInt(player.today);
     }
     return 72;
   }
   return player.thru;
 }
 
-function thruStyle(thruValue) {
+function thruStyle(thruValue, player) {
   let backgroundColour = 'white';
   let color = 'white';
 
-  if (thruValue == '') {
-    backgroundColour = 'rgb(145, 124, 124);';
-  } else if (thruValue == 72) {
+  if (thruValue == '' && player.today == '') {
+    backgroundColour = 'rgb(145, 124, 124)';
+  } else if (parseInt(thruValue) < 18) {
+    backgroundColour = 'rgb(145, 124, 124)';
+  } else if (parseInt(thruValue) == 72) {
     color = 'green';
-  } else if (thruValue < 72) {
+  } else if (parseInt(thruValue) < 72 && parseInt(thruValue) > 18) {
     color = 'red';
-  } else {
+  } else if (parseInt(thruValue) > 72) {
     color = 'black';
   }
   return `background-color:${backgroundColour};color:${color}`;
@@ -60,7 +62,7 @@ function generatePlayerStatsRows(players, cutLine) {
         <td>${handlePosition(player, cutLine)}</td>
         <td>${player.name}</td>
         <td style="background-color:${totalStrokesDisplayColour}">${player.total}</td>
-        <td style="${thruStyle(thruValue)}">${thruValue || '-'}</td>
+        <td style="${thruStyle(thruValue, player)}">${thruValue || '-'}</td>
         <td style="background-color:${todaysStrokesDispayColour}">${player.today || '-'}</td>
         <td>$${displayNumberWithCommas(player.prizeMoney)}</td>
       </tr>

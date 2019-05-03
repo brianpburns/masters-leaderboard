@@ -47,16 +47,16 @@ function httpGetAsync(theUrl, callback) {
 }
 
 /** ############################################################################################## **/
-const leaderboardRequest = 'https://statdata.pgatour.com/r/014/2019/leaderboard-v2mini.json';
+// const leaderboardRequest = 'https://statdata.pgatour.com/r/014/2019/leaderboard-v2mini.json';
 const mastersLeaderboard = 'https://www.masters.com/en_US/scores/feeds/scores.json';
 
 responsiveDesign();
 window.addEventListener('resize', responsiveDesign() as any);
 
-// httpGetAsync(mastersLeaderboard, async stats => {
-async function main() {
-  const dummyStats = require('./data/stats-2019.json');
-  const stats = dummyStats;
+httpGetAsync(mastersLeaderboard, async stats => {
+// async function main() {
+  // const dummyStats = require('./data/stats-2019.json');
+  // const stats = dummyStats;
 
   const entrants = poolData.entrants;
   const leaderboard = stats.data;
@@ -79,7 +79,6 @@ async function main() {
   for(const row of tableRows) {
     await row.addEventListener('click', await toggleDropdown);
   }
-}
-// });
-
-main();
+// }
+});
+// main();

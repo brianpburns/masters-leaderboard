@@ -17,14 +17,7 @@ async function splitMoneyBetweenTiedPlayers(position, numberOfPlayersTied, prize
 
 async function calculatePrizeMoney(playersStats, player, position, prizeMoneyList) {
   const numberOfPlayersInThisPosition = await playersStats.reduce((total, playerPosition) => (playerPosition.position === player.position ? total + 1 : total), 0);
-  if (player.id == 25364) {
-    console.log('numberOfPlayersInThisPosition', numberOfPlayersInThisPosition);
-  }
   return await splitMoneyBetweenTiedPlayers(position, numberOfPlayersInThisPosition, prizeMoneyList);
-}
-
-function missedCut(player, cutline) {
-
 }
 
 /**
