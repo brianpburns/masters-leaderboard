@@ -7,6 +7,7 @@
     "start": "snowpack dev",
     "build": "snowpack build",
     "build:prod": "webpack -p",
+    "check-types": "tsc --noEmit",
     "dev": "webpack-dev-server",
     "lint": "eslint . --ext .ts,.tsx"
   },

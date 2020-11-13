@@ -1,4 +1,3 @@
-import type { Player } from '../types/types';
 import poolData from '../data/data.json';
 
 const { prizeMoney } = poolData;
@@ -84,6 +83,7 @@ interface GolferWithPrizeMoney extends UsedPlayerData {
 // Get the player data for each entrant's players
 export const addGolferMoney = (golfersWithMoney: GolferWithPrizeMoney[]) => {
   const { entrants } = poolData;
+  const entrantsWithMoney = [];
   for (const entrant of entrants) {
     let prizeMoney = 0;
     const playersData = golfersWithMoney.filter((golfer) =>
@@ -94,7 +94,11 @@ export const addGolferMoney = (golfersWithMoney: GolferWithPrizeMoney[]) => {
         prizeMoney = prizeMoney + player.prizeMoney;
       }
     }
-    entrant.prizeMoney = prizeMoney;
+    entrantsWithMoney.push({
+      ...entrant,
+      prizeMoney,
+      players: playersData,
+    });
   }
-  return entrants;
+  return entrantsWithMoney;
 };

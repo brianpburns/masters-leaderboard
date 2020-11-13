@@ -21,5 +21,9 @@ export const generateLeaderboard = async () => {
   const playerMoney = playerPrizeMoney(golferStats, cutline);
   const entrantsMoney = addGolferMoney(playerMoney);
 
-  return entrantsMoney;
+  const rankedEntrants = entrantsMoney.sort((player1, player2) =>
+    player1.prizeMoney > player2.prizeMoney ? -1 : 1
+  );
+
+  return rankedEntrants;
 };
