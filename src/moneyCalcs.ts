@@ -1,4 +1,8 @@
-async function splitMoneyBetweenTiedPlayers(position, numberOfPlayersTied, prizeMoneyList) {
+const splitMoneyBetweenTiedPlayers = async (
+  position: number,
+  numberOfPlayersTied: number,
+  prizeMoneyList: any
+) => {
   let totalPrizeMoneyForPosition = 0;
 
   // If there isn't a tie return the prize money for that position
@@ -9,22 +13,40 @@ async function splitMoneyBetweenTiedPlayers(position, numberOfPlayersTied, prize
   // Grab the money to be shared by the tied players, e.g.
   // If three players are tied 3rd, they'll get the money for 3rd, 4th and 5th.
   for (let i = 0; i < numberOfPlayersTied; i++) {
-    totalPrizeMoneyForPosition += parseInt(prizeMoneyList[position + i]) || 10000;
+    totalPrizeMoneyForPosition +=
+      parseInt(prizeMoneyList[position + i]) || 10000;
   }
   // Split the money between the players
   return await Math.round(totalPrizeMoneyForPosition / numberOfPlayersTied);
-}
+};
 
-async function calculatePrizeMoney(playersStats, player, position, prizeMoneyList) {
-  const numberOfPlayersInThisPosition = await playersStats.reduce((total, playerPosition) => (playerPosition.position === player.position ? total + 1 : total), 0);
-  return await splitMoneyBetweenTiedPlayers(position, numberOfPlayersInThisPosition, prizeMoneyList);
+async function calculatePrizeMoney(
+  playersStats: any,
+  player: any,
+  position: number,
+  prizeMoneyList: any
+) {
+  const numberOfPlayersInThisPosition = await playersStats.reduce(
+    (total: number, playerPosition: any) =>
+      playerPosition.position === player.position ? total + 1 : total,
+    0
+  );
+  return await splitMoneyBetweenTiedPlayers(
+    position,
+    numberOfPlayersInThisPosition,
+    prizeMoneyList
+  );
 }
 
 /**
  * Loop through all the players and update them with the prize money they're set to receive
  */
-export async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyList, cutline) {
-  let prizeMoneyBreakdown = {};
+export async function calculatePrizeMoneyForEachPlayer(
+  playersStats: any,
+  prizeMoneyList: any,
+  cutline: number
+) {
+  let prizeMoneyBreakdown: { [k: string]: number } = {};
 
   for (const player of playersStats) {
     const position = player.position.replace('T', '') - 1;
@@ -36,7 +58,12 @@ export async function calculatePrizeMoneyForEachPlayer(playersStats, prizeMoneyL
         prizeMoneyBreakdown[position] = 10000;
       } else {
         // Calculate the prize money and store the value
-        prizeMoneyBreakdown[position] = await calculatePrizeMoney(playersStats, player, position, prizeMoneyList);
+        prizeMoneyBreakdown[position] = await calculatePrizeMoney(
+          playersStats,
+          player,
+          position,
+          prizeMoneyList
+        );
       }
     }
     player.prizeMoney = prizeMoneyBreakdown[position];
