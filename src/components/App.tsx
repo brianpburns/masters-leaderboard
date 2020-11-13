@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
+import { generateLeaderboard } from '../util/requests';
 import { MainLeaderboard } from './MainLeaderboard';
 
 const AppContainer = styled.div`
@@ -13,6 +14,14 @@ const AppContainer = styled.div`
 `;
 
 export const App = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await generateLeaderboard();
+      console.log(result);
+    };
+
+    fetchData();
+  }, []);
   return (
     <AppContainer>
       <MainLeaderboard />
