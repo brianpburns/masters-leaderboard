@@ -1,5 +1,4 @@
 import sampleData from '../data/stats-2019.json';
-import poolData from '../data/data.json';
 import type { LeaderboardData } from '../types/types';
 import { getCutLine, getGolferStats } from './stats';
 import { addGolferMoney, playerPrizeMoney } from './prizeMoney';
@@ -13,8 +12,9 @@ export const getLeaderboardData = async () => {
 };
 
 export const generateLeaderboard = async () => {
-  // const leaderboard: LeaderboardResponse = await getLeaderboardData();
-  const leaderboardData: LeaderboardData = sampleData.data;
+  const leaderboardRequest = await getLeaderboardData();
+  const leaderboardData: LeaderboardData = leaderboardRequest.data;
+  // const leaderboardData: LeaderboardData = sampleData.data;
 
   const golferStats = getGolferStats(leaderboardData);
   const cutline = getCutLine(leaderboardData.cutLine);

@@ -1,4 +1,4 @@
-import type { LeaderboardData } from '../types/types';
+import { LeaderboardData } from '../types/types';
 
 export const getGolferStats = (leaderboardData: LeaderboardData) => {
   return leaderboardData.player.map((player) => {

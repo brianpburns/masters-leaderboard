@@ -22,6 +22,9 @@ const useRowStyles = makeStyles({
   },
 });
 
+const displayNumber = (num: number) =>
+  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 export const Row = ({
   position,
   row,
@@ -49,9 +52,9 @@ export const Row = ({
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{position}</TableCell>
+        <TableCell>{position + 1}</TableCell>
         <TableCell>{row.name}</TableCell>
-        <TableCell>{row.prizeMoney}</TableCell>
+        <TableCell>{displayNumber(row.prizeMoney)}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -78,7 +81,7 @@ export const Row = ({
                       <TableCell>{player.topar}</TableCell>
                       <TableCell>{player.thru}</TableCell>
                       <TableCell>{player.today}</TableCell>
-                      <TableCell>{player.prizeMoney}</TableCell>
+                      <TableCell>{displayNumber(player.prizeMoney)}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

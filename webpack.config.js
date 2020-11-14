@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var config = {
   context: __dirname + '/src', // `__dirname` is root of project and `/src` is source
   entry: {
-    app: './main.ts'
+    app: './index.tsx'
   },
   output: {
     path: __dirname + '/dist', // `/dist` is the destination
@@ -12,7 +12,7 @@ var config = {
   module: {
     rules: [
       {
-        test: /\.js$/, // rule for .js files
+        test: /\.(j|t)sx?$/, // rule for .js files
         exclude: /node_modules/,
         loader: 'babel-loader' // apply this loader for js files
       },

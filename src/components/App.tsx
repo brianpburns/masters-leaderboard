@@ -12,7 +12,7 @@ const AppContainer = styled.div`
   background-size: cover;
   width: 100%;
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 export const App = () => {

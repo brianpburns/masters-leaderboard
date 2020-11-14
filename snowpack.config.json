@@ -1,4 +1,10 @@
 {
   "extends": "@snowpack/app-scripts-react",
-  "plugins": ["@snowpack/plugin-react-refresh"]
+  "plugins": [
+    [
+      "@snowpack/plugin-react-refresh",
+      "@snowpack/plugin-optimize",
+      "@snowpack/plugin-webpack"
+    ]
+  ]
 }
