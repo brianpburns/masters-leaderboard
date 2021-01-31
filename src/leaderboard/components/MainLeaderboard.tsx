@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { generateLeaderboard } from '../util/requests';
+import { generateLeaderboard } from '../../util/requests';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
