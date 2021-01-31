@@ -25,6 +25,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@types/react-router-dom": "^5.1.7",
     "@types/react-table": "^7.0.25",
     "npm-watch": "^0.7.0",
     "react": "^17.0.1",
