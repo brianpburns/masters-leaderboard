@@ -1,24 +1,20 @@
 import sampleData from '../data/stats-2019.json';
-import type { LeaderboardData } from '../types/types';
-import { getCutLine, getGolferStats } from './stats';
+import type { LeaderboardData, LeaderboardJsonResponse } from '../types/types';
+import { normaliseCutLine, getGolferStats } from './stats';
 import { addGolferMoney, playerPrizeMoney } from './prizeMoney';
 
-export const getLeaderboardData = async () => {
-  const leaderboarUrl =
-    'https://www.masters.com/en_US/scores/feeds/scores.json';
+const leaderboarUrl = 'https://www.masters.com/en_US/scores/feeds/scores.json';
 
-  const request = (await fetch(leaderboarUrl)).json();
-  return request;
-};
+export const getLeaderboardData = async () => fetch(leaderboarUrl);
 
 export const generateLeaderboard = async () => {
   const leaderboardRequest = await getLeaderboardData();
-  const leaderboardData: LeaderboardData = leaderboardRequest.data;
-  // const leaderboardData: LeaderboardData = sampleData.data;
+  const { data }: LeaderboardJsonResponse = await leaderboardRequest.json();
 
-  const golferStats = getGolferStats(leaderboardData);
-  const cutline = getCutLine(leaderboardData.cutLine);
+  const golferStats = getGolferStats(data);
+  const cutline = normaliseCutLine(data.cutLine);
   const playerMoney = playerPrizeMoney(golferStats, cutline);
+  
   const entrantsMoney = addGolferMoney(playerMoney);
 
   const rankedEntrants = entrantsMoney.sort((player1, player2) =>

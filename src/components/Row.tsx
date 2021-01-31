@@ -36,7 +36,7 @@ export const Row = ({
   const classes = useRowStyles();
 
   return (
-    <React.Fragment>
+    <>
       <TableRow
         className={classes.root}
         onClick={() => setOpen(!open)}
@@ -90,6 +90,6 @@ export const Row = ({
           </Collapse>
         </TableCell>
       </TableRow>
-    </React.Fragment>
+    </>
   );
 };

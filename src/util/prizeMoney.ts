@@ -1,16 +1,7 @@
 import poolData from '../data/data.json';
+import { GolferData } from '../types/types';
 
 const { prizeMoney } = poolData;
-
-interface UsedPlayerData {
-  id: string;
-  name: string;
-  position: string;
-  topar: number;
-  thru: string;
-  today: string;
-  teetime: string;
-}
 
 const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;
@@ -25,12 +16,12 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
 };
 
 const calculatePrizeMoney = (
-  playersStats: UsedPlayerData[],
-  player: UsedPlayerData,
+  playersStats: GolferData[],
+  player: GolferData,
   position: number
 ) => {
   const noTiedPlayers = playersStats.reduce(
-    (total: number, { position }: UsedPlayerData) =>
+    (total: number, { position }: GolferData) =>
       position === player.position ? total + 1 : total,
     0
   );
@@ -43,7 +34,7 @@ const calculatePrizeMoney = (
  * Loop through all the players and update them with the prize money they're set to receive
  */
 export const playerPrizeMoney = (
-  playersStats: UsedPlayerData[],
+  playersStats: GolferData[],
   cutline: number
 ) => {
   let prizeMoneyBreakdown: { [k: string]: number } = {};
@@ -55,7 +46,7 @@ export const playerPrizeMoney = (
 
     // If there's no recorded value for the position calculate a value
     if (!prizeMoneyBreakdown[position] || topar > cutline) {
-      // Check if the player's outside the top 50. Outside of top 50 get $10,000
+      // If player is outside of the top 50 they get $10,000
       if (prizeMoney[indexedPosition] === undefined) {
         prizeMoneyBreakdown[position] = 10000;
       } else {
@@ -76,28 +67,24 @@ export const playerPrizeMoney = (
   return playersWithMoney;
 };
 
-interface GolferWithPrizeMoney extends UsedPlayerData {
-  prizeMoney: number;
-}
-
 // Get the player data for each entrant's players
-export const addGolferMoney = (golfersWithMoney: GolferWithPrizeMoney[]) => {
+export const addGolferMoney = (golfers: GolferData[]) => {
   const { entrants } = poolData;
   const entrantsWithMoney = [];
   for (const entrant of entrants) {
     let prizeMoney = 0;
-    const playersData = golfersWithMoney.filter((golfer) =>
+    const golfersData = golfers.filter((golfer) =>
       entrant.players_ids.includes(parseInt(golfer.id))
     );
-    for (const player of playersData) {
-      if (player) {
-        prizeMoney = prizeMoney + player.prizeMoney;
+    for (const golfer of golfersData) {
+      if (golfer) {
+        prizeMoney = prizeMoney + golfer.prizeMoney;
       }
     }
     entrantsWithMoney.push({
       ...entrant,
       prizeMoney,
-      players: playersData,
+      players: golfersData,
     });
   }
   return entrantsWithMoney;

@@ -1,4 +1,4 @@
-export interface Player {
+export interface Golfer {
   active?: boolean;
   display_name: string;
   display_name2: string;
@@ -44,6 +44,22 @@ export interface LeaderboardData {
   currentRound: string;
   cutLine: string;
   pars: any;
-  player: Player[];
+  player: Golfer[];
+  statusRound: string;
   yardages: any;
+}
+
+export type LeaderboardJsonResponse = {
+  data: LeaderboardData;
+};
+
+export interface GolferData {
+  id: string;
+  name: string;
+  position: string;
+  prizeMoney: number;
+  topar: number;
+  thru: string;
+  today: string;
+  teetime: string;
 }
