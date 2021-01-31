@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { MainLeaderboard } from './MainLeaderboard';
+import { MainLeaderboard } from '../../leaderboard/components/MainLeaderboard';
 
 const AppContainer = styled.div`
   display: grid;

@@ -1,5 +1,5 @@
 import { GolferData } from '../../types/types';
-import { playerPrizeMoney } from '../../util/prizeMoney';
+import { playerPrizeMoney } from '../prizeMoney';
 
 const player1: GolferData = {
   id: '0',
