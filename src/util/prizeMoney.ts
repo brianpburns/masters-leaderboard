@@ -1,7 +1,6 @@
-import poolData from '../data/data.json';
+import { teams } from '../data/teams';
+import { prizeMoney } from '../data/prizeMoney';
 import { GolferData } from '../types/types';
-
-const { prizeMoney } = poolData;
 
 const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;
@@ -69,7 +68,7 @@ export const playerPrizeMoney = (
 
 // Get the player data for each entrant's players
 export const addGolferMoney = (golfers: GolferData[]) => {
-  const { entrants } = poolData;
+  const { entrants } = teams;
   const entrantsWithMoney = [];
   for (const entrant of entrants) {
     let prizeMoney = 0;
