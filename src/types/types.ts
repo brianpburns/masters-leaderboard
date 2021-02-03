@@ -54,7 +54,8 @@ export type LeaderboardJsonResponse = {
 };
 
 export interface GolferData {
-  id: string;
+  // TODO: Remove id from here
+  id?: string;
   name: string;
   position: string;
   prizeMoney: number;
@@ -62,4 +63,9 @@ export interface GolferData {
   thru: string;
   today: string;
   teetime: string;
+}
+
+export interface Team {
+  owner: string;
+  golfers: string[];
 }

@@ -16,7 +16,6 @@ const Container = styled.div`
   max-width: 700px;
   justify-self: center;
   margin: 50px;
-
   border-radius: 25px;
 `;
 
