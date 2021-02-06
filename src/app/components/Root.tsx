@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
 
-import createStore from '../../state/createStore';
-
 const AppContainer = styled.div`
   display: grid;
   background-color: green;
@@ -26,39 +24,35 @@ const StyledNav = styled.nav`
 `;
 
 export const Root = () => {
-  const store = createStore();
   return (
-    // Store provider would be hooked in here
-    <Provider store={store}>
-      <AppContainer>
-        <Router>
-          <StyledNav>
-            <ul>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/team">Team</Link>
-              </li>
-              <li>
-                <Link to="/leaderboard">Leaderboard</Link>
-              </li>
-            </ul>
-          </StyledNav>
+    <AppContainer>
+      <Router>
+        <StyledNav>
+          <ul>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/team">Team</Link>
+            </li>
+            <li>
+              <Link to="/leaderboard">Leaderboard</Link>
+            </li>
+          </ul>
+        </StyledNav>
 
-          <Switch>
-            {/* <Route path="/">
+        <Switch>
+          {/* <Route path="/">
           <MainLeaderboard />
         </Route> */}
-            <Route path="/leaderboard">
-              <MainLeaderboard />
-            </Route>
-            <Route path="/team">
-              <TeamPage />
-            </Route>
-          </Switch>
-        </Router>
-      </AppContainer>
-    </Provider>
+          <Route path="/leaderboard">
+            <MainLeaderboard />
+          </Route>
+          <Route path="/team">
+            <TeamPage />
+          </Route>
+        </Switch>
+      </Router>
+    </AppContainer>
   );
 };
