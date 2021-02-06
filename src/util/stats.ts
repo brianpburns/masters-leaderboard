@@ -1,4 +1,13 @@
-import { LeaderboardData, Golfer, GolferData } from '../types/types';
+import {
+  LeaderboardData,
+  Golfer,
+  GolferData,
+  Golfers,
+  GolfersLeaderboard,
+} from '../types/types';
+
+const normalisePosition = (position: string) =>
+  position ? parseInt(position.replace('T', '')) : 0;
 
 const generateGolferStats = (golfer: Golfer): GolferData => {
   const {
@@ -14,7 +23,7 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
   return {
     id,
     name: `${first_name} ${last_name}`,
-    position: pos || '-',
+    position: normalisePosition(pos),
     prizeMoney: 0,
     topar: topar === 'E' ? 0 : parseInt(topar),
     thru: thru ? thru : '-',
@@ -23,8 +32,21 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
   };
 };
 
-export const getGolferStats = (leaderboardData: LeaderboardData) =>
-  leaderboardData.player.map((golfer) => generateGolferStats(golfer));
+export const getGolferStats = (leaderboardData: LeaderboardData) => {
+  let golfers: Golfers = {};
+  let golfersLeaderboard: GolfersLeaderboard = {};
+
+  leaderboardData.player.map((golfer) => {
+    golfers[golfer.id] = generateGolferStats(golfer);
+    const position = normalisePosition(golfer.pos);
+    if (golfersLeaderboard[position]) {
+      golfersLeaderboard[position].push(golfer.id);
+    } else {
+      golfersLeaderboard[position] = [golfer.id];
+    }
+  });
+  return { golfers, golfersLeaderboard };
+};
 
 export function normaliseCutLine(cutLine: LeaderboardData['cutLine']) {
   return cutLine === 'E' || cutLine === '' ? 0 : parseInt(cutLine);

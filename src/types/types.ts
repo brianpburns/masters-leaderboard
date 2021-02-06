@@ -54,10 +54,10 @@ export type LeaderboardJsonResponse = {
 };
 
 export interface GolferData {
-  // TODO: Remove id from here
+  // TODO make required
   id?: string;
   name: string;
-  position: string;
+  position: number;
   prizeMoney: number;
   topar: number;
   thru: string;
@@ -65,7 +65,14 @@ export interface GolferData {
   teetime: string;
 }
 
+export type Golfers = Record<string, GolferData>;
+
 export interface Team {
+  id: string;
   owner: string;
   golfers: string[];
 }
+
+export type Teams = Record<string, Team>;
+
+export type GolfersLeaderboard = Record<string, string[]>;

@@ -1,4 +1,6 @@
-export const mockGolfersList = {
+import { GolferData } from "../types/types";
+
+export const mockGolfersList: { [key: string]: any } = {
   '1226': {
     name: 'Fred Couples',
     position: '-',

@@ -41,7 +41,7 @@ export const playerPrizeMoney = (
 
   for (const player of playersStats) {
     const { position, topar } = player;
-    const indexedPosition = parseInt(position.replace('T', '')) - 1;
+    const indexedPosition = position - 1;
 
     // If there's no recorded value for the position calculate a value
     if (!prizeMoneyBreakdown[position] || topar > cutline) {
@@ -72,8 +72,8 @@ export const addGolferMoney = (golfers: GolferData[]) => {
   const entrantsWithMoney = [];
   for (const entrant of entrants) {
     let prizeMoney = 0;
-    const golfersData = golfers.filter((golfer) =>
-      entrant.players_ids.includes(parseInt(golfer.id))
+    const golfersData = golfers.filter(
+      (golfer) => golfer.id && entrant.players_ids.includes(parseInt(golfer.id))
     );
     for (const golfer of golfersData) {
       if (golfer) {

@@ -23,6 +23,7 @@ export const initialState: AppState = {
   golfers: mockGolfersList,
   teams: {
     '0': {
+      id: '0',
       owner: 'Burns',
       golfers: [],
     },

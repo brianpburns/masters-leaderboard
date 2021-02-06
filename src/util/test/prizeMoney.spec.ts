@@ -4,7 +4,7 @@ import { playerPrizeMoney } from '../prizeMoney';
 const player1: GolferData = {
   id: '0',
   name: 'Rory McIlroy',
-  position: '1',
+  position: 1,
   prizeMoney: 0,
   topar: -5,
   thru: '10',
@@ -15,7 +15,7 @@ const player1: GolferData = {
 const player2: GolferData = {
   id: '1',
   name: 'Justin Rose',
-  position: '100',
+  position: 100,
   prizeMoney: 0,
   topar: 5,
   thru: '10',

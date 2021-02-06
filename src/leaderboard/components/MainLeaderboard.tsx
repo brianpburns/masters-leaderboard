@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { generateLeaderboard } from '../../util/requests';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -64,14 +62,14 @@ export const initialState = [
 
 export const MainLeaderboard = () => {
   const [leaderboard, setLeaderboard] = useState(initialState);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await generateLeaderboard();
-      setLeaderboard(result);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await generateLeaderboard();
+  //     setLeaderboard(result);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Container>
