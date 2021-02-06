@@ -19,7 +19,7 @@ export const golfersLeaderboard = atom<GolfersLeaderboard>({
 
 export const teamsState = atom<Teams>({
   key: '@app/teams',
-  default: {},
+  default: { '0': { id: '0', owner: 'Burns', golfers: [] } },
 });
 
 export const deadlineState = atom<string>({

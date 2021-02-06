@@ -54,8 +54,7 @@ export type LeaderboardJsonResponse = {
 };
 
 export interface GolferData {
-  // TODO make required
-  id?: string;
+  id: string;
   name: string;
   position: number;
   prizeMoney: number;

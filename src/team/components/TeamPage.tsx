@@ -1,7 +1,9 @@
 import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { useGolfersList } from '../../state';
+import { golfersState } from '../../app';
+import { teamsState } from '../../app/atoms';
 
 import { GolfersList } from './GolfersList';
 import { TeamList } from './TeamList';
@@ -13,12 +15,26 @@ const Container = styled.div`
 `;
 
 export const TeamPage = () => {
-  const golfers = useGolfersList();
-  // Hit the API
+  const allGolfers = useRecoilValue(golfersState);
+  const [teams, setTeams] = useRecoilState(teamsState);
+  const teamsGolfers = teams['0'].golfers;
+
+  const updateGolfers = (golferIds: string[]) => {
+    setTeams({ ...teams, '0': { ...teams['0'], golfers: golferIds } });
+  };
+
   return (
     <Container>
-      <GolfersList golfers={golfers} />
-      <TeamList />
+      <GolfersList
+        allGolfers={allGolfers}
+        selectedGolferIds={teamsGolfers}
+        updateGolfers={updateGolfers}
+      />
+      <TeamList
+        allGolfers={allGolfers}
+        selectedGolferIds={teamsGolfers}
+        updateGolfers={updateGolfers}
+      />
     </Container>
   );
 };

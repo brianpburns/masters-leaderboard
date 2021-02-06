@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GolferData } from '../../types/types';
+import AddIcon from '@material-ui/icons/Add';
+
+import { Golfers } from '../../types/types';
 
 const Container = styled.div`
   background-color: white;
@@ -20,24 +22,48 @@ const StyledList = styled.div`
 `;
 
 const StyledGolfer = styled.div`
+  display: flex;
+  padding-left: 5px;
   background-color: green;
   color: white;
 `;
 
+const StyledIcon = styled.div`
+  margin-left: 5px;
+`;
+
 interface Props {
-  golfers: { [id: string]: GolferData };
+  allGolfers: Golfers;
+  selectedGolferIds: string[];
+  updateGolfers: (golferIds: string[]) => void;
 }
 
-export const GolfersList = ({ golfers }: Props) => {
+export const GolfersList = ({
+  allGolfers,
+  selectedGolferIds,
+  updateGolfers,
+}: Props) => {
+  const clickHandler = (golferId: string) => {
+    console.log('added');
+    updateGolfers([...selectedGolferIds, golferId]);
+  };
+
   return (
     <Container>
       <StyledTopBar>
         <div>Search</div>
       </StyledTopBar>
       <StyledList>
-        {Object.values(golfers).map((golfer, i) => (
-          <StyledGolfer key={i}>{golfer.name}</StyledGolfer>
-        ))}
+        {Object.values(allGolfers)
+          .filter((golfer) => !selectedGolferIds.includes(golfer.id))
+          .map((golfer, i) => (
+            <StyledGolfer key={i}>
+              {golfer.name}
+              <StyledIcon onClick={() => clickHandler(golfer.id)}>
+                <AddIcon fontSize="small" />
+              </StyledIcon>
+            </StyledGolfer>
+          ))}
       </StyledList>
     </Container>
   );
