@@ -1,9 +1,7 @@
 {
   "extends": "@snowpack/app-scripts-react",
-  "plugins": [
-    [
-      "@snowpack/plugin-optimize",
-      "@snowpack/plugin-webpack"
-    ]
-  ]
+  "plugins": [["@snowpack/plugin-optimize", "@snowpack/plugin-webpack"]],
+  "devOptions": {
+    "port": 8082
+  }
 }
