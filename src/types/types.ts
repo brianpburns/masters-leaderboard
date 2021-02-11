@@ -66,12 +66,4 @@ export interface GolferData {
 
 export type Golfers = Record<string, GolferData>;
 
-export interface Team {
-  id: string;
-  owner: string;
-  golfers: string[];
-}
-
-export type Teams = Record<string, Team>;
-
 export type GolfersLeaderboard = Record<string, string[]>;

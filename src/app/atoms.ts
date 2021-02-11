@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-import { Golfers, GolfersLeaderboard, Teams } from '../types/types';
+import { Golfers, GolfersLeaderboard } from '../types/types';
 
 export const cutLineState = atom<number>({
   key: '@app/cutLine',
@@ -15,11 +15,6 @@ export const golfersState = atom<Golfers>({
 export const golfersLeaderboard = atom<GolfersLeaderboard>({
   key: '@app/golfersLeaderboard',
   default: {},
-});
-
-export const teamsState = atom<Teams>({
-  key: '@app/teams',
-  default: { '0': { id: '0', owner: 'Burns', golfers: [] } },
 });
 
 export const deadlineState = atom<string>({
