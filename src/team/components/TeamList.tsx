@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { Golfers } from '../../types/types';
+import { useSelectedGolfers } from '../hooks/useSelectedGolfers';
+import { useRecoilValue } from 'recoil';
+import { selectedGolfersState } from '../state/selectors';
 
 const StyledTeamList = styled.div`
   background-color: white;
@@ -24,27 +26,16 @@ const StyledIcon = styled.div`
   margin-left: 5px;
 `;
 
-interface Props {
-  allGolfers: Golfers;
-  selectedGolferIds: string[];
-  updateGolfers: (golferIds: string[]) => void;
-}
+export const TeamList = () => {
+  const selectedGolfers = useRecoilValue(selectedGolfersState);
+  const { removeGolfer } = useSelectedGolfers();
 
-export const TeamList = ({
-  allGolfers,
-  selectedGolferIds,
-  updateGolfers,
-}: Props) => {
-  const clickHandler = (id: string) => {
-    console.log('removed');
-    updateGolfers(selectedGolferIds.filter((golferId) => golferId !== id));
-  };
   return (
     <StyledTeamList>
-      {selectedGolferIds.map((golferId, i) => (
+      {selectedGolfers.map((golfer, i) => (
         <StyledGolfer key={i}>
-          {allGolfers[golferId].name}
-          <StyledIcon onClick={() => clickHandler(golferId)}>
+          {golfer.name}
+          <StyledIcon onClick={() => removeGolfer(golfer)}>
             <RemoveIcon fontSize="small" />
           </StyledIcon>
         </StyledGolfer>

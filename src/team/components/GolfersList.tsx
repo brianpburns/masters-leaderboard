@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 
-import { Golfers } from '../../types/types';
+import { useRecoilValue } from 'recoil';
+import { availableGolfersState } from '../state/selectors';
+import { useSelectedGolfers } from '../hooks/useSelectedGolfers';
 
 const Container = styled.div`
   background-color: white;
@@ -32,21 +34,9 @@ const StyledIcon = styled.div`
   margin-left: 5px;
 `;
 
-interface Props {
-  allGolfers: Golfers;
-  selectedGolferIds: string[];
-  updateGolfers: (golferIds: string[]) => void;
-}
-
-export const GolfersList = ({
-  allGolfers,
-  selectedGolferIds,
-  updateGolfers,
-}: Props) => {
-  const clickHandler = (golferId: string) => {
-    console.log('added');
-    updateGolfers([...selectedGolferIds, golferId]);
-  };
+export const GolfersList = () => {
+  const availableGolfers = useRecoilValue(availableGolfersState);
+  const { addGolfer } = useSelectedGolfers();
 
   return (
     <Container>
@@ -54,16 +44,14 @@ export const GolfersList = ({
         <div>Search</div>
       </StyledTopBar>
       <StyledList>
-        {Object.values(allGolfers)
-          .filter((golfer) => !selectedGolferIds.includes(golfer.id))
-          .map((golfer, i) => (
-            <StyledGolfer key={i}>
-              {golfer.name}
-              <StyledIcon onClick={() => clickHandler(golfer.id)}>
-                <AddIcon fontSize="small" />
-              </StyledIcon>
-            </StyledGolfer>
-          ))}
+        {availableGolfers.map((golfer, i) => (
+          <StyledGolfer key={i}>
+            {golfer.name}
+            <StyledIcon onClick={() => addGolfer(golfer)}>
+              <AddIcon fontSize="small" />
+            </StyledIcon>
+          </StyledGolfer>
+        ))}
       </StyledList>
     </Container>
   );
