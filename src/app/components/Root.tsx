@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { MainLeaderboard } from '../../leaderboard';
