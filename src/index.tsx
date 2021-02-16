@@ -6,9 +6,7 @@ import { cutLineState, golfersState, Root } from './app';
 import { fetchData } from './util/requests';
 
 const bootstrap = async () => {
-  const { cutLine, golfers, golfersLeaderboard } = await fetchData();
-
-  console.log(golfersLeaderboard);
+  const { cutLine, golfers } = await fetchData();
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(golfersState, golfers);
