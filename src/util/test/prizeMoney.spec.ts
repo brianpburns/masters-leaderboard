@@ -26,11 +26,11 @@ const player2: GolferData = {
 const playersStats: GolferData[] = [player1, player2];
 
 describe('calculatePrizeMoney', () => {
-  test('returns correct data', () => {});
+  test.todo('returns correct data');
 });
 
 describe('playerPrizeMoney', () => {
-  test('returns correct data', () => {
+  test.skip('returns correct data', () => {
     const result = playerPrizeMoney(playersStats, 1);
 
     expect(result).toEqual([{}]);
