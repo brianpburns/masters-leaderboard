@@ -46,7 +46,10 @@ export const GolfersList = ({ availableGolfers, addGolfer }: Props) => (
       {availableGolfers.map((golfer, i) => (
         <StyledGolfer key={i}>
           {golfer.name}
-          <StyledIcon onClick={() => addGolfer(golfer)}>
+          <StyledIcon
+            onClick={() => addGolfer(golfer)}
+            data-testid="add-golfer"
+          >
             <AddIcon fontSize="small" />
           </StyledIcon>
         </StyledGolfer>
