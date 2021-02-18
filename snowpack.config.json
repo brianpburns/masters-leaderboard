@@ -1,6 +1,13 @@
 {
   "extends": "@snowpack/app-scripts-react",
-  "plugins": [["@snowpack/plugin-optimize", "@snowpack/plugin-webpack"]],
+  "plugins": [
+    [
+      "@snowpack/plugin-react-refresh",
+      "@snowpack/plugin-optimize",
+      "@snowpack/plugin-webpack"
+    ]
+  ],
+  "routes": [{ "match": "routes", "src": ".*", "dest": "/index.html" }],
   "devOptions": {
     "port": 8082
   }

@@ -56,3 +56,15 @@ export const availableGolfersState = selector<GolferData[]>({
     );
   },
 });
+
+export const teamNameState = selector<string>({
+  key: '@team/name',
+  get: ({ get }) => {
+    const { teamName } = get(activeTeamState);
+    return teamName;
+  },
+  set: ({ get, set }, newName) => {
+    const oldState = get(activeTeamState);
+    set(activeTeamState, { ...oldState, teamName: newName as string });
+  },
+});
