@@ -1,7 +1,7 @@
-import { selector } from 'recoil';
+import { DefaultValue, selector } from 'recoil';
 import { golfersState } from '../../app';
 
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 import { Team } from '../types';
 import { activeTeamIdState, allTeamsState } from './atoms';
@@ -14,11 +14,12 @@ export const activeTeamState = selector<Team>({
     return { ...teams[activeTeam] };
   },
   set: ({ get, set }, newActiveTeamState) => {
+    if (newActiveTeamState instanceof DefaultValue) return;
     const oldState = get(allTeamsState);
     const activeTeamId = get(activeTeamIdState);
     const newState = {
       ...oldState,
-      [activeTeamId]: newActiveTeamState as Team,
+      [activeTeamId]: newActiveTeamState,
     };
 
     set(allTeamsState, newState);
@@ -35,10 +36,9 @@ export const selectedGolfersState = selector<GolferData[]>({
     );
   },
   set: ({ get, set }, newSelectedGolfers) => {
+    if (newSelectedGolfers instanceof DefaultValue) return;
     const activeTeam = get(activeTeamState);
-    const newSelectedGolferIds = (newSelectedGolfers as GolferData[]).map(
-      (golfer) => golfer.id
-    );
+    const newSelectedGolferIds = newSelectedGolfers.map((golfer) => golfer.id);
     set(activeTeamState, {
       ...activeTeam,
       selectedGolferIds: newSelectedGolferIds,
@@ -64,7 +64,8 @@ export const teamNameState = selector<string>({
     return teamName;
   },
   set: ({ get, set }, newName) => {
+    if (newName instanceof DefaultValue) return;
     const oldState = get(activeTeamState);
-    set(activeTeamState, { ...oldState, teamName: newName as string });
+    set(activeTeamState, { ...oldState, teamName: newName });
   },
 });

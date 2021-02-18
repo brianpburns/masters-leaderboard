@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 interface Props {
   availableGolfers: GolferData[];
@@ -46,7 +46,10 @@ export const GolfersList = ({ availableGolfers, addGolfer }: Props) => (
       {availableGolfers.map((golfer, i) => (
         <StyledGolfer key={i}>
           {golfer.name}
-          <StyledIcon onClick={() => addGolfer(golfer)}>
+          <StyledIcon
+            onClick={() => addGolfer(golfer)}
+            data-testid="add-golfer"
+          >
             <AddIcon fontSize="small" />
           </StyledIcon>
         </StyledGolfer>

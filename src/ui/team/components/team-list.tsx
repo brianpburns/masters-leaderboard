@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 interface Props {
   selectedGolfers: GolferData[];
@@ -25,7 +25,10 @@ export const TeamList = ({ selectedGolfers, removeGolfer }: Props) => (
     {selectedGolfers.map((golfer, i) => (
       <StyledGolfer key={i}>
         {golfer.name}
-        <StyledIcon onClick={() => removeGolfer(golfer)}>
+        <StyledIcon
+          onClick={() => removeGolfer(golfer)}
+          data-testid="remove-golfer"
+        >
           <RemoveIcon fontSize="small" />
         </StyledIcon>
       </StyledGolfer>
