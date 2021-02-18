@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 import { golfersState } from '../../app';
 
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 import { Team } from '../types';
 import { activeTeamIdState, allTeamsState } from './atoms';

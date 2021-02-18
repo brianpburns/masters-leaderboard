@@ -1,5 +1,5 @@
 import { mockMastersLeaderboard } from '../data/mockLeaderboard';
-import type { LeaderboardJsonResponse } from '../types/types';
+import type { LeaderboardJsonResponse } from '../ui/types';
 import { normaliseCutLine, getGolferStats } from './stats';
 import { addGolferMoney, playerPrizeMoney } from './prizeMoney';
 

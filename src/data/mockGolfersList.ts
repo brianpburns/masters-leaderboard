@@ -1,4 +1,4 @@
-import { GolferData } from "../types/types";
+import { GolferData } from "../ui/types";
 
 export const mockGolfersList: { [key: string]: any } = {
   '1226': {

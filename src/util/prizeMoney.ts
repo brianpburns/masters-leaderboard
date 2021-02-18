@@ -1,6 +1,6 @@
 import { teams } from '../data/teams';
 import { prizeMoney } from '../data/prizeMoney';
-import { GolferData } from '../types/types';
+import { GolferData } from '../ui/types';
 
 const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;

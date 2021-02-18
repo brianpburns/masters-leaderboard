@@ -4,7 +4,7 @@ import {
   GolferData,
   Golfers,
   GolfersLeaderboard,
-} from '../types/types';
+} from '../ui/types';
 
 const normalisePosition = (position: string) =>
   position ? parseInt(position.replace('T', '')) : 0;

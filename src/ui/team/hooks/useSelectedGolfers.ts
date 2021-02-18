@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 import { selectedGolfersState } from '../state/selectors';
 

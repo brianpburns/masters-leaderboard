@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { GolferData } from '../../types/types';
+import { GolferData } from '../../types';
 
 interface Props {
   selectedGolfers: GolferData[];
