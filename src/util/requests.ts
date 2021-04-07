@@ -1,4 +1,4 @@
-import { mockMastersLeaderboard } from '../data/mockLeaderboard';
+import { mockMastersLeaderboard } from '../mocks/data/leaderboard';
 import type { LeaderboardJsonResponse } from '../types';
 import { normaliseCutLine, getGolferStats } from './stats';
 import { addGolferMoney, playerPrizeMoney } from './prize-money';

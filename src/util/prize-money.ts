@@ -1,5 +1,5 @@
-import { teams } from '../data/teams';
-import { prizeMoney } from '../data/prizeMoney';
+import { teams } from '../mocks/data/teams';
+import { prizeMoney } from '../mocks/data/prize-money';
 import { GolferData } from '../types';
 
 const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
