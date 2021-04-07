@@ -2,9 +2,9 @@ import React from 'react';
 import { TableRow, TableCell } from '@material-ui/core';
 import { useRecoilValue } from 'recoil';
 
-import { prizeMoneyState } from '../../api/state/atoms';
 import { golfersState } from '../../app';
 import { displayNumber } from '../utils/display-number';
+import { usePrizeMoney } from '../hooks/use-prize-money';
 
 interface Props {
   golferId: number;
@@ -12,21 +12,19 @@ interface Props {
 
 export const SubRow = ({ golferId }: Props) => {
   const golfers = useRecoilValue(golfersState);
-  const prizeMoney = useRecoilValue(prizeMoneyState);
-  const player = golfers[golferId];
+  const golfer = golfers[golferId];
+  const getPrizeMoney = usePrizeMoney();
 
   return (
     <TableRow key={golferId}>
       <TableCell component='th' scope='row'>
-        {player.position}
+        {golfer.position}
       </TableCell>
-      <TableCell>{player.name}</TableCell>
-      <TableCell>{player.topar}</TableCell>
-      <TableCell>{player.thru}</TableCell>
-      <TableCell>{player.today}</TableCell>
-      <TableCell>
-        {displayNumber(prizeMoney[player.position].prizeMoney)}
-      </TableCell>
+      <TableCell>{golfer.name}</TableCell>
+      <TableCell>{golfer.topar}</TableCell>
+      <TableCell>{golfer.thru}</TableCell>
+      <TableCell>{golfer.today}</TableCell>
+      <TableCell>{displayNumber(getPrizeMoney(golferId))}</TableCell>
     </TableRow>
   );
 };
