@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
-import { cutLineState, golfersState, Root } from './ui/app';
+import { cutLineState, golfersState, Root } from './app';
 import { fetchData } from './util/requests';
 
 const bootstrap = async () => {

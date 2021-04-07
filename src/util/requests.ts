@@ -1,9 +1,10 @@
-import { mockMastersLeaderboard } from '../data/mockLeaderboard';
-import type { LeaderboardJsonResponse } from '../ui/types';
+import { mockMastersLeaderboard } from '../mocks/data/leaderboard';
+import type { LeaderboardJsonResponse } from '../types';
 import { normaliseCutLine, getGolferStats } from './stats';
-import { addGolferMoney, playerPrizeMoney } from './prizeMoney';
+import { addGolferMoney, playerPrizeMoney } from './prize-money';
 
-const leaderboarUrl = 'https://www.masters.com/en_US/scores/feeds/scores.json';
+const leaderboarUrl =
+  'https://www.masters.com/en_US/scores/feeds/2021/scores.json';
 
 export const getLeaderboardData = async () => fetch(leaderboarUrl);
 

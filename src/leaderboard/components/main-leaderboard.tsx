@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Row } from './Row';
+import { Row } from './row';
 
 const Container = styled.div`
   width: 100%;
@@ -60,6 +60,9 @@ export const initialState = [
   },
 ];
 
+const mastersLogoSrc =
+  'http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/augusta-masters-2019/d05d1861-masters-logo-masters-gimp_0ds03p0dq03p000000001.png';
+
 export const MainLeaderboard = () => {
   const [leaderboard, setLeaderboard] = useState(initialState);
   // useEffect(() => {
@@ -74,16 +77,16 @@ export const MainLeaderboard = () => {
   return (
     <Container>
       <StyledLogo>
-        <img src="http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/augusta-masters-2019/d05d1861-masters-logo-masters-gimp_0ds03p0dq03p000000001.png" />
+        <img src={mastersLogoSrc} />
       </StyledLogo>
       <StyledTableContainer>
-        <StyledTable aria-label="collapsible table">
+        <StyledTable aria-label='collapsible table'>
           <TableHead>
             <TableRow>
-              <TableCell size="small" />
-              <TableCell size="small">Pos</TableCell>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Money</TableCell>
+              <TableCell size='small' />
+              <TableCell size='small'>Pos</TableCell>
+              <TableCell align='left'>Name</TableCell>
+              <TableCell align='left'>Money</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

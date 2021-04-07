@@ -27,9 +27,9 @@ export const TeamList = ({ selectedGolfers, removeGolfer }: Props) => (
         {golfer.name}
         <StyledIcon
           onClick={() => removeGolfer(golfer)}
-          data-testid="remove-golfer"
+          data-testid='remove-golfer'
         >
-          <RemoveIcon fontSize="small" />
+          <RemoveIcon fontSize='small' />
         </StyledIcon>
       </StyledGolfer>
     ))}

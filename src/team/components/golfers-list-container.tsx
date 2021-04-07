@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRecoilValue } from 'recoil';
 import { availableGolfersState } from '../state/selectors';
-import { useSelectedGolfers } from '../hooks/useSelectedGolfers';
+import { useSelectedGolfers } from '../hooks/use-selected-golfers';
 import { GolfersList } from './golfers-list';
 
 export const GolfersListContainer = () => {
