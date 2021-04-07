@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-import { Golfers, GolfersLeaderboard } from '../../types';
+import { Golfers, GolferRankings } from '../../types';
 
 export const cutLineState = atom<number>({
   key: '@app/cutLine',
@@ -12,7 +12,7 @@ export const golfersState = atom<Golfers>({
   default: {},
 });
 
-export const golfersLeaderboard = atom<GolfersLeaderboard>({
+export const golfersLeaderboard = atom<GolferRankings>({
   key: '@app/golfersLeaderboard',
   default: {},
 });

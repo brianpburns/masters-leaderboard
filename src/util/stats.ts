@@ -3,7 +3,7 @@ import {
   Golfer,
   GolferData,
   Golfers,
-  GolfersLeaderboard,
+  GolferRankings,
 } from '../types';
 
 const normalisePosition = (position: string) =>
@@ -34,19 +34,29 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
 
 export const getGolferStats = (leaderboardData: LeaderboardData) => {
   let golfers: Golfers = {};
-  let golfersLeaderboard: GolfersLeaderboard = {};
+  let golferRankings: GolferRankings = {};
 
   leaderboardData.player.map((golfer) => {
-    golfers[golfer.id] = generateGolferStats(golfer);
-    const position = normalisePosition(golfer.pos);
-    if (golfersLeaderboard[position]) {
-      golfersLeaderboard[position].push(golfer.id);
+    const cleanGolferData = generateGolferStats(golfer);
+    const { id, position, topar } = cleanGolferData;
+
+    golfers[id] = cleanGolferData;
+
+    if (golferRankings[position]) {
+      golferRankings[position].golfers.push(id);
     } else {
-      golfersLeaderboard[position] = [golfer.id];
+      golferRankings[position] = {
+        golfers: [id],
+        prizeMoney: 0,
+        topar,
+      };
     }
   });
-  return { golfers, golfersLeaderboard };
+
+  return { golfers, golferRankings };
 };
+
+export const generateGolferRankings = (leaderboardData: LeaderboardData) => {};
 
 export function normaliseCutLine(cutLine: LeaderboardData['cutLine']) {
   return cutLine === 'E' || cutLine === '' ? 0 : parseInt(cutLine);

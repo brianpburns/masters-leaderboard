@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
 import { cutLineState, golfersState, Root } from './app';
-import { fetchData } from './util/requests';
+import { fetchData } from './api/fetch/requests';
+
+const localBootstrap = async () => {
+  const { worker } = await import('./mocks');
+  worker.start();
+
+  bootstrap();
+};
 
 const bootstrap = async () => {
-  const { cutLine, golfers } = await fetchData();
+  const { cutLine, golfers, rankingsWithPrizeMoney } = await fetchData();
+
+  console.log(rankingsWithPrizeMoney);
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(golfersState, golfers);
@@ -23,7 +32,11 @@ const bootstrap = async () => {
   );
 };
 
-bootstrap();
+if (process.env.NODE_ENV === 'development') {
+  localBootstrap();
+} else {
+  bootstrap();
+}
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/#hot-module-replacement

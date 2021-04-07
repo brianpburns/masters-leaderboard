@@ -66,4 +66,10 @@ export interface GolferData {
 
 export type Golfers = Record<string, GolferData>;
 
-export type GolfersLeaderboard = Record<string, string[]>;
+interface Ranking {
+  golfers: string[];
+  prizeMoney: number;
+  topar: number;
+}
+
+export type GolferRankings = Record<string, Ranking>;
