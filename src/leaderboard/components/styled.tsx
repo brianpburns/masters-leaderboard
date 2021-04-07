@@ -1,12 +1,19 @@
 import styled from 'styled-components';
-import { Table, TableContainer } from '@material-ui/core';
+import { TableCell, TableContainer } from '@material-ui/core';
 
 export const LeaderboardContainer = styled.div`
-  width: 100%;
   max-width: 700px;
+  min-width: 600px;
   justify-self: center;
-  margin: 50px;
+  margin-top: 50px;
   border-radius: 25px;
+
+  @media only screen and (max-width: 600px) {
+    margin-top: 0;
+    max-width: 600px;
+    justify-self: normal;
+    min-width: 0;
+  }
 `;
 
 export const StyledLogo = styled.div`
@@ -22,11 +29,12 @@ export const StyledLogo = styled.div`
   }
 `;
 
-export const StyledTable = styled(Table)`
-  border-radius: 25px;
-`;
-
 export const StyledTableContainer = styled(TableContainer)`
   background-color: white;
   border-radius: 0px 0px 25px 25px;
+`;
+
+export const SubTableCell = styled(TableCell)`
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 `;

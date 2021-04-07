@@ -17,16 +17,16 @@ const AppContainer = styled.div`
   overflow-y: auto;
 `;
 
-const StyledNav = styled.nav`
-  background-color: white;
-  height: max-content;
-`;
+// const StyledNav = styled.nav`
+//   background-color: white;
+//   height: max-content;
+// `;
 
 export const Root = () => {
   return (
     <AppContainer>
-      <Router>
-        <StyledNav>
+      {/* <Router> */}
+      {/* <StyledNav>
           <ul>
             <li>
               <Link to='/login'>Login</Link>
@@ -38,20 +38,20 @@ export const Root = () => {
               <Link to='/leaderboard'>Leaderboard</Link>
             </li>
           </ul>
-        </StyledNav>
+        </StyledNav> */}
 
-        <Switch>
-          {/* <Route path="/">
+      {/* <Switch> */}
+      {/* <Route path="/">
           <MainLeaderboard />
         </Route> */}
-          <Route path='/leaderboard'>
-            <MainLeaderboard />
-          </Route>
+      {/* <Route path='/leaderboard'> */}
+      <MainLeaderboard />
+      {/* </Route>
           <Route path='/team'>
             <TeamPage />
-          </Route>
-        </Switch>
-      </Router>
+          </Route> */}
+      {/* </Switch> */}
+      {/* </Router> */}
     </AppContainer>
   );
 };

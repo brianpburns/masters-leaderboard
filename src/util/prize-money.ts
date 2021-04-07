@@ -57,7 +57,7 @@ const calcEntrantsMoney = (
   const prizeMoney = entrant.players_ids.reduce((accum, id) => {
     const position = golfers[id].position;
     return accum + rankingsWithPrizeMoney[position].prizeMoney;
-  });
+  }, 0);
 
   return {
     ...entrant,

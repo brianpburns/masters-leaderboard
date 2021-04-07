@@ -4,13 +4,18 @@ import { TableBody } from '@material-ui/core';
 
 import { entrantsState } from '../../api/state/atoms';
 import { PrimaryRow } from './primary-row';
+import { Entrant } from '../../types';
+
+export const prizeMoneySortKey = (a: Entrant, b: Entrant) =>
+  a.prizeMoney < b.prizeMoney ? 1 : -1;
 
 export const TableContent = () => {
   const entrantsData = useRecoilValue(entrantsState);
+  const sortedData = entrantsData.slice().sort(prizeMoneySortKey);
 
   return (
     <TableBody>
-      {entrantsData.map((row, id) => (
+      {sortedData.map((row, id) => (
         <PrimaryRow key={row.name} position={id} row={row} />
       ))}
     </TableBody>
