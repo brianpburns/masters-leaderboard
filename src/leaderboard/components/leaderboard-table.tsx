@@ -1,12 +1,12 @@
 import React from 'react';
-import { TableHead, TableRow, TableCell } from '@material-ui/core';
+import { TableHead, TableRow, TableCell, Table } from '@material-ui/core';
 
 import { TableContent } from './table-content';
-import { StyledTable, StyledTableContainer } from './styled';
+import { StyledTableContainer } from './styled';
 
 export const LeaderboardTable = () => (
   <StyledTableContainer>
-    <StyledTable aria-label='collapsible table'>
+    <Table aria-label='collapsible table'>
       <TableHead>
         <TableRow>
           <TableCell size='small' />
@@ -16,6 +16,6 @@ export const LeaderboardTable = () => (
         </TableRow>
       </TableHead>
       <TableContent />
-    </StyledTable>
+    </Table>
   </StyledTableContainer>
 );

@@ -25,7 +25,7 @@ export const SubTable = ({ isOpen, row }: Props) => {
     <TableRow>
       <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
         <Collapse in={isOpen} timeout='auto' unmountOnExit>
-          <Box margin={1}>
+          <Box>
             <Table size='small' aria-label='purchases'>
               <TableHead>
                 <TableRow>
