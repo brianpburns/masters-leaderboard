@@ -1,5 +1,7 @@
 # Masters Leaderboard
 
+Live LP: http://unbouncepages.com/masters-2020-burns-1/
+
 ## Installation
 
 If you're using NVM to manage your node version, you can sync your node version with that of the project by running:
