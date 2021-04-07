@@ -1,4 +1,4 @@
-import { GolferData } from '../ui/types';
+import { GolferData } from '../types';
 import { playerPrizeMoney } from './prize-money';
 
 const player1: GolferData = {

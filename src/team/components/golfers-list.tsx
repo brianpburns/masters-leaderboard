@@ -48,9 +48,9 @@ export const GolfersList = ({ availableGolfers, addGolfer }: Props) => (
           {golfer.name}
           <StyledIcon
             onClick={() => addGolfer(golfer)}
-            data-testid="add-golfer"
+            data-testid='add-golfer'
           >
-            <AddIcon fontSize="small" />
+            <AddIcon fontSize='small' />
           </StyledIcon>
         </StyledGolfer>
       ))}

@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import { MainLeaderboard } from "../../leaderboard";
-import { TeamPage } from "../../team";
+import { MainLeaderboard } from '../../leaderboard';
+import { TeamPage } from '../../team';
 
 const AppContainer = styled.div`
   display: grid;
   background-color: green;
-  background-image: url("//d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/masters-2022/9721323d-masters.jpg");
+  background-image: url('//d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/masters-2022/9721323d-masters.jpg');
   background-repeat: no-repeat;
-  background-position: "left center";
+  background-position: 'left center';
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -29,13 +29,13 @@ export const Root = () => {
         <StyledNav>
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
             <li>
-              <Link to="/team">Team</Link>
+              <Link to='/team'>Team</Link>
             </li>
             <li>
-              <Link to="/leaderboard">Leaderboard</Link>
+              <Link to='/leaderboard'>Leaderboard</Link>
             </li>
           </ul>
         </StyledNav>
@@ -44,10 +44,10 @@ export const Root = () => {
           {/* <Route path="/">
           <MainLeaderboard />
         </Route> */}
-          <Route path="/leaderboard">
+          <Route path='/leaderboard'>
             <MainLeaderboard />
           </Route>
-          <Route path="/team">
+          <Route path='/team'>
             <TeamPage />
           </Route>
         </Switch>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { Row } from './row-temp';
+import { Row } from './row';
 import { initialState } from './main-leaderboard';
 
 describe('Row', () => {
