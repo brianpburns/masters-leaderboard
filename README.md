@@ -25,7 +25,7 @@ npm start
 ## Production Build
 
 ```
-npm run build
+npm run build:prod
 ```
 
 ## Testing
