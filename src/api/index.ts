@@ -1,1 +1,1 @@
-export { useLeaderboard } from './hooks/use-leaderboard';
+export { fetchData } from './fetch/requests';

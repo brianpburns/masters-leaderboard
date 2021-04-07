@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
 import { cutLineState, golfersState, Root } from './app';
-import { fetchData } from './api/fetch/requests';
+import { fetchData } from './api';
 import { entrantsState, prizeMoneyState } from './api/state/atoms';
 
 const localBootstrap = async () => {
@@ -20,8 +20,6 @@ const bootstrap = async () => {
     rankingsWithPrizeMoney,
     entrantsMoney,
   } = await fetchData();
-
-  console.log(rankingsWithPrizeMoney);
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(entrantsState, entrantsMoney);
