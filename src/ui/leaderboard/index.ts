@@ -1,1 +1,1 @@
-export { MainLeaderboard } from './components/MainLeaderboard';
+export { MainLeaderboard } from './components/main-leaderboard';

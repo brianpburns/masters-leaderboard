@@ -1,7 +1,7 @@
 import { mockMastersLeaderboard } from '../data/mockLeaderboard';
 import type { LeaderboardJsonResponse } from '../ui/types';
 import { normaliseCutLine, getGolferStats } from './stats';
-import { addGolferMoney, playerPrizeMoney } from './prizeMoney';
+import { addGolferMoney, playerPrizeMoney } from './prize-money';
 
 const leaderboarUrl = 'https://www.masters.com/en_US/scores/feeds/scores.json';
 

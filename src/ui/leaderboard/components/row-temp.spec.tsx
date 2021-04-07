@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { Row } from '../../components/Row';
-import { initialState } from '../../components/MainLeaderboard';
+import { Row } from './row-temp';
+import { initialState } from './main-leaderboard';
 
 describe('Row', () => {
   test('renders', () => {

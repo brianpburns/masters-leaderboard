@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useSelectedGolfers } from '../hooks/useSelectedGolfers';
+import { useSelectedGolfers } from '../hooks/use-selected-golfers';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { selectedGolfersState, teamNameState } from '../state/selectors';
 import { TeamList } from './team-list';

@@ -11,7 +11,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import { makeStyles } from '@material-ui/core/styles';
 
-import type { initialState } from './MainLeaderboard';
+import type { initialState } from './main-leaderboard';
 
 const useRowStyles = makeStyles({
   root: {
@@ -44,8 +44,8 @@ export const Row = ({
       >
         <TableCell>
           <IconButton
-            aria-label="expand row"
-            size="small"
+            aria-label='expand row'
+            size='small'
             onClick={() => setOpen(!open)}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -57,9 +57,9 @@ export const Row = ({
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={open} timeout='auto' unmountOnExit>
             <Box margin={1}>
-              <Table size="small" aria-label="purchases">
+              <Table size='small' aria-label='purchases'>
                 <TableHead>
                   <TableRow>
                     <TableCell>Pos</TableCell>
@@ -73,7 +73,7 @@ export const Row = ({
                 <TableBody>
                   {row.players.map((player) => (
                     <TableRow key={player.id}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component='th' scope='row'>
                         {player.position}
                       </TableCell>
                       <TableCell>{player.name}</TableCell>

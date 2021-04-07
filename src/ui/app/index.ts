@@ -1,3 +1,3 @@
-export { Root } from './components/Root';
+export { Root } from './components/root';
 
-export { cutLineState, golfersState } from './atoms';
+export { cutLineState, golfersState } from './state/atoms';
