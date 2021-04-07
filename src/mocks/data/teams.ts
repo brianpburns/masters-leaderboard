@@ -102,7 +102,6 @@ export const entrants: Entrant[] = [
       34363,
       34360,
       36689,
-      8793,
       28237,
     ],
 

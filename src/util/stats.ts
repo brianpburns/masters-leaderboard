@@ -24,7 +24,7 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
     id,
     name: `${first_name} ${last_name}`,
     position: normalisePosition(pos),
-    topar: topar === 'E' ? 0 : parseInt(topar),
+    topar: topar === 'E' || topar === '' ? 0 : parseInt(topar),
     thru: thru ? thru : '-',
     today: today ? today : '-',
     teetime,
