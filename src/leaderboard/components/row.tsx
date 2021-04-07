@@ -11,7 +11,10 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import { makeStyles } from '@material-ui/core/styles';
 
-import type { initialState } from './main-leaderboard';
+import { Entrant } from '../../types';
+import { useRecoilValue } from 'recoil';
+import { golfersState } from '../../app';
+import { prizeMoneyState } from '../../api/state/atoms';
 
 const useRowStyles = makeStyles({
   root: {
@@ -24,15 +27,11 @@ const useRowStyles = makeStyles({
 const displayNumber = (num: number) =>
   num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-export const Row = ({
-  position,
-  row,
-}: {
-  position: number;
-  row: typeof initialState[0];
-}) => {
+export const Row = ({ position, row }: { position: number; row: Entrant }) => {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
+  const golfers = useRecoilValue(golfersState);
+  const prizeMoney = useRecoilValue(prizeMoneyState);
 
   return (
     <>
@@ -71,18 +70,25 @@ export const Row = ({
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.players.map((player) => (
-                    <TableRow key={player.id}>
-                      <TableCell component='th' scope='row'>
-                        {player.position}
-                      </TableCell>
-                      <TableCell>{player.name}</TableCell>
-                      <TableCell>{player.topar}</TableCell>
-                      <TableCell>{player.thru}</TableCell>
-                      <TableCell>{player.today}</TableCell>
-                      <TableCell>{displayNumber(player.prizeMoney)}</TableCell>
-                    </TableRow>
-                  ))}
+                  {row.players_ids.map((id) => {
+                    const player = golfers[id];
+                    return (
+                      <TableRow key={id}>
+                        <TableCell component='th' scope='row'>
+                          {player.position}
+                        </TableCell>
+                        <TableCell>{player.name}</TableCell>
+                        <TableCell>{player.topar}</TableCell>
+                        <TableCell>{player.thru}</TableCell>
+                        <TableCell>{player.today}</TableCell>
+                        <TableCell>
+                          {displayNumber(
+                            prizeMoney[player.position].prizeMoney
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </Box>

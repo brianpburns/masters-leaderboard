@@ -3,7 +3,7 @@ import {
   Golfer,
   GolferData,
   Golfers,
-  GolferRankings,
+  GolferMoneyRankings,
 } from '../types';
 
 const normalisePosition = (position: string) =>
@@ -24,7 +24,6 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
     id,
     name: `${first_name} ${last_name}`,
     position: normalisePosition(pos),
-    prizeMoney: 0,
     topar: topar === 'E' ? 0 : parseInt(topar),
     thru: thru ? thru : '-',
     today: today ? today : '-',
@@ -34,7 +33,7 @@ const generateGolferStats = (golfer: Golfer): GolferData => {
 
 export const getGolferStats = (leaderboardData: LeaderboardData) => {
   let golfers: Golfers = {};
-  let golferRankings: GolferRankings = {};
+  let golferRankings: GolferMoneyRankings = {};
 
   leaderboardData.player.map((golfer) => {
     const cleanGolferData = generateGolferStats(golfer);

@@ -8,6 +8,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Row } from './row';
+import { useRecoilValue } from 'recoil';
+import { entrantsState } from '../../api/state/atoms';
 
 const Container = styled.div`
   width: 100%;
@@ -39,40 +41,11 @@ const StyledTableContainer = styled(TableContainer)`
   border-radius: 0px 0px 25px 25px;
 `;
 
-export const initialState = [
-  {
-    id: 0,
-    name: '',
-    players_ids: [0],
-    prizeMoney: 0,
-    players: [
-      {
-        id: '',
-        name: '',
-        position: '',
-        prizeMoney: 0,
-        teetime: '',
-        thru: '',
-        today: '',
-        topar: 0,
-      },
-    ],
-  },
-];
-
 const mastersLogoSrc =
   'http://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/augusta-masters-2019/d05d1861-masters-logo-masters-gimp_0ds03p0dq03p000000001.png';
 
 export const MainLeaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState(initialState);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await generateLeaderboard();
-  //     setLeaderboard(result);
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const leaderboard = useRecoilValue(entrantsState);
 
   return (
     <Container>
