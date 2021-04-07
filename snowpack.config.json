@@ -4,14 +4,7 @@
     [
       "@snowpack/plugin-react-refresh",
       "@snowpack/plugin-optimize",
-      [
-        "@snowpack/plugin-webpack",
-        {
-          "outputPattern": {
-            "js": "bundle.js"
-          }
-        }
-      ]
+      "@snowpack/plugin-webpack"
     ]
   ],
   "routes": [{ "match": "routes", "src": ".*", "dest": "/index.html" }],

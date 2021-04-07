@@ -25,8 +25,8 @@ const AppContainer = styled.div`
 export const Root = () => {
   return (
     <AppContainer>
-      <Router>
-        {/* <StyledNav>
+      {/* <Router> */}
+      {/* <StyledNav>
           <ul>
             <li>
               <Link to='/login'>Login</Link>
@@ -40,18 +40,18 @@ export const Root = () => {
           </ul>
         </StyledNav> */}
 
-        <Switch>
-          {/* <Route path="/">
+      {/* <Switch> */}
+      {/* <Route path="/">
           <MainLeaderboard />
         </Route> */}
-          <Route path='/leaderboard'>
-            <MainLeaderboard />
-          </Route>
+      {/* <Route path='/leaderboard'> */}
+      <MainLeaderboard />
+      {/* </Route>
           <Route path='/team'>
             <TeamPage />
-          </Route>
-        </Switch>
-      </Router>
+          </Route> */}
+      {/* </Switch> */}
+      {/* </Router> */}
     </AppContainer>
   );
 };

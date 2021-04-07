@@ -18,7 +18,7 @@ export const SubRow = ({ golferId }: Props) => {
   return (
     <TableRow key={golferId}>
       <TableCell component='th' scope='row'>
-        {golfer.position}
+        {golfer.position === 0 ? '-' : golfer.position}
       </TableCell>
       <TableCell>{golfer.name}</TableCell>
       <TableCell>{golfer.topar}</TableCell>
