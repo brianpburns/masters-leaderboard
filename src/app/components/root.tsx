@@ -22,15 +22,6 @@ const StyledNav = styled.nav`
   height: max-content;
 `;
 
-const startWorkers = async () => {
-  const { worker } = await import('../../mocks');
-  worker.start();
-};
-
-if (process.env.NODE_ENV === 'development') {
-  startWorkers();
-}
-
 export const Root = () => {
   return (
     <AppContainer>

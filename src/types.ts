@@ -57,7 +57,6 @@ export interface GolferData {
   id: string;
   name: string;
   position: number;
-  prizeMoney: number;
   topar: number;
   thru: string;
   today: string;
@@ -66,4 +65,17 @@ export interface GolferData {
 
 export type Golfers = Record<string, GolferData>;
 
-export type GolfersLeaderboard = Record<string, string[]>;
+interface Ranking {
+  golfers: string[];
+  prizeMoney: number;
+  topar: number;
+}
+
+export type GolferMoneyRankings = Record<string, Ranking>;
+
+export interface Entrant {
+  id: number;
+  name: string;
+  players_ids: number[];
+  prizeMoney: number;
+}

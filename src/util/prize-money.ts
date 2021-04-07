@@ -1,6 +1,28 @@
-import { teams } from '../mocks/data/teams';
+import { entrants } from '../mocks/data/teams';
 import { prizeMoney } from '../mocks/data/prize-money';
-import { GolferData } from '../types';
+import { Entrant, GolferMoneyRankings, Golfers } from '../types';
+
+export const addPrizeMoney = (golferRankings: GolferMoneyRankings) => {
+  Object.keys(golferRankings).map((position) => {
+    const { golfers } = golferRankings[position];
+    const rank = parseInt(position);
+
+    if (rank === 0) {
+      // If player misses the cut they get $10,000
+      golferRankings[rank].prizeMoney = 10000;
+    } else if (rank > 50) {
+      // If they make the cut but are outside the top 50 they get ~$25,000
+      golferRankings[rank].prizeMoney = 25000;
+    } else if (golfers.length > 1) {
+      // If there's a tie
+      golferRankings[rank].prizeMoney = splitMoneyOnTie(rank, golfers.length);
+    } else {
+      golferRankings[rank].prizeMoney = prizeMoney[rank];
+    }
+  });
+
+  return golferRankings;
+};
 
 const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;
@@ -14,77 +36,31 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   return Math.round(positionPrizeMoney / noPlayersTied);
 };
 
-const calculatePrizeMoney = (
-  playersStats: GolferData[],
-  player: GolferData,
-  position: number
+export const calculateAllEntrantsMoney = (
+  golfers: Golfers,
+  rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
-  const noTiedPlayers = playersStats.reduce(
-    (total: number, { position }: GolferData) =>
-      position === player.position ? total + 1 : total,
-    0
+  // Loop through entrants
+  // Loop through player IDs and get the players position
+  // Use the position to get their prize money
+
+  return entrants.map((entrant) =>
+    calcEntrantsMoney(entrant, golfers, rankingsWithPrizeMoney)
   );
-  return noTiedPlayers !== 1
-    ? splitMoneyOnTie(position, noTiedPlayers)
-    : prizeMoney[position];
 };
 
-/**
- * Loop through all the players and update them with the prize money they're set to receive
- */
-export const playerPrizeMoney = (
-  playersStats: GolferData[],
-  cutline: number
+const calcEntrantsMoney = (
+  entrant: Entrant,
+  golfers: Golfers,
+  rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
-  let prizeMoneyBreakdown: { [k: string]: number } = {};
-  const playersWithMoney = [];
+  const prizeMoney = entrant.players_ids.reduce((accum, id) => {
+    const position = golfers[id].position;
+    return accum + rankingsWithPrizeMoney[position].prizeMoney;
+  });
 
-  for (const player of playersStats) {
-    const { position, topar } = player;
-    const indexedPosition = position - 1;
-
-    // If there's no recorded value for the position calculate a value
-    if (!prizeMoneyBreakdown[position] || topar > cutline) {
-      // If player is outside of the top 50 they get $10,000
-      if (prizeMoney[indexedPosition] === undefined) {
-        prizeMoneyBreakdown[position] = 10000;
-      } else {
-        // Calculate the prize money and store the value
-        prizeMoneyBreakdown[position] = calculatePrizeMoney(
-          playersStats,
-          player,
-          indexedPosition
-        );
-      }
-    }
-    playersWithMoney.push({
-      ...player,
-      prizeMoney: prizeMoneyBreakdown[position],
-    });
-  }
-
-  return playersWithMoney;
-};
-
-// Get the player data for each entrant's players
-export const addGolferMoney = (golfers: GolferData[]) => {
-  const { entrants } = teams;
-  const entrantsWithMoney = [];
-  for (const entrant of entrants) {
-    let prizeMoney = 0;
-    const golfersData = golfers.filter(
-      (golfer) => golfer.id && entrant.players_ids.includes(parseInt(golfer.id))
-    );
-    for (const golfer of golfersData) {
-      if (golfer) {
-        prizeMoney = prizeMoney + golfer.prizeMoney;
-      }
-    }
-    entrantsWithMoney.push({
-      ...entrant,
-      prizeMoney,
-      players: golfersData,
-    });
-  }
-  return entrantsWithMoney;
+  return {
+    ...entrant,
+    prizeMoney,
+  };
 };
