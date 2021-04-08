@@ -21,7 +21,7 @@ export const entrants: Entrant[] = [
   },
   {
     id: 1,
-    name: 'James Kelly',
+    name: 'James',
     players_ids: [
       30925,
       47959,
@@ -75,7 +75,7 @@ export const entrants: Entrant[] = [
   },
   {
     id: 4,
-    name: 'Brian McManus',
+    name: 'McManus',
     players_ids: [
       30925,
       47959,
@@ -93,7 +93,7 @@ export const entrants: Entrant[] = [
   },
   {
     id: 5,
-    name: 'Adam Terris',
+    name: 'Adam',
     players_ids: [
       30925,
       33448,
@@ -111,7 +111,7 @@ export const entrants: Entrant[] = [
   },
   {
     id: 6,
-    name: 'Harris',
+    name: 'Haris',
     players_ids: [
       30925,
       33448,
@@ -129,7 +129,7 @@ export const entrants: Entrant[] = [
   },
   {
     id: 7,
-    name: 'johnny',
+    name: 'Johnny',
     players_ids: [
       47959,
       33448,
@@ -141,6 +141,24 @@ export const entrants: Entrant[] = [
       46717,
       33204,
       28089,
+    ],
+
+    prizeMoney: 0,
+  },
+  {
+    id: 8,
+    name: 'Burns',
+    players_ids: [
+      30925,
+      47959,
+      33448,
+      34046,
+      46970,
+      28237,
+      48081,
+      36689,
+      50525,
+      34360,
     ],
 
     prizeMoney: 0,
