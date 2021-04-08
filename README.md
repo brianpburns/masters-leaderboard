@@ -1,6 +1,6 @@
 # Masters Leaderboard
 
-Live LP: http://unbouncepages.com/masters-2020-burns-1/
+Live LP: http://unbouncepages.com/masters-2021-vancrewver/
 
 ## Installation
 
