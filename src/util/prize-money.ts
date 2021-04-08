@@ -55,8 +55,12 @@ const calcEntrantsMoney = (
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
   const prizeMoney = entrant.players_ids.reduce((accum, id) => {
-    const position = golfers[id].position;
-    return accum + rankingsWithPrizeMoney[position].prizeMoney;
+    try {
+      const position = golfers[id].position;
+      return accum + rankingsWithPrizeMoney[position].prizeMoney;
+    } catch (err) {
+      throw new Error(`No ID for ${id}`);
+    }
   }, 0);
 
   return {
