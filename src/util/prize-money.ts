@@ -2,13 +2,22 @@ import { entrants } from '../mocks/data/teams';
 import { prizeMoney } from '../mocks/data/prize-money';
 import { Entrant, GolferMoneyRankings, Golfers } from '../types';
 
-export const addPrizeMoney = (golferRankings: GolferMoneyRankings) => {
+export const addPrizeMoney = (
+  golferRankings: GolferMoneyRankings,
+  currentRound: string
+) => {
   Object.keys(golferRankings).map((position) => {
     const { golfers } = golferRankings[position];
     const rank = parseInt(position);
 
     if (rank === 0) {
       // If player misses the cut they get $10,000
+      golferRankings[rank].prizeMoney = 10000;
+    } else if (
+      (currentRound === '1000' || currentRound === '0100') &&
+      rank > 50
+    ) {
+      // It's round one or two and they're outside the top 50 they get $10,000
       golferRankings[rank].prizeMoney = 10000;
     } else if (rank > 50) {
       // If they make the cut but are outside the top 50 they get ~$25,000
