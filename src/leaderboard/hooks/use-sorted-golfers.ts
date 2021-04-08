@@ -1,10 +1,12 @@
 import { Entrant } from '../../types';
-import { usePrizeMoney } from './use-prize-money';
+import { usePosition } from './use-position';
 
 export const useSortedGolfers = (row: Entrant) => {
-  const getPrizeMoney = usePrizeMoney();
+  const getPosition = usePosition();
   const positionsSortKey = (aId: number, bId: number) => {
-    return getPrizeMoney(aId) < getPrizeMoney(bId) ? 1 : -1;
+    const aPos = getPosition(aId);
+    const bPos = getPosition(bId);
+    return aPos > 0 && bPos > 0 ? aPos - bPos : bPos - aPos;
   };
 
   return row.players_ids.slice().sort(positionsSortKey);
