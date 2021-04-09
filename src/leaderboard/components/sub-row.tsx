@@ -10,6 +10,12 @@ interface Props {
   golferId: number;
 }
 
+const displayToPar = (value: number) => {
+  if (value === 0) return 'E';
+
+  return value > 0 ? `+${value}` : value;
+};
+
 export const SubRow = ({ golferId }: Props) => {
   const golfers = useRecoilValue(golfersState);
   const golfer = golfers[golferId];
@@ -21,7 +27,7 @@ export const SubRow = ({ golferId }: Props) => {
         {golfer.position === 0 ? '-' : golfer.position}
       </TableCell>
       <TableCell>{golfer.name}</TableCell>
-      <TableCell>{golfer.topar}</TableCell>
+      <TableCell>{displayToPar(golfer.topar)}</TableCell>
       <TableCell>{golfer.thru}</TableCell>
       <TableCell>{golfer.today}</TableCell>
       <TableCell>{displayNumber(getPrizeMoney(golferId))}</TableCell>
