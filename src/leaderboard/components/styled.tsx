@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { TableCell, TableContainer } from '@material-ui/core';
 
 export const LeaderboardContainer = styled.div`
-  max-width: 700px;
+  max-width: 70vw;
   min-width: 600px;
   justify-self: center;
   margin-top: 50px;

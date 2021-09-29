@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev --port 8080",
+    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev",
+    "heroku": "node server.js",
     "build": "snowpack build",
     "build:prod": "webpack --mode production",
     "check-types": "tsc --noEmit",
