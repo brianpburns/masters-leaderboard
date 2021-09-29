@@ -11,6 +11,6 @@ app.get('/', (_req, res) => {
   );
 });
 
-const server = app.listen(process.env.PORT || 8080, function () {
-  console.log('listening on port ', server.address().port);
+app.listen(process.env.PORT || 8080, function () {
+  console.log('listening on port ', process.env.PORT || 8080);
 });
