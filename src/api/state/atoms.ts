@@ -1,13 +1,13 @@
 import { atom } from 'recoil';
 
-import { Golfers, GolferMoneyRankings, Entrant } from '../../types';
+import { Golfers, GolferMoneyRankings, Team } from '../../types';
 
 export const cutLineState = atom<number>({
   key: '@app/cutLine',
   default: 0,
 });
 
-export const entrantsState = atom<Entrant[]>({
+export const entrantsState = atom<Team[]>({
   key: '@app/entrants',
   default: [],
 });

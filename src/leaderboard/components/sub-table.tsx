@@ -9,13 +9,13 @@ import {
   TableBody,
 } from '@material-ui/core';
 
-import { Entrant } from '../../types';
+import { Team } from '../../types';
 import { SubRow } from './sub-row';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 
 interface Props {
   isOpen: boolean;
-  row: Entrant;
+  row: Team;
 }
 
 export const SubTable = ({ isOpen, row }: Props) => {

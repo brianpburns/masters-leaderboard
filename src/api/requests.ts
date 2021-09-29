@@ -14,10 +14,7 @@ export const fetchData = async () => {
 
   const rankingsWithPrizeMoney = addPrizeMoney(golferRankings, currentRound);
 
-  const entrantsMoney = calculateAllEntrantsMoney(
-    golfers,
-    rankingsWithPrizeMoney
-  );
+  const teamMoney = calculateAllEntrantsMoney(golfers, rankingsWithPrizeMoney);
 
-  return { cutLine, golfers, rankingsWithPrizeMoney, entrantsMoney };
+  return { cutLine, golfers, rankingsWithPrizeMoney, teamMoney };
 };

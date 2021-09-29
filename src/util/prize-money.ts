@@ -1,6 +1,6 @@
-import { entrants } from '../mocks/data/teams';
+import { teams } from '../mocks/data/teams';
 import { prizeMoney } from '../mocks/data/prize-money';
-import { Entrant, GolferMoneyRankings, Golfers } from '../types';
+import { Team, GolferMoneyRankings, Golfers } from '../types';
 
 export const addPrizeMoney = (
   golferRankings: GolferMoneyRankings,
@@ -53,13 +53,13 @@ export const calculateAllEntrantsMoney = (
   // Loop through player IDs and get the players position
   // Use the position to get their prize money
 
-  return entrants.map((entrant) =>
-    calcEntrantsMoney(entrant, golfers, rankingsWithPrizeMoney)
+  return teams.map((team) =>
+    calcEntrantsMoney(team, golfers, rankingsWithPrizeMoney)
   );
 };
 
 const calcEntrantsMoney = (
-  entrant: Entrant,
+  entrant: Team,
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {

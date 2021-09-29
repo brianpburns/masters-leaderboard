@@ -73,7 +73,7 @@ interface Ranking {
 
 export type GolferMoneyRankings = Record<string, Ranking>;
 
-export interface Entrant {
+export interface Team {
   id: number;
   name: string;
   players_ids: number[];

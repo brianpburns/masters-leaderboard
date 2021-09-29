@@ -4,9 +4,9 @@ import { TableBody } from '@material-ui/core';
 
 import { entrantsState } from '../../api/state/atoms';
 import { PrimaryRow } from './primary-row';
-import { Entrant } from '../../types';
+import { Team } from '../../types';
 
-export const prizeMoneySortKey = (a: Entrant, b: Entrant) =>
+export const prizeMoneySortKey = (a: Team, b: Team) =>
   a.prizeMoney < b.prizeMoney ? 1 : -1;
 
 export const TableContent = () => {
