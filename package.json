@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev",
+    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev --port 8080",
     "build": "snowpack build",
     "build:prod": "webpack --mode production",
     "check-types": "tsc --noEmit",
@@ -84,5 +84,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "engines": {
+    "node": "14.15.4"
   }
 }
