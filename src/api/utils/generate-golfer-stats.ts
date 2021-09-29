@@ -4,16 +4,9 @@ const normalisePosition = (position: string) =>
   position ? parseInt(position.replace('T', '')) : 0;
 
 export const generateGolferStats = (golfer: Golfer): GolferData => {
-  const {
-    id,
-    first_name,
-    last_name,
-    pos,
-    topar,
-    thru,
-    today,
-    teetime,
-  } = golfer;
+  const { id, first_name, last_name, pos, topar, thru, today, teetime } =
+    golfer;
+
   return {
     id,
     name: `${first_name} ${last_name}`,

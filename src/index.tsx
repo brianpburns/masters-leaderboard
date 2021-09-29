@@ -14,12 +14,8 @@ const localBootstrap = async () => {
 };
 
 const bootstrap = async () => {
-  const {
-    cutLine,
-    golfers,
-    rankingsWithPrizeMoney,
-    entrantsMoney,
-  } = await fetchData();
+  const { cutLine, golfers, rankingsWithPrizeMoney, entrantsMoney } =
+    await fetchData();
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(entrantsState, entrantsMoney);
