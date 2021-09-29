@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { TableCell, TableContainer } from '@material-ui/core';
 
 export const LeaderboardContainer = styled.div`
-  max-width: 70vw;
+  width: 100%;
+  max-width: 60vw;
   min-width: 600px;
   justify-self: center;
   margin-top: 50px;
@@ -26,6 +27,7 @@ export const StyledLogo = styled.div`
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    max-width: fit-content;
   }
 `;
 
