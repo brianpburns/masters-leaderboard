@@ -11,7 +11,8 @@
     "dev": "webpack-dev-server",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
-    "test:coverage": "npm run test -- --coverage"
+    "test:coverage": "npm run test -- --coverage",
+    "heroku-postbuild": "npm run build:prod"
   },
   "repository": {
     "type": "git",
