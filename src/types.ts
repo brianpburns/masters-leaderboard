@@ -79,3 +79,8 @@ export interface Team {
   players_ids: number[];
   prizeMoney: number;
 }
+
+export type UpdateTeamRequestBody = {
+  name: string;
+  golfer_ids: number[];
+};

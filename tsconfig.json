@@ -1,12 +1,13 @@
 {
-  "include": ["src", "test", "types"],
-  "exclude": ["node_modules"],
+  "include": ["src", "test", "types", "db"],
+  "exclude": ["node_modules", "dist"],
   "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {
+    "target": "ES2019",
     "module": "commonjs",
     "moduleResolution": "node",
     "importsNotUsedAsValues": "remove",
-    "lib": ["es2017", "dom", "dom.iterable"],
+    "lib": ["es2017", "dom", "dom.iterable", "ES2019"],
     "noEmit": false,
     // You can't currently define paths in your 'extends' config,
     // so we have to set 'baseUrl' & 'paths' here.
@@ -15,7 +16,9 @@
     "baseUrl": "./",
     /* more strict checking for errors that per-file transpilers like `esbuild` would crash */
     "isolatedModules": true,
-    "paths": { "*": ["web_modules/.types/*"] }
+    "paths": {
+      "src/*": ["src/*"]
+    }
     // Feel free to add/edit new config options below:
     // ...
   }
