@@ -3,6 +3,8 @@
   "exclude": ["node_modules"],
   "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
     "importsNotUsedAsValues": "remove",
     "lib": ["es2017", "dom", "dom.iterable"],
     "noEmit": false,
