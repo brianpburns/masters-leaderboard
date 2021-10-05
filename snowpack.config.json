@@ -8,6 +8,9 @@
     ]
   ],
   "routes": [{ "match": "routes", "src": ".*", "dest": "/index.html" }],
+  "packageOptions": {
+    "external": ["path"]
+  },
   "devOptions": {
     "port": 8082
   }

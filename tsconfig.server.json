@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "./"
+  },
+  "compileOnSave": true,
+  "exclude": ["src/client"],
+  "include": ["src/server", "node_modules", "dist"]
+}

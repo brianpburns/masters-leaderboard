@@ -5,7 +5,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
   ],
   parserOptions: {
-    project: ['tsconfig.json'],
+    project: ['tsconfig.json', 'tsconfig.server.json'],
     sourceType: 'module',
     ecmaVersion: 2015,
   },
