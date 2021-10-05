@@ -15,11 +15,11 @@ app.get('/', (_req, res) => {
   );
 });
 
-app.get('/teams', listTeams());
+app.get('/api/teams', listTeams());
 
-app.get('/teams/:id', getTeam());
+app.get('/api/teams/:id', getTeam());
 
-app.post('/teams/:id', updateTeam());
+app.post('/api/teams/:id', updateTeam());
 
 app.listen(process.env.PORT || 8080, function () {
   console.log('listening on port ', process.env.PORT || 8080);
