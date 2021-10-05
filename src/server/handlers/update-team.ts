@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { UpdateTeamRequestBody } from '../../../types';
+import { UpdateTeamRequestBody } from '../../types';
 import { Team } from '../masters-db';
 
 export function updateTeam() {
