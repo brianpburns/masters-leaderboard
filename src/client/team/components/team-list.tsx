@@ -4,6 +4,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Golfers } from '../../../types';
 
+import { StyledIcon } from './styled';
+
 interface Props {
   allGolfers: Golfers;
   selectedGolferIds: number[];
@@ -15,10 +17,6 @@ const StyledGolfer = styled.div`
   padding-left: 5px;
   background-color: green;
   color: white;
-`;
-
-const StyledIcon = styled.div`
-  margin-left: 5px;
 `;
 
 export const TeamList = ({

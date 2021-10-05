@@ -1,10 +1,17 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { golfersState } from '../../app';
 
 import { teamGolfersIdsState } from '../state/atoms';
 
 export const useManageGolfers = () => {
   const [selectedGolfers, setSelectedGolfers] =
     useRecoilState(teamGolfersIdsState);
+  const allGolfers = useRecoilValue(golfersState);
+  const teamGolfers = useRecoilValue(teamGolfersIdsState);
+
+  const availableGolfers = Object.values(allGolfers).filter(
+    (golfer) => !teamGolfers.includes(golfer.id)
+  );
 
   const addGolfer = (golferId: number) => {
     setSelectedGolfers([...selectedGolfers, golferId]);
@@ -16,5 +23,5 @@ export const useManageGolfers = () => {
     );
   };
 
-  return { addGolfer, removeGolfer };
+  return { availableGolfers, addGolfer, removeGolfer };
 };
