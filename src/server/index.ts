@@ -3,12 +3,16 @@ import * as path from 'path';
 import { listTeams, getTeam } from './db/handlers';
 import { updateTeam } from './db/handlers/update-team';
 
+console.log('run');
+
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('/', (_req, res) => {
-  res.sendFile(path.resolve(path.join(__dirname, '../public'), 'heroku.html'));
+  res.sendFile(
+    path.resolve(path.join(__dirname, '../../public'), 'heroku.html')
+  );
 });
 
 app.get('/teams', listTeams());
@@ -20,5 +24,3 @@ app.post('/teams/:id', updateTeam());
 app.listen(process.env.PORT || 8080, function () {
   console.log('listening on port ', process.env.PORT || 8080);
 });
-
-export const test = () => {};

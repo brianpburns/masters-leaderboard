@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server/index.ts",
   "scripts": {
-    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev --polyfill-node",
-    "build": "snowpack build --polyfill-node",
+    "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev",
+    "build": "snowpack build",
     "build:prod": "webpack --mode production",
     "check-types": "tsc --noEmit",
     "dev": "webpack-dev-server",
@@ -13,7 +13,7 @@
     "test": "jest",
     "test:coverage": "npm run test -- --coverage",
     "heroku-postbuild": "npm run build:prod",
-    "server": "ts-node -p tsconfig.server.json src/server/index.ts"
+    "server": "ts-node --project tsconfig.server.json src/server/index.ts"
   },
   "repository": {
     "type": "git",
