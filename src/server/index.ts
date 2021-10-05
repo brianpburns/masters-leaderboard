@@ -1,7 +1,7 @@
 import express from 'express';
 import * as path from 'path';
-import { listTeams, getTeam } from './db/handlers';
-import { updateTeam } from './db/handlers/update-team';
+import { listTeams, getTeam, updateTeam } from './db/handlers';
+require('dotenv').config();
 
 console.log('run');
 

@@ -4,5 +4,6 @@ dist
 server
 .DS_Store
 build
+.env
 
 coverage

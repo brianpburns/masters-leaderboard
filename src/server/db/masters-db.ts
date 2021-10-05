@@ -1,9 +1,8 @@
 import { DataTypes, Sequelize } from 'sequelize';
 
-const connString =
-  'postgres://tuihxjmbvlvduc:93da453319b7b85a45bc90bdff6509d5497b57cf1e4ff28fe7b12152a0fbfafe@ec2-34-194-123-31.compute-1.amazonaws.com:5432/dd1q744c8o4npr';
+const dbUri = process.env.DATABASE_URL || process.env.DB_URI || '';
 
-const sequelize = new Sequelize(connString, {
+const sequelize = new Sequelize(dbUri, {
   dialect: 'postgres',
   define: { freezeTableName: true, timestamps: false },
   ssl: true,
@@ -31,7 +30,3 @@ export const Team = sequelize.define('team', {
     allowNull: false,
   },
 });
-
-// export const Team = async () => {
-//   return await initTeam();
-// };
