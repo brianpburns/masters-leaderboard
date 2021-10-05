@@ -6,7 +6,7 @@ import { GolferData } from '../../../types';
 
 interface Props {
   availableGolfers: GolferData[];
-  addGolfer: (golfer: GolferData) => void;
+  addGolfer: (golfer: number) => void;
 }
 
 const Container = styled.div`
@@ -47,7 +47,7 @@ export const GolfersList = ({ availableGolfers, addGolfer }: Props) => (
         <StyledGolfer key={i}>
           {golfer.name}
           <StyledIcon
-            onClick={() => addGolfer(golfer)}
+            onClick={() => addGolfer(golfer.id)}
             data-testid='add-golfer'
           >
             <AddIcon fontSize='small' />

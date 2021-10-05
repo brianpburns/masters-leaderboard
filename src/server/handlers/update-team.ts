@@ -5,9 +5,12 @@ import { Team } from '../masters-db';
 export function updateTeam() {
   return asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, golfer_ids }: UpdateTeamRequestBody = req.body;
+    const { owner, name, golfer_ids }: UpdateTeamRequestBody = req.body;
 
-    const team = await Team.update({ name, golfer_ids }, { where: { id } });
+    const team = await Team.update(
+      { owner, name, golfer_ids },
+      { where: { id } }
+    );
 
     res.status(200).send(team);
   });

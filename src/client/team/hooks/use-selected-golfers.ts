@@ -1,21 +1,18 @@
 import { useRecoilState } from 'recoil';
-import { GolferData } from '../../../types';
 
-import { selectedGolfersState } from '../state/selectors';
+import { teamGolfersIdsState } from '../state/atoms';
 
-export const useSelectedGolfers = () => {
+export const useManageGolfers = () => {
   const [selectedGolfers, setSelectedGolfers] =
-    useRecoilState(selectedGolfersState);
+    useRecoilState(teamGolfersIdsState);
 
-  const addGolfer = (golfer: GolferData) => {
-    setSelectedGolfers([...selectedGolfers, golfer]);
+  const addGolfer = (golferId: number) => {
+    setSelectedGolfers([...selectedGolfers, golferId]);
   };
 
-  const removeGolfer = (golfer: GolferData) => {
+  const removeGolfer = (golferId: number) => {
     setSelectedGolfers(
-      selectedGolfers.filter(
-        (selectedGolfer) => selectedGolfer.id !== golfer.id
-      )
+      selectedGolfers.filter((selectedGolfer) => selectedGolfer !== golferId)
     );
   };
 
