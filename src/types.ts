@@ -54,7 +54,7 @@ export type LeaderboardJsonResponse = {
 };
 
 export interface GolferData {
-  id: string;
+  id: number;
   name: string;
   position: number;
   topar: number;
@@ -63,7 +63,7 @@ export interface GolferData {
   teetime: string;
 }
 
-export type Golfers = Record<string, GolferData>;
+export type Golfers = Record<number, GolferData>;
 
 interface Ranking {
   golfers: string[];
@@ -74,13 +74,18 @@ interface Ranking {
 export type GolferMoneyRankings = Record<string, Ranking>;
 
 export interface Team {
-  id: number;
+  id: string;
+  owner: string;
   name: string;
-  players_ids: number[];
+  golferIds: number[];
+}
+
+export interface TeamWithMoney extends Team {
   prizeMoney: number;
 }
 
 export type UpdateTeamRequestBody = {
+  owner: string;
   name: string;
   golfer_ids: number[];
 };
