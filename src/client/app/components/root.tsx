@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
+import { useRecoilValue } from 'recoil';
+import { currentUserIdState } from '../state/atoms';
 
 const AppContainer = styled.div`
   display: grid;
@@ -22,19 +24,19 @@ const StyledNav = styled.nav`
   height: max-content;
 `;
 
-const basePath = '/';
-
 export const Root = () => {
+  const currentUserId = useRecoilValue(currentUserIdState);
+
   return (
     <AppContainer>
       <Router>
         <StyledNav>
           <ul>
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/team'>Team</Link>
+              <Link to={`/team/${currentUserId}`}>Team</Link>
             </li>
             <li>
               <Link to='/leaderboard'>Leaderboard</Link>
@@ -44,8 +46,8 @@ export const Root = () => {
 
         <Switch>
           <Route exact path='/' component={MainLeaderboard} />
-          <Route exact path='/leaderboard' component={MainLeaderboard} />
-          <Route exact path='/team' component={TeamPage} />
+          <Route path='/leaderboard' component={MainLeaderboard} />
+          <Route path='/team/:id' component={TeamPage} />
         </Switch>
       </Router>
     </AppContainer>
