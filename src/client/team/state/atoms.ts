@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-export const teamIdState = atom<string>({
+export const teamIdState = atom<number>({
   key: '@teams/id',
-  default: '',
+  default: 0,
 });
 
 export const teamOwnerState = atom<string>({

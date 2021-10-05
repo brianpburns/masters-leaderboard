@@ -8,7 +8,7 @@ export const generateGolferStats = (golfer: Golfer): GolferData => {
     golfer;
 
   return {
-    id,
+    id: parseInt(id),
     name: `${first_name} ${last_name}`,
     position: normalisePosition(pos),
     topar: topar === 'E' || topar === '' ? 0 : parseInt(topar),

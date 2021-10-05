@@ -20,6 +20,8 @@ export const teamState = selector<Team>({
     return { id, owner, name, golferIds };
   },
   set: ({ set }, newActiveTeamState) => {
+    console.log('team setter', newActiveTeamState);
+
     if (newActiveTeamState instanceof DefaultValue) return;
 
     const { id, owner, name, golferIds } = newActiveTeamState;

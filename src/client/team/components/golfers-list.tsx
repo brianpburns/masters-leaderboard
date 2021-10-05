@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 
-import { GolferData } from '../../../types';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { StyledIcon } from './styled';
 

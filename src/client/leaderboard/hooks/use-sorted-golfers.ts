@@ -9,5 +9,5 @@ export const useSortedGolfers = (row: Team) => {
     return aPos > 0 && bPos > 0 ? aPos - bPos : bPos - aPos;
   };
 
-  return row.players_ids.slice().sort(positionsSortKey);
+  return row.golferIds.slice().sort(positionsSortKey);
 };

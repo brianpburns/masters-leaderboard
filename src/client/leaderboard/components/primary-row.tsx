@@ -45,7 +45,7 @@ export const PrimaryRow = ({ position, row }: Props) => {
         </TableCell>
         <TableCell>{position + 1}</TableCell>
         <TableCell>{row.name}</TableCell>
-        <TableCell>{displayNumber(row.prizeMoney)}</TableCell>
+        <TableCell>{displayNumber(row.prizeMoney || 0)}</TableCell>
       </TableRow>
       <SubTable isOpen={open} row={row} />
     </>

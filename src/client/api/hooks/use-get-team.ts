@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Team } from '../../../types';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { teamState } from '../../team/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
-export const useGetTeam = (id: number): Team => {
-  const [team, setTeam] = useState<Team>();
+export const useGetTeam = (id: number) => {
+  console.log('useGetTeam');
+
+  const setTeamData = useSetRecoilState(teamState);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTeam(await getTeam(id));
+        const team = await getTeam(id);
+
+        console.log('team', team);
+
+        setTeamData(team);
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(
@@ -19,7 +26,5 @@ export const useGetTeam = (id: number): Team => {
     };
 
     fetchData();
-  });
-
-  return team;
+  }, []);
 };

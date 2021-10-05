@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { GolferData } from '../../../types';
 import { golfersState } from '../../app';
 
 import { teamGolfersIdsState } from '../state/atoms';
@@ -8,10 +10,14 @@ export const useManageGolfers = () => {
     useRecoilState(teamGolfersIdsState);
   const allGolfers = useRecoilValue(golfersState);
   const teamGolfers = useRecoilValue(teamGolfersIdsState);
+  const [availableGolfers, setAvailableGolfers] = useState<GolferData[]>([]);
 
-  const availableGolfers = Object.values(allGolfers).filter(
-    (golfer) => !teamGolfers.includes(golfer.id)
-  );
+  useEffect(() => {
+    const golfers = Object.values(allGolfers).filter(
+      (golfer) => !teamGolfers.includes(golfer.id)
+    );
+    setAvailableGolfers(golfers);
+  }, [allGolfers, teamGolfers]);
 
   const addGolfer = (golferId: number) => {
     setSelectedGolfers([...selectedGolfers, golferId]);

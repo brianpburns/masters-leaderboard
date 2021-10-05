@@ -7,7 +7,7 @@ import { PrimaryRow } from './primary-row';
 import { Team } from '../../../types';
 
 export const prizeMoneySortKey = (a: Team, b: Team) =>
-  a.prizeMoney < b.prizeMoney ? 1 : -1;
+  (a.prizeMoney || 0) < (b.prizeMoney || 0) ? 1 : -1;
 
 export const TableContent = () => {
   const entrantsData = useRecoilValue(entrantsState);

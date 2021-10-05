@@ -7,7 +7,7 @@ export const addPrizeMoney = (
   currentRound: string
 ) => {
   Object.keys(golferRankings).map((position) => {
-    const { golfers } = golferRankings[position];
+    const { golfers } = golferRankings[parseInt(position)];
     const rank = parseInt(position);
 
     if (rank === 0) {
@@ -59,11 +59,11 @@ export const calculateAllEntrantsMoney = (
 };
 
 const calcEntrantsMoney = (
-  entrant: Team,
+  team: Team,
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
-  const prizeMoney = entrant.players_ids.reduce((accum, id) => {
+  const teamPrizeMoney = team.golferIds.reduce((accum, id) => {
     try {
       const position = golfers[id].position;
       return accum + rankingsWithPrizeMoney[position].prizeMoney;
@@ -73,7 +73,7 @@ const calcEntrantsMoney = (
   }, 0);
 
   return {
-    ...entrant,
-    prizeMoney,
+    ...team,
+    prizeMoney: teamPrizeMoney,
   };
 };
