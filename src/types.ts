@@ -75,7 +75,7 @@ export interface Team {
   id: number;
   owner: string;
   name: string;
-  golferIds: number[];
+  golfer_ids: number[];
   prizeMoney?: number;
 }
 
@@ -86,5 +86,5 @@ export interface TeamWithMoney extends Team {
 export type UpdateTeamRequestBody = {
   owner: string;
   name: string;
-  golferIds: number[];
+  golfer_ids: number[];
 };
