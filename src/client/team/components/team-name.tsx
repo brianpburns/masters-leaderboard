@@ -16,9 +16,9 @@ export const TeamName = ({ teamName, setEditMode }: Props) => {
       <StyledName>
         {teamName}
         <EditIcon
-          fontSize="small"
+          fontSize='small'
           onClick={() => setEditMode(true)}
-          data-testid="edit-name-btn"
+          data-testid='edit-name-btn'
         />
       </StyledName>
     </>

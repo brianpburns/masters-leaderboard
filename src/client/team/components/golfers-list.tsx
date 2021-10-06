@@ -2,12 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 
-import { GolferData } from '../../../types';
-
-interface Props {
-  availableGolfers: GolferData[];
-  addGolfer: (golfer: GolferData) => void;
-}
+import { useManageGolfers } from '../hooks/use-manage-golfers';
+import { StyledIcon } from './styled';
 
 const Container = styled.div`
   background-color: white;
@@ -33,27 +29,27 @@ const StyledGolfer = styled.div`
   color: white;
 `;
 
-const StyledIcon = styled.div`
-  margin-left: 5px;
-`;
+export const GolfersList = () => {
+  const { availableGolfers, addGolfer } = useManageGolfers();
 
-export const GolfersList = ({ availableGolfers, addGolfer }: Props) => (
-  <Container>
-    <StyledTopBar>
-      <div>Search</div>
-    </StyledTopBar>
-    <StyledList>
-      {availableGolfers.map((golfer, i) => (
-        <StyledGolfer key={i}>
-          {golfer.name}
-          <StyledIcon
-            onClick={() => addGolfer(golfer)}
-            data-testid='add-golfer'
-          >
-            <AddIcon fontSize='small' />
-          </StyledIcon>
-        </StyledGolfer>
-      ))}
-    </StyledList>
-  </Container>
-);
+  return (
+    <Container>
+      <StyledTopBar>
+        <div>Search</div>
+      </StyledTopBar>
+      <StyledList>
+        {availableGolfers.map((golfer, i) => (
+          <StyledGolfer key={i}>
+            {golfer.name}
+            <StyledIcon
+              onClick={() => addGolfer(golfer.id)}
+              data-testid='add-golfer'
+            >
+              <AddIcon fontSize='small' />
+            </StyledIcon>
+          </StyledGolfer>
+        ))}
+      </StyledList>
+    </Container>
+  );
+};

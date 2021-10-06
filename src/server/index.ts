@@ -1,13 +1,13 @@
 import express from 'express';
 import * as path from 'path';
-import { listTeams, getTeam, updateTeam } from './db/handlers';
-require('dotenv').config();
+import { listTeams, getTeam, updateTeam } from './handlers';
 
-console.log('run');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+(require('dotenv') as unknown as { config: () => void }).config();
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../../dist')), express.json());
 
 app.get('/', (_req, res) => {
   res.sendFile(
@@ -15,11 +15,11 @@ app.get('/', (_req, res) => {
   );
 });
 
-app.get('/teams', listTeams());
+app.get('/api/teams', listTeams());
 
-app.get('/teams/:id', getTeam());
+app.get('/api/teams/:id', getTeam());
 
-app.post('/teams/:id', updateTeam());
+app.post('/api/teams/:id', updateTeam());
 
 app.listen(process.env.PORT || 8080, function () {
   console.log('listening on port ', process.env.PORT || 8080);

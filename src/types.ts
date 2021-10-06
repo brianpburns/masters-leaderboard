@@ -13,40 +13,40 @@ export interface Golfer {
   topar: string;
   total: string;
 
-  countryName?: any;
-  countryCode?: any;
-  live?: any;
-  video?: any;
-  image?: any;
-  amateur?: any;
-  status?: any;
-  sort_order?: any;
-  us?: any;
-  intl?: any;
-  tee_order?: any;
-  start?: any;
-  group?: any;
-  groupHistory?: any;
-  lastHoleWithShot?: any;
-  totalUnderPar?: any;
-  movement?: any;
-  round1?: any;
-  r1?: any;
-  round2?: any;
-  r2?: any;
-  round3?: any;
-  r3?: any;
-  round4?: any;
-  r4?: any;
+  countryName?: unknown;
+  countryCode?: unknown;
+  live?: unknown;
+  video?: unknown;
+  image?: unknown;
+  amateur?: unknown;
+  status?: unknown;
+  sort_order?: unknown;
+  us?: unknown;
+  intl?: unknown;
+  tee_order?: unknown;
+  start?: unknown;
+  group?: unknown;
+  groupHistory?: unknown;
+  lastHoleWithShot?: unknown;
+  totalUnderPar?: unknown;
+  movement?: unknown;
+  round1?: unknown;
+  r1?: unknown;
+  round2?: unknown;
+  r2?: unknown;
+  round3?: unknown;
+  r3?: unknown;
+  round4?: unknown;
+  r4?: unknown;
 }
 
 export interface LeaderboardData {
   currentRound: string;
   cutLine: string;
-  pars: any;
+  pars: unknown;
   player: Golfer[];
   statusRound: string;
-  yardages: any;
+  yardages: unknown;
 }
 
 export type LeaderboardJsonResponse = {
@@ -54,7 +54,7 @@ export type LeaderboardJsonResponse = {
 };
 
 export interface GolferData {
-  id: string;
+  id: number;
   name: string;
   position: number;
   topar: number;
@@ -63,24 +63,30 @@ export interface GolferData {
   teetime: string;
 }
 
-export type Golfers = Record<string, GolferData>;
+export type Golfers = Record<number, GolferData>;
 
 interface Ranking {
-  golfers: string[];
+  golfers: number[];
   prizeMoney: number;
   topar: number;
 }
 
-export type GolferMoneyRankings = Record<string, Ranking>;
+export type GolferMoneyRankings = Record<number, Ranking>;
 
 export interface Team {
   id: number;
+  owner: string;
   name: string;
-  players_ids: number[];
+  golferIds: number[];
+  prizeMoney?: number;
+}
+
+export interface TeamWithMoney extends Team {
   prizeMoney: number;
 }
 
 export type UpdateTeamRequestBody = {
+  owner: string;
   name: string;
   golfer_ids: number[];
 };

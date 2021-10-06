@@ -2,12 +2,12 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
-import { GolfersListContainer } from './golfers-list-container';
+import { GolfersList } from './golfers-list';
 import { golfersState } from '../../app';
 
 const golfers = {
-  '0': {
-    id: '0',
+  0: {
+    id: 0,
     name: 'Tiger Woods',
     position: 10,
     prizeMoney: 0,
@@ -25,7 +25,7 @@ const renderGolfersList = () => {
 
   render(
     <RecoilRoot {...{ initializeState }}>
-      <GolfersListContainer />
+      <GolfersList />
     </RecoilRoot>
   );
 };

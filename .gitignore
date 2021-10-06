@@ -1,7 +1,7 @@
 node_modules
 npm-debug.log
 dist
-server
+./server
 .DS_Store
 build
 .env

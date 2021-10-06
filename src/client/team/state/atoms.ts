@@ -1,20 +1,21 @@
 import { atom } from 'recoil';
 
-import { Teams } from '../types';
-
-export const allTeamsState = atom<Teams>({
-  key: '@teams',
-  default: {
-    '0': {
-      id: '0',
-      teamName: 'Burnin it up',
-      owner: 'Burns',
-      selectedGolferIds: ['35891'],
-    },
-  },
+export const teamIdState = atom<number>({
+  key: '@teams/id',
+  default: 0,
 });
 
-export const activeTeamIdState = atom<string>({
-  key: '@teams/id',
-  default: '0',
+export const teamOwnerState = atom<string>({
+  key: '@teams/owner',
+  default: '',
+});
+
+export const teamNameState = atom<string>({
+  key: '@teams/name',
+  default: '',
+});
+
+export const teamGolfersIdsState = atom<number[]>({
+  key: '@team/golferIds',
+  default: [],
 });

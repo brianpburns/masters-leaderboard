@@ -2,8 +2,8 @@ import { LeaderboardData, Golfers, GolferMoneyRankings } from '../../../types';
 import { generateGolferStats } from './generate-golfer-stats';
 
 export const generateRankings = (leaderboardData: LeaderboardData) => {
-  let golfers: Golfers = {};
-  let golferRankings: GolferMoneyRankings = {};
+  const golfers: Golfers = {};
+  const golferRankings: GolferMoneyRankings = {};
 
   leaderboardData.player.map((golfer) => {
     const cleanGolferData = generateGolferStats(golfer);

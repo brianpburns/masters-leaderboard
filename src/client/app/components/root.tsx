@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
+import { useRecoilValue } from 'recoil';
+import { currentUserIdState } from '../state/atoms';
 
 const AppContainer = styled.div`
   display: grid;
@@ -17,41 +19,37 @@ const AppContainer = styled.div`
   overflow-y: auto;
 `;
 
-// const StyledNav = styled.nav`
-//   background-color: white;
-//   height: max-content;
-// `;
+const StyledNav = styled.nav`
+  background-color: white;
+  height: max-content;
+`;
 
 export const Root = () => {
+  const currentUserId = useRecoilValue(currentUserIdState);
+
   return (
     <AppContainer>
-      {/* <Router> */}
-      {/* <StyledNav>
+      <Router>
+        <StyledNav>
           <ul>
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/team'>Team</Link>
+              <Link to={`/team/${currentUserId}`}>Team</Link>
             </li>
             <li>
               <Link to='/leaderboard'>Leaderboard</Link>
             </li>
           </ul>
-        </StyledNav> */}
+        </StyledNav>
 
-      {/* <Switch> */}
-      {/* <Route path="/">
-          <MainLeaderboard />
-        </Route> */}
-      {/* <Route path='/leaderboard'> */}
-      <MainLeaderboard />
-      {/* </Route>
-          <Route path='/team'>
-            <TeamPage />
-          </Route> */}
-      {/* </Switch> */}
-      {/* </Router> */}
+        <Switch>
+          <Route exact path='/' component={MainLeaderboard} />
+          <Route path='/leaderboard' component={MainLeaderboard} />
+          <Route path='/team/:id' component={TeamPage} />
+        </Switch>
+      </Router>
     </AppContainer>
   );
 };

@@ -3,7 +3,6 @@ import {
   TableRow,
   TableCell,
   Collapse,
-  Box,
   Table,
   TableHead,
   TableBody,
@@ -37,7 +36,7 @@ export const SubTable = ({ isOpen, row }: Props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedGolferIds.map((id) => (
+              {sortedGolferIds.map((id: number) => (
                 <SubRow key={id} golferId={id} />
               ))}
             </TableBody>

@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-import { GolferData } from '../../../types';
+import { Golfers } from '../../../types';
+
+import { StyledIcon } from './styled';
 
 interface Props {
-  selectedGolfers: GolferData[];
-  removeGolfer: (golfer: GolferData) => void;
+  allGolfers: Golfers;
+  selectedGolferIds: number[];
+  removeGolfer: (golferId: number) => void;
 }
 
 const StyledGolfer = styled.div`
@@ -16,22 +19,24 @@ const StyledGolfer = styled.div`
   color: white;
 `;
 
-const StyledIcon = styled.div`
-  margin-left: 5px;
-`;
-
-export const TeamList = ({ selectedGolfers, removeGolfer }: Props) => (
-  <>
-    {selectedGolfers.map((golfer, i) => (
-      <StyledGolfer key={i}>
-        {golfer.name}
-        <StyledIcon
-          onClick={() => removeGolfer(golfer)}
-          data-testid='remove-golfer'
-        >
-          <RemoveIcon fontSize='small' />
-        </StyledIcon>
-      </StyledGolfer>
-    ))}
-  </>
-);
+export const TeamList = ({
+  allGolfers,
+  selectedGolferIds,
+  removeGolfer,
+}: Props) => {
+  return (
+    <>
+      {selectedGolferIds.map((golferId, i) => (
+        <StyledGolfer key={i}>
+          {allGolfers[golferId].name}
+          <StyledIcon
+            onClick={() => removeGolfer(golferId)}
+            data-testid='remove-golfer'
+          >
+            <RemoveIcon fontSize='small' />
+          </StyledIcon>
+        </StyledGolfer>
+      ))}
+    </>
+  );
+};

@@ -7,10 +7,19 @@ export const handlers = [
     res(ctx.status(200), ctx.json(mockMastersLeaderboard))
   ),
 
-  rest.get('/teams/:id', (_req, res, ctx) => {
+  rest.get('/api/teams/:id', (_req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json({ id: 1, name: 'burns', golfer_ids: [1, 2, 3] })
+      ctx.json({
+        id: 1,
+        owner: 'burns',
+        name: 'burnsing it up',
+        golfer_ids: [1226],
+      })
     );
+  }),
+
+  rest.post('/api/teams/:id', (_req, res, ctx) => {
+    return res(ctx.status(200));
   }),
 ];

@@ -1,5 +1,5 @@
-export const getTeam = async () => {
-  const res = await fetch('/teams/1');
+export const getTeam = async (id: number) => {
+  const res = await fetch(`/api/teams/${id}`);
 
   if (res.status !== 200) {
     throw new Error(
@@ -7,9 +7,5 @@ export const getTeam = async () => {
     );
   }
 
-  const team = await res.json();
-
-  console.log('result', team);
-
-  return res;
+  return await res.json();
 };

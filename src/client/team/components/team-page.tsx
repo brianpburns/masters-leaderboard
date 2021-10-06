@@ -1,7 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import styled from 'styled-components';
+import { useGetTeam } from '../../api';
 
-import { GolfersListContainer } from './golfers-list-container';
+import { GolfersList } from './golfers-list';
 import { TeamDetails } from './team-details';
 
 const Container = styled.div`
@@ -19,11 +21,18 @@ const TeamContainer = styled.div`
   border-radius: 10px;
 `;
 
-export const TeamPage = () => (
-  <Container>
-    <GolfersListContainer />
-    <TeamContainer>
-      <TeamDetails />
-    </TeamContainer>
-  </Container>
-);
+type TeamParams = { id: string };
+
+export const TeamPage = () => {
+  const { id } = useParams<TeamParams>();
+  useGetTeam(parseInt(id));
+
+  return (
+    <Container>
+      <GolfersList />
+      <TeamContainer>
+        <TeamDetails />
+      </TeamContainer>
+    </Container>
+  );
+};

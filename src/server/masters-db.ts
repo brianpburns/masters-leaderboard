@@ -21,6 +21,10 @@ export const Team = sequelize.define('team', {
     primaryKey: true,
     autoIncrement: true,
   },
+  owner: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
