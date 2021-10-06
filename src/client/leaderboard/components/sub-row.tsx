@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 
 import { golfersState } from '../../app';
 import { displayNumber } from '../utils/display-number';
-import { usePrizeMoney } from '../hooks/use-prize-money';
+import { useGolferPrizeMoney } from '../hooks/use-golfer-money';
 
 interface Props {
   golferId: number;
@@ -19,7 +19,7 @@ const displayToPar = (value: number) => {
 export const SubRow = ({ golferId }: Props) => {
   const golfers = useRecoilValue(golfersState);
   const golfer = golfers[golferId];
-  const getPrizeMoney = usePrizeMoney();
+  const getPrizeMoney = useGolferPrizeMoney();
 
   return (
     <TableRow key={golferId}>

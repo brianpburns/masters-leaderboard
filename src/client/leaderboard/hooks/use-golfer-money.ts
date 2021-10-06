@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { prizeMoneyState } from '../../api/state/atoms';
 import { golfersState } from '../../app';
 
-export const usePrizeMoney = () => {
+export const useGolferPrizeMoney = () => {
   const golfers = useRecoilValue(golfersState);
   const prizeMoney = useRecoilValue(prizeMoneyState);
 

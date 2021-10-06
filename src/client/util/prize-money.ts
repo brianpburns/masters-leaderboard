@@ -61,7 +61,7 @@ const teamMoney = (
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
-  const teamPrizeMoney = team.golferIds.reduce((accum, id) => {
+  const teamPrizeMoney = team.golfer_ids.reduce((accum, id) => {
     try {
       const position = golfers[id].position;
       return accum + rankingsWithPrizeMoney[position].prizeMoney;
