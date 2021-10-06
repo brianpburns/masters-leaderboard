@@ -1,6 +1,7 @@
 import express from 'express';
 import * as path from 'path';
 import { listTeams, getTeam, updateTeam } from './handlers';
+import { authCallback } from './handlers/auth-callback';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 (require('dotenv') as unknown as { config: () => void }).config();
@@ -20,6 +21,8 @@ app.get('/api/teams', listTeams());
 app.get('/api/teams/:id', getTeam());
 
 app.post('/api/teams/:id', updateTeam());
+
+app.get('/google-auth', authCallback());
 
 app.listen(process.env.PORT || 8080, function () {
   console.log('listening on port ', process.env.PORT || 8080);
