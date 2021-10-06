@@ -5,7 +5,7 @@ export function getTeam() {
   return asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    const team = await Team.findAll({ where: { id } });
+    const team = await Team.findByPk(id);
 
     res.status(200).send(team);
   });

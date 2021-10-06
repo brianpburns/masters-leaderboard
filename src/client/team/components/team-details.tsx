@@ -26,9 +26,7 @@ export const TeamDetails = () => {
   };
 
   const onSave = () => {
-    console.log('teamDetails', teamDetails);
-
-    // updateTeam(teamDetails);
+    updateTeam(teamDetails);
   };
 
   return (

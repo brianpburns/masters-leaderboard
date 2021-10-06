@@ -4,18 +4,14 @@ import { teamState } from '../../team/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
 export const useGetTeam = (id: number) => {
-  console.log('useGetTeam');
-
   const setTeamData = useSetRecoilState(teamState);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const team = await getTeam(id);
+        const { golfer_ids, ...rest } = await getTeam(id);
 
-        console.log('team', team);
-
-        setTeamData(team);
+        setTeamData({ ...rest, golferIds: golfer_ids });
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(
@@ -26,5 +22,5 @@ export const useGetTeam = (id: number) => {
     };
 
     fetchData();
-  }, []);
+  }, [id, setTeamData]);
 };

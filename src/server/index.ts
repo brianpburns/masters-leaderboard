@@ -1,13 +1,13 @@
 import express from 'express';
 import * as path from 'path';
 import { listTeams, getTeam, updateTeam } from './handlers';
-require('dotenv').config();
 
-console.log('run');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+(require('dotenv') as unknown as { config: () => void }).config();
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(express.static(path.join(__dirname, '../../dist')), express.json());
 
 app.get('/', (_req, res) => {
   res.sendFile(
