@@ -4,7 +4,7 @@ import { MutableSnapshot, RecoilRoot } from 'recoil';
 
 import { cutLineState, golfersState, Root } from './app';
 import { fetchData } from './api';
-import { entrantsState, prizeMoneyState } from './api/state/atoms';
+import { teamsState, prizeMoneyState } from './api/state/atoms';
 
 const localBootstrap = async () => {
   const { worker } = await import('./mocks');
@@ -14,11 +14,11 @@ const localBootstrap = async () => {
 };
 
 const bootstrap = async () => {
-  const { cutLine, golfers, rankingsWithPrizeMoney, teamMoney } =
+  const { cutLine, golfers, rankingsWithPrizeMoney, teamsMoney } =
     await fetchData();
 
   const initialiseState = ({ set }: MutableSnapshot) => {
-    set(entrantsState, teamMoney);
+    set(teamsState, teamsMoney);
     set(golfersState, golfers);
     set(cutLineState, cutLine);
     set(prizeMoneyState, rankingsWithPrizeMoney);

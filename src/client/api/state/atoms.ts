@@ -7,8 +7,8 @@ export const cutLineState = atom<number>({
   default: 0,
 });
 
-export const entrantsState = atom<Team[]>({
-  key: '@app/entrants',
+export const teamsState = atom<Team[]>({
+  key: '@app/teams',
   default: [],
 });
 

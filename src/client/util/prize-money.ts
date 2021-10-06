@@ -45,7 +45,7 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   return Math.round(positionPrizeMoney / noPlayersTied);
 };
 
-export const calculateAllEntrantsMoney = (
+export const allTeamsMoney = (
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
@@ -53,12 +53,10 @@ export const calculateAllEntrantsMoney = (
   // Loop through player IDs and get the players position
   // Use the position to get their prize money
 
-  return teams.map((team) =>
-    calcEntrantsMoney(team, golfers, rankingsWithPrizeMoney)
-  );
+  return teams.map((team) => teamMoney(team, golfers, rankingsWithPrizeMoney));
 };
 
-const calcEntrantsMoney = (
+const teamMoney = (
   team: Team,
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings

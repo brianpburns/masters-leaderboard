@@ -1,6 +1,6 @@
 import type { LeaderboardJsonResponse } from '../../types';
 import { normaliseCutLine } from '../util/stats';
-import { addPrizeMoney, calculateAllEntrantsMoney } from '../util/prize-money';
+import { addPrizeMoney, allTeamsMoney } from '../util/prize-money';
 import { getLeaderboard } from './fetch/get-leaderboard';
 import { generateRankings } from './utils/generate-rankings';
 
@@ -14,7 +14,7 @@ export const fetchData = async () => {
 
   const rankingsWithPrizeMoney = addPrizeMoney(golferRankings, currentRound);
 
-  const teamMoney = calculateAllEntrantsMoney(golfers, rankingsWithPrizeMoney);
+  const teamsMoney = allTeamsMoney(golfers, rankingsWithPrizeMoney);
 
-  return { cutLine, golfers, rankingsWithPrizeMoney, teamMoney };
+  return { cutLine, golfers, rankingsWithPrizeMoney, teamsMoney };
 };
