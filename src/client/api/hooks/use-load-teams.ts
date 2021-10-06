@@ -1,19 +1,15 @@
 import { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { listTeams } from '../fetch/list-teams';
 import { teamsState } from '../state/atoms';
 
 export const useLoadTeams = () => {
-  const setTeams = useSetRecoilState(teamsState);
+  const [teams, setTeams] = useRecoilState(teamsState);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const teams = await listTeams();
-
-        console.log('teams', teams);
-
-        setTeams(teams);
+        setTeams(await listTeams());
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(
@@ -25,4 +21,6 @@ export const useLoadTeams = () => {
 
     fetchData();
   }, [setTeams]);
+
+  return teams;
 };

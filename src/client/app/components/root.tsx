@@ -27,8 +27,6 @@ const StyledNav = styled.nav`
 export const Root = () => {
   const currentUserId = useRecoilValue(currentUserIdState);
 
-  // Load teams data
-
   return (
     <AppContainer>
       <Router>

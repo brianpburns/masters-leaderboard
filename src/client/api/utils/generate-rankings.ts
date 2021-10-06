@@ -1,15 +1,15 @@
-import { LeaderboardData, Golfers, GolferMoneyRankings } from '../../../types';
-import { generateGolferStats } from './generate-golfer-stats';
+import { Golfers, GolferMoneyRankings, Golfer } from '../../../types';
+import { cleanGolferData } from './generate-golfer-stats';
 
-export const generateRankings = (leaderboardData: LeaderboardData) => {
+export const generateRankings = (players: Golfer[]) => {
   const golfers: Golfers = {};
   const golferRankings: GolferMoneyRankings = {};
 
-  leaderboardData.player.map((golfer) => {
-    const cleanGolferData = generateGolferStats(golfer);
-    const { id, position, topar } = cleanGolferData;
+  players.map((golfer) => {
+    const cleanData = cleanGolferData(golfer);
+    const { id, position, topar } = cleanData;
 
-    golfers[id] = cleanGolferData;
+    golfers[id] = cleanData;
 
     if (golferRankings[position]) {
       golferRankings[position].golfers.push(id);

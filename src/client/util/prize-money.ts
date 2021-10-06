@@ -1,4 +1,3 @@
-import { teams } from '../mocks/data/teams';
 import { prizeMoney } from '../mocks/data/prize-money';
 import { Team, GolferMoneyRankings, Golfers } from '../../types';
 
@@ -7,8 +6,8 @@ export const addPrizeMoney = (
   currentRound: string
 ) => {
   Object.keys(golferRankings).map((position) => {
-    const { golfers } = golferRankings[parseInt(position)];
     const rank = parseInt(position);
+    const { golfers } = golferRankings[rank];
 
     if (rank === 0) {
       // If player misses the cut they get $10,000
@@ -47,7 +46,8 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
 
 export const allTeamsMoney = (
   golfers: Golfers,
-  rankingsWithPrizeMoney: GolferMoneyRankings
+  rankingsWithPrizeMoney: GolferMoneyRankings,
+  teams: Team[]
 ) => {
   // Loop through entrants
   // Loop through player IDs and get the players position

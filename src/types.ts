@@ -43,10 +43,8 @@ export interface Golfer {
 export interface LeaderboardData {
   currentRound: string;
   cutLine: string;
-  pars: unknown;
   player: Golfer[];
   statusRound: string;
-  yardages: unknown;
 }
 
 export type LeaderboardJsonResponse = {
@@ -88,5 +86,5 @@ export interface TeamWithMoney extends Team {
 export type UpdateTeamRequestBody = {
   owner: string;
   name: string;
-  golfer_ids: number[];
+  golferIds: number[];
 };
