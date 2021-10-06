@@ -9,9 +9,7 @@ export const useGetTeam = (id: number) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { golfer_ids, ...rest } = await getTeam(id);
-
-        setTeamData({ ...rest, golferIds: golfer_ids });
+        setTeamData(await getTeam(id));
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(

@@ -36,7 +36,7 @@ const activeTeam = {
   id: 0,
   owner: 'Burns',
   name: 'Test Name',
-  golferIds: [],
+  golfer_ids: [],
 };
 
 const renderTeamDetails = () => {

@@ -4,7 +4,8 @@
     [
       "@snowpack/plugin-react-refresh",
       "@snowpack/plugin-optimize",
-      "@snowpack/plugin-webpack"
+      "@snowpack/plugin-webpack",
+      ["tsconfig-paths-snowpack-plugin", { "logAlias": true }]
     ]
   ],
   "routes": [{ "match": "routes", "src": ".*", "dest": "/index.html" }],
@@ -13,5 +14,8 @@
   },
   "devOptions": {
     "port": 8082
+  },
+  "alias": {
+    "src": "./src"
   }
 }

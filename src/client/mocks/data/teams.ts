@@ -5,7 +5,7 @@ export const teams: Team[] = [
     id: 0,
     owner: 'Logan',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 35450, 48081, 36689, 50525,
     ],
   },
@@ -13,7 +13,7 @@ export const teams: Team[] = [
     id: 1,
     owner: 'James',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 47959, 33448, 46970, 28237, 35450, 50525, 34360, 40026, 25364,
     ],
   },
@@ -21,7 +21,7 @@ export const teams: Team[] = [
     id: 2,
     owner: 'Liam Conroooy',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 33448, 34046, 46970, 28237, 50525, 34360, 35891, 39997, 39971,
     ],
   },
@@ -29,7 +29,7 @@ export const teams: Team[] = [
     id: 3,
     owner: 'Crang',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 47959, 33448, 46970, 35450, 50525, 35891, 39971, 46717, 45526,
     ],
   },
@@ -37,7 +37,7 @@ export const teams: Team[] = [
     id: 4,
     owner: 'McManus',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 48081, 50525, 34360, 34363,
     ],
   },
@@ -45,7 +45,7 @@ export const teams: Team[] = [
     id: 5,
     owner: 'Adam',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 33448, 34046, 46970, 35450, 48081, 50525, 34360, 35891, 30911,
     ],
   },
@@ -53,7 +53,7 @@ export const teams: Team[] = [
     id: 6,
     owner: 'Haris',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 33448, 46970, 35450, 34360, 39997, 39971, 46717, 30911, 47483,
     ],
   },
@@ -61,7 +61,7 @@ export const teams: Team[] = [
     id: 7,
     owner: 'Johnny',
     name: '',
-    golferIds: [
+    golfer_ids: [
       47959, 33448, 34046, 46970, 28237, 35450, 39971, 46717, 33204, 28089,
     ],
   },
@@ -69,7 +69,7 @@ export const teams: Team[] = [
     id: 8,
     owner: 'Burns',
     name: '',
-    golferIds: [
+    golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 48081, 36689, 50525, 34360,
     ],
   },
