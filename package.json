@@ -46,6 +46,7 @@
     "serve": "^11.3.2",
     "styled-components": "^5.2.3",
     "ts-node": "^10.2.1",
+    "tsconfig-paths-jest": "^0.0.1",
     "webpack-cli": "^4.6.0"
   },
   "devDependencies": {
