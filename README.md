@@ -1,6 +1,7 @@
 # Masters Leaderboard
 
 Live LP: http://unbouncepages.com/masters-2021-vancrewver/
+Hosted app on Heroku.
 
 ## Installation
 
