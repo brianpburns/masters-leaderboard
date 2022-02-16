@@ -2,11 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { PrimaryRow } from './primary-row';
-import { teams } from '../../mocks/data/teams';
+import { teams } from 'test/mocks';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golfersState } from 'src/client/app';
-import { setupMockServer } from 'test/mocks';
-import { golfersStateData } from 'src/client/mocks/data/golfers-state-data';
+import { golfersStateData, setupMockServer } from 'test/mocks';
 
 setupMockServer();
 
