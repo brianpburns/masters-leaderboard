@@ -14,5 +14,5 @@
   },
   "compileOnSave": true,
   "exclude": ["node_modules", "dist", "src/client"],
-  "include": ["src/server"]
+  "include": ["src/server", "src/google-config"]
 }
