@@ -1,9 +1,7 @@
-import { Team } from '../../../types';
+import { TeamType } from '../../../types';
 import { usePosition } from './use-position';
 
-export const useSortedGolfers = (row: Team) => {
-  console.log('row', row);
-
+export const useSortedGolfers = (row: TeamType) => {
   const getPosition = usePosition();
   const positionsSortKey = (aId: number, bId: number) => {
     const aPos = getPosition(aId);

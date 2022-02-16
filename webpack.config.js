@@ -1,4 +1,6 @@
-var config = {
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const config = {
   context: __dirname + '/src/client', // `__dirname` is root of project and `/src` is source
   entry: {
     app: './index.tsx',
@@ -29,6 +31,7 @@ var config = {
     ],
   },
   resolve: {
+    plugins: [new TsconfigPathsPlugin()],
     extensions: ['.tsx', '.ts', '.js'],
   },
 };

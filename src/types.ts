@@ -71,15 +71,16 @@ interface Ranking {
 
 export type GolferMoneyRankings = Record<number, Ranking>;
 
-export interface Team {
+export interface TeamType {
   id: number;
   owner: string;
   name: string;
   golfer_ids: number[];
+  google_id?: string;
   prizeMoney?: number;
 }
 
-export interface TeamWithMoney extends Team {
+export interface TeamWithMoney extends TeamType {
   prizeMoney: number;
 }
 

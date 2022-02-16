@@ -3,7 +3,7 @@ import type {
   GolferMoneyRankings,
   Golfers,
   LeaderboardJsonResponse,
-  Team,
+  TeamType,
 } from '../../types';
 import { normaliseCutLine } from '../util/stats';
 import { addPrizeMoney, allTeamsMoney } from '../util/prize-money';
@@ -30,7 +30,7 @@ export const golfersLeaderboard = (players: Golfer[], currentRound: string) => {
 export const teamsPrizeMoney = (
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings,
-  teams: Team[]
+  teams: TeamType[]
 ) => {
   const teamsWithMoney = allTeamsMoney(golfers, rankingsWithPrizeMoney, teams);
 

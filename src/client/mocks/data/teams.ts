@@ -1,6 +1,6 @@
-import { Team } from '../../../types';
+import { TeamType } from '../../../types';
 
-export const teams: Team[] = [
+export const teams: TeamType[] = [
   {
     id: 0,
     owner: 'Logan',
@@ -8,6 +8,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 35450, 48081, 36689, 50525,
     ],
+    google_id: '',
   },
   {
     id: 1,
@@ -16,6 +17,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 47959, 33448, 46970, 28237, 35450, 50525, 34360, 40026, 25364,
     ],
+    google_id: '',
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 33448, 34046, 46970, 28237, 50525, 34360, 35891, 39997, 39971,
     ],
+    google_id: '',
   },
   {
     id: 3,
@@ -32,6 +35,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 47959, 33448, 46970, 35450, 50525, 35891, 39971, 46717, 45526,
     ],
+    google_id: '',
   },
   {
     id: 4,
@@ -40,6 +44,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 48081, 50525, 34360, 34363,
     ],
+    google_id: '',
   },
   {
     id: 5,
@@ -48,6 +53,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 33448, 34046, 46970, 35450, 48081, 50525, 34360, 35891, 30911,
     ],
+    google_id: '',
   },
   {
     id: 6,
@@ -56,6 +62,7 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 33448, 46970, 35450, 34360, 39997, 39971, 46717, 30911, 47483,
     ],
+    google_id: '',
   },
   {
     id: 7,
@@ -64,6 +71,7 @@ export const teams: Team[] = [
     golfer_ids: [
       47959, 33448, 34046, 46970, 28237, 35450, 39971, 46717, 33204, 28089,
     ],
+    google_id: '',
   },
   {
     id: 8,
@@ -72,5 +80,6 @@ export const teams: Team[] = [
     golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 48081, 36689, 50525, 34360,
     ],
+    google_id: '',
   },
 ];

@@ -6,6 +6,7 @@ import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
 import { useRecoilValue } from 'recoil';
 import { currentUserIdState } from '../state/atoms';
+import { Login } from 'src/client/login/components/login';
 
 const AppContainer = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ export const Root = () => {
         <StyledNav>
           <ul>
             <li>
-              <Link to='/'>Home</Link>
+              <Link to='/login'>Login</Link>
             </li>
             <li>
               <Link to={`/team/${currentUserId}`}>Team</Link>
@@ -45,7 +46,7 @@ export const Root = () => {
         </StyledNav>
 
         <Switch>
-          <Route exact path='/' component={MainLeaderboard} />
+          <Route exact path='/login' component={Login} />
           <Route path='/leaderboard' component={MainLeaderboard} />
           <Route path='/team/:id' component={TeamPage} />
         </Switch>

@@ -2,11 +2,11 @@ import React from 'react';
 import { TableBody } from '@material-ui/core';
 
 import { PrimaryRow } from './primary-row';
-import { Team } from '../../../types';
+import { TeamType } from '../../../types';
 import { useLoadTeams } from 'src/client/api';
 import { useTeamsMoney } from '../hooks/use-teams-money';
 
-const prizeMoneySortKey = (a: Team, b: Team) =>
+const prizeMoneySortKey = (a: TeamType, b: TeamType) =>
   (a.prizeMoney || 0) < (b.prizeMoney || 0) ? 1 : -1;
 
 export const TableContent = () => {

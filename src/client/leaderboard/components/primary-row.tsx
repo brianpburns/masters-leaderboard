@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { makeStyles } from '@material-ui/core/styles';
 import { TableRow, TableCell } from '@material-ui/core';
 
-import { Team } from '../../../types';
+import { TeamType } from '../../../types';
 import { SubTable } from './sub-table';
 import { displayNumber } from '../utils/display-number';
 
@@ -19,7 +19,7 @@ const useRowStyles = makeStyles({
 
 interface Props {
   position: number;
-  row: Team;
+  row: TeamType;
 }
 
 export const PrimaryRow = ({ position, row }: Props) => {
