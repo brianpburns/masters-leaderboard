@@ -12,7 +12,11 @@ interface Props {
   removeGolfer: (golferId: number) => void;
 }
 
-const StyledGolfer = styled.div`
+const StyledList = styled.ul`
+  padding: 0;
+`;
+
+const StyledGolfer = styled.li`
   display: flex;
   padding-left: 5px;
   background-color: green;
@@ -25,7 +29,7 @@ export const TeamList = ({
   removeGolfer,
 }: Props) => {
   return (
-    <>
+    <StyledList data-testid='selected-golfers-list'>
       {selectedGolferIds.map((golferId, i) => (
         <StyledGolfer key={i}>
           {allGolfers[golferId].name}
@@ -37,6 +41,6 @@ export const TeamList = ({
           </StyledIcon>
         </StyledGolfer>
       ))}
-    </>
+    </StyledList>
   );
 };
