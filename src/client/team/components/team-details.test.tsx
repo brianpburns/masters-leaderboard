@@ -1,23 +1,11 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
+import userEvent from '@testing-library/user-event';
 
 import { teamState } from '../state/selectors';
 import { TeamDetails } from './team-details';
 import { golfersState } from '../../app';
-
-const selectedGolfers = [
-  {
-    id: '0',
-    name: 'Tiger Woods',
-    position: 10,
-    prizeMoney: 0,
-    topar: 2,
-    thru: '2',
-    today: '2',
-    teetime: '',
-  },
-];
 
 const allGolfers = {
   0: {
@@ -36,7 +24,7 @@ const activeTeam = {
   id: 0,
   owner: 'Burns',
   name: 'Test Name',
-  golfer_ids: [],
+  golfer_ids: [0],
 };
 
 const renderTeamDetails = () => {
@@ -61,7 +49,7 @@ describe('Team Details', () => {
 
   test('updates team name when changed', () => {
     renderTeamDetails();
-    fireEvent.click(screen.getByTestId('edit-name-btn'));
+    userEvent.click(screen.getByTestId('edit-name-btn'));
 
     const nameInput = screen.getByLabelText('Team Name');
     fireEvent.change(nameInput, { target: { value: 'New Name' } });
@@ -70,7 +58,7 @@ describe('Team Details', () => {
     expect(screen.getByText('New Name')).toBeTruthy();
   });
 
-  test('lists selected golfers', () => {
+  test.only('lists selected golfers', () => {
     renderTeamDetails();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
@@ -78,7 +66,7 @@ describe('Team Details', () => {
 
   test('removes golfer from list', () => {
     renderTeamDetails();
-    fireEvent.click(screen.getByTestId('remove-golfer'));
+    userEvent.click(screen.getByTestId('remove-golfer'));
 
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
   });
