@@ -1,5 +1,5 @@
 import { prizeMoney } from '../mocks/data/prize-money';
-import { Team, GolferMoneyRankings, Golfers } from '../../types';
+import { TeamType, GolferMoneyRankings, Golfers } from '../../types';
 
 export const addPrizeMoney = (
   golferRankings: GolferMoneyRankings,
@@ -47,7 +47,7 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
 export const allTeamsMoney = (
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings,
-  teams: Team[]
+  teams: TeamType[]
 ) => {
   // Loop through entrants
   // Loop through player IDs and get the players position
@@ -57,7 +57,7 @@ export const allTeamsMoney = (
 };
 
 const teamMoney = (
-  team: Team,
+  team: TeamType,
   golfers: Golfers,
   rankingsWithPrizeMoney: GolferMoneyRankings
 ) => {
