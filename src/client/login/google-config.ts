@@ -1,7 +1,5 @@
 import queryString from 'query-string';
 
-console.log('clientId', process.env.GOOGLE_CLIENT_ID);
-
 export const googleConfig = {
   clientId:
     '723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com',
