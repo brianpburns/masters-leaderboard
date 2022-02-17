@@ -7,6 +7,8 @@ import { fetchLeaderboardData } from './api';
 import { prizeMoneyState } from './api/state/atoms';
 import { golfersLeaderboard } from './api/requests';
 
+import './index.css';
+
 const localBootstrap = async () => {
   const { worker } = await import('./mock-server');
   worker.start();
