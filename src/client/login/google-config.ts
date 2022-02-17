@@ -1,9 +1,10 @@
 import queryString from 'query-string';
 
+console.log('clientId', process.env.GOOGLE_CLIENT_ID);
+
 export const googleConfig = {
-  clientId: process.env.GOOGLE_CLIENT_ID,
-  // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  // redirect: 'http://localhost:5000/google-auth',
+  clientId:
+    '723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com',
   redirect: 'http://localhost:8080/google-auth',
   // redirect: 'https://augusta-masters-leaderboard.herokuapp.com/google-auth',
 };
