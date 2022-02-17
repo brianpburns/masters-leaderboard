@@ -50,7 +50,7 @@ describe('Golfers List', () => {
 
   test('removes a selected golfer from the list', () => {
     renderGolfersList();
-    userEvent.click(screen.getByTestId('add-golfer'));
+    userEvent.click(screen.getAllByTestId('add-golfer')[0]);
 
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
   });
