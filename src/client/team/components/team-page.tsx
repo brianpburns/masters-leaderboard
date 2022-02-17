@@ -1,25 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import styled from 'styled-components';
 import { useGetTeam } from '../../api';
 
 import { GolfersList } from './golfers-list';
-import { TeamDetails } from './team-details';
-
-const Container = styled.div`
-  padding: 25px;
-  height: 100vh;
-  display: flex;
-`;
-
-const TeamContainer = styled.div`
-  background-color: white;
-  margin-left: 15px;
-  max-width: 400px;
-  width: 100%;
-  height: 100px;
-  border-radius: 10px;
-`;
+import { TeamPageContainer } from './styled';
+import { TeamSection } from './team-section';
 
 type TeamParams = { id: string };
 
@@ -28,11 +13,9 @@ export const TeamPage = () => {
   useGetTeam(parseInt(id));
 
   return (
-    <Container>
+    <TeamPageContainer>
       <GolfersList />
-      <TeamContainer>
-        <TeamDetails />
-      </TeamContainer>
-    </Container>
+      <TeamSection />
+    </TeamPageContainer>
   );
 };

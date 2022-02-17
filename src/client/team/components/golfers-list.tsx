@@ -1,55 +1,66 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import AddIcon from '@material-ui/icons/Add';
 
 import { useManageGolfers } from '../hooks/use-manage-golfers';
-import { StyledIcon } from './styled';
-
-const Container = styled.div`
-  background-color: white;
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px;
-`;
-
-const StyledTopBar = styled.div`
-  background-color: red;
-  width: 100%;
-`;
-
-const StyledList = styled.div`
-  background-color: blue;
-  padding: 5px;
-`;
-
-const StyledGolfer = styled.div`
-  display: flex;
-  padding-left: 5px;
-  background-color: green;
-  color: white;
-`;
+import {
+  GolfersListContainer,
+  GolferListItem,
+  StyledIcon,
+  StyledGolfersList,
+  RemainingPicks,
+  AlreadySelectedMsg,
+} from './styled';
+import { Icon } from 'src/client/shared';
+import { useRecoilValue } from 'recoil';
+import { teamGolfersIdsState } from '../state/atoms';
+import { SearchBar } from './search-bar';
 
 export const GolfersList = () => {
-  const { availableGolfers, addGolfer } = useManageGolfers();
+  const { allGolfers, unselectedGolfers, addGolfer } = useManageGolfers();
+  const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
+  const [searchTerm, setSearchTerm] = useState<string>('Name');
+
+  const remainingPicks = 10 - selectedGolferIds.length;
+
+  const handleAddGolfer = (id: number) => {
+    if (remainingPicks === 0) return;
+    addGolfer(id);
+  };
+
+  const searchActive = !['Name', ''].includes(searchTerm);
+  const filteredGolfersList = searchActive
+    ? allGolfers.filter((golfer) =>
+        golfer.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : unselectedGolfers;
 
   return (
-    <Container>
-      <StyledTopBar>
-        <div>Search</div>
-      </StyledTopBar>
-      <StyledList>
-        {availableGolfers.map((golfer, i) => (
-          <StyledGolfer key={i}>
+    <GolfersListContainer data-testid='golfers-list'>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <RemainingPicks noPicksLeft={remainingPicks === 0}>
+        Remaining picks: {remainingPicks}
+      </RemainingPicks>
+      <StyledGolfersList disabled={remainingPicks === 0}>
+        {filteredGolfersList.map((golfer, i) => (
+          <GolferListItem key={i}>
             {golfer.name}
-            <StyledIcon
-              onClick={() => addGolfer(golfer.id)}
-              data-testid='add-golfer'
-            >
-              <AddIcon fontSize='small' />
-            </StyledIcon>
-          </StyledGolfer>
+            {selectedGolferIds.includes(golfer.id) ? (
+              <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
+            ) : (
+              remainingPicks !== 0 && (
+                <StyledIcon
+                  onClick={() => handleAddGolfer(golfer.id)}
+                  data-testid='add-golfer'
+                >
+                  <Icon color='black'>
+                    <AddIcon fontSize='small' />
+                  </Icon>
+                </StyledIcon>
+              )
+            )}
+          </GolferListItem>
         ))}
-      </StyledList>
-    </Container>
+      </StyledGolfersList>
+    </GolfersListContainer>
   );
 };

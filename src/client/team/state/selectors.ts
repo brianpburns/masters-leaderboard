@@ -7,6 +7,7 @@ import {
   teamOwnerState,
   teamGolfersIdsState,
   teamNameState,
+  savedGolfersIdsRefState,
 } from './atoms';
 
 export const teamState = selector<TeamType>({
@@ -28,5 +29,6 @@ export const teamState = selector<TeamType>({
     set(teamOwnerState, owner);
     set(teamNameState, name);
     set(teamGolfersIdsState, golfer_ids);
+    set(savedGolfersIdsRefState, golfer_ids);
   },
 });

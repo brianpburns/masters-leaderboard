@@ -10,13 +10,13 @@ export const useManageGolfers = () => {
     useRecoilState(teamGolfersIdsState);
   const allGolfers = useRecoilValue(golfersState);
   const teamGolfers = useRecoilValue(teamGolfersIdsState);
-  const [availableGolfers, setAvailableGolfers] = useState<GolferData[]>([]);
+  const [unselectedGolfers, setUnselectedGolfers] = useState<GolferData[]>([]);
 
   useEffect(() => {
     const golfers = Object.values(allGolfers).filter(
       (golfer) => !teamGolfers.includes(golfer.id)
     );
-    setAvailableGolfers(golfers);
+    setUnselectedGolfers(golfers);
   }, [allGolfers, teamGolfers]);
 
   const addGolfer = (golferId: number) => {
@@ -29,5 +29,10 @@ export const useManageGolfers = () => {
     );
   };
 
-  return { availableGolfers, addGolfer, removeGolfer };
+  return {
+    allGolfers: Object.values(allGolfers),
+    unselectedGolfers,
+    addGolfer,
+    removeGolfer,
+  };
 };
