@@ -1,1 +1,1 @@
-export { getHost } from './helpers/get-host';
+export { getServerHost, getUIHost } from './helpers/host';
