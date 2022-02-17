@@ -4,7 +4,7 @@ import { useGetTeam } from '../../api';
 
 import { GolfersList } from './golfers-list';
 import { TeamPageContainer, TeamContainer } from './styled';
-import { TeamDetails } from './team-details';
+import { TeamSection } from './team-section';
 
 type TeamParams = { id: string };
 
@@ -15,9 +15,7 @@ export const TeamPage = () => {
   return (
     <TeamPageContainer>
       <GolfersList data-testid='golfers-list' />
-      <TeamContainer>
-        <TeamDetails />
-      </TeamContainer>
+      <TeamSection />
     </TeamPageContainer>
   );
 };

@@ -11,11 +11,9 @@ const StyledWrapper = styled.div<{ size?: string; color?: string }>`
   width: ${({ size }) => size && `${size}px`};
   height: ${({ size }) => size && `${size}px`};
   color: ${({ color }) => (color ? `${color}` : 'silver')};
-
-  .icon {
-    display: inline-block;
-    line-height: 0;
-  }
+  display: inline-block;
+  line-height: 0;
+  vertical-align: middle;
 `;
 
 export const Icon = ({ color, size, children }: Props) => {

@@ -4,7 +4,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Golfers } from '../../../types';
 
-import { StyledIcon } from './styled';
+import { GolferListItem, StyledGolfersList, StyledIcon } from './styled';
 
 interface Props {
   allGolfers: Golfers;
@@ -12,26 +12,15 @@ interface Props {
   removeGolfer: (golferId: number) => void;
 }
 
-const StyledList = styled.ul`
-  padding: 0;
-`;
-
-const StyledGolfer = styled.li`
-  display: flex;
-  padding-left: 5px;
-  background-color: green;
-  color: white;
-`;
-
 export const TeamList = ({
   allGolfers,
   selectedGolferIds,
   removeGolfer,
 }: Props) => {
   return (
-    <StyledList data-testid='selected-golfers-list'>
+    <StyledGolfersList data-testid='selected-golfers-list'>
       {selectedGolferIds.map((golferId, i) => (
-        <StyledGolfer key={i}>
+        <GolferListItem key={i}>
           {allGolfers[golferId].name}
           <StyledIcon
             onClick={() => removeGolfer(golferId)}
@@ -39,8 +28,8 @@ export const TeamList = ({
           >
             <RemoveIcon fontSize='small' />
           </StyledIcon>
-        </StyledGolfer>
+        </GolferListItem>
       ))}
-    </StyledList>
+    </StyledGolfersList>
   );
 };

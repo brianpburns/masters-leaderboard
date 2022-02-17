@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { useRecoilState } from 'recoil';
 import { teamNameState } from '../state/atoms';
-
-const StyledName = styled.div``;
+import { Icon } from 'src/client/shared';
+import { StyledIcon, NameWrapper } from './styled';
 
 export const TeamName = () => {
   const [teamName, setTeamName] = useRecoilState(teamNameState);
@@ -30,13 +29,17 @@ export const TeamName = () => {
       }}
     />
   ) : (
-    <StyledName>
+    <NameWrapper>
       {teamName}
-      <EditIcon
-        fontSize='small'
-        onClick={() => setEditMode(true)}
-        data-testid='edit-name-btn'
-      />
-    </StyledName>
+      <StyledIcon>
+        <Icon color='black' size='16'>
+          <EditIcon
+            fontSize='small'
+            onClick={() => setEditMode(true)}
+            data-testid='edit-name-btn'
+          />
+        </Icon>
+      </StyledIcon>
+    </NameWrapper>
   );
 };

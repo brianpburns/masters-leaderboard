@@ -4,7 +4,7 @@ import { MutableSnapshot, RecoilRoot } from 'recoil';
 import userEvent from '@testing-library/user-event';
 
 import { teamState } from '../state/selectors';
-import { TeamDetails } from './team-details';
+import { TeamSection } from './team-section';
 import { golfersState } from '../../app';
 
 const allGolfers = {
@@ -35,7 +35,7 @@ const renderTeamDetails = () => {
 
   render(
     <RecoilRoot {...{ initializeState }}>
-      <TeamDetails />
+      <TeamSection />
     </RecoilRoot>
   );
 };

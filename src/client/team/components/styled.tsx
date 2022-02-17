@@ -16,6 +16,7 @@ export const GolfersListContainer = styled.div`
   width: 33%;
   border-radius: 10px;
   padding: 10px;
+  height: fit-content;
 `;
 
 export const SearchBar = styled.div`
@@ -27,10 +28,15 @@ export const StyledGolfersList = styled.ul`
   border: 1px solid silver;
   border-radius: 2px;
   padding: 0;
+
+  li:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const GolferListItem = styled.li`
   display: flex;
+  padding: 2px;
   padding-left: 5px;
   background-color: white;
   border-bottom: 1px solid silver;
@@ -40,6 +46,14 @@ export const TeamContainer = styled.div`
   background-color: white;
   margin-left: 15px;
   width: 33%;
-  height: 100px;
+  height: fit-content;
   border-radius: 10px;
+  padding: 10px;
+`;
+
+export const NameWrapper = styled.div`
+  display: flex;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 300;
 `;

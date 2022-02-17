@@ -6,10 +6,11 @@ import { golfersState } from '../../app';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { teamGolfersIdsState } from '../state/atoms';
 import { teamState } from '../state/selectors';
+import { TeamContainer } from './styled';
 import { TeamList } from './team-list';
 import { TeamName } from './team-name';
 
-export const TeamDetails = () => {
+export const TeamSection = () => {
   const allGolfers = useRecoilValue(golfersState);
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const { removeGolfer } = useManageGolfers();
@@ -21,7 +22,7 @@ export const TeamDetails = () => {
   };
 
   return (
-    <>
+    <TeamContainer>
       <TeamName />
       <TeamList
         allGolfers={allGolfers}
@@ -29,6 +30,6 @@ export const TeamDetails = () => {
         removeGolfer={removeGolfer}
       />
       <Button onClick={onSave}>Save</Button>
-    </>
+    </TeamContainer>
   );
 };
