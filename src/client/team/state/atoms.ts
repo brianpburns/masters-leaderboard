@@ -19,3 +19,8 @@ export const teamGolfersIdsState = atom<number[]>({
   key: '@team/golferIds',
   default: [],
 });
+
+export const savedGolfersIdsRefState = atom<number[]>({
+  key: '@team/savedRef',
+  default: [],
+});

@@ -1,4 +1,4 @@
-import { FilledInput } from '@material-ui/core';
+import { Button, FilledInput } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
@@ -74,4 +74,13 @@ export const AlreadySelectedMsg = styled.div`
 
 export const StyledSearchBar = styled(FilledInput)`
   width: 100%;
+`;
+
+export const ButtonsContainer = styled.div`
+  width: 100%;
+  text-align: end;
+`;
+
+export const CancelButton = styled(Button)`
+  margin-left: 5px !important;
 `;
