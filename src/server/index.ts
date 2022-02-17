@@ -4,9 +4,6 @@ import 'dotenv/config';
 import { listTeams, getTeam, updateTeam } from './handlers';
 import { authCallback } from './handlers/auth-callback';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-(require('dotenv') as unknown as { config: () => void }).config();
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../../dist')), express.json());

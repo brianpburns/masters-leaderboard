@@ -6,7 +6,7 @@
   "scripts": {
     "start": "SNOWPACK_PUBLIC_NODE_ENV=development snowpack dev --polyfill-node",
     "build": "snowpack build",
-    "build:prod": "webpack --mode production",
+    "build:prod": "NODE_ENV=production webpack --mode production",
     "check-types": "tsc --noEmit && tsc --project tsconfig.server.json --noEmit",
     "dev": "webpack-dev-server",
     "lint": "npm run lint:prettier && npm run lint:eslint",
@@ -16,7 +16,7 @@
     "tests": "npm run test",
     "test:coverage": "npm run test -- --coverage",
     "heroku-postbuild": "npm run build:prod",
-    "server": "ts-node-dev --project tsconfig.server.json src/server/index.ts"
+    "server": "NODE_ENV=development ts-node-dev --project tsconfig.server.json src/server/index.ts"
   },
   "repository": {
     "type": "git",

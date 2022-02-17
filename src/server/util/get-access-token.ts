@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { googleConfig } from '../../google-config';
+import { getServerHost } from '../../shared';
 
 export async function getAccessToken(code: string) {
   const res = await fetch('https://oauth2.googleapis.com/token', {
@@ -7,7 +7,7 @@ export async function getAccessToken(code: string) {
     body: JSON.stringify({
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: googleConfig.redirect,
+      redirect_uri: `${getServerHost()}/google-auth`,
       grant_type: 'authorization_code',
       code,
     }),

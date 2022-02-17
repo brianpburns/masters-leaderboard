@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import { getUIHost } from '../../shared';
 import { TeamType } from '../../types';
 import { Team } from '../masters-db';
 import { getAccessToken } from '../util/get-access-token';
@@ -24,9 +25,11 @@ export function authCallback() {
 
     if (!team) {
       const newTeam = await Team.create({ google_id: googleUserId });
-      return res.status(200).redirect(`/api/team/${newTeam._attributes.id}`);
+      return res
+        .status(200)
+        .redirect(`${getUIHost()}/team/${newTeam._attributes.id}`);
     } else {
-      res.status(200).redirect(`/api/team/${team.id}`);
+      res.status(200).redirect(`${getUIHost()}/team/${team.id}`);
     }
   });
 }
