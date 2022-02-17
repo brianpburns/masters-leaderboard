@@ -1,4 +1,4 @@
-import { prizeMoney } from '../mocks/data/prize-money';
+import { prizeMoney } from 'src/client/data';
 import { TeamType, GolferMoneyRankings, Golfers } from '../../types';
 
 export const addPrizeMoney = (

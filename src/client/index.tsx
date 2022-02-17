@@ -8,7 +8,7 @@ import { prizeMoneyState } from './api/state/atoms';
 import { golfersLeaderboard } from './api/requests';
 
 const localBootstrap = async () => {
-  const { worker } = await import('./mocks');
+  const { worker } = await import('./mock-server');
   worker.start();
 
   bootstrap();

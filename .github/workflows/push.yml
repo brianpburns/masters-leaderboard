@@ -2,7 +2,6 @@ on: push
 name: Push Checks
 jobs:
   test:
-    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -16,7 +15,7 @@ jobs:
             ${{ runner.os }}-
       - uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       - run: npm ci
       - run: npm run test:coverage
       - name: Fix Code Coverage Paths
@@ -25,10 +24,9 @@ jobs:
         run: |
           sed -i "s@${GITHUB_WORKSPACE}@/github/workspace/@g" lcov.info
       - name: Code Coverage Report
-        uses: romeovs/lcov-reporter-action:stable
+        uses: romeovs/lcov-reporter-action@v0.3.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          lcov-file: ./lcov.info
   lint:
     name: Lint, Check Types, Check Deps, Build
     runs-on: ubuntu-latest
@@ -36,17 +34,15 @@ jobs:
       GEMFURY_TOKEN: ${{ secrets.GEMFURY_TOKEN }}
     steps:
       - uses: actions/checkout@master
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
+        id: node_cache
         with:
-          path: ~/.npm
+          path: ./node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - uses: actions/setup-node@v1
+          # no restore-keys as we want an exact match or rebuild
+      - uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       - run: npm ci
       # - run: npm run lint
       - run: npm run check-types

@@ -1,11 +1,15 @@
+import { useRecoilValue } from 'recoil';
+import { golfersState } from 'src/client/app';
 import { TeamType } from '../../../types';
-import { usePosition } from './use-position';
 
 export const useSortedGolfers = (row: TeamType) => {
-  const getPosition = usePosition();
+  const golfers = useRecoilValue(golfersState);
+
+  // console.log('golfers', golfers);
+
   const positionsSortKey = (aId: number, bId: number) => {
-    const aPos = getPosition(aId);
-    const bPos = getPosition(bId);
+    const aPos = golfers[aId].position;
+    const bPos = golfers[bId].position;
     return aPos > 0 && bPos > 0 ? aPos - bPos : bPos - aPos;
   };
 
