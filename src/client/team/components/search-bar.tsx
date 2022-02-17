@@ -19,20 +19,25 @@ export const SearchBar = ({ searchTerm, setSearchTerm }: Props) => {
     <SearchBarWrapper>
       <StyledSearchBar
         id='standard'
+        data-testid='search-bar-input'
         value={searchTerm}
         onClick={() => searchTerm === 'Name' && setSearchTerm('')}
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
         onBlur={handleBlur}
         endAdornment={
-          <InputAdornment position='end'>
-            <IconButton
-              aria-label='clear search bar'
-              onClick={() => setSearchTerm('')}
-              edge='end'
-            >
-              <CloseIcon sx={{ fontSize: 16 }} />
-            </IconButton>
-          </InputAdornment>
+          searchTerm !== 'Name' &&
+          searchTerm !== '' && (
+            <InputAdornment position='end'>
+              <IconButton
+                aria-label='clear search bar'
+                onClick={() => setSearchTerm('')}
+                edge='end'
+                data-testid='clear-button'
+              >
+                <CloseIcon sx={{ fontSize: 16 }} />
+              </IconButton>
+            </InputAdornment>
+          )
         }
       />
     </SearchBarWrapper>

@@ -11,5 +11,6 @@ module.exports = {
   testMatch: ['**/**/?(*.)+(test).(js|jsx|ts|tsx)'],
   moduleDirectories: ['node_modules'],
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   coveragePathIgnorePatterns: ['mocks', 'mock-server', 'node_modules'],
 };
