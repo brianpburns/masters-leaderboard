@@ -8,6 +8,7 @@ import {
   StyledIcon,
   StyledGolfersList,
   RemainingPicks,
+  AlreadySelectedMsg,
 } from './styled';
 import { Icon } from 'src/client/shared';
 import { useRecoilValue } from 'recoil';
@@ -15,7 +16,7 @@ import { teamGolfersIdsState } from '../state/atoms';
 import { SearchBar } from './search-bar';
 
 export const GolfersList = () => {
-  const { availableGolfers, addGolfer } = useManageGolfers();
+  const { allGolfers, unselectedGolfers, addGolfer } = useManageGolfers();
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const [searchTerm, setSearchTerm] = useState<string>('Name');
 
@@ -26,23 +27,36 @@ export const GolfersList = () => {
     addGolfer(id);
   };
 
+  const searchActive = !['Name', ''].includes(searchTerm);
+  const filteredGolfersList = searchActive
+    ? allGolfers.filter((golfer) =>
+        golfer.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : unselectedGolfers;
+
   return (
     <GolfersListContainer data-testid='golfers-list'>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <RemainingPicks>Remaining picks: {remainingPicks}</RemainingPicks>
+      <RemainingPicks noPicksLeft={remainingPicks === 0}>
+        Remaining picks: {remainingPicks}
+      </RemainingPicks>
       <StyledGolfersList disabled={remainingPicks === 0}>
-        {availableGolfers.map((golfer, i) => (
+        {filteredGolfersList.map((golfer, i) => (
           <GolferListItem key={i}>
             {golfer.name}
-            {remainingPicks !== 0 && (
-              <StyledIcon
-                onClick={() => handleAddGolfer(golfer.id)}
-                data-testid='add-golfer'
-              >
-                <Icon color='black'>
-                  <AddIcon fontSize='small' />
-                </Icon>
-              </StyledIcon>
+            {selectedGolferIds.includes(golfer.id) ? (
+              <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
+            ) : (
+              remainingPicks !== 0 && (
+                <StyledIcon
+                  onClick={() => handleAddGolfer(golfer.id)}
+                  data-testid='add-golfer'
+                >
+                  <Icon color='black'>
+                    <AddIcon fontSize='small' />
+                  </Icon>
+                </StyledIcon>
+              )
             )}
           </GolferListItem>
         ))}

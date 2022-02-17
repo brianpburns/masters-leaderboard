@@ -1,3 +1,4 @@
+import { FilledInput } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
@@ -57,8 +58,20 @@ export const NameWrapper = styled.div`
   font-weight: 300;
 `;
 
-export const RemainingPicks = styled.div`
+export const RemainingPicks = styled.div<{ noPicksLeft: boolean }>`
+  font-size: 14px;
   width: 100%;
   text-align: end;
   margin-bottom: 5px;
+  ${({ noPicksLeft }) => noPicksLeft && 'color: red'};
+`;
+
+export const AlreadySelectedMsg = styled.div`
+  margin-left: auto;
+  font-size: 14px;
+  color: red;
+`;
+
+export const StyledSearchBar = styled(FilledInput)`
+  width: 100%;
 `;
