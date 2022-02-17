@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Golfers } from '../../../types';
