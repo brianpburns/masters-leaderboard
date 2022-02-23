@@ -6,31 +6,23 @@ import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
 import { useRecoilValue } from 'recoil';
 import { currentUserIdState } from '../state/atoms';
-import { Login } from 'src/client/login/components/login';
-
-const AppContainer = styled.div`
-  display: grid;
-  background-color: green;
-  background-image: url('//d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/masters-2022/9721323d-masters.jpg');
-  background-repeat: no-repeat;
-  background-position: 'left center';
-  background-size: cover;
-  width: 100%;
-  height: 110vh;
-  overflow-y: auto;
-`;
-
-const StyledNav = styled.nav`
-  background-color: white;
-  height: max-content;
-`;
+import { Login } from 'src/client/login';
+import { HeaderImage } from './header-image';
+import { AppContainer, StyledNav } from './styled';
 
 export const Root = () => {
   const currentUserId = useRecoilValue(currentUserIdState);
 
   return (
     <AppContainer>
+      <HeaderImage />
       <Router>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route path='/leaderboard' component={MainLeaderboard} />
+          <Route path='/team/:id' component={TeamPage} />
+        </Switch>
+
         <StyledNav>
           <ul>
             <li>
@@ -44,12 +36,6 @@ export const Root = () => {
             </li>
           </ul>
         </StyledNav>
-
-        <Switch>
-          <Route exact path='/login' component={Login} />
-          <Route path='/leaderboard' component={MainLeaderboard} />
-          <Route path='/team/:id' component={TeamPage} />
-        </Switch>
       </Router>
     </AppContainer>
   );
