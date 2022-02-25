@@ -1,5 +1,5 @@
 import { prizeMoney } from 'src/client/data';
-import { TeamType, GolferMoneyRankings, Golfers } from '../../types';
+import { GolferMoneyRankings } from '../../types';
 
 export const addPrizeMoney = (
   golferRankings: GolferMoneyRankings,
@@ -32,7 +32,7 @@ export const addPrizeMoney = (
   return golferRankings;
 };
 
-const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
+export const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;
 
   // Grab the money to be shared by the tied players, e.g.
