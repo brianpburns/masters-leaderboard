@@ -1,11 +1,17 @@
 import { Link } from '@material-ui/core';
 import styled from 'styled-components';
 
-export const LoginIconWrapper = styled.div<{ active: boolean }>`
-  margin-right: 10px;
-  /* background: ${({ active }) => (active ? '#eee' : '#fff')};s */
-  /* padding: 10px; */
-  border-radius: 2px;
+export const LoginContainer = styled.div`
+  padding: 15px;
+  display: flex;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+`;
+
+export const LoginButtonContainer = styled.div`
+  margin: auto;
+  height: 50px;
 `;
 
 export const StyledLoginButton = styled(Link)`
@@ -33,18 +39,7 @@ export const StyledLoginButton = styled(Link)`
   }
 `;
 
-export const LoginButtonContainer = styled.div`
-  display: flex;
-  width: fit-content;
-  background-color: #fff;
-  height: 50px;
-`;
-
-export const LoginContainer = styled.div`
-  background-color: white;
-  width: 100%;
-  max-width: 60vw;
-  min-width: 600px;
-  justify-self: center;
-  border-radius: 25px;
+export const LoginIconWrapper = styled.div`
+  margin-right: 10px;
+  border-radius: 2px;
 `;

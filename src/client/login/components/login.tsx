@@ -14,7 +14,7 @@ export const Login = () => {
     <LoginContainer>
       <LoginButtonContainer>
         <StyledLoginButton href={googleLoginUrl} underline='none'>
-          <LoginIconWrapper active={true}>
+          <LoginIconWrapper>
             <GoogleIcon />
           </LoginIconWrapper>
           <span>Login with Google</span>
