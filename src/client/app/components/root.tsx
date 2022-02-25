@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { Leaderboard } from 'src/client/leaderboard';
 import { Login } from 'src/client/login';
-import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
 import { currentUserIdState } from '../state/atoms';
 import { HeaderImage } from './header-image';
@@ -17,7 +17,7 @@ export const Root = () => {
       <Router>
         <Switch>
           <Route exact path='/login' component={Login} />
-          <Route path='/leaderboard' component={MainLeaderboard} />
+          <Route path='/leaderboard' component={Leaderboard} />
           <Route path='/team/:id' component={TeamPage} />
         </Switch>
 

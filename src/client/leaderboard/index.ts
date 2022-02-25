@@ -1,1 +1,1 @@
-export { MainLeaderboard } from './components/main-leaderboard';
+export { Leaderboard } from './components/leaderboard';

@@ -1,22 +1,6 @@
 import styled from 'styled-components';
 import { TableCell, TableContainer } from '@material-ui/core';
 
-export const LeaderboardContainer = styled.div`
-  width: 100%;
-  max-width: 60vw;
-  min-width: 600px;
-  justify-self: center;
-  margin-top: 50px;
-  border-radius: 25px;
-
-  @media only screen and (max-width: 600px) {
-    margin-top: 0;
-    max-width: 600px;
-    justify-self: normal;
-    min-width: 0;
-  }
-`;
-
 export const StyledLogo = styled.div`
   display: flex;
   max-height: 80px;

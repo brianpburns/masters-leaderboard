@@ -9,7 +9,8 @@ export const useLoadTeams = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTeams(await listTeams());
+        const teamsData = await listTeams();
+        setTeams(teamsData);
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(
