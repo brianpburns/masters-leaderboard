@@ -14,7 +14,7 @@ export const StyledIcon = styled.div`
 
 export const GolfersListContainer = styled.div`
   background-color: white;
-  width: 33%;
+  width: 50%;
   border-radius: 10px;
   padding: 10px;
   height: fit-content;
@@ -45,7 +45,7 @@ export const GolferListItem = styled.li`
 export const TeamContainer = styled.div`
   background-color: white;
   margin-left: 15px;
-  width: 33%;
+  width: 50%;
   height: fit-content;
   border-radius: 10px;
   padding: 10px;
