@@ -9,7 +9,6 @@ export const StyledNav = styled.nav`
 export const MastersLogoWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  border-radius: 25px 25px 0px 0px;
   height: 100%;
   padding-bottom: 10px;
 
