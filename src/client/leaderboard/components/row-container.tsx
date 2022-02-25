@@ -11,12 +11,12 @@ interface Props {
 
 export const RowContainer = ({ position, row }: Props) => {
   const [open, setOpen] = useState(false);
-  const orderedGolferIds = useSortedGolfers(row);
+  const rankedGolfers = useSortedGolfers(row);
 
   return (
     <>
       <PrimaryRow open={open} setOpen={setOpen} position={position} row={row} />
-      <SubTable isOpen={open} orderedGolferIds={orderedGolferIds} />
+      <SubTable isOpen={open} rankedGolfers={rankedGolfers} />
     </>
   );
 };

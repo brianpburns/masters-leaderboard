@@ -11,10 +11,10 @@ import { SubRow } from './sub-row';
 
 interface Props {
   isOpen: boolean;
-  orderedGolferIds: number[];
+  rankedGolfers: number[];
 }
 
-export const SubTable = ({ isOpen, orderedGolferIds }: Props) => {
+export const SubTable = ({ isOpen, rankedGolfers }: Props) => {
   return (
     <TableRow>
       <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -31,7 +31,7 @@ export const SubTable = ({ isOpen, orderedGolferIds }: Props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orderedGolferIds.map((id: number) => (
+              {rankedGolfers.map((id: number) => (
                 <SubRow key={id} golferId={id} />
               ))}
             </TableBody>
