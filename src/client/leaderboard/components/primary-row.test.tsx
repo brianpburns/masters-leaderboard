@@ -1,34 +1,46 @@
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import { setupMockServer, teams } from 'test/mocks';
 import { PrimaryRow } from './primary-row';
-import { teams } from 'test/mocks';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { golfersState } from 'src/client/app';
-import { golfersStateData, setupMockServer } from 'test/mocks';
 
 setupMockServer();
 
-const renderPrimaryRow = () => {
-  const initializeState = ({ set }: MutableSnapshot) => {
-    set(golfersState, golfersStateData);
-  };
+const mockSetOpen = jest.fn();
 
+const renderPrimaryRow = (open = true) => {
   render(
-    <RecoilRoot initializeState={initializeState}>
-      <table>
-        <tbody>
-          <PrimaryRow position={1} row={teams[0]} />
-        </tbody>
-      </table>
-    </RecoilRoot>
+    <table>
+      <tbody>
+        <PrimaryRow
+          open={open}
+          setOpen={mockSetOpen}
+          position={1}
+          row={teams[0]}
+        />
+      </tbody>
+    </table>
   );
 };
 
 describe('PrimaryRow', () => {
-  test('renders', () => {
+  test('renders correctly when closed', () => {
+    renderPrimaryRow(false);
+
+    expect(screen.getByTestId('toggle-down')).toBeTruthy();
+  });
+
+  test('renders correctly when open', () => {
     renderPrimaryRow();
 
-    expect(true).toBe(true);
+    expect(screen.getByTestId('toggle-up')).toBeTruthy();
+  });
+
+  test('calls setOpen on click', () => {
+    renderPrimaryRow();
+
+    userEvent.click(screen.getByText('Team Logan'));
+
+    expect(mockSetOpen).toBeCalledWith(false);
   });
 });

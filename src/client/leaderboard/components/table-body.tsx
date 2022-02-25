@@ -1,7 +1,7 @@
 import React from 'react';
 import { TeamType } from 'src/types';
 import { TableBody as MTableBody } from '@material-ui/core';
-import { PrimaryRow } from './primary-row';
+import { RowContainer } from './row-container';
 
 interface Props {
   tableData: TeamType[];
@@ -10,7 +10,7 @@ interface Props {
 export const TableBody = ({ tableData }: Props) => (
   <MTableBody>
     {tableData.map((row, id) => (
-      <PrimaryRow key={row.name} position={id} row={row} />
+      <RowContainer key={row.name} position={id} row={row} />
     ))}
   </MTableBody>
 );

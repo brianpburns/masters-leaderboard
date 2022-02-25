@@ -4,7 +4,7 @@ export const teams: TeamType[] = [
   {
     id: 0,
     owner: 'Logan',
-    name: '',
+    name: 'Team Logan',
     golfer_ids: [
       30925, 47959, 33448, 34046, 46970, 28237, 35450, 48081, 36689, 50525,
     ],

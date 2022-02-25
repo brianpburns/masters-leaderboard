@@ -1,25 +1,20 @@
-import React from 'react';
 import {
-  TableRow,
-  TableCell,
   Collapse,
   Table,
-  TableHead,
   TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
 } from '@material-ui/core';
-
-import { TeamType } from '../../../types';
+import React from 'react';
 import { SubRow } from './sub-row';
-import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 
 interface Props {
   isOpen: boolean;
-  row: TeamType;
+  orderedGolferIds: number[];
 }
 
-export const SubTable = ({ isOpen, row }: Props) => {
-  const sortedGolferIds = useSortedGolfers(row);
-
+export const SubTable = ({ isOpen, orderedGolferIds }: Props) => {
   return (
     <TableRow>
       <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -36,7 +31,7 @@ export const SubTable = ({ isOpen, row }: Props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedGolferIds.map((id: number) => (
+              {orderedGolferIds.map((id: number) => (
                 <SubRow key={id} golferId={id} />
               ))}
             </TableBody>
