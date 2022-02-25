@@ -1,12 +1,6 @@
-import type {
-  Golfer,
-  GolferMoneyRankings,
-  Golfers,
-  LeaderboardJsonResponse,
-  TeamType,
-} from '../../types';
+import type { Golfer, LeaderboardJsonResponse } from '../../types';
+import { addPrizeMoney } from '../util/prize-money';
 import { normaliseCutLine } from '../util/stats';
-import { addPrizeMoney, allTeamsMoney } from '../util/prize-money';
 import { getLeaderboard } from './fetch/get-leaderboard';
 import { generateRankings } from './utils/generate-rankings';
 
@@ -25,14 +19,4 @@ export const golfersLeaderboard = (players: Golfer[], currentRound: string) => {
   const rankingsWithPrizeMoney = addPrizeMoney(golferRankings, currentRound);
 
   return { golfers, rankingsWithPrizeMoney };
-};
-
-export const teamsPrizeMoney = (
-  golfers: Golfers,
-  rankingsWithPrizeMoney: GolferMoneyRankings,
-  teams: TeamType[]
-) => {
-  const teamsWithMoney = allTeamsMoney(golfers, rankingsWithPrizeMoney, teams);
-
-  return teamsWithMoney;
 };
