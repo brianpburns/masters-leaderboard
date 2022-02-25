@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
   padding: 25px;
-  height: 100vh;
   display: flex;
 `;
 

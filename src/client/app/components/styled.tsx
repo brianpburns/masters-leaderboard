@@ -1,12 +1,6 @@
 import { thirteenthTeeBox } from 'src/client/data';
 import styled from 'styled-components';
 
-export const AppContainer = styled.div`
-  width: 100%;
-  height: 110vh;
-  overflow-y: auto;
-`;
-
 export const StyledNav = styled.nav`
   background-color: white;
   height: max-content;

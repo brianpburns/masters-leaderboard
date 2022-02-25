@@ -1,20 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { Login } from 'src/client/login';
 import { MainLeaderboard } from '../../leaderboard';
 import { TeamPage } from '../../team';
-import { useRecoilValue } from 'recoil';
 import { currentUserIdState } from '../state/atoms';
-import { Login } from 'src/client/login';
 import { HeaderImage } from './header-image';
-import { AppContainer, StyledNav } from './styled';
+import { StyledNav } from './styled';
 
 export const Root = () => {
   const currentUserId = useRecoilValue(currentUserIdState);
 
   return (
-    <AppContainer>
+    <>
       <HeaderImage />
       <Router>
         <Switch>
@@ -37,6 +35,6 @@ export const Root = () => {
           </ul>
         </StyledNav>
       </Router>
-    </AppContainer>
+    </>
   );
 };
