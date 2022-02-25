@@ -20,11 +20,7 @@ const StyledTableCell = styled(TableCell)`
 export const PrimaryRow = ({ open, setOpen, position, row }: Props) => (
   <TableRow onClick={() => setOpen(!open)} hover={true} selected={open}>
     <StyledTableCell>
-      <IconButton
-        aria-label='expand row'
-        size='small'
-        onClick={() => setOpen(!open)}
-      >
+      <IconButton aria-label='expand row' size='small'>
         {open ? (
           <KeyboardArrowUpIcon data-testid='toggle-up' />
         ) : (
