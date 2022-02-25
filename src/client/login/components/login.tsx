@@ -13,7 +13,11 @@ export const Login = () => {
   return (
     <LoginContainer>
       <LoginButtonContainer>
-        <StyledLoginButton href={googleLoginUrl} underline='none'>
+        <StyledLoginButton
+          href={googleLoginUrl}
+          underline='none'
+          data-testid='login-button'
+        >
           <LoginIconWrapper>
             <GoogleIcon />
           </LoginIconWrapper>
