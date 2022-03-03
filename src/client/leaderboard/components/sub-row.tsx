@@ -1,17 +1,12 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React from 'react';
 import { GolferData } from 'src/types';
+import { displayToPar } from '../utils/display-to-par';
 
 interface Props {
   golfer: GolferData;
   prizeMoney: string;
 }
-
-const displayToPar = (value: number) => {
-  if (value === 0) return 'E';
-
-  return value > 0 ? `+${value}` : value;
-};
 
 export const SubRow = ({ golfer, prizeMoney }: Props) => (
   <TableRow key={golfer.id}>
