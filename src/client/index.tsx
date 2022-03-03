@@ -24,7 +24,6 @@ const bootstrap = async () => {
   );
 
   const initialiseState = ({ set }: MutableSnapshot) => {
-    // set(teamsState, teamsMoney);
     set(golfersState, golfers);
     set(cutLineState, cutLine);
     set(prizeMoneyState, rankingsWithPrizeMoney);

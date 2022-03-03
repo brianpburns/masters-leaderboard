@@ -11,7 +11,7 @@ export const BodyContainer = () => {
   // Needs to be done here to pull in any team changes
   useLoadTeams();
   const teamsWithPrizeMoney = useAddPrizeMoney();
-  const sortedData = teamsWithPrizeMoney.slice().sort(prizeMoneySortKey);
+  const rankedTeams = teamsWithPrizeMoney.slice().sort(prizeMoneySortKey);
 
-  return <TableBody tableData={sortedData} />;
+  return <TableBody tableData={rankedTeams} />;
 };

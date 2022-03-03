@@ -64,7 +64,7 @@ const renderRowContainer = () => {
   );
 };
 
-describe('PrimaryRow', () => {
+describe('RowContainer', () => {
   test('subtable is closed by default', () => {
     renderRowContainer();
 
