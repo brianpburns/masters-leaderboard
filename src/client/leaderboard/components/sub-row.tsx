@@ -1,13 +1,10 @@
+import { TableCell, TableRow } from '@material-ui/core';
 import React from 'react';
-import { TableRow, TableCell } from '@material-ui/core';
-import { useRecoilValue } from 'recoil';
-
-import { golfersState } from '../../app';
-import { displayNumber } from '../utils/display-number';
-import { useGolferPrizeMoney } from '../hooks/use-golfer-money';
+import { GolferData } from 'src/types';
 
 interface Props {
-  golferId: number;
+  golfer: GolferData;
+  prizeMoney: string;
 }
 
 const displayToPar = (value: number) => {
@@ -16,21 +13,15 @@ const displayToPar = (value: number) => {
   return value > 0 ? `+${value}` : value;
 };
 
-export const SubRow = ({ golferId }: Props) => {
-  const golfers = useRecoilValue(golfersState);
-  const golfer = golfers[golferId];
-  const getPrizeMoney = useGolferPrizeMoney();
-
-  return (
-    <TableRow key={golferId}>
-      <TableCell component='th' scope='row'>
-        {golfer.position === 0 ? '-' : golfer.position}
-      </TableCell>
-      <TableCell>{golfer.name}</TableCell>
-      <TableCell>{displayToPar(golfer.topar)}</TableCell>
-      <TableCell>{golfer.thru}</TableCell>
-      <TableCell>{golfer.today}</TableCell>
-      <TableCell>{displayNumber(getPrizeMoney(golferId))}</TableCell>
-    </TableRow>
-  );
-};
+export const SubRow = ({ golfer, prizeMoney }: Props) => (
+  <TableRow key={golfer.id}>
+    <TableCell component='th' scope='row'>
+      {golfer.position === 0 ? '-' : golfer.position}
+    </TableCell>
+    <TableCell>{golfer.name}</TableCell>
+    <TableCell>{displayToPar(golfer.topar)}</TableCell>
+    <TableCell>{golfer.thru}</TableCell>
+    <TableCell>{golfer.today}</TableCell>
+    <TableCell>{prizeMoney}</TableCell>
+  </TableRow>
+);

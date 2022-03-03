@@ -1,11 +1,10 @@
 import { useRecoilValue } from 'recoil';
+import { useGolferPosition } from 'src/client/api';
 import { prizeMoneyState } from '../../api/state/atoms';
-import { golfersState } from '../../app';
 
-export const useGolferPrizeMoney = () => {
-  const golfers = useRecoilValue(golfersState);
+export const useGolferPrizeMoney = (golferId: number) => {
+  const position = useGolferPosition(golferId);
   const prizeMoney = useRecoilValue(prizeMoneyState);
 
-  return (golferId: number) =>
-    prizeMoney[golfers[golferId].position].prizeMoney;
+  return prizeMoney[position].prizeMoney;
 };
