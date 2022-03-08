@@ -21,10 +21,17 @@ npm install
 
 ## Development
 
+For UI development only:
 ```
 npm start
-npm run start server
 ```
+This runs the UI locally on port 8082 and mocks the backend using MSW.
+
+For full app:
+```
+npm run server
+```
+This runs the whole app locally on port 8080.
 
 ## Production Build
 
