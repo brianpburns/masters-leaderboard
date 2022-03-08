@@ -1,14 +1,18 @@
-import { mockMastersLeaderboard } from 'src/client/mock-server/data/leaderboard';
+import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
+import { UncleanGolferData } from 'src/types';
 import { generateRankings } from './generate-rankings';
 
-const mockData = mockMastersLeaderboard.data.player.slice(3, 6);
+const mockData: UncleanGolferData[] = mockLeaderboardData.data.player.slice(
+  3,
+  6
+);
 
 describe('generateRankings', () => {
   test('generates clean golfer data', () => {
     const { golfers } = generateRankings(mockData);
 
     expect(Object.keys(golfers)).toHaveLength(3);
-    expect(golfers['27644']).toMatchObject({
+    expect(golfers[27644]).toMatchObject({
       id: 27644,
       name: 'Brian Harman',
       position: 4,

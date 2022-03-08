@@ -1,4 +1,4 @@
-import { mockMastersLeaderboard } from 'src/client/mock-server/data/leaderboard';
+import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 import { cleanGolferData, normalisePosition } from './clean-golfer-data';
 
 describe('normalisePosition', () => {
@@ -13,7 +13,7 @@ describe('normalisePosition', () => {
 
 describe('cleanGolferData', () => {
   test('extracts correct data', () => {
-    const dirtyGolferData = mockMastersLeaderboard.data.player[0];
+    const dirtyGolferData = mockLeaderboardData.data.player[0];
     const result = cleanGolferData(dirtyGolferData);
 
     const expected = {
