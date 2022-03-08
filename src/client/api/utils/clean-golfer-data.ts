@@ -1,9 +1,9 @@
-import { Golfer, GolferData } from '../../../types';
+import { UncleanGolferData, GolferData } from '../../../types';
 
-const normalisePosition = (position: string) =>
+export const normalisePosition = (position: string) =>
   position ? parseInt(position.replace('T', '')) : 0;
 
-export const cleanGolferData = (golfer: Golfer): GolferData => {
+export const cleanGolferData = (golfer: UncleanGolferData): GolferData => {
   const { id, first_name, last_name, pos, topar, thru, today, teetime } =
     golfer;
 

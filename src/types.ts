@@ -1,4 +1,4 @@
-export interface Golfer {
+export interface UncleanGolferData {
   active?: boolean;
   display_name: string;
   display_name2: string;
@@ -43,7 +43,7 @@ export interface Golfer {
 export interface LeaderboardData {
   currentRound: string;
   cutLine: string;
-  player: Golfer[];
+  player: UncleanGolferData[];
   statusRound: string;
 }
 
