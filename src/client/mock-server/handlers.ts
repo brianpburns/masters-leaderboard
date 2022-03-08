@@ -1,14 +1,14 @@
 import { rest } from 'msw';
 import { TeamType } from 'src/types';
 
-import { mockMastersLeaderboard } from './data/leaderboard';
+import { mockLeaderboardData } from './data/leaderboard';
 
 const golfers: Record<string, TeamType> = {
   1: {
     id: 1,
     owner: 'burns',
     name: 'burnsing it up',
-    golfer_ids: [1226],
+    golfer_ids: [1226, 21528],
   },
   2: {
     id: 2,
@@ -20,7 +20,7 @@ const golfers: Record<string, TeamType> = {
 
 export const handlers = [
   rest.get('/scores.json', (_req, res, ctx) =>
-    res(ctx.status(200), ctx.json(mockMastersLeaderboard))
+    res(ctx.status(200), ctx.json(mockLeaderboardData))
   ),
 
   rest.get('/api/teams/:id', (req, res, ctx) => {

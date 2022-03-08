@@ -1,7 +1,30 @@
-import { Golfers, GolferMoneyRankings, Golfer } from '../../../types';
-import { cleanGolferData } from './generate-golfer-stats';
+import {
+  Golfers,
+  GolferMoneyRankings,
+  UncleanGolferData,
+} from '../../../types';
+import { cleanGolferData } from './clean-golfer-data';
 
-export const generateRankings = (players: Golfer[]) => {
+/**
+ * Returns clean golfer data and leaderboard
+ * golfers: {
+ *  '27644': {
+      id: 27644,
+      name: 'Brian Harman',
+      position: 4,
+      topar: -3,
+      thru: 'F',
+      today: '-3',
+      teetime: '9:00 AM'
+    },
+ * } 
+ * 
+ * golferRankings: {
+ *  '4': { golfers: [ 27644 ], prizeMoney: 0, topar: -3 },
+ *  '5': { golfers: [ 47483, 45522 ], prizeMoney: 0, topar: -2 }
+ * } 
+ */
+export const generateRankings = (players: UncleanGolferData[]) => {
   const golfers: Golfers = {};
   const golferRankings: GolferMoneyRankings = {};
 

@@ -1,12 +1,6 @@
 import { thirteenthTeeBox } from 'src/client/data';
 import styled from 'styled-components';
 
-export const AppContainer = styled.div`
-  width: 100%;
-  height: 110vh;
-  overflow-y: auto;
-`;
-
 export const StyledNav = styled.nav`
   background-color: white;
   height: max-content;
@@ -15,7 +9,6 @@ export const StyledNav = styled.nav`
 export const MastersLogoWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  border-radius: 25px 25px 0px 0px;
   height: 100%;
   padding-bottom: 10px;
 

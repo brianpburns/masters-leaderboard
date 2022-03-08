@@ -1,5 +1,5 @@
 import { prizeMoney } from 'src/client/data';
-import { TeamType, GolferMoneyRankings, Golfers } from '../../types';
+import { GolferMoneyRankings } from '../../types';
 
 export const addPrizeMoney = (
   golferRankings: GolferMoneyRankings,
@@ -32,7 +32,7 @@ export const addPrizeMoney = (
   return golferRankings;
 };
 
-const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
+export const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   let positionPrizeMoney = 0;
 
   // Grab the money to be shared by the tied players, e.g.
@@ -42,36 +42,4 @@ const splitMoneyOnTie = (position: number, noPlayersTied: number) => {
   }
   // Split the money between the players
   return Math.round(positionPrizeMoney / noPlayersTied);
-};
-
-export const allTeamsMoney = (
-  golfers: Golfers,
-  rankingsWithPrizeMoney: GolferMoneyRankings,
-  teams: TeamType[]
-) => {
-  // Loop through entrants
-  // Loop through player IDs and get the players position
-  // Use the position to get their prize money
-
-  return teams.map((team) => teamMoney(team, golfers, rankingsWithPrizeMoney));
-};
-
-const teamMoney = (
-  team: TeamType,
-  golfers: Golfers,
-  rankingsWithPrizeMoney: GolferMoneyRankings
-) => {
-  const teamPrizeMoney = team.golfer_ids.reduce((accum, id) => {
-    try {
-      const position = golfers[id].position;
-      return accum + rankingsWithPrizeMoney[position].prizeMoney;
-    } catch (err) {
-      throw new Error(`No ID for ${id}`);
-    }
-  }, 0);
-
-  return {
-    ...team,
-    prizeMoney: teamPrizeMoney,
-  };
 };

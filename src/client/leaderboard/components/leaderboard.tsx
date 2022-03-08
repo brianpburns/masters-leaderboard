@@ -1,10 +1,10 @@
 import React from 'react';
 import { TableHead, TableRow, TableCell, Table } from '@material-ui/core';
 
-import { TableContent } from './table-content';
+import { BodyContainer } from './body-container';
 import { StyledTableContainer } from './styled';
 
-export const LeaderboardTable = () => (
+export const Leaderboard = () => (
   <StyledTableContainer>
     <Table aria-label='collapsible table'>
       <TableHead>
@@ -15,7 +15,7 @@ export const LeaderboardTable = () => (
           <TableCell align='left'>Money</TableCell>
         </TableRow>
       </TableHead>
-      <TableContent />
+      <BodyContainer />
     </Table>
   </StyledTableContainer>
 );

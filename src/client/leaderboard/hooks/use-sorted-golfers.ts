@@ -5,8 +5,6 @@ import { TeamType } from '../../../types';
 export const useSortedGolfers = (row: TeamType) => {
   const golfers = useRecoilValue(golfersState);
 
-  // console.log('golfers', golfers);
-
   const positionsSortKey = (aId: number, bId: number) => {
     const aPos = golfers[aId].position;
     const bPos = golfers[bId].position;
