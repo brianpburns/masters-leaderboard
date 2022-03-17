@@ -1,4 +1,5 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const webpack = require('webpack');
 
 const config = {
   context: __dirname + '/src/client', // `__dirname` is root of project and `/src` is source
@@ -30,6 +31,11 @@ const config = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.SNOWPACK_PUBLIC_STANDALONE': JSON.stringify('false'),
+    }),
+  ],
   resolve: {
     plugins: [new TsconfigPathsPlugin()],
     extensions: ['.tsx', '.ts', '.js'],
