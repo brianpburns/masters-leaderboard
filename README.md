@@ -36,6 +36,15 @@ npm run start:standalone
 
 This runs the UI locally on port 8082 and mocks the backend using MSW.
 
+Running heroku app locally
+
+```
+npm run build:prod
+heroku local web
+```
+
+This runs `npm run server` in the same way as the app will on Heroku.
+
 ## Production Build
 
 ```
