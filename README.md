@@ -51,6 +51,8 @@ npm run build:prod
 
 ## Deploying to Heroku
 
+First log in on Heroku and then run:
+
 ```
 npm run deploy
 ```
