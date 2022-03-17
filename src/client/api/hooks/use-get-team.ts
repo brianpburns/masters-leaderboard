@@ -9,7 +9,8 @@ export const useGetTeam = (id: number) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTeamData(await getTeam(id));
+        const teamData = await getTeam(id);
+        setTeamData(teamData);
       } catch (err) {
         if (err instanceof Error) {
           throw new Error(

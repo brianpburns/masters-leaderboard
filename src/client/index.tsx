@@ -7,6 +7,9 @@ import { cutLineState, golfersState, Root } from './app';
 import './index.css';
 
 const localBootstrap = async () => {
+  // eslint-disable-next-line no-console
+  console.log('starting local devserver');
+
   const { worker } = await import('./mock-server');
   worker.start();
 
@@ -33,7 +36,7 @@ const bootstrap = async () => {
   );
 };
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.SNOWPACK_PUBLIC_STANDALONE === 'true') {
   localBootstrap();
 } else {
   bootstrap();
