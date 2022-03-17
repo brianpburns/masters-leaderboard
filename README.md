@@ -28,13 +28,11 @@ npm start
 npm run server
 ```
 
-Development of just the UI
+Development of just the UI. This runs the UI locally on port 8082 and mocks the backend using MSW.
 
 ```
 npm run start:standalone
 ```
-
-This runs the UI locally on port 8082 and mocks the backend using MSW.
 
 Running heroku app locally
 
@@ -43,12 +41,18 @@ npm run build:prod
 heroku local web
 ```
 
-This runs `npm run server` in the same way as the app will on Heroku.
+This runs `npm run server:prod` in the same way as the app will on Heroku.
 
 ## Production Build
 
 ```
 npm run build:prod
+```
+
+## Deploying to Heroku
+
+```
+npm run deploy
 ```
 
 ## Testing
