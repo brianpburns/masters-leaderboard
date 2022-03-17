@@ -13,7 +13,7 @@ export function authCallback() {
         : '';
 
     if (!code) {
-      return res.status(403).send('Failed to complete OAuth flow');
+      res.status(403).send('Failed to complete OAuth flow');
     }
 
     const accessToken = await getAccessToken(code);

@@ -1,4 +1,6 @@
 {
+  "include": ["src/server", "src/shared"],
+  "exclude": ["node_modules", "dist", "src/client"],
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
@@ -12,7 +14,5 @@
     "sourceMap": true,
     "baseUrl": "./"
   },
-  "compileOnSave": true,
-  "exclude": ["node_modules", "dist", "src/client"],
-  "include": ["src/server", "src/shared"]
+  "compileOnSave": true
 }
