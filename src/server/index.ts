@@ -16,12 +16,17 @@ app.get('/', (_req, res) => {
 
 app.get('/api/teams', listTeams());
 
-app.get('/api/team/:id', getTeam());
+app.get('/api/teams/:id', getTeam());
 
-// TODO: Need to revist this - matches previous route
 app.post('/api/teams/:id', updateTeam());
 
 app.get('/google-auth', authCallback());
+
+app.get('*', (_req, res) => {
+  res.sendFile(
+    path.resolve(path.join(__dirname, '../../public'), 'heroku.html')
+  );
+});
 
 app.listen(process.env.PORT || 8080, function () {
   console.log('listening on port ', process.env.PORT || 8080);
