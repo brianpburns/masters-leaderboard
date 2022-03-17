@@ -19,8 +19,9 @@ const golfers: Record<string, TeamType> = {
 };
 
 export const handlers = [
-  rest.get('/scores.json', (_req, res, ctx) =>
-    res(ctx.status(200), ctx.json(mockLeaderboardData))
+  rest.get(
+    'https://www.masters.com/en_US/scores/feeds/2021/scores.json',
+    (_req, res, ctx) => res(ctx.status(200), ctx.json(mockLeaderboardData))
   ),
 
   rest.get('/api/teams/:id', (req, res, ctx) => {
