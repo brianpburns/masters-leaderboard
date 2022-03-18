@@ -7,6 +7,11 @@ export function getTeam() {
 
     const team = await Team.findByPk(id);
 
+    if (!team) {
+      res.status(404).send('Team does not exist');
+      return;
+    }
+
     res.status(200).send(team);
   });
 }

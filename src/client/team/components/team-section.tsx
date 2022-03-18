@@ -11,6 +11,7 @@ import { teamState } from '../state/selectors';
 import { ButtonsContainer, CancelButton, TeamContainer } from './styled';
 import { TeamList } from './team-list';
 import { TeamName } from './team-name';
+import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 
 export const TeamSection = () => {
   const allGolfers = useRecoilValue(golfersState);
@@ -18,6 +19,7 @@ export const TeamSection = () => {
   const [refGolfers, setRefGolfers] = useRecoilState(savedGolfersIdsRefState);
   const { removeGolfer } = useManageGolfers();
   const updateTeam = useUpdateTeam();
+  const deleteTeam = useDeleteTeam();
   const teamDetails = useRecoilValue(teamState);
 
   const onSave = () => {
@@ -54,6 +56,7 @@ export const TeamSection = () => {
         >
           Cancel
         </CancelButton>
+        <button onClick={() => deleteTeam(teamDetails.id)}>Delete</button>
       </ButtonsContainer>
     </TeamContainer>
   );

@@ -3,31 +3,42 @@ import { getUIHost } from '../../shared';
 import { TeamType } from '../../types';
 import { Team } from '../masters-db';
 import { getAccessToken } from '../util/get-access-token';
-import { getGoogleUserId } from '../util/get-user';
+import { getGoogleUser } from '../util/get-user';
 
 export function authCallback() {
   return asyncHandler(async (req, res) => {
-    const code =
-      typeof req.query.code === 'string'
-        ? decodeURIComponent(req.query.code)
-        : '';
+    const code = decodeURIComponent(req.query.code as string);
 
     if (!code) {
       res.status(403).send('Failed to complete OAuth flow');
     }
 
     const accessToken = await getAccessToken(code);
-    const googleUserId = await getGoogleUserId(accessToken);
+
+    if (!accessToken) {
+      res.status(403).send('Failed to retrieve Google access token');
+      return;
+    }
+
+    const { id, name, familyName } = await getGoogleUser(accessToken);
 
     const team = (await Team.findOne({
-      where: { google_id: googleUserId },
+      where: { google_id: id },
     })) as unknown as TeamType;
 
     if (!team) {
-      const newTeam = await Team.create({ google_id: googleUserId });
-      return res
-        .status(200)
-        .redirect(`${getUIHost()}/team/${newTeam._attributes.id}`);
+      await Team.create({
+        google_id: id,
+        owner: name,
+        name: `Team ${familyName}`,
+        golfer_ids: [],
+      });
+
+      const newTeam = (await Team.findOne({
+        where: { google_id: id },
+      })) as unknown as TeamType;
+
+      return res.status(200).redirect(`${getUIHost()}/team/${newTeam.id}`);
     } else {
       res.status(200).redirect(`${getUIHost()}/team/${team.id}`);
     }

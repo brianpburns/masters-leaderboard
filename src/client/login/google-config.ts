@@ -1,10 +1,12 @@
 import queryString from 'query-string';
+import { getServerHost } from 'src/shared';
+
+const baseUri = getServerHost();
 
 export const googleConfig = {
   clientId:
     '723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com',
-  redirect: 'http://localhost:8080/google-auth',
-  // redirect: 'https://augusta-masters-leaderboard.herokuapp.com/google-auth',
+  redirect: `${baseUri}/google-auth`,
 };
 
 export const defaultScope = [

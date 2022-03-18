@@ -16,11 +16,10 @@
     "lint": "npm run lint:prettier && npm run lint:eslint",
     "lint:eslint": "eslint src --ext .ts,.tsx",
     "lint:prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "postinstall": "tsc --project tsconfig.server.json; npm run build:prod",
     "test": "jest",
     "tests": "npm run test",
     "test:coverage": "npm run test -- --coverage",
-    "heroku-postbuild": "npm run build:prod"
+    "heroku-postbuild": "NODE_ENV=production tsc --project tsconfig.server.json; npm run build:prod"
   },
   "repository": {
     "type": "git",
