@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { teamState } from '../../team/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
 export const useGetTeam = (id: number) => {
   const setTeamData = useSetRecoilState(teamState);
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,6 +15,7 @@ export const useGetTeam = (id: number) => {
         setTeamData(teamData);
       } catch (err) {
         if (err instanceof Error) {
+          history.push('/leaderboard');
           throw new Error(
             `Failed to retrieve team. Error message: ${err.message}`
           );
@@ -21,5 +24,5 @@ export const useGetTeam = (id: number) => {
     };
 
     fetchData();
-  }, [id, setTeamData]);
+  }, [history, id, setTeamData]);
 };
