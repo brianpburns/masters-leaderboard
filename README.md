@@ -57,6 +57,8 @@ First log in on Heroku and then run:
 npm run deploy
 ```
 
+This will deploy what's pushed to main.
+
 ## Testing
 
 ```
