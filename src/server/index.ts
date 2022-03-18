@@ -1,8 +1,13 @@
 import express from 'express';
 import * as path from 'path';
 import 'dotenv/config';
-import { listTeams, getTeam, updateTeam } from './handlers';
-import { authCallback } from './handlers/auth-callback';
+import {
+  listTeams,
+  getTeam,
+  updateTeam,
+  authCallback,
+  deleteTeam,
+} from './handlers';
 
 const app = express();
 
@@ -19,6 +24,8 @@ app.get('/api/teams', listTeams());
 app.get('/api/teams/:id', getTeam());
 
 app.post('/api/teams/:id', updateTeam());
+
+app.delete('/api/teams/:id', deleteTeam());
 
 app.get('/google-auth', authCallback());
 
