@@ -5,7 +5,8 @@ const baseUri = getServerHost();
 
 export const googleConfig = {
   clientId:
-    '723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com',
+    // '723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com',
+    '723926103233-6roqo85sa1glvu8umr5248rlbgi6nu6l.apps.googleusercontent.com', // new Masters credentials
   redirect: `${baseUri}/google-auth`,
 };
 

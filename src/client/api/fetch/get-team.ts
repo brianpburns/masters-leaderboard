@@ -1,5 +1,9 @@
-export const getTeam = async (id: number) => {
-  const res = await fetch(`/api/teams/${id}`);
+export const getTeam = async (token: string) => {
+  const res = await fetch(`/api/team`, {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  });
 
   if (res.status !== 200) {
     throw new Error(

@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { tokenState } from 'src/client/login/state/atoms';
 import { teamState } from '../../team/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
-export const useGetTeam = (id: number) => {
+export const useGetTeam = () => {
+  const token = useRecoilValue(tokenState);
   const setTeamData = useSetRecoilState(teamState);
   const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const teamData = await getTeam(id);
+        const teamData = await getTeam(token);
         setTeamData(teamData);
       } catch (err) {
         if (err instanceof Error) {
@@ -24,5 +26,5 @@ export const useGetTeam = (id: number) => {
     };
 
     fetchData();
-  }, [history, id, setTeamData]);
+  }, [history, setTeamData, token]);
 };
