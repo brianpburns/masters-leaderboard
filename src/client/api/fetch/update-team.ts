@@ -1,10 +1,13 @@
 import { TeamType } from '../../../types';
 
-export const updateTeam = async ({ id, owner, name, golfer_ids }: TeamType) => {
-  const res = await fetch(`/api/teams/${id}`, {
+export const updateTeam = async (
+  { owner, name, golfer_ids }: TeamType,
+  token: string
+) => {
+  const res = await fetch(`/api/team`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      Authorization: `bearer ${token}`,
     },
     body: JSON.stringify({ owner, name, golfer_ids }),
   });
