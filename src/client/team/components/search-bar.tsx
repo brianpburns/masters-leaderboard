@@ -1,7 +1,7 @@
-import React from 'react';
-import { IconButton, InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
+import React from 'react';
 import { SearchBarWrapper, StyledIconButton, StyledSearchBar } from './styled';
 
 interface Props {

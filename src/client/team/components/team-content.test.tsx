@@ -22,14 +22,10 @@ const renderTeamContent = () => {
 };
 
 describe('TeamContent', () => {
-  test('renders loader initially', () => {
+  test('renders loader followed by golfers list and team data', async () => {
     renderTeamContent();
 
     expect(screen.getByTestId('loader')).toBeTruthy();
-  });
-
-  test('renders team data and available golfers list', async () => {
-    renderTeamContent();
 
     await waitFor(() => {
       expect(screen.getByText('burnsing it up')).toBeTruthy();
