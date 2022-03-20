@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { Leaderboard } from 'src/client/leaderboard';
 import { LoginContainer } from 'src/client/login';
+import { AlertContainer } from 'src/client/shared';
 import { TeamPage } from '../../team';
 import { HeaderImage } from './header-image';
 import { StyledNav } from './styled';
@@ -16,6 +17,7 @@ export const Root = () => {
           <Route path='/leaderboard' component={Leaderboard} />
           <Route path='/team' component={TeamPage} />
         </Switch>
+        <AlertContainer />
 
         <StyledNav>
           <ul>
