@@ -9,12 +9,14 @@ const golfers: Record<string, TeamType> = {
     owner: 'burns',
     name: 'burnsing it up',
     golfer_ids: [1226, 21528],
+    google_id: '1',
   },
   2: {
     id: 2,
     owner: 'liam',
     name: 'liam it up',
     golfer_ids: [1226],
+    google_id: '2',
   },
 };
 
@@ -24,20 +26,18 @@ export const handlers = [
     (_req, res, ctx) => res(ctx.status(200), ctx.json(mockLeaderboardData))
   ),
 
-  rest.get('/api/teams/:id', (req, res, ctx) => {
-    const { id } = req.params;
-    const teamData = golfers[id as string];
+  rest.get('/api/team', (_req, res, ctx) => {
+    const teamData = golfers[1];
 
     return res(ctx.status(200), ctx.json(teamData));
   }),
 
-  rest.post('/api/teams/:id', (req, res, ctx) => {
-    const { id } = req.params;
+  rest.post('/api/team', (req, res, ctx) => {
     const newData = req.body;
 
     if (!(newData instanceof Object)) return res(ctx.status(500));
 
-    golfers[id as string] = { id, ...newData } as TeamType;
+    golfers[1] = { id: 1, ...newData } as TeamType;
 
     return res(ctx.status(200));
   }),

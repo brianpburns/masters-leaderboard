@@ -1,17 +1,16 @@
-import React from 'react';
 import { Button } from '@material-ui/core';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import isEqual from 'lodash/isEqual';
-
+import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useUpdateTeam } from '../../api';
 import { golfersState } from '../../app';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
 import { teamState } from '../state/selectors';
+import { SelectedGolfersList } from './selected-golfers-list';
 import { ButtonsContainer, CancelButton, TeamContainer } from './styled';
-import { TeamList } from './team-list';
 import { TeamName } from './team-name';
-import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 
 export const TeamSection = () => {
   const allGolfers = useRecoilValue(golfersState);
@@ -20,19 +19,24 @@ export const TeamSection = () => {
   const { removeGolfer } = useManageGolfers();
   const updateTeam = useUpdateTeam();
   const deleteTeam = useDeleteTeam();
-  const teamDetails = useRecoilValue(teamState);
+  const [teamDetails, setTeamDetails] = useRecoilState(teamState);
 
   const onSave = () => {
     updateTeam(teamDetails);
     setRefGolfers(pickedGolfers);
   };
 
+  const handleNameUpdate = (newName: string) => {
+    updateTeam({ ...teamDetails, name: newName });
+    setTeamDetails({ ...teamDetails, name: newName });
+  };
+
   const noChanges = isEqual(refGolfers, pickedGolfers);
 
   return (
     <TeamContainer>
-      <TeamName />
-      <TeamList
+      <TeamName name={teamDetails.name} nameUpdate={handleNameUpdate} />
+      <SelectedGolfersList
         allGolfers={allGolfers}
         selectedGolferIds={pickedGolfers}
         removeGolfer={removeGolfer}

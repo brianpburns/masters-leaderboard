@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import { Leaderboard } from 'src/client/leaderboard';
-import { Login } from 'src/client/login';
+import { LoginContainer } from 'src/client/login';
 import { TeamPage } from '../../team';
 import { HeaderImage } from './header-image';
 import { StyledNav } from './styled';
@@ -12,7 +12,7 @@ export const Root = () => {
       <HeaderImage />
       <Router>
         <Switch>
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/login' component={LoginContainer} />
           <Route path='/leaderboard' component={Leaderboard} />
           <Route path='/team' component={TeamPage} />
         </Switch>

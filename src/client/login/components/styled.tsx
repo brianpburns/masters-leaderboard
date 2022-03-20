@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
   padding: 15px;
   display: flex;
   background-color: white;
@@ -8,7 +8,7 @@ export const LoginContainer = styled.div`
   text-align: center;
 `;
 
-export const LoginButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   margin: auto;
   height: 50px;
 `;

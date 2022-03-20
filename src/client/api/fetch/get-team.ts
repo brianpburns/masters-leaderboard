@@ -1,5 +1,5 @@
 export const getTeam = async (token: string) => {
-  const res = await fetch(`/api/team`, {
+  const res = await fetch('/api/team', {
     headers: {
       Authorization: `bearer ${token}`,
     },

@@ -1,8 +1,8 @@
-import { Button, FilledInput } from '@material-ui/core';
+import { Button, FilledInput, IconButton } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
-  padding: 25px;
+  padding: 25px 10px;
   display: flex;
 `;
 
@@ -27,6 +27,7 @@ export const StyledGolfersList = styled.ul<{ disabled?: boolean }>`
   border: 1px solid silver;
   border-radius: 2px;
   padding: 0;
+  margin: 10px 0;
   ${({ disabled }) => disabled && `background: rgba(0,0,0,0.09);`};
 
   li:last-child {
@@ -43,7 +44,6 @@ export const GolferListItem = styled.li`
 
 export const TeamContainer = styled.div`
   background-color: white;
-  margin-left: 15px;
   width: 50%;
   height: fit-content;
   border-radius: 10px;
@@ -61,7 +61,7 @@ export const RemainingPicks = styled.div<{ noPicksLeft: boolean }>`
   font-size: 14px;
   width: 100%;
   text-align: end;
-  margin-bottom: 5px;
+  margin: 5px 0;
   ${({ noPicksLeft }) => noPicksLeft && 'color: red'};
 `;
 
@@ -73,6 +73,11 @@ export const AlreadySelectedMsg = styled.div`
 
 export const StyledSearchBar = styled(FilledInput)`
   width: 100%;
+  background-color: white !important;
+
+  input {
+    padding: 5px;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -82,4 +87,8 @@ export const ButtonsContainer = styled.div`
 
 export const CancelButton = styled(Button)`
   margin-left: 5px !important;
+`;
+
+export const StyledIconButton = styled(IconButton)`
+  padding: 5px !important;
 `;

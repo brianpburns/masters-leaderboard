@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoadTeams } from 'src/client/api';
+import { Loader } from 'src/client/shared';
 import { TeamType } from '../../../types';
 import { useAddPrizeMoney } from '../hooks/use-add-prize-money';
 import { TableBody } from './table-body';
@@ -9,9 +10,14 @@ const prizeMoneySortKey = (a: TeamType, b: TeamType) =>
 
 export const BodyContainer = () => {
   // Needs to be done here to pull in any team changes
-  useLoadTeams();
+  const { loading } = useLoadTeams();
   const teamsWithPrizeMoney = useAddPrizeMoney();
   const rankedTeams = teamsWithPrizeMoney.slice().sort(prizeMoneySortKey);
 
-  return <TableBody tableData={rankedTeams} />;
+  return (
+    <>
+      <Loader open={loading} />
+      <TableBody tableData={rankedTeams} />
+    </>
+  );
 };

@@ -9,16 +9,11 @@ const setSearchTermMock = jest.fn();
 describe('Search Bar', () => {
   afterEach(() => jest.clearAllMocks());
 
-  test(`doesn't display cancel icon by default (searchTerm = Name)`, () => {
+  test('displays search icon and not cancel icon by default (searchTerm = Name)', () => {
     render(<SearchBar searchTerm='Name' setSearchTerm={setSearchTermMock} />);
 
     expect(screen.queryByTestId('clear-button')).toBeFalsy();
-  });
-
-  test(`doesn't display cancel icon if search term is ''`, () => {
-    render(<SearchBar searchTerm='' setSearchTerm={setSearchTermMock} />);
-
-    expect(screen.queryByTestId('clear-button')).toBeFalsy();
+    expect(screen.getByTestId('search-icon')).toBeTruthy();
   });
 
   test('clears search term when cancel button is clicked', () => {

@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-
+import { ClickAwayListener, TextField } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import { useRecoilState } from 'recoil';
-import { teamNameState } from '../state/atoms';
+import React, { useState } from 'react';
 import { Icon } from 'src/client/shared';
-import { StyledIcon, NameWrapper } from './styled';
+import { NameWrapper, StyledIcon } from './styled';
 
-export const TeamName = () => {
-  const [teamName, setTeamName] = useRecoilState(teamNameState);
-  const [tempName, setTempName] = useState(teamName);
+interface Props {
+  name: string;
+  nameUpdate: (name: string) => void;
+}
+
+export const TeamName = ({ name, nameUpdate }: Props) => {
+  const [tempName, setTempName] = useState(name);
   const [editMode, setEditMode] = useState(false);
 
   const handleNameChange = (newName: string) => {
-    setTeamName(newName);
+    nameUpdate(newName);
     setEditMode(false);
   };
 
   return editMode ? (
-    <TextField
-      id='standard'
-      label='Team Name'
-      defaultValue={teamName}
-      onBlur={(e) => handleNameChange(e.currentTarget.value)}
-      onChange={(e) => setTempName(e.currentTarget.value)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') handleNameChange(tempName);
-      }}
-    />
+    <ClickAwayListener onClickAway={() => handleNameChange(tempName)}>
+      <TextField
+        id='standard'
+        label='Team Name'
+        defaultValue={name}
+        onBlur={() => handleNameChange(tempName)}
+        onChange={(e) => setTempName(e.currentTarget.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') handleNameChange(tempName);
+        }}
+      />
+    </ClickAwayListener>
   ) : (
     <NameWrapper>
-      {teamName}
+      {name}
       <StyledIcon>
         <Icon color='black' size='16'>
           <EditIcon

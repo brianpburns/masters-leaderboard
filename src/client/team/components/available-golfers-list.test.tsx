@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
-import { GolfersList } from './golfers-list';
+import { AvailableGolfersList } from './available-golfers-list';
 import { golfersState } from '../../app';
 import userEvent from '@testing-library/user-event';
 
@@ -36,16 +36,17 @@ const renderGolfersList = () => {
 
   render(
     <RecoilRoot {...{ initializeState }}>
-      <GolfersList />
+      <AvailableGolfersList />
     </RecoilRoot>
   );
 };
 
 describe('Golfers List', () => {
-  test('renders correctly', () => {
+  test('renders list and remaining picks', () => {
     renderGolfersList();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
+    expect(screen.getByText('Remaining picks: 10')).toBeTruthy();
   });
 
   test('removes a selected golfer from the list', () => {

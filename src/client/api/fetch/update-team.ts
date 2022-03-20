@@ -7,6 +7,7 @@ export const updateTeam = async (
   const res = await fetch(`/api/team`, {
     method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `bearer ${token}`,
     },
     body: JSON.stringify({ owner, name, golfer_ids }),

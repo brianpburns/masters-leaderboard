@@ -1,14 +1,7 @@
+import 'dotenv/config';
 import express from 'express';
 import * as path from 'path';
-import 'dotenv/config';
-import {
-  listTeams,
-  getTeam,
-  updateTeam,
-  authCallback,
-  deleteTeam,
-  googleAuthLogin,
-} from './handlers';
+import { deleteTeam, getTeam, listTeams, updateTeam } from './handlers';
 import { auth } from './middlewares/auth';
 
 const app = express();
@@ -28,11 +21,6 @@ app.get('/api/team', auth(), getTeam());
 app.post('/api/team', auth(), updateTeam());
 
 app.delete('/api/teams/:id', deleteTeam());
-
-// To remove
-app.get('/google-auth', authCallback());
-
-app.get('/api/google-auth-login', auth(), googleAuthLogin());
 
 app.get('*', (_req, res) => {
   res.sendFile(

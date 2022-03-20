@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tokenState } from 'src/client/login/state/atoms';
 import { teamState } from '../../team/state/selectors';
@@ -8,16 +7,16 @@ import { getTeam } from '../fetch/get-team';
 export const useGetTeam = () => {
   const token = useRecoilValue(tokenState);
   const setTeamData = useSetRecoilState(teamState);
-  const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const teamData = await getTeam(token);
         setTeamData(teamData);
+        setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
-          history.push('/leaderboard');
           throw new Error(
             `Failed to retrieve team. Error message: ${err.message}`
           );
@@ -26,5 +25,7 @@ export const useGetTeam = () => {
     };
 
     fetchData();
-  }, [history, setTeamData, token]);
+  }, [setTeamData, token]);
+
+  return { loading };
 };
