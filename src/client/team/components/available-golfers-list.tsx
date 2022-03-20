@@ -15,7 +15,7 @@ import { useRecoilValue } from 'recoil';
 import { teamGolfersIdsState } from '../state/atoms';
 import { SearchBar } from './search-bar';
 
-export const GolfersList = () => {
+export const AvailableGolfersList = () => {
   const { allGolfers, unselectedGolfers, addGolfer } = useManageGolfers();
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const [searchTerm, setSearchTerm] = useState<string>('Name');

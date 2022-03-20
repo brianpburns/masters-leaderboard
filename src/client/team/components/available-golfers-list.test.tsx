@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
-import { GolfersList } from './golfers-list';
+import { AvailableGolfersList } from './available-golfers-list';
 import { golfersState } from '../../app';
 import userEvent from '@testing-library/user-event';
 
@@ -36,7 +36,7 @@ const renderGolfersList = () => {
 
   render(
     <RecoilRoot {...{ initializeState }}>
-      <GolfersList />
+      <AvailableGolfersList />
     </RecoilRoot>
   );
 };

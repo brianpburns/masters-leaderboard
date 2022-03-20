@@ -11,7 +11,7 @@ interface Props {
   removeGolfer: (golferId: number) => void;
 }
 
-export const TeamList = ({
+export const SelectedGolfersList = ({
   allGolfers,
   selectedGolferIds,
   removeGolfer,

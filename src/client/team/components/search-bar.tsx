@@ -1,7 +1,8 @@
 import React from 'react';
 import { IconButton, InputAdornment } from '@material-ui/core';
 import CloseIcon from '@mui/icons-material/Close';
-import { SearchBarWrapper, StyledSearchBar } from './styled';
+import SearchIcon from '@mui/icons-material/Search';
+import { SearchBarWrapper, StyledIconButton, StyledSearchBar } from './styled';
 
 interface Props {
   searchTerm: string;
@@ -9,11 +10,10 @@ interface Props {
 }
 
 export const SearchBar = ({ searchTerm, setSearchTerm }: Props) => {
-  const handleBlur = (
-    e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.currentTarget.value === '') setSearchTerm('Name');
   };
+  const searching = searchTerm !== 'Name';
 
   return (
     <SearchBarWrapper>
@@ -25,19 +25,26 @@ export const SearchBar = ({ searchTerm, setSearchTerm }: Props) => {
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
         onBlur={handleBlur}
         endAdornment={
-          searchTerm !== 'Name' &&
-          searchTerm !== '' && (
-            <InputAdornment position='end'>
-              <IconButton
+          <InputAdornment position='end'>
+            {searching ? (
+              <StyledIconButton
                 aria-label='clear search bar'
                 onClick={() => setSearchTerm('')}
                 edge='end'
                 data-testid='clear-button'
               >
                 <CloseIcon sx={{ fontSize: 16 }} />
-              </IconButton>
-            </InputAdornment>
-          )
+              </StyledIconButton>
+            ) : (
+              <StyledIconButton
+                aria-label='search icon'
+                edge='end'
+                data-testid='search-icon'
+              >
+                <SearchIcon sx={{ fontSize: 16 }} />
+              </StyledIconButton>
+            )}
+          </InputAdornment>
         }
       />
     </SearchBarWrapper>
