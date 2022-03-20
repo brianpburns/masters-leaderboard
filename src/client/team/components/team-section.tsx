@@ -3,6 +3,7 @@ import isEqual from 'lodash/isEqual';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
+import { useSendAlert } from 'src/client/shared';
 import { useUpdateTeam } from '../../api';
 import { golfersState } from '../../app';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
@@ -20,6 +21,7 @@ export const TeamSection = () => {
   const updateTeam = useUpdateTeam();
   const deleteTeam = useDeleteTeam();
   const [teamDetails, setTeamDetails] = useRecoilState(teamState);
+  const sendAlert = useSendAlert();
 
   const onSave = () => {
     updateTeam(teamDetails);
@@ -32,6 +34,11 @@ export const TeamSection = () => {
   };
 
   const noChanges = isEqual(refGolfers, pickedGolfers);
+
+  const handleCancel = () => {
+    setPickedGolfers(refGolfers);
+    sendAlert('Discarded Changes', 'info');
+  };
 
   return (
     <TeamContainer>
@@ -55,7 +62,7 @@ export const TeamSection = () => {
           size='small'
           variant='contained'
           color='secondary'
-          onClick={() => setPickedGolfers(refGolfers)}
+          onClick={handleCancel}
           disabled={noChanges}
         >
           Cancel
