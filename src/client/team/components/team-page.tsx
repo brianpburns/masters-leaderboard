@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useGoogleLogin } from 'react-google-login';
 import { useRecoilValue } from 'recoil';
-import { Login } from 'src/client/login';
+import { LoginContainer } from 'src/client/login';
 // import { googleConfig } from 'src/client/login/google-config';
 import { tokenState } from 'src/client/login/state/atoms';
 import { TeamPageContainer } from './styled';
@@ -13,6 +13,8 @@ export const TeamPage = () => {
   // const { loaded } = useGoogleLogin({ clientId: googleConfig.clientId });
 
   return (
-    <TeamPageContainer>{token ? <TeamContent /> : <Login />}</TeamPageContainer>
+    <TeamPageContainer>
+      {token ? <TeamContent /> : <LoginContainer />}
+    </TeamPageContainer>
   );
 };

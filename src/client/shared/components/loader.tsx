@@ -8,6 +8,6 @@ const StyledBackdrop = styled(Backdrop)`
 
 export const Loader = ({ open }: { open: boolean }) => (
   <StyledBackdrop open={open}>
-    <CircularProgress color='inherit' />
+    <CircularProgress color='inherit' data-testid='loader' />
   </StyledBackdrop>
 );
