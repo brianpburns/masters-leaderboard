@@ -1,16 +1,18 @@
 import React from 'react';
-import { useGetTeam } from '../../api';
-import { GolfersList } from './golfers-list';
+// import { useGoogleLogin } from 'react-google-login';
+import { useRecoilValue } from 'recoil';
+import { Login } from 'src/client/login';
+// import { googleConfig } from 'src/client/login/google-config';
+import { tokenState } from 'src/client/login/state/atoms';
 import { TeamPageContainer } from './styled';
-import { TeamSection } from './team-section';
+import { TeamContent } from './team-content';
 
 export const TeamPage = () => {
-  useGetTeam();
+  const token = useRecoilValue(tokenState);
+  // Not working with Snowpack. Unknown import bug.
+  // const { loaded } = useGoogleLogin({ clientId: googleConfig.clientId });
 
   return (
-    <TeamPageContainer>
-      <GolfersList />
-      <TeamSection />
-    </TeamPageContainer>
+    <TeamPageContainer>{token ? <TeamContent /> : <Login />}</TeamPageContainer>
   );
 };
