@@ -32,6 +32,7 @@ export const Login = () => {
           buttonText='Login'
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
+          isSignedIn={true}
         />
         <button onClick={googleLogin}>Google Auth Test</button>
       </LoginButtonContainer>
