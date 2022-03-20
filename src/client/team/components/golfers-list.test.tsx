@@ -42,10 +42,11 @@ const renderGolfersList = () => {
 };
 
 describe('Golfers List', () => {
-  test('renders correctly', () => {
+  test('renders list and remaining picks', () => {
     renderGolfersList();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
+    expect(screen.getByText('Remaining picks: 10')).toBeTruthy();
   });
 
   test('removes a selected golfer from the list', () => {
