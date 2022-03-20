@@ -3,16 +3,9 @@ import React from 'react';
 import { Login } from './login';
 
 const mockResponseGoogle = jest.fn();
-const mockGoogleLogin = jest.fn();
 
 const renderLogin = (loggingIn: boolean) => {
-  render(
-    <Login
-      loggingIn={loggingIn}
-      responseGoogle={mockResponseGoogle}
-      googleLogin={mockGoogleLogin}
-    />
-  );
+  render(<Login loggingIn={loggingIn} responseGoogle={mockResponseGoogle} />);
 };
 
 describe('Login', () => {

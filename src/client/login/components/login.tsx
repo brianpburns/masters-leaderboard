@@ -13,10 +13,9 @@ interface Props {
   responseGoogle: (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => void;
-  googleLogin: () => Promise<void>;
 }
 
-export const Login = ({ loggingIn, responseGoogle, googleLogin }: Props) => (
+export const Login = ({ loggingIn, responseGoogle }: Props) => (
   <Container>
     <Loader open={loggingIn} />
     <ButtonContainer>
@@ -27,7 +26,6 @@ export const Login = ({ loggingIn, responseGoogle, googleLogin }: Props) => (
         onFailure={responseGoogle}
         isSignedIn={true}
       />
-      <button onClick={googleLogin}>Google Auth Test</button>
     </ButtonContainer>
   </Container>
 );
