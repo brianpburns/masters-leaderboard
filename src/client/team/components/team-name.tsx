@@ -1,8 +1,7 @@
 import { ClickAwayListener, TextField } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import React, { useState } from 'react';
-import { Icon } from 'src/client/shared';
-import { NameWrapper, StyledIcon } from './styled';
+import { IconWrapper, NameWrapper } from './styled';
 
 interface Props {
   name: string;
@@ -34,15 +33,13 @@ export const TeamName = ({ name, nameUpdate }: Props) => {
   ) : (
     <NameWrapper>
       {name}
-      <StyledIcon>
-        <Icon color='black' size='16'>
-          <EditIcon
-            fontSize='small'
-            onClick={() => setEditMode(true)}
-            data-testid='edit-name-btn'
-          />
-        </Icon>
-      </StyledIcon>
+      <IconWrapper>
+        <EditIcon
+          fontSize='small'
+          onClick={() => setEditMode(true)}
+          data-testid='edit-name-btn'
+        />
+      </IconWrapper>
     </NameWrapper>
   );
 };
