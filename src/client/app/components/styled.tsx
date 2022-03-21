@@ -2,8 +2,32 @@ import { thirteenthTeeBox } from 'src/client/data';
 import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
-  background-color: white;
-  height: max-content;
+  padding: 3px 0;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: #006747;
+
+    &:hover {
+      color: #059265;
+    }
+  }
+`;
+
+export const StyledListItem = styled.li<{ active: boolean }>`
+  margin: auto;
+  ${({ active }) => active && 'border-bottom: solid 2px #006747;'};
 `;
 
 export const MastersLogoWrapper = styled.div`
