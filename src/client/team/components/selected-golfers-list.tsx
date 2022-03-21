@@ -19,7 +19,7 @@ export const SelectedGolfersList = ({
   return (
     <StyledGolfersList data-testid='selected-golfers-list'>
       {selectedGolferIds.map((golferId, i) => (
-        <GolferListItem key={i}>
+        <GolferListItem key={i} selected={true}>
           {allGolfers[golferId].name}
           <IconWrapper
             onClick={() => removeGolfer(golferId)}

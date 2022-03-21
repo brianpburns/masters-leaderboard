@@ -42,7 +42,7 @@ export const AvailableGolfersList = () => {
       </RemainingPicks>
       <StyledGolfersList disabled={remainingPicks === 0}>
         {filteredGolfersList.map((golfer, i) => (
-          <GolferListItem key={i}>
+          <GolferListItem key={i} selected={false}>
             {golfer.name}
             {selectedGolferIds.includes(golfer.id) ? (
               <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
