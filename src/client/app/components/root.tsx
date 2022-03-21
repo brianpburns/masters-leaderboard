@@ -5,17 +5,23 @@ import { useSetRecoilState } from 'recoil';
 import { Leaderboard } from 'src/client/leaderboard';
 import { googleConfig } from 'src/client/login/google-config';
 import { tokenState } from 'src/client/login/state/atoms';
-import { AlertContainer } from 'src/client/shared';
+import { AlertContainer, useSendAlert } from 'src/client/shared';
 import { TeamPage } from '../../team';
 import { HeaderImage } from './header-image';
 import { NavBar } from './nav-bar';
 
 export const Root = () => {
   const setToken = useSetRecoilState(tokenState);
+  const sendAlert = useSendAlert();
+
+  const logoutSuccess = () => {
+    setToken('');
+    sendAlert('Successfully logged out', 'success');
+  };
 
   const { signOut } = useGoogleLogout({
     clientId: googleConfig.clientId,
-    onLogoutSuccess: () => setToken(''),
+    onLogoutSuccess: logoutSuccess,
     onFailure: () => setToken(''),
   });
 
