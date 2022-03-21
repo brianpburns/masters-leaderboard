@@ -96,3 +96,8 @@ export const CancelButton = styled(Button)`
 export const StyledIconButton = styled(IconButton)`
   padding: 5px !important;
 `;
+
+export const EditIconWrapper = styled.div`
+  margin-left: 5px;
+  cursor: pointer;
+`;
