@@ -7,7 +7,6 @@ module.exports = {
   ],
   parserOptions: {
     project: ['tsconfig.json', 'tsconfig.server.json'],
-    ecmaVersion: 2018,
     sourceType: 'module',
   },
   plugins: ['react-hooks', 'jsx-a11y', '@typescript-eslint'],

@@ -36,14 +36,8 @@ const bootstrap = async () => {
   );
 };
 
-if (process.env.SNOWPACK_PUBLIC_STANDALONE === 'true') {
+if (process.env.STANDALONE === 'true') {
   localBootstrap();
 } else {
   bootstrap();
 }
-
-// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
-// Learn more: https://www.snowpack.dev/#hot-module-replacement
-// if (import.meta.hot) {
-//   import.meta.hot.accept();
-// }

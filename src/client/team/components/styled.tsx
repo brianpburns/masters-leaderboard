@@ -2,7 +2,7 @@ import { Button, FilledInput, IconButton } from '@material-ui/core';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
-  padding: 25px 10px;
+  padding: 10px;
   display: flex;
 `;
 
