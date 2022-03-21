@@ -1,20 +1,28 @@
 {
-  "include": ["src", "test", "types", "db"],
+  "include": ["src", "test", "webpack"],
   "exclude": ["node_modules", "dist", "src/server"],
   "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {
-    "target": "esnext",
-    "strict": true,
-    "moduleResolution": "node",
-    "importsNotUsedAsValues": "remove",
     "lib": ["es2017", "dom", "dom.iterable", "ES2019"],
-    "noEmit": false,
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
     "sourceMap": true,
     "baseUrl": "./",
+    "noEmit": false,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "strict": true,
+    "importsNotUsedAsValues": "remove",
     "isolatedModules": true,
     "paths": {
       "src/*": ["src/*"],
       "test/*": ["test/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
     }
   }
 }

@@ -13,11 +13,10 @@ import { NavBar } from './nav-bar';
 export const Root = () => {
   const setToken = useSetRecoilState(tokenState);
 
-  const success = () => setToken('');
   const { signOut } = useGoogleLogout({
     clientId: googleConfig.clientId,
-    onLogoutSuccess: success,
-    onFailure: success,
+    onLogoutSuccess: () => setToken(''),
+    onFailure: () => setToken(''),
   });
 
   return (
