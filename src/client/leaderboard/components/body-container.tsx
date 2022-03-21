@@ -10,9 +10,5 @@ export const BodyContainer = () => {
   const teamsWithPrizeMoney = useAddPrizeMoney();
   const rankedTeams = teamsWithPrizeMoney.slice().sort(prizeMoneySortKey);
 
-  return (
-    <>
-      <TableBody tableData={rankedTeams} />
-    </>
-  );
+  return <TableBody tableData={rankedTeams} />;
 };

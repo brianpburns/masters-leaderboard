@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { prizeMoneyState } from 'src/client/api';
+import { prizeMoneyState, teamsState } from 'src/client/api';
 import { teamState } from 'src/client/team/state/selectors';
 import { BodyContainer } from './body-container';
 import { setupMockServer } from 'test/mocks';
@@ -55,6 +55,7 @@ describe('BodyContainer', () => {
   test('renders correct data', async () => {
     const initializeState = ({ set }: MutableSnapshot) => {
       set(teamState, mockTeam);
+      set(teamsState, [mockTeam]);
       set(prizeMoneyState, mockPrizeMoney);
       set(golfersState, mockGolfers);
     };
@@ -67,9 +68,6 @@ describe('BodyContainer', () => {
       </RecoilRoot>
     );
 
-    await waitFor(() =>
-      expect(screen.getByText('burnsing it up')).toBeTruthy()
-    );
-    expect(screen.getByText('liam it up')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Team Logan')).toBeTruthy());
   });
 });

@@ -12,6 +12,6 @@ describe('Login', () => {
   test('renders login button', () => {
     renderLogin();
 
-    expect(screen.getByText('Login')).toBeTruthy();
+    expect(screen.getByText('Sign In')).toBeTruthy();
   });
 });
