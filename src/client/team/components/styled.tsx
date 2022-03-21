@@ -6,7 +6,7 @@ export const TeamPageContainer = styled.div`
   display: flex;
 `;
 
-export const StyledIcon = styled.div`
+export const IconWrapper = styled.div`
   margin-left: auto;
   cursor: pointer;
 `;
@@ -35,11 +35,15 @@ export const StyledGolfersList = styled.ul<{ disabled?: boolean }>`
   }
 `;
 
-export const GolferListItem = styled.li`
+export const GolferListItem = styled.li<{ selected: boolean }>`
   display: flex;
   padding: 2px;
   padding-left: 5px;
   border-bottom: 1px solid silver;
+
+  &:hover {
+    background-color: ${({ selected }) => (selected ? '#f89898' : '#b1e7a9')};
+  }
 `;
 
 export const TeamContainer = styled.div`
@@ -53,7 +57,7 @@ export const TeamContainer = styled.div`
 export const NameWrapper = styled.div`
   display: flex;
   text-transform: capitalize;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 300;
 `;
 
@@ -91,4 +95,9 @@ export const CancelButton = styled(Button)`
 
 export const StyledIconButton = styled(IconButton)`
   padding: 5px !important;
+`;
+
+export const EditIconWrapper = styled.div`
+  margin-left: 5px;
+  cursor: pointer;
 `;

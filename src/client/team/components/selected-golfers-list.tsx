@@ -3,7 +3,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 
 import { Golfers } from '../../../types';
 
-import { GolferListItem, StyledGolfersList, StyledIcon } from './styled';
+import { GolferListItem, StyledGolfersList, IconWrapper } from './styled';
 
 interface Props {
   allGolfers: Golfers;
@@ -19,14 +19,14 @@ export const SelectedGolfersList = ({
   return (
     <StyledGolfersList data-testid='selected-golfers-list'>
       {selectedGolferIds.map((golferId, i) => (
-        <GolferListItem key={i}>
+        <GolferListItem key={i} selected={true}>
           {allGolfers[golferId].name}
-          <StyledIcon
+          <IconWrapper
             onClick={() => removeGolfer(golferId)}
             data-testid='remove-golfer'
           >
             <RemoveIcon fontSize='small' />
-          </StyledIcon>
+          </IconWrapper>
         </GolferListItem>
       ))}
     </StyledGolfersList>

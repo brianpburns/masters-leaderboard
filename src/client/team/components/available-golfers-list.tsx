@@ -5,7 +5,7 @@ import { useManageGolfers } from '../hooks/use-manage-golfers';
 import {
   GolfersListContainer,
   GolferListItem,
-  StyledIcon,
+  IconWrapper,
   StyledGolfersList,
   RemainingPicks,
   AlreadySelectedMsg,
@@ -42,20 +42,20 @@ export const AvailableGolfersList = () => {
       </RemainingPicks>
       <StyledGolfersList disabled={remainingPicks === 0}>
         {filteredGolfersList.map((golfer, i) => (
-          <GolferListItem key={i}>
+          <GolferListItem key={i} selected={false}>
             {golfer.name}
             {selectedGolferIds.includes(golfer.id) ? (
               <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
             ) : (
               remainingPicks !== 0 && (
-                <StyledIcon
+                <IconWrapper
                   onClick={() => handleAddGolfer(golfer.id)}
                   data-testid='add-golfer'
                 >
                   <Icon color='black'>
                     <AddIcon fontSize='small' />
                   </Icon>
-                </StyledIcon>
+                </IconWrapper>
               )
             )}
           </GolferListItem>
