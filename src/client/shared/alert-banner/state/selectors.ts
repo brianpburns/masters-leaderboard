@@ -1,12 +1,6 @@
 import { DefaultValue, selector } from 'recoil';
-import type { AlertSeverity } from '../types';
+import type { Alert } from '../types';
 import { alertMessageState, alertOpenState, alertSeverityState } from './atoms';
-
-type Alert = {
-  open: boolean;
-  message: string;
-  severity: AlertSeverity;
-};
 
 export const alertState = selector<Alert>({
   key: '@alert/alertState',
