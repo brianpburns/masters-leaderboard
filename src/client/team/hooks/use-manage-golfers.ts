@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { GolferData } from '../../../types';
-import { golfersState } from '../../app';
+import { golfersState } from '../../api';
 
 import { teamGolfersIdsState } from '../state/atoms';
 

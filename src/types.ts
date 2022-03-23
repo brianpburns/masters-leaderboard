@@ -1,4 +1,4 @@
-export interface UncleanGolferData {
+export interface RawGolferData {
   active?: boolean;
   display_name: string;
   display_name2: string;
@@ -12,6 +12,13 @@ export interface UncleanGolferData {
   today: string;
   topar: string;
   total: string;
+}
+
+export interface LeaderboardData {
+  currentRound: string;
+  cutLine: string;
+  player: RawGolferData[];
+  statusRound: string;
 }
 
 export interface GolferData {

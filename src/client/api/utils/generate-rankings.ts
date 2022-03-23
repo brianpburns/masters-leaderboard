@@ -1,8 +1,4 @@
-import {
-  Golfers,
-  GolferMoneyRankings,
-  UncleanGolferData,
-} from '../../../types';
+import { Golfers, GolferMoneyRankings, RawGolferData } from '../../../types';
 import { cleanGolferData } from './clean-golfer-data';
 
 /**
@@ -24,7 +20,7 @@ import { cleanGolferData } from './clean-golfer-data';
  *  '5': { golfers: [ 47483, 45522 ], prizeMoney: 0, topar: -2 }
  * } 
  */
-export const generateRankings = (players: UncleanGolferData[]) => {
+export const generateRankings = (players: RawGolferData[]) => {
   const golfers: Golfers = {};
   const golferRankings: GolferMoneyRankings = {};
 

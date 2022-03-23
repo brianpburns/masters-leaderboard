@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { TeamType } from '../../types';
+import { Team as TeamType } from '../../types';
 import { Team } from '../masters-db';
 import { verifyToken } from '../util/verify-token';
 

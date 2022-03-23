@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { generateLeaderboardData } from './api/requests';
-import { prizeMoneyState } from './api/state/atoms';
-import { cutLineState, golfersState, Root } from './app';
+import {
+  generateGolferData,
+  golferMoneyRankingsState,
+  cutLineState,
+  golfersState,
+} from './api';
+import { Root } from './app';
 import './index.css';
 
 const localBootstrap = async () => {
@@ -17,13 +21,12 @@ const localBootstrap = async () => {
 };
 
 const bootstrap = async () => {
-  const { golfers, rankingsWithPrizeMoney, cutLine } =
-    await generateLeaderboardData();
+  const { golfers, golferMoneyRankings, cutLine } = await generateGolferData();
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(golfersState, golfers);
     set(cutLineState, cutLine);
-    set(prizeMoneyState, rankingsWithPrizeMoney);
+    set(golferMoneyRankingsState, golferMoneyRankings);
   };
 
   ReactDOM.render(

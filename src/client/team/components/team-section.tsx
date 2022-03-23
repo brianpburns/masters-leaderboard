@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useSendAlert } from 'src/client/shared';
 import { useUpdateTeam } from '../../api';
-import { golfersState } from '../../app';
+import { golfersState } from '../../api';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
 import { teamState } from '../state/selectors';

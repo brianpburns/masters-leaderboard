@@ -1,11 +1,14 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { prizeMoneyState, teamsState } from 'src/client/api';
 import { teamState } from 'src/client/team/state/selectors';
 import { BodyContainer } from './body-container';
 import { setupMockServer } from 'test/mocks';
-import { golfersState } from 'src/client/app';
+import {
+  golfersState,
+  teamsState,
+  golferMoneyRankingsState,
+} from 'src/client/api';
 
 setupMockServer();
 
@@ -56,7 +59,7 @@ describe('BodyContainer', () => {
     const initializeState = ({ set }: MutableSnapshot) => {
       set(teamState, mockTeam);
       set(teamsState, [mockTeam]);
-      set(prizeMoneyState, mockPrizeMoney);
+      set(golferMoneyRankingsState, mockPrizeMoney);
       set(golfersState, mockGolfers);
     };
 

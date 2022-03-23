@@ -1,7 +1,7 @@
 import { recoilHookTestWrapper } from 'src/client/__test__';
 import { useSortedGolfers } from './use-sorted-golfers';
 
-import { golfersState } from 'src/client/app';
+import { golfersState } from 'src/client/api';
 
 const mockGolfersData = {
   1226: {

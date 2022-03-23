@@ -17,7 +17,7 @@ export const golfersState = atom<Golfers>({
   default: {},
 });
 
-export const prizeMoneyState = atom<GolferMoneyRankings>({
+export const golferMoneyRankingsState = atom<GolferMoneyRankings>({
   key: '@app/prizeMoney',
   default: {},
 });

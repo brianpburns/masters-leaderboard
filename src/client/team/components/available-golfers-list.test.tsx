@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 
 import { AvailableGolfersList } from './available-golfers-list';
-import { golfersState } from '../../app';
+import { golfersState } from '../../api';
 import userEvent from '@testing-library/user-event';
 
 const golfers = {

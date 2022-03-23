@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { golfersState } from 'src/client/app';
+import { golfersState } from 'src/client/api';
 import { Team } from '../../../types';
 
 export const useSortedGolfers = (row: Team) => {
