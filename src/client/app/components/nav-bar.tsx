@@ -10,7 +10,8 @@ export const NavBar = ({ signOut }: { signOut: () => void }) => {
   const currentRoute = location.pathname;
   const token = useRecoilValue(tokenState);
   const history = useHistory();
-  const { signIn } = useGoogleSignIn(() => history.push('team'));
+  // Don't want to auto sign in on the nav bar or the callback is called
+  const { signIn } = useGoogleSignIn(false, () => history.push('team'));
 
   return (
     <StyledNav>
