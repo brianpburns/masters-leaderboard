@@ -1,7 +1,7 @@
 // TODO: Uncomment request processing once real url is live
 // import type { LeaderboardData } from '../../types';
 import { addPrizeMoney } from '../util/prize-money';
-import { normaliseCutLine } from '../util/stats';
+import { normaliseCutLine } from './utils/normalise-cut-line';
 import { getLeaderboard } from './fetch/get-leaderboard';
 import { generateRankings } from './utils/generate-rankings';
 

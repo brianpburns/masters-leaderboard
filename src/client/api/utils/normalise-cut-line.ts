@@ -1,3 +1,3 @@
-export function normaliseCutLine(cutLine: string) {
+export const normaliseCutLine = (cutLine: string) => {
   return cutLine === 'E' || cutLine === '' ? 0 : parseInt(cutLine);
-}
+};
