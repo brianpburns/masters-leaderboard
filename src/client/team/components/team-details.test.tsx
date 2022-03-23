@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { teamState } from '../state/selectors';
 import { TeamSection } from './team-section';
-import { golfersState } from '../../app';
+import { golfersState } from '../../api';
 
 const allGolfers = {
   0: {

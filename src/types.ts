@@ -1,4 +1,4 @@
-export interface UncleanGolferData {
+export interface RawGolferData {
   active?: boolean;
   display_name: string;
   display_name2: string;
@@ -12,44 +12,14 @@ export interface UncleanGolferData {
   today: string;
   topar: string;
   total: string;
-
-  countryName?: unknown;
-  countryCode?: unknown;
-  live?: unknown;
-  video?: unknown;
-  image?: unknown;
-  amateur?: unknown;
-  status?: unknown;
-  sort_order?: unknown;
-  us?: unknown;
-  intl?: unknown;
-  tee_order?: unknown;
-  start?: unknown;
-  group?: unknown;
-  groupHistory?: unknown;
-  lastHoleWithShot?: unknown;
-  totalUnderPar?: unknown;
-  movement?: unknown;
-  round1?: unknown;
-  r1?: unknown;
-  round2?: unknown;
-  r2?: unknown;
-  round3?: unknown;
-  r3?: unknown;
-  round4?: unknown;
-  r4?: unknown;
 }
 
 export interface LeaderboardData {
   currentRound: string;
   cutLine: string;
-  player: UncleanGolferData[];
+  player: RawGolferData[];
   statusRound: string;
 }
-
-export type LeaderboardJsonResponse = {
-  data: LeaderboardData;
-};
 
 export interface GolferData {
   id: number;
@@ -71,7 +41,7 @@ interface Ranking {
 
 export type GolferMoneyRankings = Record<number, Ranking>;
 
-export interface TeamType {
+export interface Team {
   id: number;
   owner: string;
   name: string;
@@ -79,13 +49,3 @@ export interface TeamType {
   google_id?: string;
   prizeMoney?: number;
 }
-
-export interface TeamWithMoney extends TeamType {
-  prizeMoney: number;
-}
-
-export type UpdateTeamRequestBody = {
-  owner: string;
-  name: string;
-  golfer_ids: number[];
-};

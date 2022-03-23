@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import { googleConfig } from 'src/client/login/google-config';
 import { tokenState } from 'src/client/login/state/atoms';
 
-export const useGoogleSignIn = (callback?: () => void) => {
+export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
   const [token, setToken] = useRecoilState(tokenState);
 
   const responseGoogle = (
@@ -21,7 +21,7 @@ export const useGoogleSignIn = (callback?: () => void) => {
     clientId: googleConfig.clientId,
     onSuccess: responseGoogle,
     onFailure: responseGoogle,
-    isSignedIn: true,
+    isSignedIn,
   });
 
   return { token, signIn, loaded };

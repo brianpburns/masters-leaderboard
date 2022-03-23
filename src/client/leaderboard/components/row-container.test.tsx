@@ -2,8 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { prizeMoneyState } from 'src/client/api';
-import { golfersState } from 'src/client/app';
+import { golferMoneyRankingsState, golfersState } from 'src/client/api';
 import { RowContainer } from './row-container';
 
 const mockGolfersData = {
@@ -51,7 +50,7 @@ const mockPrizeMoney = {
 const renderRowContainer = () => {
   const initializeState = ({ set }: MutableSnapshot) => {
     set(golfersState, mockGolfersData);
-    set(prizeMoneyState, mockPrizeMoney);
+    set(golferMoneyRankingsState, mockPrizeMoney);
   };
   render(
     <RecoilRoot initializeState={initializeState}>

@@ -6,7 +6,7 @@ import { TeamPageContainer } from './styled';
 import { TeamContent } from './team-content';
 
 export const TeamPage = () => {
-  const { token, loaded, signIn } = useGoogleSignIn();
+  const { token, loaded, signIn } = useGoogleSignIn(true);
 
   return (
     <TeamPageContainer>

@@ -1,11 +1,8 @@
 import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
-import { UncleanGolferData } from 'src/types';
+import { RawGolferData } from 'src/types';
 import { generateRankings } from './generate-rankings';
 
-const mockData: UncleanGolferData[] = mockLeaderboardData.data.player.slice(
-  3,
-  6
-);
+const mockData: RawGolferData[] = mockLeaderboardData.data.player.slice(3, 6);
 
 describe('generateRankings', () => {
   test('generates clean golfer data', () => {

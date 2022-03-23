@@ -1,5 +1,5 @@
 import React from 'react';
-import RemoveIcon from '@material-ui/icons/Remove';
+import { Remove } from '@mui/icons-material';
 
 import { Golfers } from '../../../types';
 
@@ -25,7 +25,7 @@ export const SelectedGolfersList = ({
             onClick={() => removeGolfer(golferId)}
             data-testid='remove-golfer'
           >
-            <RemoveIcon fontSize='small' />
+            <Remove fontSize='small' />
           </IconWrapper>
         </GolferListItem>
       ))}

@@ -1,5 +1,5 @@
-import { ClickAwayListener, TextField } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
+import { ClickAwayListener, TextField } from '@mui/material';
+import { Edit } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { EditIconWrapper, NameWrapper } from './styled';
 
@@ -38,7 +38,7 @@ export const TeamName = ({ name, nameUpdate }: Props) => {
     <NameWrapper onClick={() => setEditMode(true)}>
       {name}
       <EditIconWrapper>
-        <EditIcon fontSize='small' data-testid='edit-name-btn' />
+        <Edit fontSize='small' data-testid='edit-name-btn' />
       </EditIconWrapper>
     </NameWrapper>
   );

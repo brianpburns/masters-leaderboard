@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddIcon from '@material-ui/icons/Add';
+import { Add } from '@mui/icons-material';
 
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import {
@@ -53,7 +53,7 @@ export const AvailableGolfersList = () => {
                   data-testid='add-golfer'
                 >
                   <Icon color='black'>
-                    <AddIcon fontSize='small' />
+                    <Add fontSize='small' />
                   </Icon>
                 </IconWrapper>
               )

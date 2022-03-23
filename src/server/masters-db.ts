@@ -1,5 +1,5 @@
 import { DataTypes, ModelDefined, Optional, Sequelize } from 'sequelize';
-import { TeamType } from '../types';
+import { Team as TeamType } from '../types';
 
 const dbUri = process.env.DATABASE_URL || process.env.DB_URI || '';
 

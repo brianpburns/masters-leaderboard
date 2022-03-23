@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { golfersState } from '../../app';
+import { golfersState } from '../../api';
 import { useGolferPrizeMoney } from '../hooks/use-golfer-money';
 import { displayNumber } from '../utils/display-number';
 import { SubRow } from './sub-row';

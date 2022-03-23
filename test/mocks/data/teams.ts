@@ -1,6 +1,6 @@
-import { TeamType } from 'src/types';
+import { Team } from 'src/types';
 
-export const teams: TeamType[] = [
+export const teams: Team[] = [
   {
     id: 0,
     owner: 'Logan',

@@ -1,10 +1,10 @@
 import React from 'react';
-import { TableHead, TableRow, TableCell, Table } from '@material-ui/core';
 
 import { BodyContainer } from './body-container';
 import { StyledTableContainer } from './styled';
 import { useLoadTeams } from 'src/client/api';
 import { Loader } from 'src/client/shared';
+import { Table, TableCell, TableHead, TableRow } from '@mui/material';
 
 export const Leaderboard = () => {
   // Needs to be done here to pull in any team changes

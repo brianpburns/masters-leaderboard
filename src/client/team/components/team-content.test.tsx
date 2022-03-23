@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { golfersState } from 'src/client/app';
+import { golfersState } from 'src/client/api';
 import { tokenState } from 'src/client/login/state/atoms';
 import { cleanGolfers, setupMockServer } from 'test/mocks';
 import { TeamContent } from './team-content';

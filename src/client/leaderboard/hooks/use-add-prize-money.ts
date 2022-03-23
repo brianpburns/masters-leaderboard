@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { prizeMoneyState, teamsState } from 'src/client/api';
-import { golfersState } from 'src/client/app';
-import { TeamType } from 'src/types';
+import {
+  golfersState,
+  teamsState,
+  golferMoneyRankingsState,
+} from 'src/client/api';
+import { Team } from 'src/types';
 import { rankTeams } from '../utils/rank-teams';
 
 /**
@@ -14,12 +17,12 @@ import { rankTeams } from '../utils/rank-teams';
  */
 export const useAddPrizeMoney = () => {
   const teams = useRecoilValue(teamsState);
-  const rankingsWithPrizeMoney = useRecoilValue(prizeMoneyState);
+  const rankingsWithPrizeMoney = useRecoilValue(golferMoneyRankingsState);
   const golfersData = useRecoilValue(golfersState);
-  const [rankedTeams, setRankedTeams] = useState<TeamType[]>([]);
+  const [rankedTeams, setRankedTeams] = useState<Team[]>([]);
 
   useEffect(() => {
-    const calculateTeamMoney = (team: TeamType) => {
+    const calculateTeamMoney = (team: Team) => {
       const teamPrizeMoney = team.golfer_ids.reduce((accum, id) => {
         try {
           const position = golfersData[id].position;

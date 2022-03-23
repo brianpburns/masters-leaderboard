@@ -1,5 +1,8 @@
-import { prizeMoneyState, teamsState } from 'src/client/api';
-import { golfersState } from 'src/client/app';
+import {
+  golferMoneyRankingsState,
+  teamsState,
+  golfersState,
+} from 'src/client/api';
 import { recoilHookTestWrapper } from 'src/client/__test__';
 import { GolferMoneyRankings } from 'src/types';
 import { useAddPrizeMoney } from './use-add-prize-money';
@@ -50,7 +53,7 @@ const mockGolfersData = {
 const renderHook = (prizeMoney = mockPrizeMoney) =>
   recoilHookTestWrapper(useAddPrizeMoney, ({ set }) => {
     set(teamsState, mockTeams);
-    set(prizeMoneyState, prizeMoney);
+    set(golferMoneyRankingsState, prizeMoney);
     set(golfersState, mockGolfersData);
   });
 

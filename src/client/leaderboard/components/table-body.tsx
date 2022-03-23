@@ -1,10 +1,10 @@
 import React from 'react';
-import { TeamType } from 'src/types';
-import { TableBody as MTableBody } from '@material-ui/core';
+import { Team } from 'src/types';
+import { TableBody as MTableBody } from '@mui/material';
 import { RowContainer } from './row-container';
 
 interface Props {
-  tableData: TeamType[];
+  tableData: Team[];
 }
 
 export const TableBody = ({ tableData }: Props) => (
