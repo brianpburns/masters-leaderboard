@@ -1,5 +1,3 @@
-import { LeaderboardData } from '../../types';
-
-export function normaliseCutLine(cutLine: LeaderboardData['cutLine']) {
+export function normaliseCutLine(cutLine: string) {
   return cutLine === 'E' || cutLine === '' ? 0 : parseInt(cutLine);
 }

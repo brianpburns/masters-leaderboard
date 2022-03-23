@@ -14,13 +14,6 @@ export interface UncleanGolferData {
   total: string;
 }
 
-export interface LeaderboardData {
-  currentRound: string;
-  cutLine: string;
-  player: UncleanGolferData[];
-  statusRound: string;
-}
-
 export interface GolferData {
   id: number;
   name: string;
@@ -49,13 +42,3 @@ export interface Team {
   google_id?: string;
   prizeMoney?: number;
 }
-
-export interface TeamWithMoney extends Team {
-  prizeMoney: number;
-}
-
-export type UpdateTeamRequestBody = {
-  owner: string;
-  name: string;
-  golfer_ids: number[];
-};
