@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import isEqual from 'lodash/isEqual';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';

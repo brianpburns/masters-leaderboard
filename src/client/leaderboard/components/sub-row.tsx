@@ -1,4 +1,4 @@
-import { TableCell, TableRow } from '@material-ui/core';
+import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { GolferData } from 'src/types';
 import { displayToPar } from '../utils/display-to-par';

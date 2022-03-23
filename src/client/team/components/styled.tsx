@@ -1,4 +1,4 @@
-import { Button, FilledInput, IconButton } from '@material-ui/core';
+import { Button, FilledInput, IconButton } from '@mui/material';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`

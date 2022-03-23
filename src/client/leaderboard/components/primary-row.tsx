@@ -1,10 +1,9 @@
 import React from 'react';
-import { TableRow, IconButton, TableCell } from '@material-ui/core';
+import { TableRow, IconButton, TableCell } from '@mui/material';
 import { displayNumber } from '../utils/display-number';
 import { Team } from 'src/types';
 import styled from 'styled-components';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 interface Props {
   open: boolean;
@@ -22,9 +21,9 @@ export const PrimaryRow = ({ open, setOpen, position, row }: Props) => (
     <StyledTableCell>
       <IconButton aria-label='expand row' size='small'>
         {open ? (
-          <KeyboardArrowUpIcon data-testid='toggle-up' />
+          <KeyboardArrowUp data-testid='toggle-up' />
         ) : (
-          <KeyboardArrowDownIcon data-testid='toggle-down' />
+          <KeyboardArrowDown data-testid='toggle-down' />
         )}
       </IconButton>
     </StyledTableCell>

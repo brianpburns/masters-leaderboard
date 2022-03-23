@@ -1,6 +1,6 @@
 import React from 'react';
 import { Team } from 'src/types';
-import { TableBody as MTableBody } from '@material-ui/core';
+import { TableBody as MTableBody } from '@mui/material';
 import { RowContainer } from './row-container';
 
 interface Props {

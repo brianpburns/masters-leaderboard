@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchBarWrapper, StyledIconButton, StyledSearchBar } from './styled';
