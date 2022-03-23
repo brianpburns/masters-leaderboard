@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableRow, IconButton, TableCell } from '@material-ui/core';
 import { displayNumber } from '../utils/display-number';
-import { TeamType } from 'src/types';
+import { Team } from 'src/types';
 import styled from 'styled-components';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -10,7 +10,7 @@ interface Props {
   open: boolean;
   setOpen: (isOpen: boolean) => void;
   position: number;
-  row: TeamType;
+  row: Team;
 }
 
 const StyledTableCell = styled(TableCell)`

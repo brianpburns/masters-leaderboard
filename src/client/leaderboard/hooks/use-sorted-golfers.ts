@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 import { golfersState } from 'src/client/app';
-import { TeamType } from '../../../types';
+import { Team } from '../../../types';
 
-export const useSortedGolfers = (row: TeamType) => {
+export const useSortedGolfers = (row: Team) => {
   const golfers = useRecoilValue(golfersState);
 
   const positionsSortKey = (aId: number, bId: number) => {

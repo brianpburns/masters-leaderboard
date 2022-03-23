@@ -1,9 +1,9 @@
 import { rest } from 'msw';
-import { TeamType } from 'src/types';
+import { Team } from 'src/types';
 
 import { mockLeaderboardData } from './data/leaderboard';
 
-const golfers: Record<string, TeamType> = {
+const golfers: Record<string, Team> = {
   1: {
     id: 1,
     owner: 'burns',
@@ -37,7 +37,7 @@ export const handlers = [
 
     if (!(newData instanceof Object)) return res(ctx.status(500));
 
-    golfers[1] = { id: 1, ...newData } as TeamType;
+    golfers[1] = { id: 1, ...newData } as Team;
 
     return res(ctx.status(200));
   }),

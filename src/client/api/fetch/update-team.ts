@@ -1,7 +1,7 @@
-import { TeamType } from '../../../types';
+import { Team } from '../../../types';
 
 export const updateTeam = async (
-  { owner, name, golfer_ids }: TeamType,
+  { owner, name, golfer_ids }: Team,
   token: string
 ) => {
   const res = await fetch(`/api/team`, {

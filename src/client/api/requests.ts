@@ -1,5 +1,5 @@
 // TODO: Uncomment request processing once real url is live
-// import type { LeaderboardJsonResponse } from '../../types';
+// import type { LeaderboardData } from '../../types';
 import { addPrizeMoney } from '../util/prize-money';
 import { normaliseCutLine } from '../util/stats';
 import { getLeaderboard } from './fetch/get-leaderboard';
@@ -8,7 +8,7 @@ import { generateRankings } from './utils/generate-rankings';
 export const fetchLeaderboardData = async () => {
   try {
     const response = await getLeaderboard();
-    // const { data }: LeaderboardJsonResponse = await response.json();
+    // const { data }: {data: LeaderboardData} = await response.json();
     const { data } = response;
     const { currentRound, player: dirtyGolfersData } = data;
     const cutLine = normaliseCutLine(data.cutLine);

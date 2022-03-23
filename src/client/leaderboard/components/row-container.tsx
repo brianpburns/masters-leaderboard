@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { TeamType } from '../../../types';
+import { Team } from '../../../types';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 import { PrimaryRow } from './primary-row';
 import { SubTable } from './sub-table';
 
 interface Props {
   position: number;
-  row: TeamType;
+  row: Team;
 }
 
 export const RowContainer = ({ position, row }: Props) => {

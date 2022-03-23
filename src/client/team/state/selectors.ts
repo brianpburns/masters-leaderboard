@@ -1,6 +1,6 @@
 import { DefaultValue, selector } from 'recoil';
 
-import { TeamType } from '../../../types';
+import { Team } from '../../../types';
 
 import {
   teamIdState,
@@ -10,7 +10,7 @@ import {
   savedGolfersIdsRefState,
 } from './atoms';
 
-export const teamState = selector<TeamType>({
+export const teamState = selector<Team>({
   key: '@team/activeTeamState',
   get: ({ get }) => {
     const id = get(teamIdState);

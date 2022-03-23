@@ -41,7 +41,7 @@ interface Ranking {
 
 export type GolferMoneyRankings = Record<number, Ranking>;
 
-export interface TeamType {
+export interface Team {
   id: number;
   owner: string;
   name: string;
@@ -50,7 +50,7 @@ export interface TeamType {
   prizeMoney?: number;
 }
 
-export interface TeamWithMoney extends TeamType {
+export interface TeamWithMoney extends Team {
   prizeMoney: number;
 }
 
