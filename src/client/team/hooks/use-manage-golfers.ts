@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { GolferData } from '../../../types';
-import { golfersState } from '../../api';
-
+import { inviteesState } from 'src/client/api/state/atoms';
+import { Player } from '../../../types';
 import { teamGolfersIdsState } from '../state/atoms';
 
 export const useManageGolfers = () => {
   const [selectedGolfers, setSelectedGolfers] =
     useRecoilState(teamGolfersIdsState);
-  const allGolfers = useRecoilValue(golfersState);
+  const allGolfers = useRecoilValue(inviteesState);
   const teamGolfers = useRecoilValue(teamGolfersIdsState);
-  const [unselectedGolfers, setUnselectedGolfers] = useState<GolferData[]>([]);
+  const [unselectedGolfers, setUnselectedGolfers] = useState<Player[]>([]);
 
   useEffect(() => {
-    const golfers = Object.values(allGolfers).filter(
-      (golfer) => !teamGolfers.includes(golfer.id)
+    const unpickedGolfers = allGolfers.filter(
+      (golfer) => !teamGolfers.includes(parseInt(golfer.id))
     );
-    setUnselectedGolfers(golfers);
+    setUnselectedGolfers(unpickedGolfers);
   }, [allGolfers, teamGolfers]);
 
   const addGolfer = (golferId: number) => {
@@ -30,7 +29,7 @@ export const useManageGolfers = () => {
   };
 
   return {
-    allGolfers: Object.values(allGolfers),
+    allGolfers,
     unselectedGolfers,
     addGolfer,
     removeGolfer,
