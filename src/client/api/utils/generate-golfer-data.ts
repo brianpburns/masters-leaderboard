@@ -8,8 +8,8 @@ import { generateRankings } from './generate-rankings';
 export const fetchLeaderboardData = async () => {
   try {
     const response = await getLeaderboard();
-    // const { data }: {data: LeaderboardData} = await response.json();
-    const { data }: { data: LeaderboardData } = response;
+    const { data }: { data: LeaderboardData } = await response.json();
+    // const { data }: { data: LeaderboardData } = response;
     const { currentRound } = data;
 
     return {
