@@ -8,7 +8,7 @@ describe('generateGolferData', () => {
     const { golfers, golferMoneyRankings, cutLine } =
       await generateGolferData();
 
-    expect(Object.keys(golfers).length).toEqual(88);
+    expect(Object.keys(golfers || {}).length).toEqual(88);
     expect(golfers).toMatchObject({
       '1226': {
         id: 1226,

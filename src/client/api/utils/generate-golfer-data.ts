@@ -25,6 +25,15 @@ export const fetchLeaderboardData = async () => {
 export const generateGolferData = async () => {
   const { cutLine, rawGolfersData, currentRound } =
     await fetchLeaderboardData();
+
+  if (rawGolfersData.length === 0) {
+    return {
+      golfers: null,
+      golferMoneyRankings: null,
+      cutLine: 0,
+    };
+  }
+
   const { golfers, golferRankings } = generateRankings(rawGolfersData);
 
   const golferMoneyRankings = addPrizeMoney(golferRankings, currentRound);

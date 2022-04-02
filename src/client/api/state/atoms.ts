@@ -13,14 +13,14 @@ export const teamsState = atom<Team[]>({
   default: [],
 });
 
-export const golfersState = atom<Golfers>({
+export const golfersState = atom<Golfers | null>({
   key: '@app/golfers',
-  default: {},
+  default: null,
 });
 
-export const golferMoneyRankingsState = atom<GolferMoneyRankings>({
+export const golferMoneyRankingsState = atom<GolferMoneyRankings | null>({
   key: '@app/prizeMoney',
-  default: {},
+  default: null,
 });
 
 export const inviteesState = atom<Player[]>({
