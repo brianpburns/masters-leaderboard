@@ -23,6 +23,13 @@ export const useAddPrizeMoney = () => {
 
   useEffect(() => {
     const calculateTeamMoney = (team: Team) => {
+      if (!golfersData || !rankingsWithPrizeMoney) {
+        return {
+          ...team,
+          prizeMoney: 0,
+        };
+      }
+
       const teamPrizeMoney = team.golfer_ids.reduce((accum, id) => {
         try {
           const position = golfersData[id].position;

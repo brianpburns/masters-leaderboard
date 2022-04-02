@@ -51,7 +51,7 @@ export const TeamContainer = styled.div`
   width: 50%;
   height: fit-content;
   border-radius: 10px;
-  padding: 10px;
+  padding: 40px 10px 10px 10px;
 `;
 
 export const NameWrapper = styled.div`

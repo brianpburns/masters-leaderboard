@@ -11,8 +11,15 @@ interface Props {
 
 export const SubRowContainer = ({ golferId }: Props) => {
   const golfers = useRecoilValue(golfersState);
-  const golfer = golfers[golferId];
+  // const golfer = golfers[golferId];
   const prizeMoney = useGolferPrizeMoney(golferId);
 
-  return <SubRow golfer={golfer} prizeMoney={displayNumber(prizeMoney)} />;
+  return (
+    golfers && (
+      <SubRow
+        golfer={golfers[golferId]}
+        prizeMoney={displayNumber(prizeMoney)}
+      />
+    )
+  );
 };

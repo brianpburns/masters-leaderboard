@@ -14,9 +14,11 @@ import { Icon } from 'src/client/shared';
 import { useRecoilValue } from 'recoil';
 import { teamGolfersIdsState } from '../state/atoms';
 import { SearchBar } from './search-bar';
+import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 
 export const AvailableGolfersList = () => {
-  const { allGolfers, unselectedGolfers, addGolfer } = useManageGolfers();
+  const { unselectedGolfers, addGolfer } = useManageGolfers();
+  const { search } = useGetGolferData();
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const [searchTerm, setSearchTerm] = useState<string>('Name');
 
@@ -29,9 +31,7 @@ export const AvailableGolfersList = () => {
 
   const searchActive = !['Name', ''].includes(searchTerm);
   const filteredGolfersList = searchActive
-    ? allGolfers.filter((golfer) =>
-        golfer.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    ? search(searchTerm)
     : unselectedGolfers;
 
   return (
@@ -43,14 +43,13 @@ export const AvailableGolfersList = () => {
       <StyledGolfersList disabled={remainingPicks === 0}>
         {filteredGolfersList.map((golfer, i) => (
           <GolferListItem key={i} selected={false}>
-            {golfer.name}
-            {selectedGolferIds.includes(golfer.id) ? (
+            {`${golfer.first_name} ${golfer.last_name}`}
+            {selectedGolferIds.includes(parseInt(golfer.id)) ? (
               <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
             ) : (
               remainingPicks !== 0 && (
                 <IconWrapper
-                  onClick={() => handleAddGolfer(golfer.id)}
-                  data-testid='add-golfer'
+                  onClick={() => handleAddGolfer(parseInt(golfer.id))}
                 >
                   <Icon color='black'>
                     <Add fontSize='small' />

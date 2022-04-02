@@ -19,6 +19,7 @@ export const Leaderboard = () => {
             <TableCell size='small' />
             <TableCell size='small'>Pos</TableCell>
             <TableCell align='left'>Name</TableCell>
+            <TableCell align='left'>Owner</TableCell>
             <TableCell align='left'>Money</TableCell>
           </TableRow>
         </TableHead>

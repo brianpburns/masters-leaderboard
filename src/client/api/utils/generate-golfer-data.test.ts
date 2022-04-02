@@ -1,14 +1,30 @@
+import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 import { setupMockServer } from 'test/mocks';
-import { generateGolferData } from './generate-golfer-data';
+import { processLeaderBoardData } from './generate-golfer-data';
 
 setupMockServer();
 
-describe('generateGolferData', () => {
-  test('generates expected data', async () => {
-    const { golfers, golferMoneyRankings, cutLine } =
-      await generateGolferData();
+describe('processLeaderBoardData', () => {
+  test('returns expected data when there is no leaderboard data', () => {
+    const { golfers, golferMoneyRankings, cutLine } = processLeaderBoardData(
+      0,
+      [],
+      '1000'
+    );
 
-    expect(Object.keys(golfers).length).toEqual(88);
+    expect(golfers).toBeNull();
+    expect(golferMoneyRankings).toBeNull();
+    expect(cutLine).toEqual(0);
+  });
+
+  test('generates expected data when full leaderboard provided', async () => {
+    const { golfers, golferMoneyRankings, cutLine } = processLeaderBoardData(
+      0,
+      mockLeaderboardData.data.player,
+      '1000'
+    );
+
+    expect(golfers && Object.keys(golfers).length).toEqual(88);
     expect(golfers).toMatchObject({
       '1226': {
         id: 1226,

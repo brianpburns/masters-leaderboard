@@ -49,3 +49,19 @@ export interface Team {
   google_id?: string;
   prizeMoney?: number;
 }
+
+export interface Player {
+  last_name: string;
+  first_name: string;
+  id: string;
+  countryName: string;
+  countryCode: string;
+  Amateur: string;
+  First: string;
+  Past: string;
+  image: boolean;
+}
+
+export interface PlayersResponseData {
+  players: Player[];
+}

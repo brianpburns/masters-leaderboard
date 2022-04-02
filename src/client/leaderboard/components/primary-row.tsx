@@ -29,6 +29,7 @@ export const PrimaryRow = ({ open, setOpen, position, row }: Props) => (
     </StyledTableCell>
     <StyledTableCell>{position + 1}</StyledTableCell>
     <StyledTableCell>{row.name}</StyledTableCell>
+    <StyledTableCell>{row.owner}</StyledTableCell>
     <StyledTableCell>{displayNumber(row.prizeMoney || 0)}</StyledTableCell>
   </TableRow>
 );

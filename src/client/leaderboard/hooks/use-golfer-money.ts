@@ -6,5 +6,7 @@ export const useGolferPrizeMoney = (golferId: number) => {
   const position = useGolferPosition(golferId);
   const prizeMoney = useRecoilValue(golferMoneyRankingsState);
 
+  if (!prizeMoney) return 0;
+
   return prizeMoney[position].prizeMoney;
 };

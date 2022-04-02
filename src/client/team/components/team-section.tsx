@@ -1,11 +1,10 @@
 import { Button } from '@mui/material';
 import isEqual from 'lodash/isEqual';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useSendAlert } from 'src/client/shared';
 import { useUpdateTeam } from '../../api';
-import { golfersState } from '../../api';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
 import { teamState } from '../state/selectors';
@@ -14,7 +13,6 @@ import { ButtonsContainer, CancelButton, TeamContainer } from './styled';
 import { TeamName } from './team-name';
 
 export const TeamSection = () => {
-  const allGolfers = useRecoilValue(golfersState);
   const [pickedGolfers, setPickedGolfers] = useRecoilState(teamGolfersIdsState);
   const [refGolfers, setRefGolfers] = useRecoilState(savedGolfersIdsRefState);
   const { removeGolfer } = useManageGolfers();
@@ -44,7 +42,6 @@ export const TeamSection = () => {
     <TeamContainer>
       <TeamName name={teamDetails.name} nameUpdate={handleNameUpdate} />
       <SelectedGolfersList
-        allGolfers={allGolfers}
         selectedGolferIds={pickedGolfers}
         removeGolfer={removeGolfer}
       />

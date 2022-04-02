@@ -1,37 +1,38 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-
-import { AvailableGolfersList } from './available-golfers-list';
-import { golfersState } from '../../api';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { MutableSnapshot, RecoilRoot } from 'recoil';
+import { inviteesState } from 'src/client/api/state/atoms';
+import { AvailableGolfersList } from './available-golfers-list';
 
-const golfers = {
-  0: {
-    id: 0,
-    name: 'Tiger Woods',
-    position: 10,
-    prizeMoney: 0,
-    topar: 2,
-    thru: '2',
-    today: '2',
-    teetime: '',
+const invitees = [
+  {
+    id: '0',
+    first_name: 'Tiger',
+    last_name: 'Woods',
+    countryName: 'USA',
+    countryCode: 'USA',
+    Amateur: '',
+    First: '',
+    Past: '',
+    image: false,
   },
-  1: {
-    id: 0,
-    name: 'Fred Couples',
-    position: 50,
-    prizeMoney: 0,
-    topar: 12,
-    thru: '12',
-    today: '12',
-    teetime: '',
+  {
+    id: '1',
+    first_name: 'Fred',
+    last_name: 'Couples',
+    countryName: 'USA',
+    countryCode: 'USA',
+    Amateur: '',
+    First: '',
+    Past: '',
+    image: false,
   },
-};
+];
 
 const renderGolfersList = () => {
   const initializeState = ({ set }: MutableSnapshot) => {
-    set(golfersState, golfers);
+    set(inviteesState, invitees);
   };
 
   render(
@@ -49,11 +50,11 @@ describe('Golfers List', () => {
     expect(screen.getByText('Remaining picks: 10')).toBeTruthy();
   });
 
-  test('removes a selected golfer from the list', () => {
+  test('removes a selected golfer from the list', async () => {
     renderGolfersList();
-    userEvent.click(screen.getAllByTestId('add-golfer')[0]);
+    userEvent.click(screen.getAllByTestId('AddIcon')[0]);
 
-    expect(screen.queryByText('Tiger Woods')).toBeFalsy();
+    await waitFor(() => expect(screen.queryByText('Tiger Woods')).toBeFalsy());
   });
 
   test('filters list of golfers based on searchTerm', () => {
