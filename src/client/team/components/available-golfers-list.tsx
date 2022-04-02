@@ -50,7 +50,6 @@ export const AvailableGolfersList = () => {
               remainingPicks !== 0 && (
                 <IconWrapper
                   onClick={() => handleAddGolfer(parseInt(golfer.id))}
-                  data-testid='add-golfer'
                 >
                   <Icon color='black'>
                     <Add fontSize='small' />

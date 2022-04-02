@@ -22,7 +22,7 @@ const golfers: Record<string, Team> = {
 
 export const handlers = [
   rest.get(
-    'https://www.masters.com/en_US/scores/feeds/2021/scores.json',
+    'https://www.masters.com/en_US/scores/feeds/2022/scores.json',
     (_req, res, ctx) => res(ctx.status(200), ctx.json(mockLeaderboardData))
   ),
 

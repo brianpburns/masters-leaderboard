@@ -6,19 +6,21 @@ import userEvent from '@testing-library/user-event';
 import { teamState } from '../state/selectors';
 import { TeamSection } from './team-section';
 import { golfersState } from '../../api';
+import { inviteesState } from 'src/client/api/state/atoms';
 
-const allGolfers = {
-  0: {
-    id: 0,
-    name: 'Tiger Woods',
-    position: 10,
-    prizeMoney: 0,
-    topar: 2,
-    thru: '2',
-    today: '2',
-    teetime: '',
+const invitees = [
+  {
+    id: '0',
+    first_name: 'Tiger',
+    last_name: 'Woods',
+    countryName: 'USA',
+    countryCode: 'USA',
+    Amateur: '',
+    First: '',
+    Past: '',
+    image: false,
   },
-};
+];
 
 const activeTeam = {
   id: 0,
@@ -30,7 +32,8 @@ const activeTeam = {
 const renderTeamDetails = () => {
   const initializeState = ({ set }: MutableSnapshot) => {
     set(teamState, activeTeam);
-    set(golfersState, allGolfers);
+    // set(golfersState, allGolfers);
+    set(inviteesState, invitees);
   };
 
   render(
@@ -58,7 +61,7 @@ describe('Team Details', () => {
     expect(screen.getByText('New Name')).toBeTruthy();
   });
 
-  test.only('lists selected golfers', () => {
+  test('lists selected golfers', () => {
     renderTeamDetails();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();

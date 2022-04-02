@@ -1,5 +1,5 @@
 // TODO: Uncomment request processing once real url is live
-import type { LeaderboardData } from '../../../types';
+import type { LeaderboardData, RawGolferData } from '../../../types';
 import { addPrizeMoney } from '../../util/prize-money';
 import { normaliseCutLine } from './normalise-cut-line';
 import { getLeaderboard } from '../fetch/get-leaderboard';
@@ -22,10 +22,11 @@ export const fetchLeaderboardData = async () => {
   }
 };
 
-export const generateGolferData = async () => {
-  const { cutLine, rawGolfersData, currentRound } =
-    await fetchLeaderboardData();
-
+export const processLeaderBoardData = (
+  cutLine: number,
+  rawGolfersData: RawGolferData[],
+  currentRound: string
+) => {
   if (rawGolfersData.length === 0) {
     return {
       golfers: null,
@@ -39,4 +40,11 @@ export const generateGolferData = async () => {
   const golferMoneyRankings = addPrizeMoney(golferRankings, currentRound);
 
   return { golfers, golferMoneyRankings, cutLine };
+};
+
+export const generateGolferData = async () => {
+  const { cutLine, rawGolfersData, currentRound } =
+    await fetchLeaderboardData();
+
+  return processLeaderBoardData(cutLine, rawGolfersData, currentRound);
 };
