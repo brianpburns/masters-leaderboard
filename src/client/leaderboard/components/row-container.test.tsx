@@ -4,6 +4,7 @@ import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golferMoneyRankingsState, golfersState } from 'src/client/api';
 import { selectionPhaseState } from 'src/client/app';
+import { GolferMoneyRankings, Golfers } from 'src/types';
 import { RowContainer } from './row-container';
 
 const mockGolfersData = {
@@ -48,10 +49,14 @@ const mockPrizeMoney = {
   },
 };
 
-const renderRowContainer = (selectionPhase = false) => {
+const renderRowContainer = (
+  selectionPhase = false,
+  golferData: Golfers | null = mockGolfersData,
+  prizeMoney: GolferMoneyRankings | null = mockPrizeMoney
+) => {
   const initializeState = ({ set }: MutableSnapshot) => {
-    set(golfersState, mockGolfersData);
-    set(golferMoneyRankingsState, mockPrizeMoney);
+    set(golfersState, golferData);
+    set(golferMoneyRankingsState, prizeMoney);
     set(selectionPhaseState, selectionPhase);
   };
   render(
@@ -82,7 +87,16 @@ describe('RowContainer', () => {
     expect(screen.getByTestId('sub-table-row')).toBeTruthy();
   });
 
-  test('subtable does not open when in selection phase', () => {
+  test('subtable does not open when there is no leaderboard data', () => {
+    renderRowContainer(false, null, null);
+
+    userEvent.click(screen.getByText('Team Logan'));
+
+    expect(screen.queryByTestId('toggle-up')).toBeFalsy();
+    expect(screen.queryByTestId('sub-table-row')).toBeFalsy();
+  });
+
+  test('subtable does not open when selectionPhase is true', () => {
     renderRowContainer(true);
 
     userEvent.click(screen.getByText('Team Logan'));

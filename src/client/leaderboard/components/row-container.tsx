@@ -21,7 +21,7 @@ export const RowContainer = ({ position, row }: Props) => {
   const selectionPhase = useRecoilValue(selectionPhaseState);
 
   const toggleDropdown = (value: boolean) => {
-    if (golfers) {
+    if (golfers && !selectionPhase) {
       setOpen(value);
     } else {
       sendAlert('Teams cannot be viewed until the tournament starts', 'info');
