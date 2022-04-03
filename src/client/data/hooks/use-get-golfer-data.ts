@@ -1,8 +1,28 @@
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { inviteesState } from 'src/client/api';
+import { useManageGolfers } from 'src/client/team';
+import { Player } from 'src/types';
 
 export const useGetGolferData = () => {
   const allGolfers = useRecoilValue(inviteesState);
+  const { unselectedGolfers } = useManageGolfers();
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<Player[]>([]);
+
+  useEffect(() => {
+    if (searchTerm !== '') {
+      const matches = allGolfers.filter((golfer) => {
+        const { first_name, last_name } = golfer;
+        const fullName = `${first_name} ${last_name}`.toLowerCase();
+
+        return fullName.includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(matches);
+    } else {
+      setSearchResults(unselectedGolfers);
+    }
+  }, [unselectedGolfers, searchTerm, allGolfers]);
 
   const getGolferData = (id: number) => {
     const matchingGolfer = allGolfers.find(
@@ -22,14 +42,11 @@ export const useGetGolferData = () => {
     return { golfers, rookieCount, top10Count };
   };
 
-  const search = (searchTerm: string) => {
-    return allGolfers.filter((golfer) => {
-      const { first_name, last_name } = golfer;
-      const fullName = `${first_name} ${last_name}`.toLowerCase();
-
-      return fullName.includes(searchTerm.toLowerCase());
-    });
+  return {
+    getGolferData,
+    getGolfersData,
+    searchTerm,
+    setSearchTerm,
+    searchResults,
   };
-
-  return { getGolferData, getGolfersData, search };
 };
