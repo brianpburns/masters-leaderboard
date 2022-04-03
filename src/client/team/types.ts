@@ -1,1 +1,1 @@
-export type Filter = 'none' | 'rookies' | 'top10';
+export type Filter = 'none' | 'rookies' | 'top10' | 'other';

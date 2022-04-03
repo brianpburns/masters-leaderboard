@@ -13,6 +13,11 @@ export const useFilter = (players: Player[]) => {
     } else if (filter === 'top10') {
       const top10 = players.filter((golfer) => golfer.top10 === true);
       setFilteredResults(top10);
+    } else if (filter === 'other') {
+      const other = players.filter(
+        (golfer) => golfer.top10 !== true && golfer.First !== '1'
+      );
+      setFilteredResults(other);
     } else {
       setFilteredResults(players);
     }

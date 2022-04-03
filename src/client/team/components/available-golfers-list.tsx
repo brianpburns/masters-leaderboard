@@ -42,8 +42,13 @@ export const AvailableGolfersList = () => {
           checked={filter === 'rookies'}
           onClick={(checked) => setFilter(checked ? 'rookies' : 'none')}
         />
+        <Checkbox
+          label='Other'
+          checked={filter === 'other'}
+          onClick={(checked) => setFilter(checked ? 'other' : 'none')}
+        />
         <RemainingPicks noPicksLeft={remainingPicks === 0}>
-          Picks left: {remainingPicks}
+          Picks: {remainingPicks}
         </RemainingPicks>
       </FiltersContainer>
       <StyledGolfersList disabled={remainingPicks === 0}>
