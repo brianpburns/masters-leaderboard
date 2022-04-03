@@ -1,10 +1,10 @@
+import { Table, TableCell, TableHead, TableRow } from '@mui/material';
 import React from 'react';
-
-import { BodyContainer } from './body-container';
-import { StyledTableContainer } from './styled';
 import { useLoadTeams } from 'src/client/api';
 import { Loader } from 'src/client/shared';
-import { Table, TableCell, TableHead, TableRow } from '@mui/material';
+import { useAddPrizeMoney } from '../hooks/use-add-prize-money';
+import { StyledTableContainer } from './styled';
+import { TableBody } from './table-body';
 
 export const Leaderboard = () => {
   // Needs to be done here to pull in any team changes
@@ -23,7 +23,7 @@ export const Leaderboard = () => {
             <TableCell align='left'>Money</TableCell>
           </TableRow>
         </TableHead>
-        <BodyContainer />
+        <TableBody />
       </Table>
     </StyledTableContainer>
   );

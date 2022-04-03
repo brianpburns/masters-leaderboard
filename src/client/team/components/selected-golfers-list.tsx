@@ -6,11 +6,13 @@ import { GolferListItem, IconWrapper, StyledGolfersList } from './styled';
 interface Props {
   selectedGolferIds: number[];
   removeGolfer: (golferId: number) => void;
+  selectionPhase: boolean;
 }
 
 export const SelectedGolfersList = ({
   selectedGolferIds,
   removeGolfer,
+  selectionPhase,
 }: Props) => {
   const { getGolferData } = useGetGolferData();
   return (
@@ -30,7 +32,7 @@ export const SelectedGolfersList = ({
               onClick={() => removeGolfer(golferId)}
               data-testid='remove-golfer'
             >
-              <Remove fontSize='small' />
+              {selectionPhase && <Remove fontSize='small' />}
             </IconWrapper>
           </GolferListItem>
         );

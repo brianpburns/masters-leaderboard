@@ -6,9 +6,10 @@ import { EditIconWrapper, NameWrapper } from './styled';
 interface Props {
   name: string;
   nameUpdate: (name: string) => void;
+  selectionPhase: boolean;
 }
 
-export const TeamName = ({ name, nameUpdate }: Props) => {
+export const TeamName = ({ name, nameUpdate, selectionPhase }: Props) => {
   const [tempName, setTempName] = useState('');
   const [editMode, setEditMode] = useState(false);
 
@@ -37,9 +38,11 @@ export const TeamName = ({ name, nameUpdate }: Props) => {
   ) : (
     <NameWrapper onClick={() => setEditMode(true)}>
       {name}
-      <EditIconWrapper>
-        <Edit fontSize='small' data-testid='edit-name-btn' />
-      </EditIconWrapper>
+      {selectionPhase && (
+        <EditIconWrapper>
+          <Edit fontSize='small' data-testid='edit-name-btn' />
+        </EditIconWrapper>
+      )}
     </NameWrapper>
   );
 };

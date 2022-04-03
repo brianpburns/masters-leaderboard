@@ -1,71 +1,68 @@
 import { Button } from '@mui/material';
-import isEqual from 'lodash/isEqual';
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
-import { useSendAlert } from 'src/client/shared';
-import { useUpdateTeam } from '../../api';
-import { useManageGolfers } from '../hooks/use-manage-golfers';
-import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
-import { teamState } from '../state/selectors';
+import { Team } from 'src/types';
 import { SelectedGolfersList } from './selected-golfers-list';
-import { ButtonsContainer, CancelButton, TeamContainer } from './styled';
+import { TeamContainer, ButtonsContainer, CancelButton } from './styled';
 import { TeamName } from './team-name';
 
-export const TeamSection = () => {
-  const [pickedGolfers, setPickedGolfers] = useRecoilState(teamGolfersIdsState);
-  const [refGolfers, setRefGolfers] = useRecoilState(savedGolfersIdsRefState);
-  const { removeGolfer } = useManageGolfers();
-  const updateTeam = useUpdateTeam();
-  const deleteTeam = useDeleteTeam();
-  const [teamDetails, setTeamDetails] = useRecoilState(teamState);
-  const sendAlert = useSendAlert();
+interface Props {
+  teamDetails: Team;
+  handleNameUpdate: (newName: string) => void;
+  selectionPhase: boolean;
+  pickedGolfers: number[];
+  removeGolfer: (golferId: number) => void;
+  onSave: () => void;
+  handleCancel: () => void;
+  noChanges: boolean;
+  deleteTeam: (id: number) => void;
+}
 
-  const onSave = () => {
-    updateTeam(teamDetails);
-    setRefGolfers(pickedGolfers);
-  };
-
-  const handleNameUpdate = (newName: string) => {
-    updateTeam({ ...teamDetails, name: newName });
-    setTeamDetails({ ...teamDetails, name: newName });
-  };
-
-  const noChanges = isEqual(refGolfers, pickedGolfers);
-
-  const handleCancel = () => {
-    setPickedGolfers(refGolfers);
-    sendAlert('Discarded Changes', 'info');
-  };
-
+export const TeamSection = ({
+  teamDetails,
+  handleNameUpdate,
+  selectionPhase,
+  pickedGolfers,
+  removeGolfer,
+  onSave,
+  handleCancel,
+  noChanges,
+  deleteTeam,
+}: Props) => {
   return (
     <TeamContainer>
-      <TeamName name={teamDetails.name} nameUpdate={handleNameUpdate} />
+      <TeamName
+        name={teamDetails.name}
+        nameUpdate={handleNameUpdate}
+        selectionPhase={selectionPhase}
+      />
       <SelectedGolfersList
         selectedGolferIds={pickedGolfers}
         removeGolfer={removeGolfer}
+        selectionPhase={selectionPhase}
       />
-      <ButtonsContainer>
-        <Button
-          size='small'
-          variant='contained'
-          color='primary'
-          onClick={onSave}
-          disabled={noChanges}
-        >
-          Save
-        </Button>
-        <CancelButton
-          size='small'
-          variant='contained'
-          color='secondary'
-          onClick={handleCancel}
-          disabled={noChanges}
-        >
-          Cancel
-        </CancelButton>
-        <button onClick={() => deleteTeam(teamDetails.id)}>Delete</button>
-      </ButtonsContainer>
+      {selectionPhase && (
+        <ButtonsContainer>
+          <Button
+            size='small'
+            variant='contained'
+            color='primary'
+            onClick={onSave}
+            disabled={noChanges}
+          >
+            Save
+          </Button>
+          <CancelButton
+            size='small'
+            variant='contained'
+            color='secondary'
+            onClick={handleCancel}
+            disabled={noChanges}
+          >
+            Cancel
+          </CancelButton>
+          <button onClick={() => deleteTeam(teamDetails.id)}>Delete</button>
+        </ButtonsContainer>
+      )}
     </TeamContainer>
   );
 };

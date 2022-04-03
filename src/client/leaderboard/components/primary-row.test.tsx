@@ -17,6 +17,7 @@ const renderPrimaryRow = (open = true) => {
           setOpen={mockSetOpen}
           position={1}
           row={teams[0]}
+          selectionPhase={false}
         />
       </tbody>
     </table>

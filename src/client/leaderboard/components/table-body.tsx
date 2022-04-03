@@ -1,16 +1,16 @@
-import React from 'react';
-import { Team } from 'src/types';
 import { TableBody as MTableBody } from '@mui/material';
+import React from 'react';
+import { useAddPrizeMoney } from '../hooks/use-add-prize-money';
 import { RowContainer } from './row-container';
 
-interface Props {
-  tableData: Team[];
-}
+export const TableBody = () => {
+  const tableData = useAddPrizeMoney();
 
-export const TableBody = ({ tableData }: Props) => (
-  <MTableBody>
-    {tableData.map((row, id) => (
-      <RowContainer key={row.name} position={id} row={row} />
-    ))}
-  </MTableBody>
-);
+  return (
+    <MTableBody>
+      {tableData.map((row, id) => (
+        <RowContainer key={row.name} position={id} row={row} />
+      ))}
+    </MTableBody>
+  );
+};
