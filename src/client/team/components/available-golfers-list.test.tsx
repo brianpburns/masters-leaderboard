@@ -16,6 +16,7 @@ const invitees = [
     First: '',
     Past: '',
     image: false,
+    top10: false,
   },
   {
     id: '1',
@@ -27,6 +28,7 @@ const invitees = [
     First: '',
     Past: '',
     image: false,
+    top10: false,
   },
 ];
 
