@@ -10,22 +10,31 @@ interface Props {
   setOpen: (isOpen: boolean) => void;
   position: number;
   row: Team;
+  selectionPhase: boolean;
 }
 
 const StyledTableCell = styled(TableCell)`
   border-bottom: unset !important;
 `;
 
-export const PrimaryRow = ({ open, setOpen, position, row }: Props) => (
+export const PrimaryRow = ({
+  open,
+  setOpen,
+  position,
+  row,
+  selectionPhase,
+}: Props) => (
   <TableRow onClick={() => setOpen(!open)} hover={true} selected={open}>
     <StyledTableCell>
-      <IconButton aria-label='expand row' size='small'>
-        {open ? (
-          <KeyboardArrowUp data-testid='toggle-up' />
-        ) : (
-          <KeyboardArrowDown data-testid='toggle-down' />
-        )}
-      </IconButton>
+      {!selectionPhase && (
+        <IconButton aria-label='expand row' size='small'>
+          {open ? (
+            <KeyboardArrowUp data-testid='toggle-up' />
+          ) : (
+            <KeyboardArrowDown data-testid='toggle-down' />
+          )}
+        </IconButton>
+      )}
     </StyledTableCell>
     <StyledTableCell>{position + 1}</StyledTableCell>
     <StyledTableCell>{row.name}</StyledTableCell>

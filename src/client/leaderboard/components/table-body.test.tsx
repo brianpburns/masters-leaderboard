@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { teamState } from 'src/client/team/state/selectors';
-import { BodyContainer } from './body-container';
 import { setupMockServer } from 'test/mocks';
 import {
   golfersState,
   teamsState,
   golferMoneyRankingsState,
 } from 'src/client/api';
+import { TableBody } from './table-body';
 
 setupMockServer();
 
@@ -66,7 +66,7 @@ describe('BodyContainer', () => {
     render(
       <RecoilRoot initializeState={initializeState}>
         <table>
-          <BodyContainer />
+          <TableBody />
         </table>
       </RecoilRoot>
     );

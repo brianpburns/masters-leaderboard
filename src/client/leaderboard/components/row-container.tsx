@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { golfersState } from 'src/client/api';
+import { selectionPhaseState } from 'src/client/app';
 import { useSendAlert } from 'src/client/shared';
 import { Team } from '../../../types';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
@@ -17,6 +18,7 @@ export const RowContainer = ({ position, row }: Props) => {
   const rankedGolfers = useSortedGolfers(row);
   const golfers = useRecoilValue(golfersState);
   const sendAlert = useSendAlert();
+  const selectionPhase = useRecoilValue(selectionPhaseState);
 
   const toggleDropdown = (value: boolean) => {
     if (golfers) {
@@ -33,8 +35,11 @@ export const RowContainer = ({ position, row }: Props) => {
         setOpen={toggleDropdown}
         position={position}
         row={row}
+        selectionPhase={selectionPhase}
       />
-      <SubTable isOpen={open} rankedGolfers={rankedGolfers} />
+      {!selectionPhase && (
+        <SubTable isOpen={open} rankedGolfers={rankedGolfers} />
+      )}
     </>
   );
 };
