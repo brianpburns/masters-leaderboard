@@ -62,5 +62,6 @@ export const useGetGolferData = () => {
     searchTerm,
     setSearchTerm,
     searchResults,
+    sortResults,
   };
 };
