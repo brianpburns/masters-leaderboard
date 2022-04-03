@@ -116,3 +116,9 @@ export const FlagWrapper = styled.div`
     height: 10px;
   }
 `;
+
+export const Error = styled.p`
+  color: #ff3e51;
+  font-size: 14px;
+  margin-top: 4px;
+`;

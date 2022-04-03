@@ -23,7 +23,7 @@ const renderTeamSection = (selectionPhase = true, noChanges = false) => {
         teamDetails={teamDetails}
         handleNameUpdate={handleNameUpdate}
         selectionPhase={selectionPhase}
-        pickedGolfers={pickedGolfers}
+        selectedGolferIds={pickedGolfers}
         removeGolfer={removeGolfer}
         onSave={onSave}
         handleCancel={handleCancel}

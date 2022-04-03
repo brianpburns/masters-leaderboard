@@ -11,7 +11,8 @@ import { teamState } from '../state/selectors';
 import { TeamSection } from './team-section';
 
 export const TeamSectionContainer = () => {
-  const [pickedGolfers, setPickedGolfers] = useRecoilState(teamGolfersIdsState);
+  const [selectedGolferIds, setSelectedGolferIds] =
+    useRecoilState(teamGolfersIdsState);
   const [refGolfers, setRefGolfers] = useRecoilState(savedGolfersIdsRefState);
   const { removeGolfer } = useManageGolfers();
   const updateTeam = useUpdateTeam();
@@ -22,7 +23,7 @@ export const TeamSectionContainer = () => {
 
   const onSave = () => {
     updateTeam(teamDetails);
-    setRefGolfers(pickedGolfers);
+    setRefGolfers(selectedGolferIds);
   };
 
   const handleNameUpdate = (newName: string) => {
@@ -30,10 +31,10 @@ export const TeamSectionContainer = () => {
     setTeamDetails({ ...teamDetails, name: newName });
   };
 
-  const noChanges = isEqual(refGolfers, pickedGolfers);
+  const noChanges = isEqual(refGolfers, selectedGolferIds);
 
   const handleCancel = () => {
-    setPickedGolfers(refGolfers);
+    setSelectedGolferIds(refGolfers);
     sendAlert('Discarded Changes', 'info');
   };
 
@@ -42,7 +43,7 @@ export const TeamSectionContainer = () => {
       teamDetails={teamDetails}
       handleNameUpdate={handleNameUpdate}
       selectionPhase={selectionPhase}
-      pickedGolfers={pickedGolfers}
+      selectedGolferIds={selectedGolferIds}
       removeGolfer={removeGolfer}
       onSave={onSave}
       handleCancel={handleCancel}

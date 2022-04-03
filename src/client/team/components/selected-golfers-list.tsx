@@ -1,37 +1,30 @@
 import React from 'react';
-import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
+import { Player } from 'src/types';
 import { GolfersListItem } from './golfers-list-item';
 import { StyledGolfersList } from './styled';
 
 interface Props {
-  selectedGolferIds: number[];
+  selectedGolfers: Player[];
   removeGolfer: (golferId: number) => void;
   selectionPhase: boolean;
 }
 
 export const SelectedGolfersList = ({
-  selectedGolferIds,
+  selectedGolfers,
   removeGolfer,
   selectionPhase,
 }: Props) => {
-  const { getGolferData } = useGetGolferData();
   return (
     <StyledGolfersList data-testid='selected-golfers-list'>
-      {selectedGolferIds.map((golferId, i) => {
-        const golfer = getGolferData(golferId.toString());
-
-        return (
-          golfer && (
-            <GolfersListItem
-              key={i}
-              golfer={golfer}
-              availableView={false}
-              onIconClick={removeGolfer}
-              selectionPhase={selectionPhase}
-            />
-          )
-        );
-      })}
+      {selectedGolfers.map((golfer) => (
+        <GolfersListItem
+          key={golfer.id}
+          golfer={golfer}
+          availableView={false}
+          onIconClick={removeGolfer}
+          selectionPhase={selectionPhase}
+        />
+      ))}
     </StyledGolfersList>
   );
 };
