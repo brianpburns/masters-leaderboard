@@ -5,34 +5,34 @@ import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
 import { AvailableGolfersList } from './available-golfers-list';
 
-const invitees = [
+const mockInvitees = [
   {
-    id: '0',
+    last_name: 'Woods ',
     first_name: 'Tiger',
-    last_name: 'Woods',
-    countryName: 'USA',
+    id: '8793',
+    countryName: 'United States',
     countryCode: 'USA',
     Amateur: '',
     First: '',
     Past: '',
-    image: false,
+    image: true,
     top10: false,
   },
   {
-    id: '1',
+    last_name: 'Couples ',
     first_name: 'Fred',
-    last_name: 'Couples',
-    countryName: 'USA',
+    id: '1226',
+    countryName: 'United States',
     countryCode: 'USA',
     Amateur: '',
     First: '',
-    Past: '',
-    image: false,
+    Past: '1',
+    image: true,
     top10: false,
   },
 ];
 
-const renderGolfersList = () => {
+const renderGolfersList = (invitees = mockInvitees) => {
   const initializeState = ({ set }: MutableSnapshot) => {
     set(inviteesState, invitees);
   };
@@ -44,16 +44,19 @@ const renderGolfersList = () => {
   );
 };
 
-describe('Golfers List', () => {
+describe('Available Golfers List', () => {
   test('renders list and remaining picks', () => {
     renderGolfersList();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
-    expect(screen.getByText('Remaining picks: 10')).toBeTruthy();
+    expect(screen.getByText('Picks: 10')).toBeTruthy();
   });
 
   test('removes a selected golfer from the list', async () => {
-    renderGolfersList();
+    renderGolfersList([mockInvitees[0]]);
+
+    expect(screen.getByText('Tiger Woods')).toBeTruthy();
+
     userEvent.click(screen.getAllByTestId('AddIcon')[0]);
 
     await waitFor(() => expect(screen.queryByText('Tiger Woods')).toBeFalsy());

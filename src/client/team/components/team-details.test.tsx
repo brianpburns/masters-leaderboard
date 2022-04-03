@@ -68,7 +68,7 @@ describe('Team Details', () => {
 
   test('removes golfer from list', () => {
     renderTeamDetails();
-    userEvent.click(screen.getByTestId('remove-golfer'));
+    userEvent.click(screen.getByTestId('RemoveIcon'));
 
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
   });
