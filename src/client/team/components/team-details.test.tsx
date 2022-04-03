@@ -1,12 +1,10 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
 import userEvent from '@testing-library/user-event';
-
-import { teamState } from '../state/selectors';
-import { TeamSection } from './team-section';
-import { golfersState } from '../../api';
+import React from 'react';
+import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
+import { teamState } from '../state/selectors';
+import { TeamSectionContainer } from './team-section-container';
 
 const invitees = [
   {
@@ -32,13 +30,12 @@ const activeTeam = {
 const renderTeamDetails = () => {
   const initializeState = ({ set }: MutableSnapshot) => {
     set(teamState, activeTeam);
-    // set(golfersState, allGolfers);
     set(inviteesState, invitees);
   };
 
   render(
     <RecoilRoot {...{ initializeState }}>
-      <TeamSection />
+      <TeamSectionContainer />
     </RecoilRoot>
   );
 };

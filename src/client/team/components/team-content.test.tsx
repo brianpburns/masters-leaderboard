@@ -8,7 +8,7 @@ import { TeamContent } from './team-content';
 
 setupMockServer();
 
-const renderTeamContent = () => {
+const renderTeamContent = (selectionPhase = true) => {
   const initializeState = ({ set }: MutableSnapshot) => {
     set(tokenState, 'dummyToken');
     set(golfersState, cleanGolfers);
@@ -16,7 +16,7 @@ const renderTeamContent = () => {
 
   render(
     <RecoilRoot initializeState={initializeState}>
-      <TeamContent />
+      <TeamContent selectionPhase={selectionPhase} />
     </RecoilRoot>
   );
 };
@@ -30,6 +30,17 @@ describe('TeamContent', () => {
     await waitFor(() => {
       expect(screen.getByText('burnsing it up')).toBeTruthy();
       expect(screen.getByTestId('golfers-list')).toBeTruthy();
+    });
+  });
+
+  test(`doesn't render available golfers when selectionPhase is false`, async () => {
+    renderTeamContent(false);
+
+    expect(screen.getByTestId('loader')).toBeTruthy();
+
+    await waitFor(() => {
+      expect(screen.getByText('burnsing it up')).toBeTruthy();
+      expect(screen.queryByTestId('golfers-list')).toBeFalsy();
     });
   });
 });

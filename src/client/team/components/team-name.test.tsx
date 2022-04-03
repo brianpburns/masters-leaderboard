@@ -5,8 +5,14 @@ import userEvent from '@testing-library/user-event';
 
 const mockNameUpdate = jest.fn();
 
-const renderTeamName = () => {
-  render(<TeamName name='test' nameUpdate={mockNameUpdate} />);
+const renderTeamName = (selectionPhase = true) => {
+  render(
+    <TeamName
+      name='test'
+      nameUpdate={mockNameUpdate}
+      selectionPhase={selectionPhase}
+    />
+  );
 };
 
 describe('TeamName', () => {
@@ -39,5 +45,11 @@ describe('TeamName', () => {
     fireEvent.keyDown(input, { key: 'Enter', keyCode: 13, which: 13 });
 
     expect(mockNameUpdate).toBeCalledWith('new name');
+  });
+
+  test(`doesn't show edit icon when selection mode is false`, () => {
+    renderTeamName(false);
+
+    expect(screen.queryByTestId('edit-name-btn')).toBeFalsy();
   });
 });
