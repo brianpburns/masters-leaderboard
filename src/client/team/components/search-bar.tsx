@@ -10,20 +10,15 @@ interface Props {
 }
 
 export const SearchBar = ({ searchTerm, setSearchTerm }: Props) => {
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value === '') setSearchTerm('Name');
-  };
-  const searching = searchTerm !== 'Name';
+  const searching = searchTerm !== '';
 
   return (
     <SearchBarWrapper>
       <StyledSearchBar
-        id='standard'
         data-testid='search-bar-input'
         value={searchTerm}
-        onClick={() => searchTerm === 'Name' && setSearchTerm('')}
         onChange={(e) => setSearchTerm(e.currentTarget.value)}
-        onBlur={handleBlur}
+        placeholder='Search'
         endAdornment={
           <InputAdornment position='end'>
             {searching ? (

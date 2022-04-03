@@ -71,7 +71,7 @@ export const TeamSection = ({
               variant='contained'
               color='secondary'
               onClick={handleCancel}
-              disabled={noChanges || error}
+              disabled={noChanges}
             >
               Cancel
             </CancelButton>
