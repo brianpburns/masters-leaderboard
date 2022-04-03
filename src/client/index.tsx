@@ -7,7 +7,7 @@ import {
   cutLineState,
   golfersState,
 } from './api';
-import { Root } from './app';
+import { Root, selectionPhaseState } from './app';
 import './index.css';
 
 const localBootstrap = async () => {
@@ -27,6 +27,7 @@ const bootstrap = async () => {
     set(golfersState, golfers);
     set(cutLineState, cutLine);
     set(golferMoneyRankingsState, golferMoneyRankings);
+    set(selectionPhaseState, false);
   };
 
   ReactDOM.render(

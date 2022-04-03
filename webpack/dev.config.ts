@@ -1,4 +1,4 @@
-import { Configuration, DefinePlugin } from 'webpack';
+import { DefinePlugin } from 'webpack';
 import 'webpack-dev-server';
 import CopyPlugin from 'copy-webpack-plugin';
 import path from 'path';
