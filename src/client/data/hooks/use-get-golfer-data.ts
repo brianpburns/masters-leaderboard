@@ -10,6 +10,20 @@ export const useGetGolferData = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Player[]>([]);
 
+  const sortResults = (resultsToSort: Player[]) => {
+    const compare = (playerA: Player, playerB: Player) => {
+      if (playerA.top10) {
+        return -1;
+      }
+      if (playerB.top10 !== true && playerA.First === '') {
+        return -1;
+      }
+      return 0;
+    };
+
+    return resultsToSort.slice().sort(compare);
+  };
+
   useEffect(() => {
     if (searchTerm !== '') {
       const matches = allGolfers.filter((golfer) => {
@@ -18,9 +32,9 @@ export const useGetGolferData = () => {
 
         return fullName.includes(searchTerm.toLowerCase());
       });
-      setSearchResults(matches);
+      setSearchResults(sortResults(matches));
     } else {
-      setSearchResults(unselectedGolfers);
+      setSearchResults(sortResults(unselectedGolfers));
     }
   }, [unselectedGolfers, searchTerm, allGolfers]);
 

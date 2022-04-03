@@ -23,11 +23,6 @@ export const AvailableGolfersList = () => {
   const { filter, setFilter, results } = useFilter(searchResults);
   const remainingPicks = 10 - selectedGolferIds.length;
 
-  const handleAddGolfer = (id: number) => {
-    if (remainingPicks === 0) return;
-    addGolfer(id);
-  };
-
   return (
     <GolfersListContainer data-testid='golfers-list'>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -58,7 +53,7 @@ export const AvailableGolfersList = () => {
               key={i}
               golfer={golfer}
               availableView={true}
-              onIconClick={handleAddGolfer}
+              onIconClick={addGolfer}
               selectionPhase={selectionPhase}
             />
           );
