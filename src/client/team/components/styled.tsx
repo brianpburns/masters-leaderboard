@@ -1,4 +1,9 @@
-import { Button, FilledInput, IconButton } from '@mui/material';
+import {
+  Button,
+  FilledInput,
+  FormControlLabel,
+  IconButton,
+} from '@mui/material';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
@@ -70,8 +75,8 @@ export const NameWrapper = styled.div`
 export const RemainingPicks = styled.div<{ noPicksLeft: boolean }>`
   font-size: 14px;
   width: 100%;
-  text-align: end;
-  margin: 5px 0;
+  max-width: fit-content;
+  margin-left: auto;
   ${({ noPicksLeft }) => noPicksLeft && 'color: red'};
 `;
 
@@ -87,6 +92,21 @@ export const StyledSearchBar = styled(FilledInput)`
 
   input {
     padding: 5px;
+  }
+`;
+
+export const FiltersContainer = styled.div`
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+`;
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+  margin: 0 !important;
+  span {
+    padding: 0 5px 0 0;
+    font-size: 14px;
+    font-family: Source Sans Pro;
   }
 `;
 
