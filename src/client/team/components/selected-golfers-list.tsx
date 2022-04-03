@@ -1,7 +1,7 @@
-import { Remove } from '@mui/icons-material';
 import React from 'react';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { GolferListItem, IconWrapper, StyledGolfersList } from './styled';
+import { GolfersListItem } from './golfers-list-item';
+import { StyledGolfersList } from './styled';
 
 interface Props {
   selectedGolferIds: number[];
@@ -18,23 +18,18 @@ export const SelectedGolfersList = ({
   return (
     <StyledGolfersList data-testid='selected-golfers-list'>
       {selectedGolferIds.map((golferId, i) => {
-        const golferData = getGolferData(golferId.toString());
-
-        // TODO: Remove once test data is wiped. Handles cases where golfer IDs from last year are used.
-        if (!golferData) return;
-
-        const { first_name, last_name } = golferData;
+        const golfer = getGolferData(golferId.toString());
 
         return (
-          <GolferListItem key={i} selected={true}>
-            {`${first_name} ${last_name}`}
-            <IconWrapper
-              onClick={() => removeGolfer(golferId)}
-              data-testid='remove-golfer'
-            >
-              {selectionPhase && <Remove fontSize='small' />}
-            </IconWrapper>
-          </GolferListItem>
+          golfer && (
+            <GolfersListItem
+              key={i}
+              golfer={golfer}
+              availableView={false}
+              onIconClick={removeGolfer}
+              selectionPhase={selectionPhase}
+            />
+          )
         );
       })}
     </StyledGolfersList>
