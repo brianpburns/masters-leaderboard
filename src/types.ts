@@ -60,6 +60,7 @@ export interface Player {
   First: string;
   Past: string;
   image: boolean;
+  top10: boolean;
 }
 
 export interface PlayersResponseData {

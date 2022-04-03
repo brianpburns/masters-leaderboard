@@ -10,6 +10,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Berger ',
@@ -21,6 +22,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Bezuidenhout ',
@@ -32,6 +34,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Burns ',
@@ -43,6 +46,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Cantlay ',
@@ -54,6 +58,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Casey ',
@@ -65,6 +70,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Champ ',
@@ -76,6 +82,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Cink ',
@@ -87,6 +94,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Conners ',
@@ -98,6 +106,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Couples ',
@@ -109,6 +118,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Davis ',
@@ -120,6 +130,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'DeChambeau ',
@@ -131,17 +142,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
-    },
-    {
-      last_name: 'English ',
-      first_name: 'Harris',
-      id: '34099',
-      countryName: 'United States',
-      countryCode: 'USA',
-      Amateur: '',
-      First: '',
-      Past: '',
-      image: true,
+      top10: false,
     },
     {
       last_name: 'Finau ',
@@ -153,6 +154,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Fitzpatrick ',
@@ -164,6 +166,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Fleetwood ',
@@ -175,6 +178,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Garcia ',
@@ -186,6 +190,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Glover ',
@@ -197,6 +202,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Gooch ',
@@ -208,6 +214,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Greaser ',
@@ -219,6 +226,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Hagestad ',
@@ -230,6 +238,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Harman ',
@@ -241,6 +250,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Harrington ',
@@ -252,6 +262,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Hatton ',
@@ -263,6 +274,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Henley ',
@@ -274,6 +286,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Herbert ',
@@ -285,6 +298,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Higgo ',
@@ -296,6 +310,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Higgs ',
@@ -307,6 +322,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Hoge ',
@@ -318,6 +334,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Homa ',
@@ -329,6 +346,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Horschel ',
@@ -340,6 +358,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Hovland ',
@@ -351,6 +370,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: true,
     },
     {
       last_name: 'Hughes ',
@@ -362,6 +382,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Im ',
@@ -373,6 +394,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Jarvis ',
@@ -384,6 +406,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Johnson ',
@@ -395,6 +418,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Johnson ',
@@ -406,6 +430,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Kanaya ',
@@ -417,6 +442,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Kim ',
@@ -428,6 +454,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Kisner ',
@@ -439,6 +466,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Koepka ',
@@ -450,6 +478,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Kokrak ',
@@ -461,6 +490,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Langer ',
@@ -472,6 +502,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Lee ',
@@ -483,6 +514,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Lee ',
@@ -494,6 +526,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Leishman ',
@@ -505,6 +538,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'List ',
@@ -516,6 +550,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Lowry ',
@@ -527,6 +562,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Lyle ',
@@ -538,6 +574,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'MacIntyre ',
@@ -549,6 +586,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Matsuyama ',
@@ -560,6 +598,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'McIlroy ',
@@ -571,6 +610,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Migliozzi ',
@@ -582,6 +622,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Mize ',
@@ -593,6 +634,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Molinari ',
@@ -604,6 +646,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Morikawa ',
@@ -615,6 +658,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: true,
     },
     {
       last_name: 'Na ',
@@ -626,6 +670,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Nakajima ',
@@ -637,6 +682,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Niemann ',
@@ -648,6 +694,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Olazábal ',
@@ -659,6 +706,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Oosthuizen ',
@@ -670,6 +718,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Palmer ',
@@ -681,6 +730,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Pieters ',
@@ -692,6 +742,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Piot ',
@@ -703,6 +754,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Power ',
@@ -714,6 +766,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Rahm ',
@@ -725,6 +778,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Reed ',
@@ -736,6 +790,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Rose ',
@@ -747,6 +802,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Schauffele ',
@@ -758,6 +814,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Scheffler ',
@@ -769,6 +826,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: true,
     },
     {
       last_name: 'Schwartzel ',
@@ -780,6 +838,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Scott ',
@@ -791,6 +850,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Shepherd ',
@@ -802,6 +862,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Simpson ',
@@ -813,6 +874,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Singh ',
@@ -824,6 +886,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Smith ',
@@ -835,6 +898,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'Spieth ',
@@ -846,6 +910,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Straka ',
@@ -857,6 +922,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Swafford ',
@@ -868,6 +934,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Thomas ',
@@ -879,6 +946,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: true,
     },
     {
       last_name: 'van Rooyen ',
@@ -890,6 +958,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Varner III',
@@ -901,6 +970,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Watson ',
@@ -912,6 +982,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Weir ',
@@ -923,6 +994,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Westwood ',
@@ -934,6 +1006,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Willett ',
@@ -945,6 +1018,7 @@ export const inviteesData = {
       First: '',
       Past: '1',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Wolff ',
@@ -956,6 +1030,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Woodland ',
@@ -967,6 +1042,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Woods ',
@@ -978,6 +1054,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: true,
+      top10: false,
     },
     {
       last_name: 'Young ',
@@ -989,6 +1066,7 @@ export const inviteesData = {
       First: '1',
       Past: '',
       image: false,
+      top10: false,
     },
     {
       last_name: 'Zalatoris ',
@@ -1000,6 +1078,7 @@ export const inviteesData = {
       First: '',
       Past: '',
       image: false,
+      top10: false,
     },
   ],
 };
