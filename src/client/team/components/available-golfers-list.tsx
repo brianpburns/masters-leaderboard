@@ -20,7 +20,7 @@ export const AvailableGolfersList = () => {
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const selectionPhase = useRecoilValue(selectionPhaseState);
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
-  const { filter, setFilter, results } = useFilter(searchResults);
+  const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
   const remainingPicks = 10 - selectedGolferIds.length;
 
   return (
@@ -43,7 +43,7 @@ export const AvailableGolfersList = () => {
           onClick={(checked) => setFilter(checked ? 'other' : 'none')}
         />
         <RemainingPicks noPicksLeft={remainingPicks === 0}>
-          Picks: {remainingPicks}
+          Picks Left: {remainingPicks}
         </RemainingPicks>
       </FiltersContainer>
       <StyledGolfersList disabled={remainingPicks === 0}>
