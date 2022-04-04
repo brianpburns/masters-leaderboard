@@ -4,6 +4,7 @@ import { addPrizeMoney } from '../../util/prize-money';
 import { normaliseCutLine } from './normalise-cut-line';
 import { getLeaderboard } from '../fetch/get-leaderboard';
 import { generateRankings } from './generate-rankings';
+// import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 
 export const fetchLeaderboardData = async () => {
   try {

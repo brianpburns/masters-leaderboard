@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 import { Player } from 'src/types';
 import { Filter } from '../types';
 
-export const useFilter = (players: Player[]) => {
+export const useFilter = (players: Player[], searchTerm: string) => {
   const [filter, setFilter] = useState<Filter>('none');
   const [filteredResults, setFilteredResults] = useState<Player[]>([]);
+
+  useEffect(() => {
+    if (searchTerm !== '') setFilter('none');
+  }, [searchTerm]);
 
   useEffect(() => {
     if (filter === 'rookies') {

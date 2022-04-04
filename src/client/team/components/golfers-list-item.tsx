@@ -30,21 +30,24 @@ export const GolfersListItem = ({
     golfer;
   const alreadySelected = selectedGolferIds.includes(parseInt(id));
   const rookie = First === '1';
+  const showFlag = availableView || !selectionPhase;
 
   return (
     <GolferListItemContainer selected={false}>
-      <FlagWrapper>
-        <img
-          src={`https://www.masters.com/assets/images/flags/${countryCode}_sm.gif`}
-          alt={countryName}
-        />
-      </FlagWrapper>
+      {showFlag && (
+        <FlagWrapper>
+          <img
+            src={`https://www.masters.com/assets/images/flags/${countryCode}_sm.gif`}
+            alt={countryName}
+          />
+        </FlagWrapper>
+      )}
       {`${first_name} ${last_name}`}
       {availableView && alreadySelected ? (
         <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
       ) : (
         <IconWrapper top10={top10} onClick={() => onIconClick(parseInt(id))}>
-          {<p> {top10 ? 'Top 10' : rookie && 'Rookie'} </p>}
+          {<p> {top10 ? '10' : rookie && 'R'} </p>}
           <Icon color='black'>
             {availableView
               ? remainingPicks !== 0 && <Add fontSize='small' />

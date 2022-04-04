@@ -40,7 +40,7 @@ const other = {
 
 const players = [top10, other, rookie];
 
-const testUseFilter = () => renderHook(() => useFilter(players));
+const testUseFilter = () => renderHook(() => useFilter(players, ''));
 
 describe('useFilter', () => {
   test('returns all golfers by default', () => {

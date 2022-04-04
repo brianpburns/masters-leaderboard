@@ -61,7 +61,7 @@ describe('Available Golfers List', () => {
     renderGolfersList();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
-    expect(screen.getByText('Picks: 10')).toBeTruthy();
+    expect(screen.getByText('Picks Left: 10')).toBeTruthy();
   });
 
   test('removes a selected golfer from the list', async () => {
