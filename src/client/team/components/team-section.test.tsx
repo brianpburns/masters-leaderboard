@@ -7,14 +7,14 @@ const teamDetails = {
   id: 1,
   owner: 'burns',
   name: 'burnsing it up',
-  golfer_ids: [1],
+  golfer_ids: [8793],
 };
 const handleNameUpdate = jest.fn();
 const removeGolfer = jest.fn();
 const onSave = jest.fn();
 const handleCancel = jest.fn();
 const deleteTeam = jest.fn();
-const pickedGolfers = [1];
+const pickedGolfers = [8793];
 
 const renderTeamSection = (selectionPhase = true, noChanges = false) => {
   render(
@@ -23,7 +23,7 @@ const renderTeamSection = (selectionPhase = true, noChanges = false) => {
         teamDetails={teamDetails}
         handleNameUpdate={handleNameUpdate}
         selectionPhase={selectionPhase}
-        pickedGolfers={pickedGolfers}
+        selectedGolferIds={pickedGolfers}
         removeGolfer={removeGolfer}
         onSave={onSave}
         handleCancel={handleCancel}

@@ -3,10 +3,22 @@ import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golfersState } from 'src/client/api';
 import { tokenState } from 'src/client/login/state/atoms';
-import { cleanGolfers, setupMockServer } from 'test/mocks';
+import { setupMockServer } from 'test/mocks';
 import { TeamContent } from './team-content';
 
 setupMockServer();
+
+const cleanGolfers = {
+  '1226': {
+    id: 1226,
+    name: 'Fred Couples',
+    position: 72,
+    topar: 4,
+    thru: '7',
+    today: '+4',
+    teetime: '12:24 PM',
+  },
+};
 
 const renderTeamContent = (selectionPhase = true) => {
   const initializeState = ({ set }: MutableSnapshot) => {

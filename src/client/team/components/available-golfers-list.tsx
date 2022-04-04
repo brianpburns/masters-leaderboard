@@ -1,64 +1,63 @@
-import React, { useState } from 'react';
-import { Add } from '@mui/icons-material';
-
-import { useManageGolfers } from '../hooks/use-manage-golfers';
-import {
-  GolfersListContainer,
-  GolferListItem,
-  IconWrapper,
-  StyledGolfersList,
-  RemainingPicks,
-  AlreadySelectedMsg,
-} from './styled';
-import { Icon } from 'src/client/shared';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { teamGolfersIdsState } from '../state/atoms';
-import { SearchBar } from './search-bar';
+import { selectionPhaseState } from 'src/client/app';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
+import { useFilter } from '../hooks/use-filter';
+import { useManageGolfers } from '../hooks/use-manage-golfers';
+import { teamGolfersIdsState } from '../state/atoms';
+import { Checkbox } from './checkbox';
+import { GolfersListItem } from './golfers-list-item';
+import { SearchBar } from './search-bar';
+import {
+  FiltersContainer,
+  GolfersListContainer,
+  RemainingPicks,
+  StyledGolfersList,
+} from './styled';
 
 export const AvailableGolfersList = () => {
-  const { unselectedGolfers, addGolfer } = useManageGolfers();
-  const { search } = useGetGolferData();
+  const { addGolfer } = useManageGolfers();
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
-  const [searchTerm, setSearchTerm] = useState<string>('Name');
-
+  const selectionPhase = useRecoilValue(selectionPhaseState);
+  const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
+  const { filter, setFilter, results } = useFilter(searchResults);
   const remainingPicks = 10 - selectedGolferIds.length;
-
-  const handleAddGolfer = (id: number) => {
-    if (remainingPicks === 0) return;
-    addGolfer(id);
-  };
-
-  const searchActive = !['Name', ''].includes(searchTerm);
-  const filteredGolfersList = searchActive
-    ? search(searchTerm)
-    : unselectedGolfers;
 
   return (
     <GolfersListContainer data-testid='golfers-list'>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <RemainingPicks noPicksLeft={remainingPicks === 0}>
-        Remaining picks: {remainingPicks}
-      </RemainingPicks>
+      <FiltersContainer>
+        <Checkbox
+          label='Top 10'
+          checked={filter === 'top10'}
+          onClick={(checked) => setFilter(checked ? 'top10' : 'none')}
+        />
+        <Checkbox
+          label='Rookies'
+          checked={filter === 'rookies'}
+          onClick={(checked) => setFilter(checked ? 'rookies' : 'none')}
+        />
+        <Checkbox
+          label='Other'
+          checked={filter === 'other'}
+          onClick={(checked) => setFilter(checked ? 'other' : 'none')}
+        />
+        <RemainingPicks noPicksLeft={remainingPicks === 0}>
+          Picks: {remainingPicks}
+        </RemainingPicks>
+      </FiltersContainer>
       <StyledGolfersList disabled={remainingPicks === 0}>
-        {filteredGolfersList.map((golfer, i) => (
-          <GolferListItem key={i} selected={false}>
-            {`${golfer.first_name} ${golfer.last_name}`}
-            {selectedGolferIds.includes(parseInt(golfer.id)) ? (
-              <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
-            ) : (
-              remainingPicks !== 0 && (
-                <IconWrapper
-                  onClick={() => handleAddGolfer(parseInt(golfer.id))}
-                >
-                  <Icon color='black'>
-                    <Add fontSize='small' />
-                  </Icon>
-                </IconWrapper>
-              )
-            )}
-          </GolferListItem>
-        ))}
+        {results.map((golfer, i) => {
+          return (
+            <GolfersListItem
+              key={i}
+              golfer={golfer}
+              availableView={true}
+              onIconClick={addGolfer}
+              selectionPhase={selectionPhase}
+            />
+          );
+        })}
       </StyledGolfersList>
     </GolfersListContainer>
   );

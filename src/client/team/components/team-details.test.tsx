@@ -3,10 +3,11 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
+import { Player } from 'src/types';
 import { teamState } from '../state/selectors';
 import { TeamSectionContainer } from './team-section-container';
 
-const invitees = [
+const invitees: Player[] = [
   {
     id: '0',
     first_name: 'Tiger',
@@ -17,6 +18,7 @@ const invitees = [
     First: '',
     Past: '',
     image: false,
+    top10: false,
   },
 ];
 
@@ -66,7 +68,7 @@ describe('Team Details', () => {
 
   test('removes golfer from list', () => {
     renderTeamDetails();
-    userEvent.click(screen.getByTestId('remove-golfer'));
+    userEvent.click(screen.getByTestId('RemoveIcon'));
 
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
   });

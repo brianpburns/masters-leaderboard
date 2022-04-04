@@ -1,35 +1,44 @@
 import { prizeMoney } from 'src/client/data';
 import { GolferMoneyRankings } from '../../types';
 
-export const addPrizeMoney = (
-  golferRankings: GolferMoneyRankings,
+export const getPrizeMoney = (
+  position: string,
+  golferIds: number[],
   currentRound: string
 ) => {
-  Object.keys(golferRankings).map((position) => {
-    const rank = parseInt(position);
-    const { golfers } = golferRankings[rank];
+  const rank = parseInt(position);
+  if (rank === 0) {
+    // If player misses the cut they get $10,000
+    // golferRankings[rank].prizeMoney = 10000;
+    return 10000;
+  } else if (
+    (currentRound === '1000' || currentRound === '0100') &&
+    rank > 50
+  ) {
+    // It's round one or two and they're outside the top 50 they get $10,000
+    // golferRankings[rank].prizeMoney = 10000;
+    return 10000;
+  } else if (rank > 50) {
+    // If they make the cut but are outside the top 50 they get ~$25,000
+    // golferRankings[rank].prizeMoney = 25000;
+    return 25000;
+  } else if (golferIds.length > 1) {
+    // If there's a tie
+    return splitMoneyOnTie(rank, golferIds.length);
+  } else {
+    return prizeMoney[rank];
+  }
+};
 
-    if (rank === 0) {
-      // If player misses the cut they get $10,000
-      golferRankings[rank].prizeMoney = 10000;
-    } else if (
-      (currentRound === '1000' || currentRound === '0100') &&
-      rank > 50
-    ) {
-      // It's round one or two and they're outside the top 50 they get $10,000
-      golferRankings[rank].prizeMoney = 10000;
-    } else if (rank > 50) {
-      // If they make the cut but are outside the top 50 they get ~$25,000
-      golferRankings[rank].prizeMoney = 25000;
-    } else if (golfers.length > 1) {
-      // If there's a tie
-      golferRankings[rank].prizeMoney = splitMoneyOnTie(rank, golfers.length);
-    } else {
-      golferRankings[rank].prizeMoney = prizeMoney[rank];
-    }
-  });
+export const addPrizeMoney = (
+  rankings: GolferMoneyRankings,
+  currentRound: string
+) => {
+  for (const [position, ranking] of Object.entries(rankings)) {
+    ranking.prizeMoney = getPrizeMoney(position, ranking.golfers, currentRound);
+  }
 
-  return golferRankings;
+  return rankings;
 };
 
 export const splitMoneyOnTie = (position: number, noPlayersTied: number) => {

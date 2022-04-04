@@ -11,7 +11,11 @@ export const useUpdateTeam = () => {
   const updateTeamDetails = async (team: Team) => {
     try {
       await updateTeam(team, token);
-      sendAlert('Save Success', 'success');
+      const picksRemaining = 10 - team.golfer_ids.length;
+      const message = `Save Success.${
+        picksRemaining && ` ${picksRemaining} picks left.`
+      }`;
+      sendAlert(message, 'success');
     } catch (err) {
       if (err instanceof Error) {
         throw new Error(`Failed to update team. Error message: ${err.message}`);

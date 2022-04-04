@@ -1,4 +1,9 @@
-import { Button, FilledInput, IconButton } from '@mui/material';
+import {
+  Button,
+  FilledInput,
+  FormControlLabel,
+  IconButton,
+} from '@mui/material';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
@@ -6,9 +11,15 @@ export const TeamPageContainer = styled.div`
   display: flex;
 `;
 
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.div<{ top10: boolean }>`
+  display: flex;
   margin-left: auto;
   cursor: pointer;
+
+  p {
+    margin: 0;
+    color: ${({ top10 }) => (top10 ? '#e9c70d' : 'darkgreen')};
+  }
 `;
 
 export const GolfersListContainer = styled.div`
@@ -35,7 +46,7 @@ export const StyledGolfersList = styled.ul<{ disabled?: boolean }>`
   }
 `;
 
-export const GolferListItem = styled.li<{ selected: boolean }>`
+export const GolferListItemContainer = styled.li<{ selected: boolean }>`
   display: flex;
   padding: 2px;
   padding-left: 5px;
@@ -64,8 +75,8 @@ export const NameWrapper = styled.div`
 export const RemainingPicks = styled.div<{ noPicksLeft: boolean }>`
   font-size: 14px;
   width: 100%;
-  text-align: end;
-  margin: 5px 0;
+  max-width: fit-content;
+  margin-left: auto;
   ${({ noPicksLeft }) => noPicksLeft && 'color: red'};
 `;
 
@@ -81,6 +92,21 @@ export const StyledSearchBar = styled(FilledInput)`
 
   input {
     padding: 5px;
+  }
+`;
+
+export const FiltersContainer = styled.div`
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+`;
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+  margin: 0 !important;
+  span {
+    padding: 0 5px 0 0;
+    font-size: 14px;
+    font-family: Source Sans Pro;
   }
 `;
 
@@ -100,4 +126,19 @@ export const StyledIconButton = styled(IconButton)`
 export const EditIconWrapper = styled.div`
   margin-left: 5px;
   cursor: pointer;
+`;
+
+export const FlagWrapper = styled.div`
+  margin-right: 5px;
+
+  img {
+    width: 15px;
+    height: 10px;
+  }
+`;
+
+export const Error = styled.p`
+  color: #ff3e51;
+  font-size: 14px;
+  margin-top: 4px;
 `;
