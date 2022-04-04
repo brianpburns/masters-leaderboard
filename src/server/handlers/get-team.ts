@@ -12,14 +12,25 @@ export function getTeam() {
       return;
     }
 
-    const { sub } = await verifyToken(token);
+    const { sub, name, family_name } = await verifyToken(token);
 
     const team = (await Team.findOne({
       where: { google_id: sub },
     })) as unknown as TeamType;
 
     if (!team) {
-      res.status(404).send('Team does not exist');
+      await Team.create({
+        google_id: sub,
+        owner: name,
+        name: `Team ${family_name}`,
+        golfer_ids: [],
+      });
+
+      const newTeam = (await Team.findOne({
+        where: { google_id: sub },
+      })) as unknown as TeamType;
+
+      res.status(200).send(newTeam);
       return;
     }
 
