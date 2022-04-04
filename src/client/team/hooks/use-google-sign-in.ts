@@ -16,6 +16,7 @@ export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     console.log('useGoogleSignIn response', response);
+    console.log('client ID', googleConfig.clientId);
     if ('tokenId' in response) {
       setToken(response.tokenId);
       if (callback) callback();
@@ -29,6 +30,8 @@ export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
     onSuccess: handleResponse,
     onFailure: handleResponse,
     isSignedIn,
+    scope: 'profile',
+    cookiePolicy: 'single_host_origin',
   });
 
   return { token, signIn, loaded, error };

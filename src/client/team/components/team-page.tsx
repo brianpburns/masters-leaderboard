@@ -12,17 +12,16 @@ export const TeamPage = () => {
   const selectionPhase = useRecoilValue(selectionPhaseState);
 
   const signInSuccess = loaded && !error;
+  const showLogin = (signInSuccess && !token) || error;
 
   return (
     <TeamPageContainer>
       <Loader open={!loaded && !error} />
       {error && <p>Oops there was an error loading the page</p>}
-      {signInSuccess &&
-        (token ? (
-          <TeamContent selectionPhase={selectionPhase} />
-        ) : (
-          <Login signIn={signIn} />
-        ))}
+      {signInSuccess && token && (
+        <TeamContent selectionPhase={selectionPhase} />
+      )}
+      {showLogin && <Login signIn={signIn} />}
     </TeamPageContainer>
   );
 };
