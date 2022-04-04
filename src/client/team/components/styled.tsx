@@ -62,7 +62,7 @@ export const TeamContainer = styled.div`
   width: 50%;
   height: fit-content;
   border-radius: 10px;
-  padding: 40px 10px 10px 10px;
+  padding: 10px;
 `;
 
 export const NameWrapper = styled.div`
@@ -76,7 +76,6 @@ export const RemainingPicks = styled.div<{ noPicksLeft: boolean }>`
   font-size: 14px;
   width: 100%;
   max-width: fit-content;
-  margin-left: auto;
   ${({ noPicksLeft }) => noPicksLeft && 'color: red'};
 `;
 
@@ -96,9 +95,14 @@ export const StyledSearchBar = styled(FilledInput)`
 `;
 
 export const FiltersContainer = styled.div`
-  display: flex;
+  display: grid;
   margin-top: 5px;
   align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: 650px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 export const StyledFormControlLabel = styled(FormControlLabel)`
