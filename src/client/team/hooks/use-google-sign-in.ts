@@ -15,8 +15,6 @@ export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
   const handleResponse = (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
-    console.log('useGoogleSignIn response', response);
-    console.log('client ID', googleConfig.clientId);
     if ('tokenId' in response) {
       setToken(response.tokenId);
       if (callback) callback();
