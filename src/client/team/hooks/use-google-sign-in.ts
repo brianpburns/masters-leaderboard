@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
@@ -9,20 +10,26 @@ import { tokenState } from 'src/client/login/state/atoms';
 
 export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
   const [token, setToken] = useRecoilState(tokenState);
+  const [error, setError] = useState(false);
 
-  const responseGoogle = (
+  const handleResponse = (
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
-    if ('tokenId' in response) setToken(response.tokenId);
-    if (callback) callback();
+    console.log('useGoogleSignIn response', response);
+    if ('tokenId' in response) {
+      setToken(response.tokenId);
+      if (callback) callback();
+    } else {
+      setError(true);
+    }
   };
 
   const { signIn, loaded } = useGoogleLogin({
     clientId: googleConfig.clientId,
-    onSuccess: responseGoogle,
-    onFailure: responseGoogle,
+    onSuccess: handleResponse,
+    onFailure: handleResponse,
     isSignedIn,
   });
 
-  return { token, signIn, loaded };
+  return { token, signIn, loaded, error };
 };

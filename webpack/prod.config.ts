@@ -11,8 +11,8 @@ const config = () =>
     entry: { app: path.resolve(__dirname, '../src/client/index.tsx') },
     output: {
       publicPath: '',
-      path: __dirname + '../dist', // `/dist` is the destination
-      filename: 'bundle.js', // bundle created by webpack it will contain all our app logic. we will link to this .js file from our html page.
+      path: path.resolve(__dirname, '../dist'),
+      filename: 'bundle.js',
     },
     plugins: [
       new DefinePlugin({
