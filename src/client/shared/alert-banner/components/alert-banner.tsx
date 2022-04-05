@@ -8,10 +8,17 @@ interface Props {
   close: () => void;
   message: string;
   severity: AlertSeverity;
+  duration?: number;
 }
 
-export const AlertBanner = ({ open, close, message, severity }: Props) => (
-  <Snackbar open={open} autoHideDuration={3000} onClose={close}>
+export const AlertBanner = ({
+  open,
+  close,
+  message,
+  severity,
+  duration = 3000,
+}: Props) => (
+  <Snackbar open={open} autoHideDuration={duration} onClose={close}>
     <Alert severity={severity}>{message}</Alert>
   </Snackbar>
 );
