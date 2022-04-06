@@ -4,4 +4,5 @@ export type Alert = {
   open: boolean;
   message: string;
   severity: AlertSeverity;
+  duration: number;
 };

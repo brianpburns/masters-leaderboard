@@ -2,7 +2,6 @@ import { Table, TableCell, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 import { useLoadTeams } from 'src/client/api';
 import { Loader } from 'src/client/shared';
-import { useAddPrizeMoney } from '../hooks/use-add-prize-money';
 import { StyledTableContainer } from './styled';
 import { TableBody } from './table-body';
 

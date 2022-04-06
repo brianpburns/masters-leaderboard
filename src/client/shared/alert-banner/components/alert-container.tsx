@@ -5,7 +5,7 @@ import { AlertBanner } from './alert-banner';
 
 export const AlertContainer = () => {
   const [alert, setAlert] = useRecoilState(alertState);
-  const { open, message, severity } = alert;
+  const { open, message, severity, duration } = alert;
 
   const close = () => {
     setAlert({ ...alert, open: false });
@@ -17,6 +17,7 @@ export const AlertContainer = () => {
       close={close}
       message={message}
       severity={severity}
+      duration={duration}
     />
   );
 };

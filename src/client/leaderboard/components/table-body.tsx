@@ -9,7 +9,7 @@ export const TableBody = () => {
   return (
     <MTableBody>
       {tableData.map((row, id) => (
-        <RowContainer key={row.name} position={id} row={row} />
+        <RowContainer key={id} position={id} row={row} />
       ))}
     </MTableBody>
   );

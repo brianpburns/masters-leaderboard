@@ -15,3 +15,8 @@ export const alertMessageState = atom<string>({
   key: '@alert/message',
   default: '',
 });
+
+export const alertDurationState = atom<number>({
+  key: '@alert/duration',
+  default: 3000,
+});
