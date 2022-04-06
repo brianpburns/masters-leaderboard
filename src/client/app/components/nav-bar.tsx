@@ -10,7 +10,8 @@ export const NavBar = ({ signOut }: { signOut: () => void }) => {
   const currentRoute = location.pathname;
   const token = useRecoilValue(tokenState);
   const history = useHistory();
-  // Don't want to auto sign in on the nav bar or the callback is called
+  // Only want the callback to run on clicking login, not on page load so we set up two hooks
+  useGoogleSignIn(true);
   const { signIn } = useGoogleSignIn(false, () => history.push('team'));
 
   return (
