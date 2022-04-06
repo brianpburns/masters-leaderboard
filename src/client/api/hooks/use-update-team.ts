@@ -13,7 +13,9 @@ export const useUpdateTeam = () => {
       await updateTeam(team, token);
       const picksRemaining = 10 - team.golfer_ids.length;
       const picksMessage =
-        picksRemaining > 0 ? ` ${picksRemaining} picks left.` : '';
+        picksRemaining > 0
+          ? ` ${picksRemaining} pick${picksRemaining > 1 ? 's' : ''} left.`
+          : '';
       sendAlert(`Save Success. ${picksMessage}`, 'success');
     } catch (err) {
       if (err instanceof Error) {
