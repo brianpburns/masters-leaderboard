@@ -11,11 +11,11 @@ export const fetchLeaderboardData = async () => {
     const response = await getLeaderboard();
     const { data }: { data: LeaderboardData } = await response.json();
     // const { data }: { data: LeaderboardData } = response;
-    const { currentRound } = data;
+    const { currentRound, player } = data;
 
     return {
       cutLine: normaliseCutLine(data.cutLine),
-      rawGolfersData: [],
+      rawGolfersData: player,
       currentRound,
     };
   } catch (err) {
