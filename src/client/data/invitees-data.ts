@@ -235,7 +235,7 @@ export const inviteesData = {
       countryName: 'United States',
       countryCode: 'USA',
       Amateur: '1',
-      First: '',
+      First: '1',
       Past: '',
       image: true,
       top10: false,
