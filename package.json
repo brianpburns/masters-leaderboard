@@ -54,12 +54,7 @@
     "reselect": "^4.0.0",
     "script-loader": "^0.7.2",
     "sequelize": "^6.6.5",
-    "serve": "^11.3.2",
-    "styled-components": "^5.2.3",
-    "ts-node": "^10.2.1",
-    "tsconfig-paths-jest": "^0.0.1",
-    "typescript": "^4.2.3",
-    "webpack-cli": "^4.6.0"
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -108,9 +103,13 @@
     "react-hot-loader": "^4.13.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.1.0",
+    "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths-jest": "^0.0.1",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "^4.6.3",
     "webpack": "^5.30.0",
+    "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0",
     "whatwg-fetch": "^3.6.2"
