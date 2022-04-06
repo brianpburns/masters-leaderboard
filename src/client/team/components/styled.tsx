@@ -52,8 +52,8 @@ export const GolferListItemContainer = styled.li<{ selected: boolean }>`
   padding: 2px;
   padding-left: 5px;
   border-bottom: 1px solid silver;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   &:hover {
     background-color: ${({ selected }) => (selected ? '#f89898' : '#b1e7a9')};
