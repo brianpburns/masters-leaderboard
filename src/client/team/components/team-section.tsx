@@ -30,11 +30,12 @@ export const TeamSection = ({
   deleteTeam,
 }: Props) => {
   const { getGolfersData } = useGetGolferData();
-  const { golfers, rookieCount, top10Count } =
+  const { golfers, rookieCount, top10Count, amateurCount } =
     getGolfersData(selectedGolferIds);
 
   const pickedGolfers = golfers.length;
-  const rookieError = pickedGolfers === 10 && rookieCount < 2;
+  const rookieError = pickedGolfers === 10 && rookieCount === 0;
+  const amateurError = pickedGolfers === 10 && amateurCount === 0;
   const top10Error = top10Count > 5;
   const error = rookieError || top10Error;
 
@@ -52,9 +53,10 @@ export const TeamSection = ({
       />
       {selectionPhase && (
         <>
-          {rookieError && <Error>You must have at least 2 rookies!</Error>}
+          {amateurError && <Error>Amateur hour. You need at least 1.</Error>}
+          {rookieError && <Error>Rookie error. You need at least 1.</Error>}
           {top10Error && (
-            <Error>You can only have 5 of the top 10 players!</Error>
+            <Error>You can only have 5 of the top 10 players.</Error>
           )}
           <ButtonsContainer>
             <Button
@@ -80,7 +82,8 @@ export const TeamSection = ({
           <p>Rules:</p>
           <ul>
             <li>10 players</li>
-            <li>2 rookies</li>
+            <li>1 rookie</li>
+            <li>1 amateur</li>
             <li>Maximum of 5 of the top 10 players</li>
           </ul>
         </>

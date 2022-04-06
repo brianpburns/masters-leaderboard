@@ -42,6 +42,18 @@ const mockInvitees = [
     image: true,
     top10: true,
   },
+  {
+    last_name: 'Shepherd ',
+    first_name: 'Laird',
+    id: '60371',
+    countryName: 'England',
+    countryCode: 'ENG',
+    Amateur: '1',
+    First: '1',
+    Past: '',
+    image: false,
+    top10: false,
+  },
 ];
 
 const renderGolfersList = (invitees = mockInvitees) => {
@@ -87,13 +99,14 @@ describe('Available Golfers List', () => {
     expect(screen.queryByText('Rory McIlroy')).toBeFalsy();
   });
 
-  test('checkbox toggles rookies', () => {
+  test('checkbox toggles rookies and amateurs', () => {
     renderGolfersList();
 
-    const rookiesCheckbox = screen.getByLabelText('Rookies');
+    const rookiesCheckbox = screen.getByLabelText('(A)/Rookie');
     userEvent.click(rookiesCheckbox);
 
     expect(screen.getByText('Séamus Power')).toBeTruthy();
+    expect(screen.getByText('Laird Shepherd')).toBeTruthy();
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
     expect(screen.queryByText('Rory McIlroy')).toBeFalsy();
 
@@ -102,6 +115,7 @@ describe('Available Golfers List', () => {
     expect(screen.getByText('Séamus Power')).toBeTruthy();
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.getByText('Rory McIlroy')).toBeTruthy();
+    expect(screen.getByText('Laird Shepherd')).toBeTruthy();
   });
 
   test('checkbox toggles top 10', () => {
@@ -113,12 +127,14 @@ describe('Available Golfers List', () => {
     expect(screen.getByText('Rory McIlroy')).toBeTruthy();
     expect(screen.queryByText('Tiger Woods')).toBeFalsy();
     expect(screen.queryByText('Séamus Power')).toBeFalsy();
+    expect(screen.queryByText('Laird Shepherd')).toBeFalsy();
 
     userEvent.click(rookiesCheckbox);
 
     expect(screen.getByText('Séamus Power')).toBeTruthy();
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.getByText('Rory McIlroy')).toBeTruthy();
+    expect(screen.getByText('Laird Shepherd')).toBeTruthy();
   });
 
   test('checkbox toggles other', () => {
@@ -130,11 +146,13 @@ describe('Available Golfers List', () => {
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.queryByText('Rory McIlroy')).toBeFalsy();
     expect(screen.queryByText('Séamus Power')).toBeFalsy();
+    expect(screen.queryByText('Laird Shepherd')).toBeFalsy();
 
     userEvent.click(rookiesCheckbox);
 
     expect(screen.getByText('Séamus Power')).toBeTruthy();
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.getByText('Rory McIlroy')).toBeTruthy();
+    expect(screen.getByText('Laird Shepherd')).toBeTruthy();
   });
 });

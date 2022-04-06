@@ -12,7 +12,9 @@ export const useFilter = (players: Player[], searchTerm: string) => {
 
   useEffect(() => {
     if (filter === 'rookies') {
-      const rookies = players.filter((golfer) => golfer.First === '1');
+      const rookies = players.filter(
+        (golfer) => golfer.First === '1' || golfer.Amateur === '1'
+      );
       setFilteredResults(rookies);
     } else if (filter === 'top10') {
       const top10 = players.filter((golfer) => golfer.top10 === true);

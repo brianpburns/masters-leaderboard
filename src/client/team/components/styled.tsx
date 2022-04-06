@@ -11,14 +11,15 @@ export const TeamPageContainer = styled.div`
   display: flex;
 `;
 
-export const IconWrapper = styled.div<{ top10: boolean }>`
+export const IconWrapper = styled.div<{ top10: boolean; amateur: boolean }>`
   display: flex;
   margin-left: auto;
   cursor: pointer;
 
   p {
     margin: 0;
-    color: ${({ top10 }) => (top10 ? '#e9c70d' : 'darkgreen')};
+    color: ${({ top10, amateur }) =>
+      top10 ? '#e9c70d' : amateur ? 'orange' : 'darkgreen'};
   }
 `;
 
