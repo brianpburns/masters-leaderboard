@@ -12,10 +12,9 @@ export const useUpdateTeam = () => {
     try {
       await updateTeam(team, token);
       const picksRemaining = 10 - team.golfer_ids.length;
-      const message = `Save Success.${
-        picksRemaining && ` ${picksRemaining} picks left.`
-      }`;
-      sendAlert(message, 'success');
+      const picksMessage =
+        picksRemaining > 0 ? ` ${picksRemaining} picks left.` : '';
+      sendAlert(`Save Success. ${picksMessage}`, 'success');
     } catch (err) {
       if (err instanceof Error) {
         throw new Error(`Failed to update team. Error message: ${err.message}`);
