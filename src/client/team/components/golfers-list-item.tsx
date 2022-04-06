@@ -26,10 +26,19 @@ export const GolfersListItem = ({
 }: Props) => {
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
   const remainingPicks = 10 - selectedGolferIds.length;
-  const { id, first_name, last_name, top10, First, countryCode, countryName } =
-    golfer;
+  const {
+    id,
+    first_name,
+    last_name,
+    top10,
+    First,
+    countryCode,
+    countryName,
+    Amateur,
+  } = golfer;
   const alreadySelected = selectedGolferIds.includes(parseInt(id));
   const rookie = First === '1';
+  const amateur = Amateur === '1';
   const showFlag = availableView || !selectionPhase;
 
   return (
@@ -46,8 +55,12 @@ export const GolfersListItem = ({
       {availableView && alreadySelected ? (
         <AlreadySelectedMsg>(Already Selected)</AlreadySelectedMsg>
       ) : (
-        <IconWrapper top10={top10} onClick={() => onIconClick(parseInt(id))}>
-          {<p> {top10 ? '10' : rookie && 'R'} </p>}
+        <IconWrapper
+          top10={top10}
+          amateur={amateur}
+          onClick={() => onIconClick(parseInt(id))}
+        >
+          {<p> {top10 ? '10' : amateur ? 'A' : rookie && 'R'} </p>}
           <Icon color='black'>
             {availableView
               ? remainingPicks !== 0 && <Add fontSize='small' />

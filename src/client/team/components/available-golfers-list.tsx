@@ -33,7 +33,7 @@ export const AvailableGolfersList = () => {
           onClick={(checked) => setFilter(checked ? 'top10' : 'none')}
         />
         <Checkbox
-          label='Rookies'
+          label='(A)/Rookie'
           checked={filter === 'rookies'}
           onClick={(checked) => setFilter(checked ? 'rookies' : 'none')}
         />
