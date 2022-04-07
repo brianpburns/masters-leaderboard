@@ -7,7 +7,7 @@ import { selectionPhaseState } from 'src/client/app';
 import { GolferMoneyRankings, Golfers } from 'src/types';
 import { RowContainer } from './row-container';
 
-const mockGolfersData = {
+const mockGolfersData: Golfers = {
   1226: {
     id: 1226,
     name: 'Fred Couples',
@@ -17,14 +17,14 @@ const mockGolfersData = {
     today: '-',
     teetime: '',
   },
-  21528: {
-    id: 21528,
-    name: 'Henrik Stenson',
+  33448: {
+    name: 'Justin Thomas',
+    id: 33448,
     position: 0,
-    topar: 3,
-    thru: 'F',
-    today: '+4',
-    teetime: '1:30 PM',
+    topar: 14,
+    thru: '-',
+    today: '-',
+    teetime: '',
   },
 };
 
@@ -32,13 +32,13 @@ const mockTeam = {
   id: 0,
   owner: 'Logan',
   name: 'Team Logan',
-  golfer_ids: [21528, 1226],
+  golfer_ids: [33448, 1226],
   google_id: '',
 };
 
 const mockPrizeMoney = {
   0: {
-    golfers: [21528],
+    golfers: [33448],
     prizeMoney: 10,
     topar: -1,
   },

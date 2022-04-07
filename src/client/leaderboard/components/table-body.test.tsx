@@ -22,8 +22,8 @@ const mockGolfers = {
     today: '-',
     teetime: '',
   },
-  21528: {
-    id: 21528,
+  33448: {
+    id: 33448,
     name: 'Henrik Stenson',
     position: 0,
     topar: 3,
@@ -37,13 +37,13 @@ const mockTeam = {
   id: 0,
   owner: 'Logan',
   name: 'Team Logan',
-  golfer_ids: [21528, 1226],
+  golfer_ids: [33448, 1226],
   google_id: '',
 };
 
 const mockPrizeMoney = {
   0: {
-    golfers: [21528],
+    golfers: [33448],
     prizeMoney: 10,
     topar: -1,
   },

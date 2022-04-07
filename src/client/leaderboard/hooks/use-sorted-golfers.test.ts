@@ -13,8 +13,8 @@ const mockGolfersData = {
     today: '-',
     teetime: '',
   },
-  21528: {
-    id: 21528,
+  33448: {
+    id: 33448,
     name: 'Henrik Stenson',
     position: 38,
     topar: 3,
@@ -28,7 +28,7 @@ const mockTeam = {
   id: 0,
   owner: 'Logan',
   name: 'Team Logan',
-  golfer_ids: [21528, 1226],
+  golfer_ids: [33448, 1226],
   google_id: '',
 };
 
@@ -44,6 +44,6 @@ describe('useSortedGolfers', () => {
   test('correctly orders based on position', () => {
     const { result } = renderHook();
 
-    expect(result.current).toEqual([1226, 21528]);
+    expect(result.current).toEqual([1226, 33448]);
   });
 });

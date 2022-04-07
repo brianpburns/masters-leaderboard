@@ -12,13 +12,13 @@ const mockTeams = [
     id: 1,
     owner: 'burns',
     name: 'burnsing it up',
-    golfer_ids: [1226, 21528],
+    golfer_ids: [1226, 33448],
   },
 ];
 
 const mockPrizeMoney: GolferMoneyRankings = {
   38: {
-    golfers: [21528],
+    golfers: [33448],
     prizeMoney: 20,
     topar: -1,
   },
@@ -39,8 +39,8 @@ const mockGolfersData = {
     today: '-',
     teetime: '',
   },
-  21528: {
-    id: 21528,
+  33448: {
+    id: 33448,
     name: 'Henrik Stenson',
     position: 38,
     topar: 3,
