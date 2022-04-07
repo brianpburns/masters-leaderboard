@@ -27,7 +27,7 @@ const bootstrap = async () => {
     set(golfersState, golfers);
     set(cutLineState, cutLine);
     set(golferMoneyRankingsState, golferMoneyRankings);
-    set(selectionPhaseState, false);
+    set(selectionPhaseState, true);
   };
 
   ReactDOM.render(
