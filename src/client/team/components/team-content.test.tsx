@@ -1,8 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golfersState } from 'src/client/api';
-import { tokenState } from 'src/client/login/state/atoms';
+import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
 import { TeamContent } from './team-content';
 
@@ -22,14 +22,16 @@ const cleanGolfers = {
 
 const renderTeamContent = (selectionPhase = true) => {
   const initializeState = ({ set }: MutableSnapshot) => {
-    set(tokenState, 'dummyToken');
     set(golfersState, cleanGolfers);
   };
 
-  render(
+  renderWithProviders(
     <RecoilRoot initializeState={initializeState}>
       <TeamContent selectionPhase={selectionPhase} />
-    </RecoilRoot>
+    </RecoilRoot>,
+    {
+      preloadedState: { global: { token: '' } },
+    }
   );
 };
 
