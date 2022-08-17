@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { golfersState } from 'src/client/api';
-import { selectionPhaseState } from 'src/client/app';
-import { useSendAlert } from 'src/client/shared';
-import { Team } from '../../../types';
+import { selectionPhaseState } from 'src/client/features/app';
+import { useSendAlert } from 'src/client/features/shared';
+import { Team } from '../../../../types';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 import { PrimaryRow } from './primary-row';
 import { SubTable } from './sub-table';

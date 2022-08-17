@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { selectionPhaseState } from 'src/client/app';
+import { selectionPhaseState } from 'src/client/features/app';
 import { Login } from './login';
-import { Loader } from 'src/client/shared';
+import { Loader } from 'src/client/features/shared';
 import { useGoogleSignIn } from '../hooks/use-google-sign-in';
 import { TeamPageContainer } from './styled';
 import { TeamContent } from './team-content';

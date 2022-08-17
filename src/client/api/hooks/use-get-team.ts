@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useSendAlert } from 'src/client/shared';
+import { useSendAlert } from 'src/client/features/shared';
 import { useAuthToken } from 'src/client/store';
-import { teamState } from '../../team/state/selectors';
+import { teamState } from '../../features/team/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
 export const useGetTeam = () => {

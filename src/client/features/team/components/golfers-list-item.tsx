@@ -1,7 +1,7 @@
 import { Add, Remove } from '@mui/icons-material';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { Icon } from 'src/client/shared';
+import { Icon } from 'src/client/features/shared';
 import { Player } from 'src/types';
 import { teamGolfersIdsState } from '../state/atoms';
 import {

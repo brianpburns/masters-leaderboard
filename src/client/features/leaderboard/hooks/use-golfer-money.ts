@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { useGolferPosition } from 'src/client/api';
-import { golferMoneyRankingsState } from '../../api/state/atoms';
+import { golferMoneyRankingsState } from '../../../api/state/atoms';
 
 export const useGolferPrizeMoney = (golferId: number) => {
   const position = useGolferPosition(golferId);

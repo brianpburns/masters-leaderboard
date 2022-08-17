@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { selectionPhaseState } from 'src/client/app';
+import { selectionPhaseState } from 'src/client/features/app';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 import { useFilter } from '../hooks/use-filter';
 import { useManageGolfers } from '../hooks/use-manage-golfers';

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { useSendAlert } from 'src/client/shared';
+import { useSendAlert } from 'src/client/features/shared';
 import { Team } from 'src/types';
 import { listTeams } from '../fetch/list-teams';
 import { teamsState } from '../state/atoms';

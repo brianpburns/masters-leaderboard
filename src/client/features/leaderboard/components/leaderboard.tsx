@@ -1,7 +1,7 @@
 import { Table, TableCell, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 import { useLoadTeams } from 'src/client/api';
-import { Loader } from 'src/client/shared';
+import { Loader } from 'src/client/features/shared';
 import { StyledTableContainer } from './styled';
 import { TableBody } from './table-body';
 

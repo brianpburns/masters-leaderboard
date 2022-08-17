@@ -1,4 +1,4 @@
-import { useSendAlert } from 'src/client/shared';
+import { useSendAlert } from 'src/client/features/shared';
 import { useAuthToken } from 'src/client/store';
 import { Team } from '../../../types';
 import { updateTeam } from '../fetch/update-team';

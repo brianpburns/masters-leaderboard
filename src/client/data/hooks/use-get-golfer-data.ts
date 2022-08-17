@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { inviteesState } from 'src/client/api';
-import { useManageGolfers } from 'src/client/team';
+import { useManageGolfers } from 'src/client/features/team';
 import { Player } from 'src/types';
 
 export const useGetGolferData = () => {

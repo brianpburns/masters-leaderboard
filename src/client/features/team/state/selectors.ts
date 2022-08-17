@@ -1,6 +1,6 @@
 import { DefaultValue, selector } from 'recoil';
 
-import { Team } from '../../../types';
+import { Team } from '../../../../types';
 
 import {
   teamIdState,

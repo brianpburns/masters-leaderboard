@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
-import { Player } from '../../../types';
+import { Player } from '../../../../types';
 import { teamGolfersIdsState } from '../state/atoms';
 
 export const useManageGolfers = () => {

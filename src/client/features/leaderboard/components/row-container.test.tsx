@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golferMoneyRankingsState, golfersState } from 'src/client/api';
-import { selectionPhaseState } from 'src/client/app';
+import { selectionPhaseState } from 'src/client/features/app';
 import { GolferMoneyRankings, Golfers } from 'src/types';
 import { RowContainer } from './row-container';
 
