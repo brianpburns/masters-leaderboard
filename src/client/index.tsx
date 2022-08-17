@@ -9,6 +9,8 @@ import {
 } from './api';
 import { Root, selectionPhaseState } from './app';
 import './index.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const localBootstrap = async () => {
   // eslint-disable-next-line no-console
@@ -32,9 +34,11 @@ const bootstrap = async () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <RecoilRoot initializeState={initialiseState}>
-        <Root />
-      </RecoilRoot>
+      <Provider store={store}>
+        <RecoilRoot initializeState={initialiseState}>
+          <Root />
+        </RecoilRoot>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
