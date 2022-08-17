@@ -2,13 +2,12 @@ import { PreloadedState } from '@reduxjs/toolkit';
 import { render, RenderOptions } from '@testing-library/react';
 import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
-import { AppStore, RootState, setupStore } from '../store';
+import { initialAlertState } from '../features/shared';
+import { AppStore, initialGlobalState, RootState, setupStore } from '../store';
 
 export const defaultState: RootState = {
-  global: {
-    token: '',
-    selectionPhase: true,
-  },
+  global: initialGlobalState,
+  alert: initialAlertState,
 };
 
 /**

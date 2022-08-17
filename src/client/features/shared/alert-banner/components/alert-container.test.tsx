@@ -1,20 +1,20 @@
+import { screen } from '@testing-library/react';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
+import { renderWithProviders } from 'src/client/__test__/store';
+import { initialState } from '../state/alert-slice';
 import { AlertContainer } from './alert-container';
-import { alertState } from '../state/selectors';
-import { Alert } from '../types';
 
-const renderAlert = () => {
-  const initializeState = ({ set }: MutableSnapshot) => {
-    set(alertState, { open: true, message: 'test', severity: 'info' } as Alert);
-  };
-  return render(
-    <RecoilRoot initializeState={initializeState}>
-      <AlertContainer />
-    </RecoilRoot>
-  );
-};
+const renderAlert = () =>
+  renderWithProviders(<AlertContainer />, {
+    preloadedState: {
+      alert: {
+        ...initialState,
+        open: true,
+        message: 'test',
+        severity: 'info',
+      },
+    },
+  });
 
 describe('AlertContainer', () => {
   test('renders alert', () => {

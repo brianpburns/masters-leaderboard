@@ -1,10 +1,9 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { alertState } from '../state/selectors';
+import { useAlertState } from '../state/hooks';
 import { AlertBanner } from './alert-banner';
 
 export const AlertContainer = () => {
-  const [alert, setAlert] = useRecoilState(alertState);
+  const { alert, setAlert } = useAlertState();
   const { open, message, severity, duration } = alert;
 
   const close = () => {

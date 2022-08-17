@@ -2,6 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golfersState } from 'src/client/api';
+import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
 import { TeamContent } from './team-content';
@@ -30,7 +31,7 @@ const renderTeamContent = (selectionPhase = true) => {
       <TeamContent selectionPhase={selectionPhase} />
     </RecoilRoot>,
     {
-      preloadedState: { global: { token: '' } },
+      preloadedState: { global: { ...initialGlobalState, token: '' } },
     }
   );
 };
