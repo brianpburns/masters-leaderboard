@@ -1,8 +1,8 @@
 import React from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { googleConfig } from 'src/client/config';
 import { Leaderboard } from 'src/client/leaderboard';
-import { googleConfig } from 'src/client/login/google-config';
 import { AlertContainer, useSendAlert } from 'src/client/shared';
 import { useAuthToken } from 'src/client/store';
 import { TeamPage } from '../../team';

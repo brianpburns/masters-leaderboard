@@ -4,7 +4,7 @@ import {
   GoogleLoginResponseOffline,
   useGoogleLogin,
 } from 'react-google-login';
-import { googleConfig } from 'src/client/login/google-config';
+import { googleConfig } from 'src/client/config';
 import { useAuthToken } from 'src/client/store';
 
 type GoogleResponse = GoogleLoginResponse | GoogleLoginResponseOffline;
