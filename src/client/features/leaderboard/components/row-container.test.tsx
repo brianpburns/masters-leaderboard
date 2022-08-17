@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { golferMoneyRankingsState, golfersState } from 'src/client/api';
-import { selectionPhaseState } from 'src/client/features/app';
+import { initialGlobalState } from 'src/client/store';
+import { renderWithProviders } from 'src/client/__test__/store';
 import { GolferMoneyRankings, Golfers } from 'src/types';
 import { RowContainer } from './row-container';
 
@@ -57,16 +58,20 @@ const renderRowContainer = (
   const initializeState = ({ set }: MutableSnapshot) => {
     set(golfersState, golferData);
     set(golferMoneyRankingsState, prizeMoney);
-    set(selectionPhaseState, selectionPhase);
   };
-  render(
+  renderWithProviders(
     <RecoilRoot initializeState={initializeState}>
       <table>
         <tbody>
           <RowContainer position={1} row={mockTeam} />
         </tbody>
       </table>
-    </RecoilRoot>
+    </RecoilRoot>,
+    {
+      preloadedState: {
+        global: { ...initialGlobalState, selectionPhase },
+      },
+    }
   );
 };
 

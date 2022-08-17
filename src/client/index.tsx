@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import {
+  cutLineState,
   generateGolferData,
   golferMoneyRankingsState,
-  cutLineState,
   golfersState,
 } from './api';
-import { Root, selectionPhaseState } from './features/app';
+import { Root } from './features/app';
 import './index.css';
-import { Provider } from 'react-redux';
 import { store } from './store/store';
 
 const localBootstrap = async () => {
@@ -29,7 +29,6 @@ const bootstrap = async () => {
     set(golfersState, golfers);
     set(cutLineState, cutLine);
     set(golferMoneyRankingsState, golferMoneyRankings);
-    set(selectionPhaseState, false);
   };
 
   ReactDOM.render(

@@ -3,7 +3,7 @@ import {
   configureStore,
   PreloadedState,
 } from '@reduxjs/toolkit';
-import { globalReducer } from './global-slice/global-slice';
+import { globalReducer } from './global-slice';
 
 const rootReducer = combineReducers({
   global: globalReducer,

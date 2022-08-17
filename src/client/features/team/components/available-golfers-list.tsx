@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { selectionPhaseState } from 'src/client/features/app';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
+import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
 import { useFilter } from '../hooks/use-filter';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { teamGolfersIdsState } from '../state/atoms';
@@ -18,7 +18,7 @@ import {
 export const AvailableGolfersList = () => {
   const { addGolfer } = useManageGolfers();
   const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
-  const selectionPhase = useRecoilValue(selectionPhaseState);
+  const { selectionPhase } = useSelectionPhase();
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
   const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
   const remainingPicks = 10 - selectedGolferIds.length;

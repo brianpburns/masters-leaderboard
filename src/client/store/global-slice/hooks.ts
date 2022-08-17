@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setToken } from '../global-slice';
-import { tokenSelector } from '../selectors';
+import { setToken } from '.';
+import { selectionPhaseSelector, tokenSelector } from './selectors';
 
 export const useAuthToken = () => {
   const dispatch = useDispatch();
@@ -9,4 +9,10 @@ export const useAuthToken = () => {
   const setAuthToken = (token: string) => dispatch(setToken(token));
 
   return { authToken, setAuthToken };
+};
+
+export const useSelectionPhase = () => {
+  const selectionPhase = useSelector(selectionPhaseSelector);
+
+  return { selectionPhase };
 };

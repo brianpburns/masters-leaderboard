@@ -1,15 +1,14 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { selectionPhaseState } from 'src/client/features/app';
-import { Login } from './login';
 import { Loader } from 'src/client/features/shared';
+import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
 import { useGoogleSignIn } from '../hooks/use-google-sign-in';
+import { Login } from './login';
 import { TeamPageContainer } from './styled';
 import { TeamContent } from './team-content';
 
 export const TeamPage = () => {
   const { authToken, loaded, signIn, error } = useGoogleSignIn(true);
-  const selectionPhase = useRecoilValue(selectionPhaseState);
+  const { selectionPhase } = useSelectionPhase();
 
   const signInSuccess = loaded && !error;
   const showLogin = (signInSuccess && !authToken) || error;

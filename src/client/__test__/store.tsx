@@ -7,6 +7,7 @@ import { AppStore, RootState, setupStore } from '../store';
 export const defaultState: RootState = {
   global: {
     token: '',
+    selectionPhase: true,
   },
 };
 
@@ -15,7 +16,7 @@ export const defaultState: RootState = {
  * as allows the user to specify other things such as initialState, store.
  */
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-  preloadedState?: PreloadedState<RootState>;
+  preloadedState?: Partial<PreloadedState<RootState>>;
   store?: AppStore;
 }
 
@@ -28,7 +29,7 @@ export const renderWithProviders = (
   {
     preloadedState = defaultState,
     // Automatically create a store instance if no store was passed in
-    store = setupStore(preloadedState),
+    store = setupStore({ ...defaultState, ...preloadedState }),
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) => {

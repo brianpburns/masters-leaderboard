@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface GlobalState {
   token: string;
+  selectionPhase: boolean;
 }
 
-const initialState: GlobalState = {
+export const initialState: GlobalState = {
   token: '',
+  selectionPhase: true,
 };
 
 const globalSlice = createSlice({

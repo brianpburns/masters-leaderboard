@@ -1,9 +1,9 @@
 import isEqual from 'lodash/isEqual';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
-import { selectionPhaseState } from 'src/client/features/app';
 import { useSendAlert } from 'src/client/features/shared';
+import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
 import { useUpdateTeam } from '../../../api';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
@@ -19,7 +19,7 @@ export const TeamSectionContainer = () => {
   const deleteTeam = useDeleteTeam();
   const [teamDetails, setTeamDetails] = useRecoilState(teamState);
   const sendAlert = useSendAlert();
-  const selectionPhase = useRecoilValue(selectionPhaseState);
+  const { selectionPhase } = useSelectionPhase();
 
   const onSave = () => {
     updateTeam(teamDetails);
