@@ -1,16 +1,15 @@
-import { useRecoilValue } from 'recoil';
-import { tokenState } from 'src/client/login/state/atoms';
 import { useSendAlert } from 'src/client/shared';
+import { useAuthToken } from 'src/client/store';
 import { Team } from '../../../types';
 import { updateTeam } from '../fetch/update-team';
 
 export const useUpdateTeam = () => {
-  const token = useRecoilValue(tokenState);
+  const { authToken } = useAuthToken();
   const sendAlert = useSendAlert();
 
   const updateTeamDetails = async (team: Team) => {
     try {
-      await updateTeam(team, token);
+      await updateTeam(team, authToken);
       const picksRemaining = 10 - team.golfer_ids.length;
       const picksMessage =
         picksRemaining > 0

@@ -1,28 +1,28 @@
 import React from 'react';
 import { useGoogleLogout } from 'react-google-login';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { Leaderboard } from 'src/client/leaderboard';
 import { googleConfig } from 'src/client/login/google-config';
-import { tokenState } from 'src/client/login/state/atoms';
 import { AlertContainer, useSendAlert } from 'src/client/shared';
+import { useAuthToken } from 'src/client/store';
 import { TeamPage } from '../../team';
 import { HeaderImage } from './header-image';
 import { NavBar } from './nav-bar';
 
 export const Root = () => {
-  const setToken = useSetRecoilState(tokenState);
+  const { setAuthToken } = useAuthToken();
+
   const sendAlert = useSendAlert();
 
   const logoutSuccess = () => {
-    setToken('');
+    setAuthToken('');
     sendAlert('Successfully logged out', 'success');
   };
 
   const { signOut } = useGoogleLogout({
     clientId: googleConfig.clientId,
     onLogoutSuccess: logoutSuccess,
-    onFailure: () => setToken(''),
+    onFailure: () => setAuthToken(''),
   });
 
   return (

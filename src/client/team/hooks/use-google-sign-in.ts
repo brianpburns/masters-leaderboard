@@ -4,23 +4,25 @@ import {
   GoogleLoginResponseOffline,
   useGoogleLogin,
 } from 'react-google-login';
-import { useRecoilState } from 'recoil';
 import { googleConfig } from 'src/client/login/google-config';
-import { tokenState } from 'src/client/login/state/atoms';
+import { useAuthToken } from 'src/client/store';
+
+type GoogleResponse = GoogleLoginResponse | GoogleLoginResponseOffline;
 
 export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
-  const [token, setToken] = useRecoilState(tokenState);
   const [error, setError] = useState(false);
 
-  const handleResponse = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => {
-    if ('tokenId' in response) {
-      setToken(response.tokenId);
-      if (callback) callback();
-    } else {
+  const { authToken, setAuthToken } = useAuthToken();
+
+  const handleResponse = (response: GoogleResponse) => {
+    if (!('tokenId' in response)) {
       setError(true);
+      return;
     }
+
+    setAuthToken(response.tokenId);
+
+    if (callback) callback();
   };
 
   const { signIn, loaded } = useGoogleLogin({
@@ -32,5 +34,5 @@ export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
     cookiePolicy: 'single_host_origin',
   });
 
-  return { token, signIn, loaded, error };
+  return { authToken, signIn, loaded, error };
 };
