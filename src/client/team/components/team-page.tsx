@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectionPhaseState } from 'src/client/app';
-import { Login } from 'src/client/login';
+import { Login } from './login';
 import { Loader } from 'src/client/shared';
 import { useGoogleSignIn } from '../hooks/use-google-sign-in';
 import { TeamPageContainer } from './styled';
