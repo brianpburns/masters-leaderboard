@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
+import { renderWithProviders } from 'src/client/__test__/store';
 import { TeamState } from '../types';
 import { TeamSection } from './team-section';
 
@@ -19,7 +20,7 @@ const deleteTeam = jest.fn();
 const pickedGolfers = [8793];
 
 const renderTeamSection = (selectionPhase = true, noChanges = false) => {
-  render(
+  renderWithProviders(
     <RecoilRoot>
       <TeamSection
         teamDetails={teamDetails}

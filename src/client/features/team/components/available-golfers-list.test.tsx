@@ -1,8 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
+import { renderWithProviders } from 'src/client/__test__/store';
 import { AvailableGolfersList } from './available-golfers-list';
 
 const mockInvitees = [
@@ -61,7 +62,7 @@ const renderGolfersList = (invitees = mockInvitees) => {
     set(inviteesState, invitees);
   };
 
-  render(
+  renderWithProviders(
     <RecoilRoot {...{ initializeState }}>
       <AvailableGolfersList />
     </RecoilRoot>
