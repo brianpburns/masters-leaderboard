@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { golfersState } from '../../../api';
+import { useSelector } from 'react-redux';
+import { selectGolfersList } from 'src/client/store/global-slice/selectors';
 import { useGolferPrizeMoney } from '../hooks/use-golfer-money';
 import { displayNumber } from '../utils/display-number';
 import { SubRow } from './sub-row';
@@ -10,12 +10,11 @@ interface Props {
 }
 
 export const SubRowContainer = ({ golferId }: Props) => {
-  const golfers = useRecoilValue(golfersState);
-  // const golfer = golfers[golferId];
+  const golfers = useSelector(selectGolfersList);
   const prizeMoney = useGolferPrizeMoney(golferId);
 
   return (
-    golfers && (
+    Object.keys(golfers).length > 0 && (
       <SubRow
         golfer={golfers[golferId]}
         prizeMoney={displayNumber(prizeMoney)}

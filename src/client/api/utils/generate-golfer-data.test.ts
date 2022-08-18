@@ -12,8 +12,8 @@ describe('processLeaderBoardData', () => {
       '1000'
     );
 
-    expect(golfers).toBeNull();
-    expect(golferMoneyRankings).toBeNull();
+    expect(golfers).toEqual([]);
+    expect(golferMoneyRankings).toEqual([]);
     expect(cutLine).toEqual(0);
   });
 

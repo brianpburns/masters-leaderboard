@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useRecoilValue } from 'recoil';
-import { golfersState } from 'src/client/api';
 import { useSendAlert } from 'src/client/features/shared';
 import { selectPhaseSelection } from 'src/client/store';
+import { selectGolfersList } from 'src/client/store/global-slice/selectors';
 import { TeamWithPrizeMoney } from '../../../../types';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 import { PrimaryRow } from './primary-row';
@@ -17,12 +16,13 @@ interface Props {
 export const RowContainer = ({ position, row }: Props) => {
   const [open, setOpen] = useState(false);
   const rankedGolfers = useSortedGolfers(row);
-  const golfers = useRecoilValue(golfersState);
+  const golfers = useSelector(selectGolfersList);
   const sendAlert = useSendAlert();
   const selectionPhase = useSelector(selectPhaseSelection);
+  const displaySubTable = Object.keys(golfers).length > 0 && !selectionPhase;
 
   const toggleDropdown = (value: boolean) => {
-    if (golfers && !selectionPhase) {
+    if (golfers && displaySubTable) {
       setOpen(value);
     } else {
       sendAlert('Teams cannot be viewed until the tournament starts', 'info');
@@ -38,7 +38,7 @@ export const RowContainer = ({ position, row }: Props) => {
         row={row}
         selectionPhase={selectionPhase}
       />
-      {!selectionPhase && (
+      {displaySubTable && (
         <SubTable isOpen={open} rankedGolfers={rankedGolfers} />
       )}
     </>

@@ -1,9 +1,9 @@
 // TODO: Uncomment request processing once real url is live
 import type { LeaderboardData, RawGolferData } from '../../../types';
 import { addPrizeMoney } from '../../util/prize-money';
-import { normaliseCutLine } from './normalise-cut-line';
 import { getLeaderboard } from '../fetch/get-leaderboard';
 import { generateRankings } from './generate-rankings';
+import { normaliseCutLine } from './normalise-cut-line';
 // import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 
 export const fetchLeaderboardData = async () => {
@@ -30,8 +30,8 @@ export const processLeaderBoardData = (
 ) => {
   if (rawGolfersData.length === 0) {
     return {
-      golfers: null,
-      golferMoneyRankings: null,
+      golfers: [],
+      golferMoneyRankings: [],
       cutLine: 0,
     };
   }

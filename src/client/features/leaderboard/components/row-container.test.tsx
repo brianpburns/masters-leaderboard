@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { golferMoneyRankingsState, golfersState } from 'src/client/api';
+import { golferMoneyRankingsState } from 'src/client/api';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { GolferMoneyRankings, Golfers } from 'src/types';
@@ -53,11 +53,10 @@ const mockPrizeMoney = {
 
 const renderRowContainer = (
   selectionPhase = false,
-  golferData: Golfers | null = mockGolfersData,
-  prizeMoney: GolferMoneyRankings | null = mockPrizeMoney
+  golferData: Golfers = mockGolfersData,
+  prizeMoney: GolferMoneyRankings = mockPrizeMoney
 ) => {
   const initializeState = ({ set }: MutableSnapshot) => {
-    set(golfersState, golferData);
     set(golferMoneyRankingsState, prizeMoney);
   };
   renderWithProviders(
@@ -70,7 +69,7 @@ const renderRowContainer = (
     </RecoilRoot>,
     {
       preloadedState: {
-        global: { ...initialGlobalState, selectionPhase },
+        global: { ...initialGlobalState, selectionPhase, golfers: golferData },
       },
     }
   );
@@ -94,7 +93,7 @@ describe('RowContainer', () => {
   });
 
   test('subtable does not open when there is no leaderboard data', () => {
-    renderRowContainer(false, null, null);
+    renderRowContainer(false, [], []);
 
     userEvent.click(screen.getByText('Team Logan'));
 

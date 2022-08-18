@@ -1,4 +1,5 @@
-import { golferMoneyRankingsState, golfersState } from 'src/client/api';
+import { golferMoneyRankingsState } from 'src/client/api';
+import { initialGlobalState } from 'src/client/store';
 import { reduxHookTestWrapper } from 'src/client/__test__';
 import { GolferMoneyRankings } from 'src/types';
 import { useAddPrizeMoney } from './use-add-prize-money';
@@ -51,9 +52,11 @@ const renderHook = (prizeMoney = mockPrizeMoney) =>
     useAddPrizeMoney,
     ({ set }) => {
       set(golferMoneyRankingsState, prizeMoney);
-      set(golfersState, mockGolfersData);
     },
-    { leaderboard: { teams: mockTeams, cutLine: 0 } }
+    {
+      leaderboard: { teams: mockTeams, cutLine: 0 },
+      global: { ...initialGlobalState, golfers: mockGolfersData },
+    }
   );
 
 describe('useAddPrizeMoney', () => {

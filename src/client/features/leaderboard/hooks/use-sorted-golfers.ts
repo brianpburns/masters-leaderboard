@@ -1,11 +1,11 @@
-import { useRecoilValue } from 'recoil';
-import { golfersState } from 'src/client/api';
+import { useSelector } from 'react-redux';
+import { selectGolfersList } from 'src/client/store';
 import { Team } from '../../../../types';
 
 export const useSortedGolfers = (row: Team) => {
-  const golfers = useRecoilValue(golfersState);
+  const golfers = useSelector(selectGolfersList);
 
-  if (!golfers) return row.golfer_ids;
+  if (Object.keys(golfers).length === 0) return row.golfer_ids;
 
   const positionsSortKey = (aId: number, bId: number) => {
     const aPos = golfers[aId].position;

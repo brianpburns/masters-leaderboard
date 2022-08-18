@@ -1,13 +1,16 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { setToken } from '.';
+import { Golfers } from 'src/types';
+import { setGolfersState, setToken } from '.';
 
-export const useAuthToken = () => {
+export const useGlobalState = () => {
   const dispatch = useDispatch();
 
   return useMemo(() => {
     const setAuthToken = (token: string) => dispatch(setToken(token));
+    const setGolfersList = (golfers: Golfers) =>
+      dispatch(setGolfersState(golfers));
 
-    return { setAuthToken };
+    return { setAuthToken, setGolfersList };
   }, [dispatch]);
 };

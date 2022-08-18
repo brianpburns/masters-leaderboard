@@ -1,7 +1,7 @@
 import { reduxHookTestWrapper } from 'src/client/__test__';
 import { useSortedGolfers } from './use-sorted-golfers';
 
-import { golfersState } from 'src/client/api';
+import { initialGlobalState } from 'src/client/store';
 
 const mockGolfersData = {
   1226: {
@@ -33,12 +33,9 @@ const mockTeam = {
 };
 
 const renderHook = () =>
-  reduxHookTestWrapper(
-    () => useSortedGolfers(mockTeam),
-    ({ set }) => {
-      set(golfersState, mockGolfersData);
-    }
-  );
+  reduxHookTestWrapper(() => useSortedGolfers(mockTeam), undefined, {
+    global: { ...initialGlobalState, golfers: mockGolfersData },
+  });
 
 describe('useSortedGolfers', () => {
   test('correctly orders based on position', () => {

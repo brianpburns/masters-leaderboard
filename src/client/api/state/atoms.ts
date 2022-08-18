@@ -1,12 +1,7 @@
 import { atom } from 'recoil';
 import { inviteesData } from 'src/client/data/invitees-data';
 
-import { GolferMoneyRankings, Golfers, Player } from '../../../types';
-
-export const golfersState = atom<Golfers | null>({
-  key: '@app/golfers',
-  default: null,
-});
+import { GolferMoneyRankings, Player } from '../../../types';
 
 export const golferMoneyRankingsState = atom<GolferMoneyRankings | null>({
   key: '@app/prizeMoney',

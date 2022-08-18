@@ -2,11 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import {
-  generateGolferData,
-  golferMoneyRankingsState,
-  golfersState,
-} from './api';
+import { generateGolferData, golferMoneyRankingsState } from './api';
 import { Root } from './features/app';
 import './index.css';
 import { store } from './store/store';
@@ -26,7 +22,6 @@ const bootstrap = async () => {
   const { golfers, golferMoneyRankings, cutLine } = await generateGolferData();
 
   const initialiseState = ({ set }: MutableSnapshot) => {
-    set(golfersState, golfers);
     set(golferMoneyRankingsState, golferMoneyRankings);
   };
 
@@ -34,7 +29,7 @@ const bootstrap = async () => {
     <React.StrictMode>
       <Provider store={store}>
         <RecoilRoot initializeState={initialiseState}>
-          <TempStateSetupComponent cutLine={cutLine} />
+          <TempStateSetupComponent cutLine={cutLine} golfers={golfers} />
           <Root />
         </RecoilRoot>
       </Provider>

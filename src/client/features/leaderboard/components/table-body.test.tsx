@@ -1,7 +1,8 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { golferMoneyRankingsState, golfersState } from 'src/client/api';
+import { golferMoneyRankingsState } from 'src/client/api';
+import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
 import { TeamState } from '../../team';
@@ -57,7 +58,6 @@ describe('BodyContainer', () => {
   test('renders correct data', async () => {
     const initializeState = ({ set }: MutableSnapshot) => {
       set(golferMoneyRankingsState, mockPrizeMoney);
-      set(golfersState, mockGolfers);
     };
 
     renderWithProviders(
@@ -70,6 +70,7 @@ describe('BodyContainer', () => {
         preloadedState: {
           currentTeam: mockTeam,
           leaderboard: { teams: mockTeams, cutLine: 0 },
+          global: { ...initialGlobalState, golfers: mockGolfers },
         },
       }
     );

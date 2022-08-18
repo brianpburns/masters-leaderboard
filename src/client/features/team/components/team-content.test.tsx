@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { golfersState } from 'src/client/api';
+import { RecoilRoot } from 'recoil';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
@@ -22,16 +21,14 @@ const cleanGolfers = {
 };
 
 const renderTeamContent = (selectionPhase = true) => {
-  const initializeState = ({ set }: MutableSnapshot) => {
-    set(golfersState, cleanGolfers);
-  };
-
   renderWithProviders(
-    <RecoilRoot initializeState={initializeState}>
+    <RecoilRoot>
       <TeamContent selectionPhase={selectionPhase} />
     </RecoilRoot>,
     {
-      preloadedState: { global: { ...initialGlobalState, token: '' } },
+      preloadedState: {
+        global: { ...initialGlobalState, golfers: cleanGolfers },
+      },
     }
   );
 };
