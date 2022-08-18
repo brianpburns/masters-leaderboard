@@ -1,4 +1,4 @@
-import { recoilHookTestWrapper } from 'src/client/__test__';
+import { reduxHookTestWrapper } from 'src/client/__test__';
 import { useGetGolferData } from './use-get-golfer-data';
 
 const rookie = {
@@ -41,7 +41,7 @@ const other = {
 const players = [rookie, top10, other];
 
 const testUseGetGolferData = () =>
-  recoilHookTestWrapper(() => useGetGolferData());
+  reduxHookTestWrapper(() => useGetGolferData());
 
 describe('useGetGolferData', () => {
   test('sorts results correctly', () => {

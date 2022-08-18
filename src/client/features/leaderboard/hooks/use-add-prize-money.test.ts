@@ -1,9 +1,5 @@
-import {
-  golferMoneyRankingsState,
-  teamsState,
-  golfersState,
-} from 'src/client/api';
-import { recoilHookTestWrapper } from 'src/client/__test__';
+import { golferMoneyRankingsState, golfersState } from 'src/client/api';
+import { reduxHookTestWrapper } from 'src/client/__test__';
 import { GolferMoneyRankings } from 'src/types';
 import { useAddPrizeMoney } from './use-add-prize-money';
 
@@ -51,11 +47,14 @@ const mockGolfersData = {
 };
 
 const renderHook = (prizeMoney = mockPrizeMoney) =>
-  recoilHookTestWrapper(useAddPrizeMoney, ({ set }) => {
-    set(teamsState, mockTeams);
-    set(golferMoneyRankingsState, prizeMoney);
-    set(golfersState, mockGolfersData);
-  });
+  reduxHookTestWrapper(
+    useAddPrizeMoney,
+    ({ set }) => {
+      set(golferMoneyRankingsState, prizeMoney);
+      set(golfersState, mockGolfersData);
+    },
+    { leaderboard: { teams: mockTeams, cutLine: 0 } }
+  );
 
 describe('useAddPrizeMoney', () => {
   test('sets correct team money', () => {

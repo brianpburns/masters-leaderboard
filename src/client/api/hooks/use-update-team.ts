@@ -1,18 +1,17 @@
+import { useSelector } from 'react-redux';
 import { useSendAlert } from 'src/client/features/shared';
 import { TeamState } from 'src/client/features/team';
-import { useAuthToken } from 'src/client/store';
+import { selectAuthToken } from 'src/client/store';
 import { updateTeam } from '../fetch/update-team';
 
 const generateMessage = (picksRemaining: number) => {
-  if (picksRemaining > 0) {
-    return ` ${picksRemaining} pick${picksRemaining > 1 ? 's' : ''} left.`;
-  }
+  if (picksRemaining < 0) return '';
 
-  return '';
+  return ` ${picksRemaining} pick${picksRemaining > 1 ? 's' : ''} left.`;
 };
 
 export const useUpdateTeam = () => {
-  const { authToken } = useAuthToken();
+  const authToken = useSelector(selectAuthToken);
   const sendAlert = useSendAlert();
 
   const updateTeamDetails = async (team: TeamState) => {

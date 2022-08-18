@@ -1,4 +1,4 @@
-import { recoilHookTestWrapper } from 'src/client/__test__';
+import { reduxHookTestWrapper } from 'src/client/__test__';
 import { useSortedGolfers } from './use-sorted-golfers';
 
 import { golfersState } from 'src/client/api';
@@ -33,7 +33,7 @@ const mockTeam = {
 };
 
 const renderHook = () =>
-  recoilHookTestWrapper(
+  reduxHookTestWrapper(
     () => useSortedGolfers(mockTeam),
     ({ set }) => {
       set(golfersState, mockGolfersData);

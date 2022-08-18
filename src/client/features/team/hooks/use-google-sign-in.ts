@@ -5,14 +5,19 @@ import {
   useGoogleLogin,
 } from 'react-google-login';
 import { googleConfig } from 'src/client/config';
-import { useAuthToken } from 'src/client/store';
+import {
+  selectAuthToken,
+  useAppSelector,
+  useAuthToken,
+} from 'src/client/store';
 
 type GoogleResponse = GoogleLoginResponse | GoogleLoginResponseOffline;
 
 export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
   const [error, setError] = useState(false);
 
-  const { authToken, setAuthToken } = useAuthToken();
+  const { setAuthToken } = useAuthToken();
+  const authToken = useAppSelector(selectAuthToken);
 
   const handleResponse = (response: GoogleResponse) => {
     if (!('tokenId' in response)) {

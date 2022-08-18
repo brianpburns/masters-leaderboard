@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import {
-  cutLineState,
   generateGolferData,
   golferMoneyRankingsState,
   golfersState,
@@ -11,6 +10,7 @@ import {
 import { Root } from './features/app';
 import './index.css';
 import { store } from './store/store';
+import { TempStateSetupComponent } from './temp-state-component';
 
 const localBootstrap = async () => {
   // eslint-disable-next-line no-console
@@ -27,7 +27,6 @@ const bootstrap = async () => {
 
   const initialiseState = ({ set }: MutableSnapshot) => {
     set(golfersState, golfers);
-    set(cutLineState, cutLine);
     set(golferMoneyRankingsState, golferMoneyRankings);
   };
 
@@ -35,6 +34,7 @@ const bootstrap = async () => {
     <React.StrictMode>
       <Provider store={store}>
         <RecoilRoot initializeState={initialiseState}>
+          <TempStateSetupComponent cutLine={cutLine} />
           <Root />
         </RecoilRoot>
       </Provider>

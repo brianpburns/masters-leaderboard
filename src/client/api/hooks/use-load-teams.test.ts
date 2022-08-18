@@ -1,10 +1,10 @@
-import { recoilHookTestWrapper } from 'src/client/__test__';
+import { reduxHookTestWrapper } from 'src/client/__test__';
 import { setupMockServer } from 'test/mocks';
 import { useLoadTeams } from './use-load-teams';
 
 setupMockServer();
 
-const testUseLoadTeams = () => recoilHookTestWrapper(useLoadTeams);
+const testUseLoadTeams = () => reduxHookTestWrapper(useLoadTeams);
 
 describe('useLoadTeams', () => {
   test('updates loading state correctly', async () => {

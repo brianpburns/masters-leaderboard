@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useSendAlert } from 'src/client/features/shared';
 import { useSetCurrentTeam } from 'src/client/features/team/state/hooks';
-import { useAuthToken } from 'src/client/store';
+import { selectAuthToken } from 'src/client/store';
 import { useGetTeamQuery } from '../api-slice';
 
 export const useGetTeam = () => {
   const { setCurrentTeam } = useSetCurrentTeam();
-  const { authToken } = useAuthToken();
+  const authToken = useSelector(selectAuthToken);
   const history = useHistory();
   const sendAlert = useSendAlert();
   const { data, isFetching, isSuccess, isError } = useGetTeamQuery(authToken);

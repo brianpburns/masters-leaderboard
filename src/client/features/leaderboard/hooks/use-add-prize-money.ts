@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useRecoilValue } from 'recoil';
-import {
-  golfersState,
-  teamsState,
-  golferMoneyRankingsState,
-} from 'src/client/api';
+import { golferMoneyRankingsState, golfersState } from 'src/client/api';
 import { Team, TeamWithPrizeMoney } from 'src/types';
+import { selectTeams } from '../state/selectors';
 import { rankTeams } from '../utils/rank-teams';
 
 /**
@@ -16,7 +14,7 @@ import { rankTeams } from '../utils/rank-teams';
  * }
  */
 export const useAddPrizeMoney = () => {
-  const teams = useRecoilValue(teamsState);
+  const teams = useSelector(selectTeams);
   const rankingsWithPrizeMoney = useRecoilValue(golferMoneyRankingsState);
   const golfersData = useRecoilValue(golfersState);
   const [rankedTeams, setRankedTeams] = useState<TeamWithPrizeMoney[]>([]);

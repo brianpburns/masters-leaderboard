@@ -4,6 +4,7 @@ import {
   PreloadedState,
 } from '@reduxjs/toolkit';
 import { apiReducer, apiSlice } from '../api/api-slice';
+import { leaderboardReducer } from '../features/leaderboard';
 import { alertReducer } from '../features/shared';
 import { currentTeamReducer } from '../features/team';
 import { globalReducer } from './global-slice';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   global: globalReducer,
   alert: alertReducer,
   currentTeam: currentTeamReducer,
+  leaderboard: leaderboardReducer,
   [apiSlice.reducerPath]: apiReducer,
 });
 

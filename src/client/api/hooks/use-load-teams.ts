@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useTeamState } from 'src/client/features/leaderboard/state/hooks';
 import { useSendAlert } from 'src/client/features/shared';
 import { Team } from 'src/types';
 import { listTeams } from '../fetch/list-teams';
-import { teamsState } from '../state/atoms';
 
 export const useLoadTeams = () => {
-  const setTeams = useSetRecoilState(teamsState);
+  const { setTeams } = useTeamState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const sendAlert = useSendAlert();
