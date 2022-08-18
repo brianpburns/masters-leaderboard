@@ -1,15 +1,15 @@
-import React from 'react';
-import { TableRow, IconButton, TableCell } from '@mui/material';
-import { displayNumber } from '../utils/display-number';
-import { Team } from 'src/types';
-import styled from 'styled-components';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { IconButton, TableCell, TableRow } from '@mui/material';
+import React from 'react';
+import { TeamWithPrizeMoney } from 'src/types';
+import styled from 'styled-components';
+import { displayNumber } from '../utils/display-number';
 
 interface Props {
   open: boolean;
   setOpen: (isOpen: boolean) => void;
   position: number;
-  row: Team;
+  row: TeamWithPrizeMoney;
   selectionPhase: boolean;
 }
 

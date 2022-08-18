@@ -1,10 +1,9 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useSelector } from 'react-redux';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
+import { selectPhaseSelection } from 'src/client/store';
 import { useFilter } from '../hooks/use-filter';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
-import { teamGolfersIdsState } from '../state/atoms';
 import { Checkbox } from './checkbox';
 import { GolfersListItem } from './golfers-list-item';
 import { SearchBar } from './search-bar';
@@ -17,11 +16,11 @@ import {
 
 export const AvailableGolfersList = () => {
   const { addGolfer } = useManageGolfers();
-  const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
-  const { selectionPhase } = useSelectionPhase();
+  const { selectedGolfers } = useManageGolfers();
+  const selectionPhase = useSelector(selectPhaseSelection);
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
   const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
-  const remainingPicks = 10 - selectedGolferIds.length;
+  const remainingPicks = 10 - selectedGolfers.length;
 
   return (
     <GolfersListContainer data-testid='golfers-list'>

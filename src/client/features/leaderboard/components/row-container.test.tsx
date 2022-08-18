@@ -35,6 +35,7 @@ const mockTeam = {
   name: 'Team Logan',
   golfer_ids: [33448, 1226],
   google_id: '',
+  prizeMoney: 0,
 };
 
 const mockPrizeMoney = {

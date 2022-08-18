@@ -1,10 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
+import { renderWithProviders } from 'src/client/__test__/store';
 import { Player } from 'src/types';
-import { teamState } from '../state/selectors';
+import { TeamState } from '../types';
 import { TeamSectionContainer } from './team-section-container';
 
 const invitees: Player[] = [
@@ -22,23 +23,24 @@ const invitees: Player[] = [
   },
 ];
 
-const activeTeam = {
+const activeTeam: TeamState = {
   id: 0,
   owner: 'Burns',
   name: 'Test Name',
-  golfer_ids: [0],
+  golferIds: [0],
+  savedRef: [],
 };
 
 const renderTeamDetails = () => {
   const initializeState = ({ set }: MutableSnapshot) => {
-    set(teamState, activeTeam);
     set(inviteesState, invitees);
   };
 
-  render(
+  renderWithProviders(
     <RecoilRoot {...{ initializeState }}>
       <TeamSectionContainer />
-    </RecoilRoot>
+    </RecoilRoot>,
+    { preloadedState: { currentTeam: activeTeam } }
   );
 };
 

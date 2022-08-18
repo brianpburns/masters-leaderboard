@@ -47,7 +47,10 @@ export interface Team {
   name: string;
   golfer_ids: number[];
   google_id?: string;
-  prizeMoney?: number;
+}
+
+export interface TeamWithPrizeMoney extends Team {
+  prizeMoney: number;
 }
 
 export interface Player {

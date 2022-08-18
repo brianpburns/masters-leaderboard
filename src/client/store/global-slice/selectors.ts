@@ -1,6 +1,6 @@
 import { RootState } from '../store';
 
-export const tokenSelector = (state: RootState) => state.global.token;
+export const selectAuthToken = (state: RootState) => state.global.token;
 
-export const selectionPhaseSelector = (state: RootState) =>
+export const selectPhaseSelection = (state: RootState) =>
   state.global.selectionPhase;

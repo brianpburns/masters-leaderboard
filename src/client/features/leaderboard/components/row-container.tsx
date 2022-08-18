@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useRecoilValue } from 'recoil';
 import { golfersState } from 'src/client/api';
 import { useSendAlert } from 'src/client/features/shared';
-import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
-import { Team } from '../../../../types';
+import { selectPhaseSelection } from 'src/client/store';
+import { TeamWithPrizeMoney } from '../../../../types';
 import { useSortedGolfers } from '../hooks/use-sorted-golfers';
 import { PrimaryRow } from './primary-row';
 import { SubTable } from './sub-table';
 
 interface Props {
   position: number;
-  row: Team;
+  row: TeamWithPrizeMoney;
 }
 
 export const RowContainer = ({ position, row }: Props) => {
@@ -18,7 +19,7 @@ export const RowContainer = ({ position, row }: Props) => {
   const rankedGolfers = useSortedGolfers(row);
   const golfers = useRecoilValue(golfersState);
   const sendAlert = useSendAlert();
-  const { selectionPhase } = useSelectionPhase();
+  const selectionPhase = useSelector(selectPhaseSelection);
 
   const toggleDropdown = (value: boolean) => {
     if (golfers && !selectionPhase) {

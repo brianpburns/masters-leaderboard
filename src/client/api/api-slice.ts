@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Team } from 'src/types';
+import { CurrentTeamResponse } from '../features/team/types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
   endpoints: (builder) => ({
-    getTeam: builder.query<Team, string>({
+    getTeam: builder.query<CurrentTeamResponse, string>({
       query: (token) => ({
         url: 'team',
         headers: {

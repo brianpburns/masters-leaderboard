@@ -1,18 +1,15 @@
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '.';
-import { selectionPhaseSelector, tokenSelector } from './selectors';
+import { selectPhaseSelection, selectAuthToken } from './selectors';
 
 export const useAuthToken = () => {
   const dispatch = useDispatch();
-  const authToken = useSelector(tokenSelector);
+  const authToken = useSelector(selectAuthToken);
 
-  const setAuthToken = (token: string) => dispatch(setToken(token));
+  return useMemo(() => {
+    const setAuthToken = (token: string) => dispatch(setToken(token));
 
-  return { authToken, setAuthToken };
-};
-
-export const useSelectionPhase = () => {
-  const selectionPhase = useSelector(selectionPhaseSelector);
-
-  return { selectionPhase };
+    return { authToken, setAuthToken };
+  }, [authToken, dispatch]);
 };

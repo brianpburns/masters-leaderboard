@@ -3,11 +3,13 @@ import { render, RenderOptions } from '@testing-library/react';
 import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 import { initialAlertState } from '../features/shared';
+import { initialTeamState } from '../features/team';
 import { AppStore, initialGlobalState, RootState, setupStore } from '../store';
 
-export const defaultState: RootState = {
+export const defaultState: Omit<RootState, 'api'> = {
   global: initialGlobalState,
   alert: initialAlertState,
+  currentTeam: initialTeamState,
 };
 
 /**

@@ -5,13 +5,13 @@ import {
 } from '@reduxjs/toolkit';
 import { apiReducer, apiSlice } from '../api/api-slice';
 import { alertReducer } from '../features/shared';
-import { teamReducer } from '../features/team';
+import { currentTeamReducer } from '../features/team';
 import { globalReducer } from './global-slice';
 
 const rootReducer = combineReducers({
   global: globalReducer,
   alert: alertReducer,
-  team: teamReducer,
+  currentTeam: currentTeamReducer,
   [apiSlice.reducerPath]: apiReducer,
 });
 

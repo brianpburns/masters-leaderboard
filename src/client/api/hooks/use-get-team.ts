@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 import { useSendAlert } from 'src/client/features/shared';
+import { useSetCurrentTeam } from 'src/client/features/team/state/hooks';
 import { useAuthToken } from 'src/client/store';
-import { teamState } from '../../features/team/state/selectors';
 import { useGetTeamQuery } from '../api-slice';
 
 export const useGetTeam = () => {
-  const setTeamData = useSetRecoilState(teamState);
+  const { setCurrentTeam } = useSetCurrentTeam();
   const { authToken } = useAuthToken();
   const history = useHistory();
   const sendAlert = useSendAlert();
@@ -15,9 +14,11 @@ export const useGetTeam = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      setTeamData(data);
+      const { golfer_ids, ...rest } = data;
+
+      setCurrentTeam({ golferIds: golfer_ids, savedRef: golfer_ids, ...rest });
     }
-  }, [isSuccess, setTeamData, data]);
+  }, [isSuccess, data, setCurrentTeam]);
 
   useEffect(() => {
     if (isError) {

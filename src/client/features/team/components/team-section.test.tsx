@@ -1,13 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
+import { TeamState } from '../types';
 import { TeamSection } from './team-section';
 
-const teamDetails = {
+const teamDetails: TeamState = {
   id: 1,
   owner: 'burns',
   name: 'burnsing it up',
-  golfer_ids: [8793],
+  golferIds: [8793],
+  savedRef: [],
 };
 const handleNameUpdate = jest.fn();
 const removeGolfer = jest.fn();

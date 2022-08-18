@@ -1,9 +1,9 @@
+import { TeamWithPrizeMoney } from 'src/types';
 import { rankTeams } from './rank-teams';
-import { Team } from 'src/types';
 
 describe('Rank Teams', () => {
   test('is correct when a team has no prize money set', () => {
-    const teams = [{}, { prizeMoney: 10 }] as Team[];
+    const teams = [{}, { prizeMoney: 10 }] as TeamWithPrizeMoney[];
     const ranked = rankTeams(teams);
 
     const expected = [{ prizeMoney: 10 }, {}];
@@ -12,7 +12,10 @@ describe('Rank Teams', () => {
   });
 
   test('is correct when one team has more money', () => {
-    const teams = [{ prizeMoney: 1 }, { prizeMoney: 10 }] as Team[];
+    const teams = [
+      { prizeMoney: 1 },
+      { prizeMoney: 10 },
+    ] as TeamWithPrizeMoney[];
     const ranked = rankTeams(teams);
 
     const expected = [{ prizeMoney: 10 }, { prizeMoney: 1 }];
@@ -24,7 +27,7 @@ describe('Rank Teams', () => {
     const teams = [
       { name: 'a', prizeMoney: 1 },
       { name: 'b', prizeMoney: 1 },
-    ] as Team[];
+    ] as TeamWithPrizeMoney[];
     const ranked = rankTeams(teams);
 
     const expected = [

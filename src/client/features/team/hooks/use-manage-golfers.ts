@@ -1,37 +1,30 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { inviteesState } from 'src/client/api/state/atoms';
+import { useAppSelector } from 'src/client/store';
 import { Player } from '../../../../types';
-import { teamGolfersIdsState } from '../state/atoms';
+import { useCurrentTeamGolferIds } from '../state/hooks';
+import { selectCurrentTeamGolferIds } from '../state/selectors';
 
 export const useManageGolfers = () => {
-  const [selectedGolfers, setSelectedGolfers] =
-    useRecoilState(teamGolfersIdsState);
   const allGolfers = useRecoilValue(inviteesState);
-  const teamGolfers = useRecoilValue(teamGolfersIdsState);
   const [unselectedGolfers, setUnselectedGolfers] = useState<Player[]>([]);
+  const { addGolfer, removeGolfer, setGolfers } = useCurrentTeamGolferIds();
+  const selectedGolfers = useAppSelector(selectCurrentTeamGolferIds);
 
   useEffect(() => {
     const unpickedGolfers = allGolfers.filter(
-      (golfer) => !teamGolfers.includes(parseInt(golfer.id))
+      (golfer) => !selectedGolfers.includes(parseInt(golfer.id))
     );
     setUnselectedGolfers(unpickedGolfers);
-  }, [allGolfers, teamGolfers]);
-
-  const addGolfer = (golferId: number) => {
-    setSelectedGolfers([...selectedGolfers, golferId]);
-  };
-
-  const removeGolfer = (golferId: number) => {
-    setSelectedGolfers(
-      selectedGolfers.filter((selectedGolfer) => selectedGolfer !== golferId)
-    );
-  };
+  }, [allGolfers, selectedGolfers]);
 
   return {
     allGolfers,
+    selectedGolfers,
     unselectedGolfers,
     addGolfer,
     removeGolfer,
+    setGolfers,
   };
 };

@@ -1,13 +1,13 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { Team } from 'src/types';
+import { TeamState } from '../types';
 import { SelectedGolfersList } from './selected-golfers-list';
-import { TeamContainer, ButtonsContainer, CancelButton, Error } from './styled';
+import { ButtonsContainer, CancelButton, Error, TeamContainer } from './styled';
 import { TeamName } from './team-name';
 
 interface Props {
-  teamDetails: Team;
+  teamDetails: TeamState;
   handleNameUpdate: (newName: string) => void;
   selectionPhase: boolean;
   selectedGolferIds: number[];

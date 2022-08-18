@@ -1,9 +1,8 @@
 import { Add, Remove } from '@mui/icons-material';
 import React from 'react';
-import { useRecoilValue } from 'recoil';
 import { Icon } from 'src/client/features/shared';
 import { Player } from 'src/types';
-import { teamGolfersIdsState } from '../state/atoms';
+import { useManageGolfers } from '../hooks/use-manage-golfers';
 import {
   AlreadySelectedMsg,
   FlagWrapper,
@@ -24,8 +23,8 @@ export const GolfersListItem = ({
   selectionPhase,
   onIconClick,
 }: Props) => {
-  const selectedGolferIds = useRecoilValue(teamGolfersIdsState);
-  const remainingPicks = 10 - selectedGolferIds.length;
+  const { selectedGolfers } = useManageGolfers();
+  const remainingPicks = 10 - selectedGolfers.length;
   const {
     id,
     first_name,
@@ -36,7 +35,7 @@ export const GolfersListItem = ({
     countryName,
     Amateur,
   } = golfer;
-  const alreadySelected = selectedGolferIds.includes(parseInt(id));
+  const alreadySelected = selectedGolfers.includes(parseInt(id));
   const rookie = First === '1';
   const amateur = Amateur === '1';
   const showFlag = availableView || !selectionPhase;

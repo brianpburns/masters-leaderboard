@@ -1,13 +1,14 @@
+import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { teamState } from 'src/client/features/team/state/selectors';
-import { setupMockServer } from 'test/mocks';
 import {
+  golferMoneyRankingsState,
   golfersState,
   teamsState,
-  golferMoneyRankingsState,
 } from 'src/client/api';
+import { renderWithProviders } from 'src/client/__test__/store';
+import { setupMockServer } from 'test/mocks';
+import { TeamState } from '../../team';
 import { TableBody } from './table-body';
 
 setupMockServer();
@@ -33,13 +34,15 @@ const mockGolfers = {
   },
 };
 
-const mockTeam = {
+const mockTeam: TeamState = {
   id: 0,
   owner: 'Logan',
   name: 'Team Logan',
-  golfer_ids: [33448, 1226],
-  google_id: '',
+  golferIds: [33448, 1226],
+  savedRef: [],
 };
+
+const mockTeams = [{ ...mockTeam, golfer_ids: mockTeam.golferIds }];
 
 const mockPrizeMoney = {
   0: {
@@ -57,20 +60,26 @@ const mockPrizeMoney = {
 describe('BodyContainer', () => {
   test('renders correct data', async () => {
     const initializeState = ({ set }: MutableSnapshot) => {
-      set(teamState, mockTeam);
-      set(teamsState, [mockTeam]);
+      set(teamsState, mockTeams);
       set(golferMoneyRankingsState, mockPrizeMoney);
       set(golfersState, mockGolfers);
     };
 
-    render(
+    renderWithProviders(
       <RecoilRoot initializeState={initializeState}>
         <table>
           <TableBody />
         </table>
-      </RecoilRoot>
+      </RecoilRoot>,
+      {
+        preloadedState: {
+          currentTeam: mockTeam,
+        },
+      }
     );
 
-    await waitFor(() => expect(screen.getByText('Team Logan')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('Team Logan')).toBeTruthy(), {
+      timeout: 5000,
+    });
   });
 });

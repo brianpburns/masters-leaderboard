@@ -1,49 +1,49 @@
 import isEqual from 'lodash/isEqual';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useSelector } from 'react-redux';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useSendAlert } from 'src/client/features/shared';
-import { useSelectionPhase } from 'src/client/store/global-slice/hooks';
+import { selectPhaseSelection, useAppSelector } from 'src/client/store';
 import { useUpdateTeam } from '../../../api';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
-import { savedGolfersIdsRefState, teamGolfersIdsState } from '../state/atoms';
-import { teamState } from '../state/selectors';
+import { useCurrentTeamGolfersRef, useSetCurrentTeam } from '../state/hooks';
+import { selectCurrentTeam, selectGolfersSavedRef } from '../state/selectors';
 import { TeamSection } from './team-section';
 
 export const TeamSectionContainer = () => {
-  const [selectedGolferIds, setSelectedGolferIds] =
-    useRecoilState(teamGolfersIdsState);
-  const [refGolfers, setRefGolfers] = useRecoilState(savedGolfersIdsRefState);
-  const { removeGolfer } = useManageGolfers();
+  const { setGolferIdsRef } = useCurrentTeamGolfersRef();
+  const golfersRef = useAppSelector(selectGolfersSavedRef);
+  const { selectedGolfers, removeGolfer, setGolfers } = useManageGolfers();
   const updateTeam = useUpdateTeam();
   const deleteTeam = useDeleteTeam();
-  const [teamDetails, setTeamDetails] = useRecoilState(teamState);
+  const currentTeam = useSelector(selectCurrentTeam);
+  const { setCurrentTeam } = useSetCurrentTeam();
   const sendAlert = useSendAlert();
-  const { selectionPhase } = useSelectionPhase();
+  const selectionPhase = useSelector(selectPhaseSelection);
 
   const onSave = () => {
-    updateTeam(teamDetails);
-    setRefGolfers(selectedGolferIds);
+    updateTeam(currentTeam);
+    setGolferIdsRef(selectedGolfers);
   };
 
   const handleNameUpdate = (newName: string) => {
-    updateTeam({ ...teamDetails, name: newName });
-    setTeamDetails({ ...teamDetails, name: newName });
+    updateTeam({ ...currentTeam, name: newName });
+    setCurrentTeam({ ...currentTeam, name: newName });
   };
 
-  const noChanges = isEqual(refGolfers, selectedGolferIds);
+  const noChanges = isEqual(golfersRef, selectedGolfers);
 
   const handleCancel = () => {
-    setSelectedGolferIds(refGolfers);
+    setGolfers(golfersRef);
     sendAlert('Discarded Changes', 'info');
   };
 
   return (
     <TeamSection
-      teamDetails={teamDetails}
+      teamDetails={currentTeam}
       handleNameUpdate={handleNameUpdate}
       selectionPhase={selectionPhase}
-      selectedGolferIds={selectedGolferIds}
+      selectedGolferIds={selectedGolfers}
       removeGolfer={removeGolfer}
       onSave={onSave}
       handleCancel={handleCancel}
