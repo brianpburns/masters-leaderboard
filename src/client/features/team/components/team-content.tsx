@@ -9,11 +9,11 @@ interface Props {
 }
 
 export const TeamContent = ({ selectionPhase }: Props) => {
-  const { loading } = useGetTeam();
+  const { isFetching } = useGetTeam();
 
   return (
     <>
-      <Loader open={loading} />
+      <Loader open={isFetching} />
       {selectionPhase && <AvailableGolfersList />}
       <TeamSectionContainer />
     </>
