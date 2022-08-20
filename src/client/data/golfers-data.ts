@@ -1,4 +1,4 @@
-export const inviteesData = {
+export const golfersData = {
   players: [
     {
       last_name: 'Ancer ',

@@ -1,72 +1,66 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { inviteesState } from 'src/client/api/state/atoms';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { AvailableGolfersList } from './available-golfers-list';
 
-const mockInvitees = [
-  {
-    last_name: 'Woods ',
-    first_name: 'Tiger',
-    id: '8793',
-    countryName: 'United States',
-    countryCode: 'USA',
-    Amateur: '',
-    First: '',
-    Past: '',
-    image: true,
-    top10: false,
+jest.mock('../../../data/golfers-data', () => ({
+  golfersData: {
+    players: [
+      {
+        last_name: 'Woods ',
+        first_name: 'Tiger',
+        id: '8793',
+        countryName: 'United States',
+        countryCode: 'USA',
+        Amateur: '',
+        First: '',
+        Past: '',
+        image: true,
+        top10: false,
+      },
+      {
+        last_name: 'Power ',
+        first_name: 'Séamus',
+        id: '28252',
+        countryName: 'Ireland',
+        countryCode: 'IRL',
+        Amateur: '',
+        First: '1',
+        Past: '',
+        image: false,
+        top10: false,
+      },
+      {
+        last_name: 'McIlroy ',
+        first_name: 'Rory',
+        id: '28237',
+        countryName: 'N. Ireland',
+        countryCode: 'NIR',
+        Amateur: '',
+        First: '',
+        Past: '',
+        image: true,
+        top10: true,
+      },
+      {
+        last_name: 'Shepherd ',
+        first_name: 'Laird',
+        id: '60371',
+        countryName: 'England',
+        countryCode: 'ENG',
+        Amateur: '1',
+        First: '1',
+        Past: '',
+        image: false,
+        top10: false,
+      },
+    ],
   },
-  {
-    last_name: 'Power ',
-    first_name: 'Séamus',
-    id: '28252',
-    countryName: 'Ireland',
-    countryCode: 'IRL',
-    Amateur: '',
-    First: '1',
-    Past: '',
-    image: false,
-    top10: false,
-  },
-  {
-    last_name: 'McIlroy ',
-    first_name: 'Rory',
-    id: '28237',
-    countryName: 'N. Ireland',
-    countryCode: 'NIR',
-    Amateur: '',
-    First: '',
-    Past: '',
-    image: true,
-    top10: true,
-  },
-  {
-    last_name: 'Shepherd ',
-    first_name: 'Laird',
-    id: '60371',
-    countryName: 'England',
-    countryCode: 'ENG',
-    Amateur: '1',
-    First: '1',
-    Past: '',
-    image: false,
-    top10: false,
-  },
-];
+}));
 
-const renderGolfersList = (invitees = mockInvitees) => {
-  const initializeState = ({ set }: MutableSnapshot) => {
-    set(inviteesState, invitees);
-  };
-
-  renderWithProviders(
-    <RecoilRoot {...{ initializeState }}>
-      <AvailableGolfersList />
-    </RecoilRoot>
-  );
+const renderGolfersList = () => {
+  renderWithProviders(<AvailableGolfersList />);
 };
 
 describe('Available Golfers List', () => {
@@ -78,11 +72,14 @@ describe('Available Golfers List', () => {
   });
 
   test('removes a selected golfer from the list', async () => {
-    renderGolfersList([mockInvitees[0]]);
+    renderGolfersList();
 
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
 
-    userEvent.click(screen.getAllByTestId('AddIcon')[0]);
+    const listItem = screen.getByTestId('available-golfer-tiger-woods');
+    const addIcon = within(listItem).getByTestId('AddIcon');
+
+    userEvent.click(addIcon);
 
     await waitFor(() => expect(screen.queryByText('Tiger Woods')).toBeFalsy());
   });

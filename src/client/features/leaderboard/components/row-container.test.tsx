@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { RecoilRoot } from 'recoil';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { GolferMoneyRankings, Golfers } from 'src/types';
@@ -56,13 +55,11 @@ const renderRowContainer = (
   prizeMoney: GolferMoneyRankings = mockPrizeMoney
 ) => {
   renderWithProviders(
-    <RecoilRoot>
-      <table>
-        <tbody>
-          <RowContainer position={1} row={mockTeam} />
-        </tbody>
-      </table>
-    </RecoilRoot>,
+    <table>
+      <tbody>
+        <RowContainer position={1} row={mockTeam} />
+      </tbody>
+    </table>,
     {
       preloadedState: {
         global: {

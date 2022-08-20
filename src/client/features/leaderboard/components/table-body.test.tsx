@@ -1,6 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { RecoilRoot } from 'recoil';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
@@ -56,11 +55,9 @@ const mockPrizeMoney = {
 describe('BodyContainer', () => {
   test('renders correct data', async () => {
     renderWithProviders(
-      <RecoilRoot>
-        <table>
-          <TableBody />
-        </table>
-      </RecoilRoot>,
+      <table>
+        <TableBody />
+      </table>,
       {
         preloadedState: {
           currentTeam: mockTeam,

@@ -6,7 +6,7 @@ import { useManageGolfers } from '../hooks/use-manage-golfers';
 import {
   AlreadySelectedMsg,
   FlagWrapper,
-  GolferListItemContainer,
+  GolferListItem,
   IconWrapper,
 } from './styled';
 
@@ -41,7 +41,10 @@ export const GolfersListItem = ({
   const showFlag = availableView || !selectionPhase;
 
   return (
-    <GolferListItemContainer selected={false}>
+    <GolferListItem
+      selected={false}
+      data-testid={`available-golfer-${first_name.toLowerCase()}-${last_name.toLowerCase()}`}
+    >
       {showFlag && (
         <FlagWrapper>
           <img
@@ -67,6 +70,6 @@ export const GolfersListItem = ({
           </Icon>
         </IconWrapper>
       )}
-    </GolferListItemContainer>
+    </GolferListItem>
   );
 };

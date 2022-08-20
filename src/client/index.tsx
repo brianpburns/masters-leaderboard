@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { RecoilRoot } from 'recoil';
 import { generateGolferData } from './api';
 import { Root } from './features/app';
 import './index.css';
@@ -24,14 +23,12 @@ const bootstrap = async () => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <RecoilRoot>
-          <TempStateSetupComponent
-            cutLine={cutLine}
-            golfers={golfers}
-            golferMoneyRankings={golferMoneyRankings}
-          />
-          <Root />
-        </RecoilRoot>
+        <TempStateSetupComponent
+          cutLine={cutLine}
+          golfers={golfers}
+          golferMoneyRankings={golferMoneyRankings}
+        />
+        <Root />
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')

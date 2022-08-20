@@ -48,7 +48,7 @@ export const StyledGolfersList = styled.ul<{ disabled?: boolean }>`
   }
 `;
 
-export const GolferListItemContainer = styled.li<{ selected: boolean }>`
+export const GolferListItem = styled.li<{ selected: boolean }>`
   display: flex;
   padding: 2px;
   padding-left: 5px;

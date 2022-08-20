@@ -1,47 +1,22 @@
 import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-import { inviteesState } from 'src/client/api/state/atoms';
 import { renderWithProviders } from 'src/client/__test__/store';
-import { Player } from 'src/types';
 import { TeamState } from '../types';
 import { TeamSectionContainer } from './team-section-container';
-
-const invitees: Player[] = [
-  {
-    id: '0',
-    first_name: 'Tiger',
-    last_name: 'Woods',
-    countryName: 'USA',
-    countryCode: 'USA',
-    Amateur: '',
-    First: '',
-    Past: '',
-    image: false,
-    top10: false,
-  },
-];
 
 const activeTeam: TeamState = {
   id: 0,
   owner: 'Burns',
   name: 'Test Name',
-  golferIds: [0],
+  golferIds: [1226],
   savedRef: [],
 };
 
 const renderTeamDetails = () => {
-  const initializeState = ({ set }: MutableSnapshot) => {
-    set(inviteesState, invitees);
-  };
-
-  renderWithProviders(
-    <RecoilRoot {...{ initializeState }}>
-      <TeamSectionContainer />
-    </RecoilRoot>,
-    { preloadedState: { currentTeam: activeTeam } }
-  );
+  renderWithProviders(<TeamSectionContainer />, {
+    preloadedState: { currentTeam: activeTeam },
+  });
 };
 
 describe('Team Details', () => {
@@ -65,13 +40,13 @@ describe('Team Details', () => {
   test('lists selected golfers', () => {
     renderTeamDetails();
 
-    expect(screen.getByText('Tiger Woods')).toBeTruthy();
+    expect(screen.getByText('Fred Couples')).toBeTruthy();
   });
 
   test('removes golfer from list', () => {
     renderTeamDetails();
     userEvent.click(screen.getByTestId('RemoveIcon'));
 
-    expect(screen.queryByText('Tiger Woods')).toBeFalsy();
+    expect(screen.queryByText('Fred Couples')).toBeFalsy();
   });
 });

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { inviteesState } from 'src/client/api';
 import { useManageGolfers } from 'src/client/features/team';
 import { Player } from 'src/types';
+import { golfersData } from '../golfers-data';
 
 export const useGetGolferData = () => {
-  const allGolfers = useRecoilValue(inviteesState);
+  const allGolfers = golfersData.players;
   const { unselectedGolfers } = useManageGolfers();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Player[]>([]);

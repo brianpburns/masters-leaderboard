@@ -47,7 +47,7 @@ const mockGolfersData = {
 };
 
 const renderHook = (prizeMoney = mockPrizeMoney) =>
-  reduxHookTestWrapper(useAddPrizeMoney, undefined, {
+  reduxHookTestWrapper(useAddPrizeMoney, {
     leaderboard: { teams: mockTeams, cutLine: 0 },
     global: {
       ...initialGlobalState,

@@ -1,6 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { RecoilRoot } from 'recoil';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
@@ -21,16 +20,11 @@ const cleanGolfers = {
 };
 
 const renderTeamContent = (selectionPhase = true) => {
-  renderWithProviders(
-    <RecoilRoot>
-      <TeamContent selectionPhase={selectionPhase} />
-    </RecoilRoot>,
-    {
-      preloadedState: {
-        global: { ...initialGlobalState, golfers: cleanGolfers },
-      },
-    }
-  );
+  renderWithProviders(<TeamContent selectionPhase={selectionPhase} />, {
+    preloadedState: {
+      global: { ...initialGlobalState, golfers: cleanGolfers },
+    },
+  });
 };
 
 describe('TeamContent', () => {
