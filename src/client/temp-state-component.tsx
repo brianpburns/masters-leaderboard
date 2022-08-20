@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { Golfers } from 'src/types';
+import { GolferMoneyRankings, Golfers } from 'src/types';
 import { useCutLine } from './features/leaderboard';
-import { useGlobalState } from './store/global-slice/hooks';
+import { useGlobalAction } from './store/global-slice/hooks';
 
 interface Props {
   cutLine: number;
   golfers: Golfers;
+  golferMoneyRankings: GolferMoneyRankings;
 }
 
 /**
@@ -14,14 +15,26 @@ interface Props {
  * migrated to Redux/RTK Query. It's currently being injected before the
  * store/Recoil are even set up. I'm not sure how it was working
  */
-export const TempStateSetupComponent = ({ cutLine, golfers }: Props) => {
+export const TempStateSetupComponent = ({
+  cutLine,
+  golfers,
+  golferMoneyRankings,
+}: Props) => {
   const { setCutLine } = useCutLine();
-  const { setGolfersList: setGolfers } = useGlobalState();
+  const { setGolfersList, setGolferMoneyRankings } = useGlobalAction();
 
   useEffect(() => {
     setCutLine(cutLine);
-    setGolfers(golfers);
-  }, [cutLine, golfers, setCutLine, setGolfers]);
+    setGolfersList(golfers);
+    setGolferMoneyRankings(golferMoneyRankings);
+  }, [
+    cutLine,
+    golferMoneyRankings,
+    golfers,
+    setCutLine,
+    setGolferMoneyRankings,
+    setGolfersList,
+  ]);
 
   return null;
 };

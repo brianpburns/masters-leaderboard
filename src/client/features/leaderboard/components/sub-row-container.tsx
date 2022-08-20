@@ -14,11 +14,6 @@ export const SubRowContainer = ({ golferId }: Props) => {
   const prizeMoney = useGolferPrizeMoney(golferId);
 
   return (
-    Object.keys(golfers).length > 0 && (
-      <SubRow
-        golfer={golfers[golferId]}
-        prizeMoney={displayNumber(prizeMoney)}
-      />
-    )
+    <SubRow golfer={golfers[golferId]} prizeMoney={displayNumber(prizeMoney)} />
   );
 };

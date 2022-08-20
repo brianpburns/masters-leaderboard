@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil';
 import { useGolferPosition } from 'src/client/api';
-import { golferMoneyRankingsState } from '../../../api/state/atoms';
+import { useAppSelector } from 'src/client/store';
+import { selectGolferRankings } from 'src/client/store/global-slice/selectors';
 
 export const useGolferPrizeMoney = (golferId: number) => {
   const position = useGolferPosition(golferId);
-  const prizeMoney = useRecoilValue(golferMoneyRankingsState);
+  const prizeMoney = useAppSelector(selectGolferRankings);
 
   if (!prizeMoney || Object.keys(prizeMoney).length === 0) return 0;
 

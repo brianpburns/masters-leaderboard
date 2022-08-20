@@ -6,3 +6,6 @@ export const selectPhaseSelection = (state: RootState) =>
   state.global.selectionPhase;
 
 export const selectGolfersList = (state: RootState) => state.global.golfers;
+
+export const selectGolferRankings = (state: RootState) =>
+  state.global.golferRankings;

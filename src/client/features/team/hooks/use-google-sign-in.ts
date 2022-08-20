@@ -8,7 +8,7 @@ import { googleConfig } from 'src/client/config';
 import {
   selectAuthToken,
   useAppSelector,
-  useAuthToken,
+  useGlobalAction,
 } from 'src/client/store';
 
 type GoogleResponse = GoogleLoginResponse | GoogleLoginResponseOffline;
@@ -16,7 +16,7 @@ type GoogleResponse = GoogleLoginResponse | GoogleLoginResponseOffline;
 export const useGoogleSignIn = (isSignedIn: boolean, callback?: () => void) => {
   const [error, setError] = useState(false);
 
-  const { setAuthToken } = useAuthToken();
+  const { setAuthToken } = useGlobalAction();
   const authToken = useAppSelector(selectAuthToken);
 
   const handleResponse = (response: GoogleResponse) => {

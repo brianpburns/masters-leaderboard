@@ -4,13 +4,13 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { googleConfig } from 'src/client/config';
 import { Leaderboard } from 'src/client/features/leaderboard';
 import { AlertContainer, useSendAlert } from 'src/client/features/shared';
-import { useAuthToken } from 'src/client/store';
+import { useGlobalAction } from 'src/client/store';
 import { TeamPage } from '../../team';
 import { HeaderImage } from './header-image';
 import { NavBar } from './nav-bar';
 
 export const Root = () => {
-  const { setAuthToken } = useAuthToken();
+  const { setAuthToken } = useGlobalAction();
 
   const sendAlert = useSendAlert();
 

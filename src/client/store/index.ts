@@ -1,7 +1,8 @@
 export { initialState as initialGlobalState } from './global-slice';
-export { useGlobalState as useAuthToken } from './global-slice/hooks';
+export { useGlobalAction } from './global-slice/hooks';
 export {
   selectAuthToken,
+  selectGolferRankings,
   selectGolfersList,
   selectPhaseSelection,
 } from './global-slice/selectors';
