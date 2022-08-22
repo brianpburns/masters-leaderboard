@@ -8,7 +8,7 @@ const golfers: Record<string, Team> = {
     id: 1,
     owner: 'burns',
     name: 'burnsing it up',
-    golfer_ids: [8793, 1226],
+    golfer_ids: [1226],
     google_id: '1',
   },
   2: {

@@ -1,10 +1,10 @@
-import { useRecoilValue } from 'recoil';
-import { golfersState } from '../state/atoms';
+import { useSelector } from 'react-redux';
+import { selectGolfersList } from 'src/client/store';
 
 export const useGolferPosition = (golferId: number) => {
-  const golfers = useRecoilValue(golfersState);
+  const golfers = useSelector(selectGolfersList);
 
-  if (!golfers) return 0;
+  if (Object.keys(golfers).length === 0) return 0;
 
   return golfers[golferId].position;
 };

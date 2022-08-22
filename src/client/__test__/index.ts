@@ -1,1 +1,1 @@
-export { recoilHookTestWrapper } from './recoil-hook-wrapper';
+export { reduxHookTestWrapper } from './redux-hook-wrapper';

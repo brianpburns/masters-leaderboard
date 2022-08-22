@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MutableSnapshot, RecoilRoot } from 'recoil';
-import {
-  generateGolferData,
-  golferMoneyRankingsState,
-  cutLineState,
-  golfersState,
-} from './api';
-import { Root, selectionPhaseState } from './app';
+import { Provider } from 'react-redux';
+import { generateGolferData } from './api';
+import { Root } from './features/app';
 import './index.css';
+import { store } from './store/store';
+import { TempStateSetupComponent } from './temp-state-component';
 
 const localBootstrap = async () => {
   // eslint-disable-next-line no-console
@@ -23,18 +20,16 @@ const localBootstrap = async () => {
 const bootstrap = async () => {
   const { golfers, golferMoneyRankings, cutLine } = await generateGolferData();
 
-  const initialiseState = ({ set }: MutableSnapshot) => {
-    set(golfersState, golfers);
-    set(cutLineState, cutLine);
-    set(golferMoneyRankingsState, golferMoneyRankings);
-    set(selectionPhaseState, false);
-  };
-
   ReactDOM.render(
     <React.StrictMode>
-      <RecoilRoot initializeState={initialiseState}>
+      <Provider store={store}>
+        <TempStateSetupComponent
+          cutLine={cutLine}
+          golfers={golfers}
+          golferMoneyRankings={golferMoneyRankings}
+        />
         <Root />
-      </RecoilRoot>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );

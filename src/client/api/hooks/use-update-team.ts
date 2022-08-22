@@ -1,21 +1,25 @@
-import { useRecoilValue } from 'recoil';
-import { tokenState } from 'src/client/login/state/atoms';
-import { useSendAlert } from 'src/client/shared';
-import { Team } from '../../../types';
+import { useSelector } from 'react-redux';
+import { useSendAlert } from 'src/client/features/shared';
+import { TeamState } from 'src/client/features/team';
+import { selectAuthToken } from 'src/client/store';
 import { updateTeam } from '../fetch/update-team';
 
+const generateMessage = (picksRemaining: number) => {
+  if (picksRemaining < 0) return '';
+
+  return ` ${picksRemaining} pick${picksRemaining > 1 ? 's' : ''} left.`;
+};
+
 export const useUpdateTeam = () => {
-  const token = useRecoilValue(tokenState);
+  const authToken = useSelector(selectAuthToken);
   const sendAlert = useSendAlert();
 
-  const updateTeamDetails = async (team: Team) => {
+  const updateTeamDetails = async (team: TeamState) => {
+    const { golferIds, ...rest } = team;
     try {
-      await updateTeam(team, token);
-      const picksRemaining = 10 - team.golfer_ids.length;
-      const picksMessage =
-        picksRemaining > 0
-          ? ` ${picksRemaining} pick${picksRemaining > 1 ? 's' : ''} left.`
-          : '';
+      await updateTeam({ golfer_ids: golferIds, ...rest }, authToken);
+      const picksMessage = generateMessage(10 - golferIds.length);
+
       sendAlert(`Save Success. ${picksMessage}`, 'success');
     } catch (err) {
       if (err instanceof Error) {
