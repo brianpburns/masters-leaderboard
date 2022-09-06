@@ -77,7 +77,7 @@ export const TeamSection = ({
             >
               Cancel
             </CancelButton>
-            {/* <button onClick={() => deleteTeam(teamDetails.id)}>Delete</button> */}
+            <button onClick={() => deleteTeam(teamDetails.id)}>Delete</button>
           </ButtonsContainer>
           <p>Rules:</p>
           <ul>

@@ -47,4 +47,8 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.json(teams));
   }),
+
+  rest.delete('/api/teams/:teamId', (_req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];

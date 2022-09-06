@@ -28,5 +28,5 @@ export const useGetTeam = () => {
     }
   }, [history, isError, sendAlert]);
 
-  return { isFetching, data, isSuccess };
+  return { isFetching };
 };

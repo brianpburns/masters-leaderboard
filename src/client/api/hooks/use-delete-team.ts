@@ -1,8 +1,9 @@
 import { useHistory } from 'react-router-dom';
-import { deleteTeam } from '../fetch/delete-team';
+import { useDeleteTeamMutation } from '../api-slice';
 
 export const useDeleteTeam = () => {
   const history = useHistory();
+  const [deleteTeam] = useDeleteTeamMutation();
 
   const deleteTeamDetails = async (id: number) => {
     try {
