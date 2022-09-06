@@ -13,8 +13,18 @@ export const apiSlice = createApi({
         },
       }),
     }),
+    deleteTeam: builder.mutation<void, number>({
+      query: (id) => ({
+        url: `/teams/${id}`,
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      }),
+    }),
   }),
 });
 
 export const apiReducer = apiSlice.reducer;
-export const { useGetTeamQuery } = apiSlice;
+export const { useGetTeamQuery, useDeleteTeamMutation } = apiSlice;
