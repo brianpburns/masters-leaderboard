@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017", "dom", "dom.iterable", "ES2019"],
+    "module": "commonjs",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "./",
+    "noEmit": false,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "strict": true,
+    "importsNotUsedAsValues": "remove",
+    "isolatedModules": true,
+    "paths": {
+      "src/*": ["src/*"],
+      "test/*": ["test/*"]
+    },
+    "outDir": "lib",
+    "allowJs": true
+  },
+  "compileOnSave": true,
+  "include": ["src", ".eslintrc.js"],
+  "exclude": ["node_modules", "lib"]
+}

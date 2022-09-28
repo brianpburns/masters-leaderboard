@@ -5,5 +5,8 @@ dist
 .DS_Store
 build
 .env
+hosting.*
+ui-debug.log
+firebase-debug.log
 
 coverage
