@@ -6,7 +6,7 @@
     "start": "webpack serve --config webpack/dev.config.ts",
     "start:standalone": "npm run start -- --env standalone=true",
     "server": "NODE_ENV=development ts-node-dev --project tsconfig.server.json src/server/index.ts",
-    "server:prod": "ls; NODE_ENV=production node dist/server/index.js",
+    "server:prod": "NODE_ENV=production node dist/server/index.js",
     "server:build": "NODE_ENV=production tsc --project tsconfig.server.json",
     "ui:build": "webpack --config webpack/prod.config.ts",
     "build:prod": "npm run server:build; npm run ui:build",

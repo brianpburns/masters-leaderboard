@@ -28,6 +28,8 @@ npm start
 npm run server
 ```
 
+Visit http://localhost:8082/team
+
 Development of just the UI. This runs the UI locally on port 8082 and mocks the backend using MSW.
 
 ```
@@ -71,3 +73,10 @@ Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch 
 ## Google Login
 
 [OAuth config](https://console.developers.google.com/apis/credentials/oauthclient/723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com?authuser=1&project=graphite-byte-156900&supportedpurview=project)
+
+## Feature Flags
+
+The phase of selection needs to be updated manually. There are two places that need to be changed:
+
+1. process.env.SELECTION_PHASE
+2. The initial state for `selectionPhase` in `global-slice/index`
