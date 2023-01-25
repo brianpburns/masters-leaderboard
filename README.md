@@ -28,7 +28,7 @@ npm start
 npm run server
 ```
 
-Visit http://localhost:8082/team
+Visit http://localhost:8082/team. This uses the real DB data in Render.
 
 Development of just the UI. This runs the UI locally on port 8082 and mocks the backend using MSW.
 
@@ -36,30 +36,16 @@ Development of just the UI. This runs the UI locally on port 8082 and mocks the 
 npm run start:standalone
 ```
 
-Running heroku app locally
-
-```
-npm run build:prod
-heroku local web
-```
-
-This runs `npm run server:prod` in the same way as the app will on Heroku.
-
 ## Production Build
 
 ```
 npm run build:prod
 ```
 
-## Deploying to Heroku
+## Deploying to Render
 
-First log in on Heroku and then run:
-
-```
-npm run deploy
-```
-
-This will deploy what's pushed to main.
+- After merging a change to main, open the Render [dashboard](https://dashboard.render.com/web/srv-cev1439gp3jjsh1cej2g).
+- Select manual deploy from the dropdown
 
 ## Testing
 
