@@ -1,10 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import { Team as TeamType } from '../../types';
-import { Team } from '../masters-db';
+import { Team } from '../db';
 import { verifyToken } from '../util/verify-token';
 
 export function getTeam() {
-  return asyncHandler(async (req, res) => {
+  return asyncHandler(async (_req, res) => {
     const token = res.locals.token;
 
     if (!token) {

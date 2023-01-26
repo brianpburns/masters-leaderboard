@@ -1,21 +1,7 @@
-import { DataTypes, ModelDefined, Optional, Sequelize } from 'sequelize';
-import { Team as TeamType } from '../types';
-
-const dbUri = process.env.DATABASE_URL || process.env.DB_URI || '';
-
-if (!dbUri) throw new Error('Invalid dbUri value');
-
-const sequelize = new Sequelize(dbUri, {
-  dialect: 'postgres',
-  define: { freezeTableName: true, timestamps: false },
-  ssl: true,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
+import { DataTypes, ModelDefined, Optional } from 'sequelize';
+import { Team as TeamType } from '../../types';
+import { sequelize } from './db';
+import { League } from './league';
 
 type TeamAttributes = Optional<
   TeamType,
@@ -49,3 +35,5 @@ export const Team: ModelDefined<TeamType, TeamAttributes> = sequelize.define(
     },
   }
 );
+
+Team.belongsToMany(League, { through: 'League_Members' });
