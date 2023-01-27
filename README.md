@@ -28,7 +28,9 @@ npm start
 npm run server
 ```
 
-Visit http://localhost:8082/team. This uses the real DB data in Render.
+Visit http://localhost:8082/team.
+
+This will run with local Postgres DB at `process.env.DATABASE_URL`.
 
 Development of just the UI. This runs the UI locally on port 8082 and mocks the backend using MSW.
 
