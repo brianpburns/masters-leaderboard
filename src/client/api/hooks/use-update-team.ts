@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useSendAlert } from 'src/client/features/shared';
-import { TeamState } from 'src/client/features/team';
+import { TeamState } from 'src/client/features/team-page';
 import { selectAuthToken } from 'src/client/store';
 import { updateTeam } from '../fetch/update-team';
 

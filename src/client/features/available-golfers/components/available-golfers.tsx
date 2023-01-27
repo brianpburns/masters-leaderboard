@@ -1,7 +1,6 @@
 import React from 'react';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { useManageGolfers } from '../../team';
-import { GolfersListItem } from '../../team/components/golfers-list-item';
+import { GolfersListItem, useManageGolfers } from '../../shared/';
 import { useFilter } from '../hooks/use-filter';
 import { Checkbox } from './checkbox';
 import { SearchBar } from './search-bar';

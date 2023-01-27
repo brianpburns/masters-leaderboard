@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 import { initialLeaderboardState } from '../features/leaderboard';
 import { initialAlertState } from '../features/shared';
-import { initialTeamState } from '../features/team';
+import { initialTeamState } from '../features/team-page';
 import { AppStore, initialGlobalState, RootState, setupStore } from '../store';
 
 export const defaultState: Omit<RootState, 'api'> = {

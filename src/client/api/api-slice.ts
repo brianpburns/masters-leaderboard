@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { CurrentTeamResponse } from '../features/team/types';
+import { CurrentTeamResponse } from '../features/team-page/types';
 
 export const apiSlice = createApi({
   reducerPath: 'api',

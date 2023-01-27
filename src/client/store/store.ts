@@ -6,7 +6,7 @@ import {
 import { apiReducer, apiSlice } from '../api/api-slice';
 import { leaderboardReducer } from '../features/leaderboard/state/leaderboard-slice';
 import { alertReducer } from '../features/shared';
-import { currentTeamReducer } from '../features/team';
+import { currentTeamReducer } from '../features/team-page';
 import { globalReducer } from './global-slice';
 
 const rootReducer = combineReducers({

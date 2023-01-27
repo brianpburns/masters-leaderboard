@@ -6,7 +6,7 @@ import { selectPhaseSelection } from 'src/client/store';
 import { AvailableGolfersList } from '../../available-golfers/components/available-golfers';
 import { Login } from '../../login/components/login';
 import { useGoogleSignIn } from '../../login/hooks/use-google-sign-in';
-import { SelectedTeam } from '../../selected-team/components/selected-team';
+import { SelectedTeam } from './selected-team';
 import { TeamPageContainer } from './styled';
 
 export const TeamPage = () => {

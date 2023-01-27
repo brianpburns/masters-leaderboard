@@ -3,7 +3,7 @@ import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
-import { TeamState } from '../../team';
+import { TeamState } from '../../team-page';
 import { TableBody } from './table-body';
 
 setupMockServer();

@@ -1,22 +1,9 @@
 import { Button } from '@mui/material';
-import GoogleButton from 'react-google-button';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
   padding: 10px;
   display: flex;
-`;
-
-export const IconWrapper = styled.div<{ top10: boolean; amateur: boolean }>`
-  display: flex;
-  margin-left: auto;
-  cursor: pointer;
-
-  p {
-    margin: 0;
-    color: ${({ top10, amateur }) =>
-      top10 ? '#e9c70d' : amateur ? 'orange' : 'darkgreen'};
-  }
 `;
 
 export const GolferListItem = styled.li<{ selected: boolean }>`
@@ -47,12 +34,6 @@ export const NameWrapper = styled.div`
   font-weight: 300;
 `;
 
-export const AlreadySelectedMsg = styled.div`
-  margin-left: auto;
-  font-size: 14px;
-  color: red;
-`;
-
 export const ButtonsContainer = styled.div`
   width: 100%;
   text-align: end;
@@ -67,28 +48,8 @@ export const EditIconWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const FlagWrapper = styled.div`
-  margin-right: 5px;
-
-  img {
-    width: 15px;
-    height: 10px;
-  }
-`;
-
 export const Error = styled.p`
   color: #ff3e51;
   font-size: 14px;
   margin-top: 4px;
-`;
-
-export const LoginContainer = styled.div`
-  padding: 15px;
-  display: flex;
-  width: 100%;
-  height: 50vh;
-`;
-
-export const StyledGoogleButton = styled(GoogleButton)`
-  margin: auto;
 `;

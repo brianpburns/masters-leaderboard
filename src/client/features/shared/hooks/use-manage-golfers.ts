@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { golfersData } from 'src/client/data/golfers-data';
 import { useAppSelector } from 'src/client/store';
 import { Player } from '../../../../types';
-import { useCurrentTeamGolferIds } from '../../team/state/hooks';
-import { selectCurrentTeamGolferIds } from '../../team/state/selectors';
+import { useCurrentTeamGolferIds } from '../../team-page/state/hooks';
+import { selectCurrentTeamGolferIds } from '../../team-page/state/selectors';
 
 export const useManageGolfers = () => {
   const allGolfers = golfersData.players;

@@ -4,8 +4,8 @@ import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { generalFieldGolfer } from 'test/mocks';
-import { TeamState } from '../../team';
-import { initialCurrentTeamState } from '../../team/state/current-team-slice';
+import { TeamState } from '..';
+import { initialCurrentTeamState } from '../state/current-team-slice';
 import { SelectedTeam } from './selected-team';
 
 const { id, first_name, last_name } = generalFieldGolfer;

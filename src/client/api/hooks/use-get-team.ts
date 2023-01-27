@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useSendAlert } from 'src/client/features/shared';
-import { setIsNewTeam } from 'src/client/features/team/state/current-team-slice';
-import { useSetCurrentTeam } from 'src/client/features/team/state/hooks';
+import { setIsNewTeam } from 'src/client/features/team-page/state/current-team-slice';
+import { useSetCurrentTeam } from 'src/client/features/team-page/state/hooks';
 import { selectAuthToken } from 'src/client/store';
 import { getTeam } from '../fetch/get-team';
 

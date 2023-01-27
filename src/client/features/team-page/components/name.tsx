@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useUpdateTeam } from 'src/client/api';
 import { selectPhaseSelection } from 'src/client/store';
-import { EditIconWrapper, NameWrapper } from '../team/components/styled';
-import { useSetCurrentTeam } from '../team/state/hooks';
-import { selectCurrentTeam } from '../team/state/selectors';
+import { useSetCurrentTeam } from '../state/hooks';
+import { selectCurrentTeam } from '../state/selectors';
+import { EditIconWrapper, NameWrapper } from './styled';
 
 export const Name = () => {
   const currentTeam = useSelector(selectCurrentTeam);
