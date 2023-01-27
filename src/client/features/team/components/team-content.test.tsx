@@ -49,4 +49,8 @@ describe('TeamContent', () => {
       expect(screen.queryByTestId('golfers-list')).toBeFalsy();
     });
   });
+
+  test.todo(
+    `renders the leaderboard if there's an issue with the get team request`
+  );
 });

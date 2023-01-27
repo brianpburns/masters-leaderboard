@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetTeam } from 'src/client/api';
 import { Loader } from 'src/client/features/shared';
 import { AvailableGolfersList } from './available-golfers-list';
@@ -9,11 +9,18 @@ interface Props {
 }
 
 export const TeamContent = ({ selectionPhase }: Props) => {
-  const { isFetching } = useGetTeam();
+  const { loading, fetchTeam } = useGetTeam();
+
+  useEffect(() => {
+    const fetchData = async () => fetchTeam();
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <Loader open={isFetching} />
+      <Loader open={loading} />
       {selectionPhase && <AvailableGolfersList />}
       <TeamSectionContainer />
     </>
