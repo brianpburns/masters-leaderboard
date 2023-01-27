@@ -1,5 +1,8 @@
 import React from 'react';
-import { LoginContainer, StyledGoogleButton } from './styled';
+import {
+  LoginContainer,
+  StyledGoogleButton,
+} from '../../team/components/styled';
 
 interface Props {
   signIn: () => void;

@@ -3,7 +3,7 @@ import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { setupMockServer } from 'test/mocks';
-import { TeamContent } from './team-content';
+import { TeamPage } from './team-page';
 
 setupMockServer();
 
@@ -20,9 +20,9 @@ const cleanGolfers = {
 };
 
 const renderTeamContent = (selectionPhase = true) => {
-  renderWithProviders(<TeamContent selectionPhase={selectionPhase} />, {
+  renderWithProviders(<TeamPage />, {
     preloadedState: {
-      global: { ...initialGlobalState, golfers: cleanGolfers },
+      global: { ...initialGlobalState, selectionPhase, golfers: cleanGolfers },
     },
   });
 };

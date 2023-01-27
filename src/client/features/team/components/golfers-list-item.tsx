@@ -1,6 +1,8 @@
 import { Add, Remove } from '@mui/icons-material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Icon } from 'src/client/features/shared';
+import { selectPhaseSelection } from 'src/client/store';
 import { Player } from 'src/types';
 import { useManageGolfers } from '../hooks/use-manage-golfers';
 import {
@@ -13,17 +15,17 @@ import {
 interface Props {
   golfer: Player;
   availableView: boolean;
-  selectionPhase: boolean;
   onIconClick: (golferId: number) => void;
 }
 
 export const GolfersListItem = ({
   golfer,
   availableView,
-  selectionPhase,
   onIconClick,
 }: Props) => {
   const { selectedGolfers } = useManageGolfers();
+  const selectionPhase = useSelector(selectPhaseSelection);
+
   const remainingPicks = 10 - selectedGolfers.length;
   const {
     id,

@@ -1,6 +1,6 @@
+import { Filter } from 'http-proxy-middleware';
 import { useEffect, useState } from 'react';
 import { Player } from 'src/types';
-import { Filter } from '../types';
 
 export const useFilter = (players: Player[], searchTerm: string) => {
   const [filter, setFilter] = useState<Filter>('none');

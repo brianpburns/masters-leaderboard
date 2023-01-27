@@ -1,18 +1,16 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { TeamName } from './team-name';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { initialGlobalState } from 'src/client/store';
+import { renderWithProviders } from 'src/client/__test__/store';
+import { Name } from './name';
 
 const mockNameUpdate = jest.fn();
 
 const renderTeamName = (selectionPhase = true) => {
-  render(
-    <TeamName
-      name='test'
-      nameUpdate={mockNameUpdate}
-      selectionPhase={selectionPhase}
-    />
-  );
+  renderWithProviders(<Name />, {
+    preloadedState: { global: { ...initialGlobalState, selectionPhase } },
+  });
 };
 
 describe('TeamName', () => {

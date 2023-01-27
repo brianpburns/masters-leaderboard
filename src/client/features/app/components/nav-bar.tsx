@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useGoogleSignIn } from 'src/client/features/team/hooks/use-google-sign-in';
+import { useGoogleSignIn } from 'src/client/features/login/hooks/use-google-sign-in';
 import { StyledListItem, StyledNav } from './styled';
 
 export const NavBar = ({ signOut }: { signOut: () => void }) => {

@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
+import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
-import { TeamState } from '../types';
-import { TeamSection } from './team-section';
+import { TeamState } from '../../types';
+import { SelectedTeam } from './selected-team';
 
 const teamDetails: TeamState = {
   id: 1,
@@ -18,20 +19,10 @@ const handleCancel = jest.fn();
 const deleteTeam = jest.fn();
 const pickedGolfers = [8793];
 
-const renderTeamSection = (selectionPhase = true, noChanges = false) => {
-  renderWithProviders(
-    <TeamSection
-      teamDetails={teamDetails}
-      handleNameUpdate={handleNameUpdate}
-      selectionPhase={selectionPhase}
-      selectedGolferIds={pickedGolfers}
-      removeGolfer={removeGolfer}
-      onSave={onSave}
-      handleCancel={handleCancel}
-      noChanges={noChanges}
-      deleteTeam={deleteTeam}
-    />
-  );
+const renderTeamSection = (selectionPhase = true) => {
+  renderWithProviders(<SelectedTeam />, {
+    preloadedState: { global: { ...initialGlobalState, selectionPhase } },
+  });
 };
 
 describe('TeamSection', () => {

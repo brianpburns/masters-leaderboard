@@ -1,23 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { selectPhaseSelection } from 'src/client/store';
-import { useFilter } from '../hooks/use-filter';
-import { useManageGolfers } from '../hooks/use-manage-golfers';
-import { Checkbox } from './checkbox';
-import { GolfersListItem } from './golfers-list-item';
-import { SearchBar } from './search-bar';
+import { useManageGolfers } from '../../hooks/use-manage-golfers';
+import { GolfersListItem } from '../golfers-list-item';
 import {
   FiltersContainer,
   GolfersListContainer,
   RemainingPicks,
   StyledGolfersList,
-} from './styled';
+} from '../styled';
+import { Checkbox } from './checkbox';
+import { useFilter } from './hooks/use-filter';
+import { SearchBar } from './search-bar';
 
 export const AvailableGolfersList = () => {
   const { addGolfer } = useManageGolfers();
   const { selectedGolfers } = useManageGolfers();
-  const selectionPhase = useSelector(selectPhaseSelection);
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
   const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
   const remainingPicks = 10 - selectedGolfers.length;
@@ -53,7 +50,6 @@ export const AvailableGolfersList = () => {
               golfer={golfer}
               availableView={true}
               onIconClick={addGolfer}
-              selectionPhase={selectionPhase}
             />
           );
         })}
