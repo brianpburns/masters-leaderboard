@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Icon } from 'src/client/features/shared';
 import { selectPhaseSelection } from 'src/client/store';
 import { Player } from 'src/types';
-import { useManageGolfers } from '../hooks/use-manage-golfers';
+import { useManageGolfers } from '../../shared/hooks/use-manage-golfers';
 import {
   AlreadySelectedMsg,
   FlagWrapper,

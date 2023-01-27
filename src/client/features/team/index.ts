@@ -1,5 +1,5 @@
+export { useManageGolfers } from '../shared/hooks/use-manage-golfers';
 export { TeamPage } from './components/team-page';
-export { useManageGolfers } from './hooks/use-manage-golfers';
 export {
   currentTeamReducer,
   initialCurrentTeamState as initialTeamState,

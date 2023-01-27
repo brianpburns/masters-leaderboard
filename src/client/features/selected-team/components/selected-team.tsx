@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 import { selectPhaseSelection } from 'src/client/store';
-import { useManageGolfers } from '../../hooks/use-manage-golfers';
-import { GolfersListItem } from '../golfers-list-item';
-import { StyledGolfersList, TeamContainer } from '../styled';
+import { useManageGolfers } from '../shared/hooks/use-manage-golfers';
+import { GolfersListItem } from '../team/components/golfers-list-item';
+import { StyledGolfersList, TeamContainer } from '../team/components/styled';
 import { Name } from './name';
 import { SelectionControls } from './selection-controls';
 

@@ -6,14 +6,14 @@ import { useUpdateTeam } from 'src/client/api';
 import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 import { useAppSelector } from 'src/client/store';
-import { useSendAlert } from '../../../shared';
-import { useManageGolfers } from '../../hooks/use-manage-golfers';
-import { useCurrentTeamGolfersRef } from '../../state/hooks';
+import { useSendAlert } from '../../shared';
+import { useManageGolfers } from '../../team';
+import { ButtonsContainer, CancelButton } from '../../team/components/styled';
+import { useCurrentTeamGolfersRef } from '../../team/state/hooks';
 import {
   selectCurrentTeam,
   selectGolfersSavedRef,
-} from '../../state/selectors';
-import { ButtonsContainer, CancelButton, Error } from '../styled';
+} from '../../team/state/selectors';
 
 export const SelectionControls = () => {
   const { getGolfersData } = useGetGolferData();

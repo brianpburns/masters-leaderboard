@@ -1,16 +1,16 @@
 import React from 'react';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { useManageGolfers } from '../../hooks/use-manage-golfers';
-import { GolfersListItem } from '../golfers-list-item';
+import { useManageGolfers } from '../../team';
+import { GolfersListItem } from '../../team/components/golfers-list-item';
+import { useFilter } from '../hooks/use-filter';
+import { Checkbox } from './checkbox';
+import { SearchBar } from './search-bar';
 import {
   FiltersContainer,
   GolfersListContainer,
   RemainingPicks,
   StyledGolfersList,
-} from '../styled';
-import { Checkbox } from './checkbox';
-import { useFilter } from './hooks/use-filter';
-import { SearchBar } from './search-bar';
+} from './styled';
 
 export const AvailableGolfersList = () => {
   const { addGolfer } = useManageGolfers();
