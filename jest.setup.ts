@@ -3,6 +3,8 @@ import '@testing-library/jest-dom';
 // Required to add `fetch` to the JSDOM test environment
 import 'whatwg-fetch';
 
+import 'dotenv/config';
+
 jest.mock('src/client/data/golfers-data', () => ({
   golfersData: {
     players: [

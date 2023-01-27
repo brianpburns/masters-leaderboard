@@ -64,7 +64,4 @@ Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch 
 
 ## Feature Flags
 
-The phase of selection needs to be updated manually. There are two places that need to be changed:
-
-1. process.env.SELECTION_PHASE
-2. The initial state for `selectionPhase` in `global-slice/index`
+The phase of selection needs to be updated manually. The initial state for `selectionPhase` in `global-slice/index` needs to be changed.
