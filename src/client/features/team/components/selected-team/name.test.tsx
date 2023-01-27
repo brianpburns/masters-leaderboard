@@ -5,8 +5,6 @@ import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { Name } from './name';
 
-const mockNameUpdate = jest.fn();
-
 const renderTeamName = (selectionPhase = true) => {
   renderWithProviders(<Name />, {
     preloadedState: { global: { ...initialGlobalState, selectionPhase } },
@@ -14,8 +12,6 @@ const renderTeamName = (selectionPhase = true) => {
 };
 
 describe('TeamName', () => {
-  afterEach(() => jest.resetAllMocks());
-
   test('renders in non-edit mode by default', () => {
     renderTeamName();
 
@@ -30,8 +26,7 @@ describe('TeamName', () => {
     fireEvent.change(input, { target: { value: 'new name' } });
     fireEvent.blur(input);
 
-    expect(mockNameUpdate).toBeCalledWith('new name');
-    expect(screen.queryByLabelText('Team Name')).toBeFalsy();
+    expect(screen.getByText('new name')).toBeTruthy();
   });
 
   test('handles team name update on pushing enter', () => {
@@ -42,7 +37,7 @@ describe('TeamName', () => {
     fireEvent.change(input, { target: { value: 'new name' } });
     fireEvent.keyDown(input, { key: 'Enter', keyCode: 13, which: 13 });
 
-    expect(mockNameUpdate).toBeCalledWith('new name');
+    expect(screen.getByText('new name')).toBeTruthy();
   });
 
   test(`doesn't show edit icon when selection mode is false`, () => {

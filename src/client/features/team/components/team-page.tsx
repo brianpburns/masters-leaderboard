@@ -5,7 +5,7 @@ import { Loader } from 'src/client/features/shared';
 import { selectPhaseSelection } from 'src/client/store';
 import { Login } from '../../login/components/login';
 import { useGoogleSignIn } from '../../login/hooks/use-google-sign-in';
-import { AvailableGolfersList } from './available-golfers-list/available-golfers-list';
+import { AvailableGolfersList } from './available-golfers/available-golfers';
 import { SelectedTeam } from './selected-team/selected-team';
 import { TeamPageContainer } from './styled';
 
@@ -28,11 +28,10 @@ export const TeamPage = () => {
 
   return (
     <TeamPageContainer>
-      <Loader open={!loaded && !error} />
+      <Loader open={(!loaded || !loading) && !error} />
       {error && <p>Oops there was an error loading the page</p>}
       {signInSuccess && authToken && (
         <>
-          <Loader open={loading} />
           {selectionPhase && <AvailableGolfersList />}
           <SelectedTeam />
         </>

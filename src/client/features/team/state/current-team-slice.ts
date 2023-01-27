@@ -6,14 +6,14 @@ interface CurrentTeamState {
   isNewTeam: boolean;
 }
 
-export const initialTeamState: CurrentTeamState = {
+export const initialCurrentTeamState: CurrentTeamState = {
   team: { id: 0, owner: '', name: '', golferIds: [], savedRef: [] },
   isNewTeam: false,
 };
 
 const currentTeam = createSlice({
   name: 'currentTeam',
-  initialState: initialTeamState,
+  initialState: initialCurrentTeamState,
   reducers: {
     setTeam(state, action: PayloadAction<TeamState>) {
       state.team = {

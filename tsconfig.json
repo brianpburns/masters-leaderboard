@@ -1,5 +1,5 @@
 {
-  "include": ["src", "test", "webpack"],
+  "include": ["src", "test", "webpack", "jest.setup.ts"],
   "exclude": ["node_modules", "dist", "src/server"],
   "extends": "@snowpack/app-scripts-react/tsconfig.base.json",
   "compilerOptions": {

@@ -1,42 +1,59 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
+import { generalFieldGolfer } from 'test/mocks';
+import { initialCurrentTeamState } from '../../state/current-team-slice';
 import { TeamState } from '../../types';
 import { SelectedTeam } from './selected-team';
 
-const teamDetails: TeamState = {
-  id: 1,
-  owner: 'burns',
-  name: 'burnsing it up',
-  golferIds: [8793],
+const { id, first_name, last_name } = generalFieldGolfer;
+const selectedTeam: TeamState = {
+  id: 0,
+  owner: 'Burns',
+  name: 'Test Name',
+  golferIds: [parseInt(id)],
   savedRef: [],
 };
-const handleNameUpdate = jest.fn();
-const removeGolfer = jest.fn();
-const onSave = jest.fn();
-const handleCancel = jest.fn();
-const deleteTeam = jest.fn();
-const pickedGolfers = [8793];
 
-const renderTeamSection = (selectionPhase = true) => {
+const golferName = `${first_name} ${last_name}`;
+
+const renderSelectedTeam = (selectionPhase = true) => {
   renderWithProviders(<SelectedTeam />, {
-    preloadedState: { global: { ...initialGlobalState, selectionPhase } },
+    preloadedState: {
+      global: { ...initialGlobalState, selectionPhase },
+      currentTeam: { ...initialCurrentTeamState, team: selectedTeam },
+    },
   });
 };
 
-describe('TeamSection', () => {
+describe('SelectedTeam', () => {
   test(`doesn't display buttons when selectionPhase is false`, () => {
-    renderTeamSection(false);
+    renderSelectedTeam(false);
 
     expect(screen.queryByText('Save')).toBeFalsy();
     expect(screen.queryByText('Cancel')).toBeFalsy();
   });
 
   test('displays buttons when selectionPhase is true', () => {
-    renderTeamSection();
+    renderSelectedTeam();
 
     expect(screen.getByText('Save')).toBeTruthy();
     expect(screen.getByText('Cancel')).toBeTruthy();
+  });
+
+  test('lists selected golfers', () => {
+    renderSelectedTeam();
+
+    expect(screen.getByText(golferName)).toBeTruthy();
+  });
+
+  test('removes golfer from list', () => {
+    renderSelectedTeam();
+
+    userEvent.click(screen.getByTestId('RemoveIcon'));
+
+    expect(screen.queryByText(golferName)).toBeFalsy();
   });
 });

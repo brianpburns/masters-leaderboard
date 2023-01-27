@@ -4,21 +4,29 @@ import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { GolferMoneyRankings, Golfers } from 'src/types';
+import { generalFieldGolfer, top10Golfer } from 'test/mocks';
 import { RowContainer } from './row-container';
 
+const { id, first_name, last_name } = generalFieldGolfer;
+const {
+  id: id10,
+  first_name: firstName10,
+  last_name: lastName10,
+} = top10Golfer;
+
 const mockGolfersData: Golfers = {
-  1226: {
-    id: 1226,
-    name: 'Fred Couples',
+  [id]: {
+    id: parseInt(id),
+    name: `${first_name} ${last_name}`,
     position: 1,
     topar: 13,
     thru: '-',
     today: '-',
     teetime: '',
   },
-  33448: {
-    name: 'Justin Thomas',
-    id: 33448,
+  [id10]: {
+    id: parseInt(id10),
+    name: `${firstName10} ${lastName10}`,
     position: 0,
     topar: 14,
     thru: '-',
@@ -31,19 +39,19 @@ const mockTeam = {
   id: 0,
   owner: 'Logan',
   name: 'Team Logan',
-  golfer_ids: [33448, 1226],
+  golfer_ids: [parseInt(generalFieldGolfer.id), parseInt(top10Golfer.id)],
   google_id: '',
   prizeMoney: 0,
 };
 
 const mockPrizeMoney = {
   0: {
-    golfers: [33448],
+    golfers: [parseInt(generalFieldGolfer.id)],
     prizeMoney: 10,
     topar: -1,
   },
   1: {
-    golfers: [1226],
+    golfers: [parseInt(top10Golfer.id)],
     prizeMoney: 5,
     topar: 0,
   },
