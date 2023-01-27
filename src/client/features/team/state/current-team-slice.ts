@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TeamState } from '../types';
 
-export const initialTeamState: TeamState = {
-  id: 0,
-  owner: '',
-  name: '',
-  golferIds: [],
-  savedRef: [],
+interface CurrentTeamState {
+  team: TeamState;
+  isNewTeam: boolean;
+}
+
+export const initialTeamState: CurrentTeamState = {
+  team: { id: 0, owner: '', name: '', golferIds: [], savedRef: [] },
+  isNewTeam: false,
 };
 
 const currentTeam = createSlice({
@@ -14,25 +16,30 @@ const currentTeam = createSlice({
   initialState: initialTeamState,
   reducers: {
     setTeam(state, action: PayloadAction<TeamState>) {
-      state.id = action.payload.id;
-      state.owner = action.payload.owner;
-      state.name = action.payload.name;
-      state.golferIds = action.payload.golferIds;
-      state.savedRef = action.payload.golferIds;
+      state.team = {
+        id: action.payload.id,
+        owner: action.payload.owner,
+        name: action.payload.name,
+        golferIds: action.payload.golferIds,
+        savedRef: action.payload.golferIds,
+      };
     },
     addGolferId(state, action: PayloadAction<number>) {
-      state.golferIds.push(action.payload);
+      state.team.golferIds.push(action.payload);
     },
     removeGolferId(state, action: PayloadAction<number>) {
-      state.golferIds = state.golferIds.filter(
+      state.team.golferIds = state.team.golferIds.filter(
         (golferId) => golferId !== action.payload
       );
     },
     setGolferIds(state, action: PayloadAction<number[]>) {
-      state.golferIds = action.payload;
+      state.team.golferIds = action.payload;
     },
     setGolfersRef(state, action: PayloadAction<number[]>) {
-      state.savedRef = action.payload;
+      state.team.savedRef = action.payload;
+    },
+    setIsNewTeam(state, action: PayloadAction<boolean>) {
+      state.isNewTeam = action.payload;
     },
   },
 });
@@ -43,5 +50,6 @@ export const {
   removeGolferId,
   setGolferIds,
   setGolfersRef,
+  setIsNewTeam,
 } = currentTeam.actions;
 export const currentTeamReducer = currentTeam.reducer;

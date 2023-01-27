@@ -15,7 +15,7 @@ const activeTeam: TeamState = {
 
 const renderTeamDetails = () => {
   renderWithProviders(<TeamSectionContainer />, {
-    preloadedState: { currentTeam: activeTeam },
+    preloadedState: { currentTeam: { team: activeTeam, isNewTeam: false } },
   });
 };
 

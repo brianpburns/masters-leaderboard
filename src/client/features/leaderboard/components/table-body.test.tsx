@@ -60,7 +60,7 @@ describe('BodyContainer', () => {
       </table>,
       {
         preloadedState: {
-          currentTeam: mockTeam,
+          currentTeam: { team: mockTeam, isNewTeam: false },
           leaderboard: { teams: mockTeams, cutLine: 0 },
           global: {
             ...initialGlobalState,
