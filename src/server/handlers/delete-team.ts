@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { Team } from '../masters-db';
+import { Team } from '../db';
 
 export function deleteTeam() {
   return asyncHandler(async (req, res) => {

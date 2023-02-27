@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import { Team } from '../masters-db';
+import { Team } from '../db';
 
 const isError = (error: unknown): error is Error =>
   (error as Error).message !== undefined;

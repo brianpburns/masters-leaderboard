@@ -5,7 +5,7 @@ import { googleConfig } from 'src/client/config';
 import { Leaderboard } from 'src/client/features/leaderboard';
 import { AlertContainer, useSendAlert } from 'src/client/features/shared';
 import { useGlobalAction } from 'src/client/store';
-import { TeamPage } from '../../team';
+import { TeamPage } from '../../team-page';
 import { HeaderImage } from './header-image';
 import { NavBar } from './nav-bar';
 

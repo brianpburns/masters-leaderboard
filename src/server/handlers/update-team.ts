@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
+import { Team } from '../db';
 import { UpdateTeamRequestBody } from '../types';
-import { Team } from '../masters-db';
 import { verifyToken } from '../util/verify-token';
 
 export function updateTeam() {

@@ -29,7 +29,7 @@ export const handlers = [
   rest.get('/api/team', (_req, res, ctx) => {
     const teamData = golfers[1];
 
-    return res(ctx.status(200), ctx.json(teamData));
+    return res(ctx.status(200), ctx.json({ team: teamData, new_team: false }));
   }),
 
   rest.post('/api/team', (req, res, ctx) => {

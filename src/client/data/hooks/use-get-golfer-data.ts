@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useManageGolfers } from 'src/client/features/team';
+import { useManageGolfers } from 'src/client/features/shared';
 import { Player } from 'src/types';
 import { golfersData } from '../golfers-data';
 

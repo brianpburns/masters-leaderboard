@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 import { initialLeaderboardState } from '../features/leaderboard';
 import { initialAlertState } from '../features/shared';
-import { initialTeamState } from '../features/team';
+import { initialTeamState } from '../features/team-page';
 import { AppStore, initialGlobalState, RootState, setupStore } from '../store';
 
 export const defaultState: Omit<RootState, 'api'> = {
@@ -20,7 +20,7 @@ export const defaultState: Omit<RootState, 'api'> = {
  */
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<PreloadedState<RootState>>;
-  store?: AppStore;
+  storeOverride?: AppStore;
 }
 
 /**
@@ -30,12 +30,15 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 export const renderWithProviders = (
   ui: React.ReactElement,
   {
-    preloadedState = defaultState,
+    preloadedState,
     // Automatically create a store instance if no store was passed in
-    store = setupStore({ ...defaultState, ...preloadedState }),
+    storeOverride,
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) => {
+  const state = { ...defaultState, ...preloadedState };
+  const store = storeOverride || setupStore(state);
+
   const Wrapper = ({
     children,
   }: PropsWithChildren<Record<string, unknown>>) => {

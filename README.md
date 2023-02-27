@@ -1,7 +1,7 @@
 # Masters Leaderboard
 
 Live LP: http://unbouncepages.com/masters-2021-vancrewver/
-Hosted app on Heroku.
+Hosted app on Render.
 
 ## Installation
 
@@ -28,7 +28,9 @@ npm start
 npm run server
 ```
 
-Visit http://localhost:8082/team. This uses the real DB data in Render.
+Visit http://localhost:8082/team.
+
+This will run with local Postgres DB at `process.env.DATABASE_URL`.
 
 Development of just the UI. This runs the UI locally on port 8082 and mocks the backend using MSW.
 
@@ -62,7 +64,4 @@ Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch 
 
 ## Feature Flags
 
-The phase of selection needs to be updated manually. There are two places that need to be changed:
-
-1. process.env.SELECTION_PHASE
-2. The initial state for `selectionPhase` in `global-slice/index`
+The phase of selection needs to be updated manually. The initial state for `selectionPhase` in `global-slice/index` needs to be changed.

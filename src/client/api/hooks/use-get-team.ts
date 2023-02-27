@@ -1,32 +1,41 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useSendAlert } from 'src/client/features/shared';
-import { useSetCurrentTeam } from 'src/client/features/team/state/hooks';
+import { setIsNewTeam } from 'src/client/features/team-page/state/current-team-slice';
+import { useSetCurrentTeam } from 'src/client/features/team-page/state/hooks';
 import { selectAuthToken } from 'src/client/store';
-import { useGetTeamQuery } from '../api-slice';
+import { getTeam } from '../fetch/get-team';
 
 export const useGetTeam = () => {
   const { setCurrentTeam } = useSetCurrentTeam();
+  const [loading, setLoading] = useState(true);
   const authToken = useSelector(selectAuthToken);
   const history = useHistory();
   const sendAlert = useSendAlert();
-  const { data, isFetching, isSuccess, isError } = useGetTeamQuery(authToken);
 
-  useEffect(() => {
-    if (isSuccess) {
-      const { golfer_ids, ...rest } = data;
+  const fetchTeam = async () => {
+    setLoading(true);
 
-      setCurrentTeam({ golferIds: golfer_ids, savedRef: golfer_ids, ...rest });
+    try {
+      const { team, new_team } = await getTeam(authToken);
+      const { golfer_ids, ...rest } = team;
+
+      setCurrentTeam({
+        ...rest,
+        golferIds: golfer_ids,
+        savedRef: golfer_ids,
+      });
+      setIsNewTeam(new_team);
+
+      setLoading(false);
+    } catch (err) {
+      if (err instanceof Error) {
+        history.push('/leaderboard');
+        sendAlert('Failed to retrieve team', 'error', 5000);
+      }
     }
-  }, [isSuccess, data, setCurrentTeam]);
+  };
 
-  useEffect(() => {
-    if (isError) {
-      history.push('/leaderboard');
-      sendAlert('Failed to retrieve team', 'error', 5000);
-    }
-  }, [history, isError, sendAlert]);
-
-  return { isFetching };
+  return { loading, fetchTeam };
 };
