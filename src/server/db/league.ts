@@ -23,6 +23,10 @@ export const League: ModelDefined<LeagueType, LeagueAttributes> =
     },
   });
 
-// League.belongsToMany(Team, { through: 'League_Members' });
+// League.belongsToMany(Team, {
+//   through: 'League_Members',
+//   as: 'team',
+//   foreignKey: 'league_id',
+// });
 
 // League.findOne({ where: {id: 1}}).then(league)

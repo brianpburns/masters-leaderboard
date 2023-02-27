@@ -1,7 +1,6 @@
 import { DataTypes, ModelDefined, Optional } from 'sequelize';
 import { Team as TeamType } from '../../types';
 import { sequelize } from './db';
-import { League } from './league';
 
 type TeamAttributes = Optional<
   TeamType,
@@ -36,4 +35,9 @@ export const Team: ModelDefined<TeamType, TeamAttributes> = sequelize.define(
   }
 );
 
-Team.belongsToMany(League, { through: 'League_Members' });
+// Team.hasMany(League);
+// Team.belongsToMany(League, {
+//   through: 'League_Members',
+//   as: 'league',
+//   foreignKey: 'team_id',
+// });
