@@ -1,6 +1,6 @@
 # Masters Leaderboard
 
-Hosted app on (Render)[https://masters-app.onrender.com].
+Hosted app on [Render](https://masters-app.onrender.com).
 
 ## Installation
 
