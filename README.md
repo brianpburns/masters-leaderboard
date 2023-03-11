@@ -1,7 +1,6 @@
 # Masters Leaderboard
 
-Live LP: http://unbouncepages.com/masters-2021-vancrewver/
-Hosted app on Render.
+Hosted app on (Render)[https://masters-app.onrender.com].
 
 ## Installation
 
