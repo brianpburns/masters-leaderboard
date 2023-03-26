@@ -18,11 +18,6 @@ jobs:
           node-version: "14.x"
       - run: npm ci
       - run: npm run test:coverage
-      - name: Fix Code Coverage Paths
-        # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747
-        working-directory: ./coverage
-        run: |
-          sed -i "s@${GITHUB_WORKSPACE}@/github/workspace/@g" lcov.info
       - name: Code Coverage Report
         uses: romeovs/lcov-reporter-action@v0.3.1
         with:

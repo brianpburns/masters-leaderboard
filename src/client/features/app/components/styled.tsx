@@ -11,13 +11,12 @@ export const StyledNav = styled.nav`
     padding: 0;
   }
 
-  li {
-    margin: auto;
-  }
-
-  a {
+  a,
+  button {
     text-decoration: none;
     color: #006747;
+    background-color: white;
+    border: none;
 
     &:hover {
       color: #059265;
@@ -37,8 +36,8 @@ export const MastersLogoWrapper = styled.div`
   padding-bottom: 10px;
 
   img {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    margin-bottom: 20px;
     width: 50%;
     max-width: fit-content;
     max-height: 80px;

@@ -25,7 +25,10 @@ export const RowContainer = ({ position, row }: Props) => {
     if (golfers && displaySubTable) {
       setOpen(value);
     } else {
-      sendAlert('Teams cannot be viewed until the tournament starts', 'info');
+      sendAlert(
+        'Other teams cannot be viewed until the tournament starts',
+        'info'
+      );
     }
   };
 

@@ -1,17 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { screen } from '@testing-library/react';
 import React from 'react';
+import { renderWithProviders } from '../../../__test__/store';
 import { Login } from './login';
 
-const mockSignIn = jest.fn();
-
-const renderLogin = () => {
-  render(<Login signIn={mockSignIn} />);
-};
+const renderLogin = () =>
+  renderWithProviders(
+    <GoogleOAuthProvider clientId='dummy'>
+      <Login />
+    </GoogleOAuthProvider>
+  );
 
 describe('Login', () => {
   test('renders login button', () => {
     renderLogin();
 
-    expect(screen.getByText('Sign In')).toBeTruthy();
+    expect(screen.getByTestId('google-login-button')).toBeTruthy();
   });
 });

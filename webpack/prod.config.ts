@@ -1,8 +1,7 @@
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import path from 'path';
 import { DefinePlugin } from 'webpack';
 import { merge } from 'webpack-merge';
 import base from './base.config';
-import path from 'path';
 
 const config = () =>
   merge(base, {
@@ -20,10 +19,6 @@ const config = () =>
         'process.env.STANDALONE': JSON.stringify('false'),
       }),
     ],
-    resolve: {
-      plugins: [new TsconfigPathsPlugin()],
-      extensions: ['.tsx', '.ts', '.js'],
-    },
   });
 
 export default config;

@@ -15,6 +15,8 @@ export const useUpdateTeam = () => {
   const sendAlert = useSendAlert();
 
   const updateTeamDetails = async (team: TeamState) => {
+    if (!authToken) return;
+
     const { golferIds, ...rest } = team;
     try {
       await updateTeam({ golfer_ids: golferIds, ...rest }, authToken);

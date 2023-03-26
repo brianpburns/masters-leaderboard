@@ -1,18 +1,14 @@
 import React from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useGoogleSignIn } from 'src/client/features/login/hooks/use-google-sign-in';
+import { Link, useLocation } from 'react-router-dom';
+import { selectAuthToken, useAppSelector } from '../../../store';
+import { useLogout } from '../../login';
 import { StyledListItem, StyledNav } from './styled';
 
-export const NavBar = ({ signOut }: { signOut: () => void }) => {
+export const NavBar = () => {
   const location = useLocation();
   const currentRoute = location.pathname;
-  const history = useHistory();
-
-  // Only want the callback to run on clicking login, not on page load so we set up two hooks
-  useGoogleSignIn(true);
-  const { authToken, signIn } = useGoogleSignIn(false, () =>
-    history.push('team')
-  );
+  const authToken = useAppSelector(selectAuthToken);
+  const handleLogout = useLogout();
 
   return (
     <StyledNav>
@@ -23,17 +19,11 @@ export const NavBar = ({ signOut }: { signOut: () => void }) => {
         <StyledListItem active={currentRoute === '/leaderboard'}>
           <Link to='/leaderboard'>Leaderboard</Link>
         </StyledListItem>
-        <StyledListItem active={currentRoute === '/login'}>
-          {authToken ? (
-            <Link to='/leaderboard' onClick={signOut}>
-              Logout
-            </Link>
-          ) : (
-            <Link to='/team' onClick={signIn}>
-              Login
-            </Link>
-          )}
-        </StyledListItem>
+        {authToken && (
+          <StyledListItem active={false}>
+            <button onClick={handleLogout}>Logout</button>
+          </StyledListItem>
+        )}
       </ul>
     </StyledNav>
   );
