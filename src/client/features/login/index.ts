@@ -1,2 +1,2 @@
 export { Login } from './components/login';
-export { useGoogleSignIn } from './hooks/use-google-sign-in';
+export { useLogout } from './hooks/use-logout';
