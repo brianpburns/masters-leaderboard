@@ -36,8 +36,8 @@ export const MastersLogoWrapper = styled.div`
   padding-bottom: 10px;
 
   img {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+    margin-bottom: 20px;
     width: 50%;
     max-width: fit-content;
     max-height: 80px;
