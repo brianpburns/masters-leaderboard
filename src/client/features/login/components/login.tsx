@@ -1,24 +1,20 @@
+import { GoogleLogin } from '@react-oauth/google';
 import React from 'react';
-import GoogleButton from 'react-google-button';
 import styled from 'styled-components';
-
-interface Props {
-  signIn: () => void;
-}
+import { useLogin } from '../hooks/use-login';
 
 const LoginContainer = styled.div`
-  padding: 15px;
-  display: flex;
-  width: 100%;
-  height: 50vh;
-`;
-
-const StyledGoogleButton = styled(GoogleButton)`
   margin: auto;
+  width: fit-content;
+  margin-top: 50px;
 `;
 
-export const Login = ({ signIn }: Props) => (
-  <LoginContainer>
-    <StyledGoogleButton onClick={signIn} label='Sign In' />
-  </LoginContainer>
-);
+export const Login = () => {
+  const { onSuccess, onError } = useLogin();
+
+  return (
+    <LoginContainer>
+      <GoogleLogin onSuccess={onSuccess} onError={onError} />
+    </LoginContainer>
+  );
+};

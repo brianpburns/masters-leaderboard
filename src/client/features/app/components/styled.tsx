@@ -11,13 +11,12 @@ export const StyledNav = styled.nav`
     padding: 0;
   }
 
-  li {
-    margin: auto;
-  }
-
-  a {
+  a,
+  button {
     text-decoration: none;
     color: #006747;
+    background-color: white;
+    border: none;
 
     &:hover {
       color: #059265;
