@@ -11,7 +11,7 @@ import {
   useGlobalAction,
 } from 'src/client/store';
 
-export const useLogin = () => {
+export const useLogin = (oneTap = true) => {
   const [finishedSignIn, setFinishedSignIn] = useState(false);
   const { setAuthToken } = useGlobalAction();
   const history = useHistory();
@@ -38,7 +38,8 @@ export const useLogin = () => {
   };
 
   const promptMomentNotification = (notification: PromptMomentNotification) => {
-    if (notification.isNotDisplayed()) {
+    // Failed to display the login prompt or the user dismissed it
+    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
       history.push('login');
     }
 
@@ -49,11 +50,6 @@ export const useLogin = () => {
         history.push('login');
       }
     }
-
-    // User cancelled the login
-    if (notification.isSkippedMoment()) {
-      history.push('login');
-    }
   };
 
   useGoogleOneTapLogin({
@@ -61,7 +57,7 @@ export const useLogin = () => {
     onError,
     promptMomentNotification,
     cancel_on_tap_outside: false,
-    disabled: !!authToken,
+    disabled: !!authToken || !oneTap,
   });
 
   return { finishedSignIn, onSuccess, onError };

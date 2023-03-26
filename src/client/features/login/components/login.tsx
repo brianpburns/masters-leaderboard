@@ -10,10 +10,10 @@ const LoginContainer = styled.div`
 `;
 
 export const Login = () => {
-  const { onSuccess, onError } = useLogin();
+  const { onSuccess, onError } = useLogin(false);
 
   return (
-    <LoginContainer>
+    <LoginContainer data-testid='google-login-button'>
       <GoogleLogin onSuccess={onSuccess} onError={onError} />
     </LoginContainer>
   );

@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { screen } from '@testing-library/react';
 import React from 'react';
 import { initialGlobalState } from 'src/client/store';
@@ -14,14 +15,6 @@ const selectedTeam: TeamState = {
   savedRef: [],
 };
 
-jest.mock('react-google-login', () => ({
-  ...jest.requireActual('react-google-login'),
-  useGoogleLogin: jest.fn().mockReturnValue({
-    signIn: jest.fn(),
-    loaded: true,
-  }),
-}));
-
 const mockHistoryPush = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -31,12 +24,17 @@ jest.mock('react-router-dom', () => ({
 }));
 
 const renderTeamDetails = (selectionPhase = true) => {
-  renderWithProviders(<TeamPage />, {
-    preloadedState: {
-      global: { ...initialGlobalState, token: 'auth-token', selectionPhase },
-      currentTeam: { team: selectedTeam, isNewTeam: false },
-    },
-  });
+  renderWithProviders(
+    <GoogleOAuthProvider clientId='dummy-client-id'>
+      <TeamPage />
+    </GoogleOAuthProvider>,
+    {
+      preloadedState: {
+        global: { ...initialGlobalState, token: 'auth-token', selectionPhase },
+        currentTeam: { team: selectedTeam, isNewTeam: false },
+      },
+    }
+  );
 };
 
 describe('TeamPage', () => {
