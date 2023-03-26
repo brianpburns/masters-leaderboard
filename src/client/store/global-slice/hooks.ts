@@ -7,7 +7,7 @@ export const useGlobalAction = () => {
   const dispatch = useDispatch();
 
   return useMemo(() => {
-    const setAuthToken = (token: string) => dispatch(setToken(token));
+    const setAuthToken = (token: string | null) => dispatch(setToken(token));
     const setGolfersList = (golfers: Golfers) =>
       dispatch(setGolfersState(golfers));
     const setGolferMoneyRankings = (golfers: GolferMoneyRankings) =>
