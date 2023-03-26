@@ -5,9 +5,11 @@ import { useSendAlert } from 'src/client/features/shared';
 import { setIsNewTeam } from 'src/client/features/team-page/state/current-team-slice';
 import { useSetCurrentTeam } from 'src/client/features/team-page/state/hooks';
 import { selectAuthToken } from 'src/client/store';
+import { selectCurrentTeam } from '../../features/team-page/state/selectors';
 import { getTeam } from '../fetch/get-team';
 
 export const useGetTeam = () => {
+  const currentTeam = useSelector(selectCurrentTeam);
   const { setCurrentTeam } = useSetCurrentTeam();
   const [loading, setLoading] = useState(true);
   const authToken = useSelector(selectAuthToken);
@@ -15,6 +17,12 @@ export const useGetTeam = () => {
   const sendAlert = useSendAlert();
 
   const fetchTeam = async () => {
+    // If we already have a team, don't fetch it again
+    if (!authToken || currentTeam.id !== 0) {
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -30,10 +38,8 @@ export const useGetTeam = () => {
 
       setLoading(false);
     } catch (err) {
-      if (err instanceof Error) {
-        history.push('/leaderboard');
-        sendAlert('Failed to retrieve team', 'error', 5000);
-      }
+      history.push('/leaderboard');
+      sendAlert('Failed to retrieve team', 'error', 5000);
     }
   };
 
