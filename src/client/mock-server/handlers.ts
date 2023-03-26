@@ -3,7 +3,7 @@ import { Team } from 'src/types';
 
 import { mockLeaderboardData } from './data/leaderboard';
 
-const golfers: Record<string, Team> = {
+export const teamsList: Record<string, Team> = {
   1: {
     id: 1,
     owner: 'burns',
@@ -27,7 +27,7 @@ export const handlers = [
   ),
 
   rest.get('/api/team', (_req, res, ctx) => {
-    const teamData = golfers[1];
+    const teamData = teamsList[1];
 
     return res(ctx.status(200), ctx.json({ team: teamData, new_team: false }));
   }),
@@ -37,13 +37,13 @@ export const handlers = [
 
     if (!(newData instanceof Object)) return res(ctx.status(500));
 
-    golfers[1] = { id: 1, ...newData } as Team;
+    teamsList[1] = { id: 1, ...newData } as Team;
 
     return res(ctx.status(200));
   }),
 
   rest.get('/api/teams', (_req, res, ctx) => {
-    const teams = Object.values(golfers);
+    const teams = Object.values(teamsList);
 
     return res(ctx.status(200), ctx.json(teams));
   }),

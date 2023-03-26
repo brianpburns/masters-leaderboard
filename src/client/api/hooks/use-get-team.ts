@@ -43,5 +43,5 @@ export const useGetTeam = () => {
     }
   };
 
-  return { loading, fetchTeam };
+  return { loading, fetchTeam, currentTeam };
 };
