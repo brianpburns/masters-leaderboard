@@ -1,16 +1,15 @@
-// TODO: Uncomment request processing once real url is live
 import type { LeaderboardData, RawGolferData } from '../../../types';
 import { addPrizeMoney } from '../../util/prize-money';
 import { getLeaderboard } from '../fetch/get-leaderboard';
 import { generateRankings } from './generate-rankings';
 import { normaliseCutLine } from './normalise-cut-line';
-// import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 
 export const fetchLeaderboardData = async () => {
   try {
     const response = await getLeaderboard();
-    const { data }: { data: LeaderboardData } = await response.json();
-    // const { data }: { data: LeaderboardData } = response;
+    // const { data }: { data: LeaderboardData } = await response.json();
+    // Used when the Masters URL isn't live yet
+    const { data }: { data: LeaderboardData } = response;
     const { currentRound, player } = data;
 
     return {
