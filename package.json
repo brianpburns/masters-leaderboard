@@ -7,9 +7,9 @@
     "start:standalone": "npm run start -- --env standalone=true",
     "server": "NODE_ENV=development ts-node-dev --project tsconfig.server.json src/server/index.ts",
     "server:prod": "NODE_ENV=production node dist/server/index.js",
-    "server:build": "NODE_ENV=production tsc --project tsconfig.server.json",
-    "ui:build": "webpack --config webpack/prod.config.ts",
-    "build:prod": "npm run server:build; npm run ui:build",
+    "build:prod": "npm run build:server; npm run build:ui",
+    "build:server": "NODE_ENV=production tsc --project tsconfig.server.json",
+    "build:ui": "webpack --config webpack/prod.config.ts",
     "deploy": "git push heroku main",
     "check-types": "tsc --noEmit && tsc --project tsconfig.server.json --noEmit",
     "lint": "npm run lint:prettier && npm run lint:eslint",
@@ -18,7 +18,6 @@
     "test": "jest",
     "tests": "npm run test",
     "test:coverage": "npm run test -- --coverage",
-    "heroku-postbuild": "npm run build:prod",
     "render:startup": "npm ci; npm run build:prod"
   },
   "repository": {
