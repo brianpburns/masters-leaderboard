@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useAlertState } from '../state/hooks';
+import { alertSelector } from '../state/selectors';
 import { AlertBanner } from './alert-banner';
 
 export const AlertContainer = () => {
-  const { alert, setAlert } = useAlertState();
+  const setAlert = useAlertState();
+  const alert = useSelector(alertSelector);
   const { open, message, severity, duration } = alert;
 
   const close = () => {

@@ -2,7 +2,7 @@ import { useAlertState } from '../state/hooks';
 import { AlertSeverity } from '../types';
 
 export const useSendAlert = () => {
-  const { setAlert } = useAlertState();
+  const setAlert = useAlertState();
 
   const sendAlert = (
     message: string,

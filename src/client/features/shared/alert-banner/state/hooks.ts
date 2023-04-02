@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 import { AlertState, setAlertState } from './alert-slice';
-import { alertSelector } from './selectors';
 
 export const useAlertState = () => {
   const dispatch = useDispatch();
-  const alert = useSelector(alertSelector);
 
-  const setAlert = (newAlert: AlertState) => dispatch(setAlertState(newAlert));
-
-  return { alert, setAlert };
+  return useMemo(() => {
+    return (newAlert: AlertState) => dispatch(setAlertState(newAlert));
+  }, [dispatch]);
 };
