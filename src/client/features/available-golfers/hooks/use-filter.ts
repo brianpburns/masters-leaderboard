@@ -1,5 +1,6 @@
 import { Filter } from 'http-proxy-middleware';
 import { useEffect, useState } from 'react';
+import { top10Ids } from 'src/client/data/golfers-data';
 import { Player } from 'src/types';
 
 export const useFilter = (players: Player[], searchTerm: string) => {
@@ -17,11 +18,11 @@ export const useFilter = (players: Player[], searchTerm: string) => {
       );
       setFilteredResults(rookies);
     } else if (filter === 'top10') {
-      const top10 = players.filter((golfer) => golfer.top10 === true);
+      const top10 = players.filter((golfer) => top10Ids.includes(golfer.id));
       setFilteredResults(top10);
     } else if (filter === 'other') {
       const other = players.filter(
-        (golfer) => golfer.top10 !== true && golfer.First !== '1'
+        (golfer) => !top10Ids.includes(golfer.id) && golfer.First !== '1'
       );
       setFilteredResults(other);
     } else {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useManageGolfers } from 'src/client/features/shared';
 import { Player } from 'src/types';
-import { golfersData } from '../golfers-data';
+import { golfersData, top10Ids } from '../golfers-data';
 
 export const useGetGolferData = () => {
   const allGolfers = golfersData.players;
@@ -11,14 +11,14 @@ export const useGetGolferData = () => {
 
   const sortResults = (resultsToSort: Player[]) => {
     const compare = (playerA: Player, playerB: Player) => {
-      if (playerA.top10) {
+      if (top10Ids.includes(playerA.id)) {
         return -1;
       }
-      if (playerB.top10 !== true && playerA.First === '') {
+      if (!top10Ids.includes(playerB.id) && playerA.First === '') {
         return -1;
       }
       if (
-        playerB.top10 !== true &&
+        !top10Ids.includes(playerB.id) &&
         playerB.First !== '' &&
         playerA.Amateur === '1'
       ) {
@@ -62,7 +62,9 @@ export const useGetGolferData = () => {
     const amateurCount = golfers.filter(
       (golfer) => golfer.Amateur === '1'
     ).length;
-    const top10Count = golfers.filter((golfer) => golfer.top10 === true).length;
+    const top10Count = golfers.filter((golfer) =>
+      top10Ids.includes(golfer.id)
+    ).length;
 
     return { golfers, rookieCount, top10Count, amateurCount };
   };

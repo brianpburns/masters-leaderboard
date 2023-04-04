@@ -59,11 +59,12 @@ export interface Player {
   id: string;
   countryName: string;
   countryCode: string;
+  // TODO: Replace Amateur with first_masters
   Amateur: string;
+  first_masters: boolean;
   First: string;
   Past: string;
   image: boolean;
-  top10: boolean;
 }
 
 export interface PlayersResponseData {

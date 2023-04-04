@@ -1,6 +1,7 @@
 import { Add, Remove } from '@mui/icons-material';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { top10Ids } from 'src/client/data/golfers-data';
 import { Icon } from 'src/client/features/shared';
 import { selectPhaseSelection } from 'src/client/store';
 import { Player } from 'src/types';
@@ -31,7 +32,6 @@ export const GolfersListItem = ({
     id,
     first_name,
     last_name,
-    top10,
     First,
     countryCode,
     countryName,
@@ -41,6 +41,7 @@ export const GolfersListItem = ({
   const rookie = First === '1';
   const amateur = Amateur === '1';
   const showFlag = availableView || !selectionPhase;
+  const top10 = top10Ids.includes(id.toString());
 
   return (
     <GolferListItem
