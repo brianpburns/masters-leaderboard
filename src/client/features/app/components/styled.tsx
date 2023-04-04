@@ -20,6 +20,7 @@ export const StyledNav = styled.nav`
 
     &:hover {
       color: #059265;
+      cursor: pointer;
     }
   }
 `;

@@ -1,9 +1,14 @@
-import { Button } from '@mui/material';
+import { mobileBreakpoint } from 'src/client/variables';
 import styled from 'styled-components';
 
 export const TeamPageContainer = styled.div`
   padding: 10px;
   display: flex;
+  flex-direction: column;
+
+  @media ${mobileBreakpoint} {
+    flex-direction: row;
+  }
 `;
 
 export const GolferListItem = styled.li<{ selected: boolean }>`
@@ -21,10 +26,13 @@ export const GolferListItem = styled.li<{ selected: boolean }>`
 
 export const TeamContainer = styled.div`
   background-color: white;
-  width: 50%;
+  width: 100%;
   height: fit-content;
-  border-radius: 10px;
-  padding: 10px;
+
+  @media ${mobileBreakpoint} {
+    width: 50%;
+    padding: 10px;
+  }
 `;
 
 export const NameWrapper = styled.div`
@@ -36,11 +44,8 @@ export const NameWrapper = styled.div`
 
 export const ButtonsContainer = styled.div`
   width: 100%;
-  text-align: end;
-`;
-
-export const CancelButton = styled(Button)`
-  margin-left: 5px !important;
+  display: flex;
+  column-gap: 5px;
 `;
 
 export const EditIconWrapper = styled.div`

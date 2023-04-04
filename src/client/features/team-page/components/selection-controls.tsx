@@ -7,9 +7,10 @@ import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 import { useAppSelector } from 'src/client/store';
 import { useManageGolfers, useSendAlert } from '../../shared';
+import { Tooltip } from '../../shared/components/tooltip';
 import { useCurrentTeamGolfersRef } from '../state/hooks';
 import { selectCurrentTeam, selectGolfersSavedRef } from '../state/selectors';
-import { ButtonsContainer, CancelButton, Error } from './styled';
+import { ButtonsContainer, Error } from './styled';
 
 export const SelectionControls = () => {
   const { getGolfersData } = useGetGolferData();
@@ -45,7 +46,7 @@ export const SelectionControls = () => {
     <>
       {amateurError && <Error>Amateur hour. You need at least 1.</Error>}
       {rookieError && <Error>Rookie error. You need at least 1.</Error>}
-      {top10Error && <Error>You can only have 5 of the top 10 players.</Error>}
+      {top10Error && <Error>Too many top 10 players.</Error>}
       <ButtonsContainer>
         <Button
           size='small'
@@ -56,7 +57,7 @@ export const SelectionControls = () => {
         >
           Save
         </Button>
-        <CancelButton
+        <Button
           size='small'
           variant='contained'
           color='secondary'
@@ -64,16 +65,13 @@ export const SelectionControls = () => {
           disabled={noChanges}
         >
           Cancel
-        </CancelButton>
+        </Button>
         <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button>
+        <Tooltip
+          triggerText='Rules'
+          tooltipMessage='10 players, max 5 top 10. 1 rookie, 1 amateur.'
+        />
       </ButtonsContainer>
-      <p>Rules:</p>
-      <ul>
-        <li>10 players</li>
-        <li>1 rookie</li>
-        <li>1 amateur</li>
-        <li>Maximum of 5 of the top 10 players</li>
-      </ul>
     </>
   );
 };

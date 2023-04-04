@@ -1,4 +1,5 @@
 import { FilledInput, FormControlLabel, IconButton } from '@mui/material';
+import { mobileBreakpoint } from 'src/client/variables';
 import styled from 'styled-components';
 
 export const SearchBarWrapper = styled.div`
@@ -31,19 +32,20 @@ export const FiltersContainer = styled.div`
   display: grid;
   margin-top: 5px;
   align-items: center;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media (min-width: 650px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 export const GolfersListContainer = styled.div`
   background-color: white;
-  width: 50%;
-  border-radius: 10px;
-  padding: 10px;
+  width: 100%;
   height: fit-content;
+  margin-top: 10px;
+
+  @media ${mobileBreakpoint} {
+    padding: 10px;
+    width: 50%;
+    margin-top: 0;
+  }
 `;
 
 export const StyledGolfersList = styled.ul<{ disabled?: boolean }>`

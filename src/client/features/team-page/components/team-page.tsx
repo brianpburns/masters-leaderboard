@@ -27,8 +27,8 @@ export const TeamPage = () => {
       <Loader open={!finishedSignIn || loading} />
       {finishedSignIn && (
         <>
-          {selectionPhase && <AvailableGolfersList />}
           <SelectedTeam />
+          {selectionPhase && <AvailableGolfersList />}
         </>
       )}
     </TeamPageContainer>
