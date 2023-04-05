@@ -5,7 +5,7 @@ import { Team } from 'src/types';
 import { listTeams } from '../fetch/list-teams';
 
 export const useLoadTeams = () => {
-  const { setTeams } = useTeamState();
+  const setTeams = useTeamState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const sendAlert = useSendAlert();

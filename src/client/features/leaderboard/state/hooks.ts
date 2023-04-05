@@ -7,9 +7,7 @@ export const useTeamState = () => {
   const dispatch = useDispatch();
 
   return useMemo(() => {
-    const setTeams = (teams: Team[]) => dispatch(setTeamsState(teams));
-
-    return { setTeams };
+    return (teams: Team[]) => dispatch(setTeamsState(teams));
   }, [dispatch]);
 };
 
@@ -17,8 +15,6 @@ export const useCutLine = () => {
   const dispatch = useDispatch();
 
   return useMemo(() => {
-    const setCutLine = (value: number) => dispatch(setCutLineState(value));
-
-    return { setCutLine };
+    return (value: number) => dispatch(setCutLineState(value));
   }, [dispatch]);
 };

@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { generateGolferData } from './api';
 import { Root } from './features/app';
 import './index.css';
 import { store } from './store/store';
-import { TempStateSetupComponent } from './temp-state-component';
 
 const localBootstrap = async () => {
   // eslint-disable-next-line no-console
@@ -18,16 +16,9 @@ const localBootstrap = async () => {
 };
 
 const bootstrap = async () => {
-  const { golfers, golferMoneyRankings, cutLine } = await generateGolferData();
-
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <TempStateSetupComponent
-          cutLine={cutLine}
-          golfers={golfers}
-          golferMoneyRankings={golferMoneyRankings}
-        />
         <Root />
       </Provider>
     </React.StrictMode>,
