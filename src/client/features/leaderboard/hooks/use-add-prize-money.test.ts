@@ -53,6 +53,7 @@ const renderHook = (prizeMoney = mockPrizeMoney) =>
       ...initialGlobalState,
       golfers: mockGolfersData,
       golferRankings: prizeMoney,
+      selectionPhase: false,
     },
   });
 

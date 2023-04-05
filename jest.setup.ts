@@ -6,6 +6,7 @@ import 'whatwg-fetch';
 import 'dotenv/config';
 
 jest.mock('src/client/data/golfers-data', () => ({
+  ...jest.requireActual('src/client/data/golfers-data'),
   golfersData: {
     players: [
       {
