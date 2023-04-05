@@ -1,20 +1,18 @@
-import { useHistory } from 'react-router-dom';
+import { useLogout } from 'src/client/features/login';
 import { useDeleteTeamMutation } from '../api-slice';
 
 export const useDeleteTeam = () => {
-  const history = useHistory();
   const [deleteTeam] = useDeleteTeamMutation();
+  const logout = useLogout();
 
-  const deleteTeamDetails = async (id: number) => {
+  return async (id: number) => {
     try {
+      logout();
       await deleteTeam(id);
-      history.push('/leaderboard');
     } catch (err) {
       if (err instanceof Error) {
         throw new Error(`Failed to delete team. Error message: ${err.message}`);
       }
     }
   };
-
-  return deleteTeamDetails;
 };
