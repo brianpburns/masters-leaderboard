@@ -29,7 +29,7 @@ export const SelectionControls = () => {
   const pickedGolfers = golfers.length;
   const rookieError = pickedGolfers === 10 && rookieCount === 0;
   const amateurError = pickedGolfers === 10 && amateurCount === 0;
-  const top10Error = top10Count > 5;
+  const top10Error = top10Count > 4;
   const error = rookieError || top10Error;
 
   const onSave = () => {
@@ -46,7 +46,7 @@ export const SelectionControls = () => {
     <>
       {amateurError && <Error>Amateur hour. You need at least 1.</Error>}
       {rookieError && <Error>Rookie error. You need at least 1.</Error>}
-      {top10Error && <Error>Too many top 10 players.</Error>}
+      {top10Error && <Error>Too many top 10 players. Max 4.</Error>}
       <ButtonsContainer>
         <Button
           size='small'
@@ -66,10 +66,10 @@ export const SelectionControls = () => {
         >
           Cancel
         </Button>
-        <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button>
+        {/* <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button> */}
         <Tooltip
           triggerText='Rules'
-          tooltipMessage='10 players, max 5 top 10. 1 rookie, 1 amateur.'
+          tooltipMessage='10 players, max 4 top 10. 1 rookie, 1 amateur.'
         />
       </ButtonsContainer>
     </>
