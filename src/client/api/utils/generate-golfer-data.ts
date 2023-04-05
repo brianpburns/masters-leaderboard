@@ -7,18 +7,26 @@ import { normaliseCutLine } from './normalise-cut-line';
 export const fetchLeaderboardData = async () => {
   try {
     const response = await getLeaderboard();
-    const { data }: { data: LeaderboardData } = await response.json();
+    // const { data }: { data: LeaderboardData } = await response.json();
     // Used when the Masters URL isn't live yet
-    // const { data }: { data: LeaderboardData } = response;
-    const { currentRound, player } = data;
+    const { data }: { data: LeaderboardData } = response;
+    const { currentRound, player, cutLine } = data;
+    // const currentRound = data.currentRound ? data.currentRound : '1000';
+    // const player = data.player ? data.player : [];
+    // const cutLine = data.cutLine ? data.cutLine : ' 0';
 
     return {
-      cutLine: normaliseCutLine(data.cutLine),
-      rawGolfersData: player,
-      currentRound,
+      cutLine: normaliseCutLine(cutLine),
+      rawGolfersData: player || [],
+      currentRound: currentRound,
     };
   } catch (err) {
-    throw new Error('Failed to fetch leaderboard data');
+    console.error(`Failed to fetch leaderboard data, ${err}`);
+    return {
+      cutLine: 0,
+      rawGolfersData: [],
+      currentRound: '1000',
+    };
   }
 };
 
