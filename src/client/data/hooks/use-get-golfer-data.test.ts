@@ -12,6 +12,7 @@ const rookie = {
   Past: '',
   image: false,
   top10: false,
+  first_masters: true,
 };
 const top10 = {
   last_name: 'McIlroy ',
@@ -24,6 +25,7 @@ const top10 = {
   Past: '',
   image: true,
   top10: true,
+  first_masters: false,
 };
 const other = {
   last_name: 'Woods ',
@@ -36,6 +38,7 @@ const other = {
   Past: '',
   image: true,
   top10: false,
+  first_masters: false,
 };
 
 const players = [rookie, top10, other];
