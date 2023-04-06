@@ -17,13 +17,13 @@ describe('cleanGolferData', () => {
     const result = cleanGolferData(dirtyGolferData);
 
     const expected = {
-      id: 32839,
-      name: 'Hideki Matsuyama',
-      position: 1,
-      topar: -4,
-      thru: '16',
-      today: '-4',
-      teetime: '9:48 AM',
+      id: 10423,
+      name: 'Mike Weir',
+      position: 0,
+      topar: 0,
+      thru: '-',
+      today: '-',
+      teetime: '8:00 AM',
     };
 
     expect(result).toEqual(expected);
