@@ -4,14 +4,14 @@ import { GolferMoneyRankings, Golfers } from 'src/types';
 export interface GlobalState {
   token: string | null;
   selectionPhase: boolean;
-  golfers: Golfers;
+  golfers: Golfers | null;
   golferRankings: GolferMoneyRankings;
 }
 
 export const initialState: GlobalState = {
   token: null,
   selectionPhase: true,
-  golfers: {},
+  golfers: null,
   golferRankings: {},
 };
 

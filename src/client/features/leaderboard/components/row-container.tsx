@@ -17,7 +17,8 @@ export const RowContainer = ({ position, row }: Props) => {
   const golfers = useSelector(selectGolfersList);
   const sendAlert = useSendAlert();
   const selectionPhase = useSelector(selectPhaseSelection);
-  const displaySubTable = Object.keys(golfers).length > 0 && !selectionPhase;
+  const displaySubTable =
+    !!golfers && Object.keys(golfers).length > 0 && !selectionPhase;
 
   const toggleDropdown = (value: boolean) => {
     if (golfers && displaySubTable) {
