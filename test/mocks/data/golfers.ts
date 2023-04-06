@@ -9,6 +9,7 @@ export const top10Golfer = {
   Past: '',
   image: true,
   top10: true,
+  first_masters: false,
 };
 
 export const rookieGolfer = {
@@ -22,6 +23,7 @@ export const rookieGolfer = {
   Past: '',
   image: false,
   top10: false,
+  first_masters: true,
 };
 
 export const amateurGolfer = {
@@ -35,6 +37,7 @@ export const amateurGolfer = {
   Past: '',
   image: false,
   top10: false,
+  first_masters: true,
 };
 
 export const generalFieldGolfer = {
@@ -48,4 +51,5 @@ export const generalFieldGolfer = {
   Past: '',
   image: true,
   top10: false,
+  first_masters: false,
 };

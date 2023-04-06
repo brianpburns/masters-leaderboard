@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { GolferMoneyRankings, Golfers } from 'src/types';
+import { GolferMoneyRankings, GolferScores } from 'src/types';
 import { setGolferRankings, setGolfersState, setToken } from '.';
 
 export const useGlobalAction = () => {
@@ -8,7 +8,7 @@ export const useGlobalAction = () => {
 
   return useMemo(() => {
     const setAuthToken = (token: string | null) => dispatch(setToken(token));
-    const setGolfersList = (golfers: Golfers) =>
+    const setGolfersList = (golfers: GolferScores) =>
       dispatch(setGolfersState(golfers));
     const setGolferMoneyRankings = (golfers: GolferMoneyRankings) =>
       dispatch(setGolferRankings(golfers));

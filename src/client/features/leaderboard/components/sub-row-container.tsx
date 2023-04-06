@@ -14,6 +14,11 @@ export const SubRowContainer = ({ golferId }: Props) => {
   const prizeMoney = useGolferPrizeMoney(golferId);
 
   return (
-    <SubRow golfer={golfers[golferId]} prizeMoney={displayNumber(prizeMoney)} />
+    golfers && (
+      <SubRow
+        golfer={golfers[golferId]}
+        prizeMoney={displayNumber(prizeMoney)}
+      />
+    )
   );
 };

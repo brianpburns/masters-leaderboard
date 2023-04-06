@@ -57,12 +57,13 @@ describe('useGetTeam', () => {
 
   test('should redirect to the leaderboard page on non-200 response', async () => {
     server.use(rest.get('/api/team', (_req, res, ctx) => res(ctx.status(500))));
-    const { result, waitForNextUpdate } = renderUserGetTeam();
+    const { result, waitFor } = renderUserGetTeam();
 
     result.current.fetchTeam();
-    await waitForNextUpdate();
 
-    expect(mockHistoryPush).toHaveBeenCalledWith('/leaderboard');
+    await waitFor(() =>
+      expect(mockHistoryPush).toHaveBeenCalledWith('/leaderboard')
+    );
   });
 
   test('should not fetch team if already loaded', async () => {

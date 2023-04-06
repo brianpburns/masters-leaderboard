@@ -1,9 +1,9 @@
-import { RawGolferData, GolferData } from '../../../types';
+import { GolferScoreData, RawGolferData } from '../../../types';
 
 export const normalisePosition = (position: string) =>
   position ? parseInt(position.replace('T', '')) : 0;
 
-export const cleanGolferData = (golfer: RawGolferData): GolferData => {
+export const cleanGolferData = (golfer: RawGolferData): GolferScoreData => {
   const { id, first_name, last_name, pos, topar, thru, today, teetime } =
     golfer;
 

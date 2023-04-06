@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GolferMoneyRankings, Golfers } from 'src/types';
+import { GolferMoneyRankings, GolferScores } from 'src/types';
 
 export interface GlobalState {
   token: string | null;
   selectionPhase: boolean;
-  golfers: Golfers;
+  golferScores: GolferScores | null;
   golferRankings: GolferMoneyRankings;
 }
 
 export const initialState: GlobalState = {
   token: null,
-  selectionPhase: true,
-  golfers: {},
+  selectionPhase: false,
+  golferScores: null,
   golferRankings: {},
 };
 
@@ -22,8 +22,8 @@ const globalSlice = createSlice({
     setToken(state, action: PayloadAction<string | null>) {
       state.token = action.payload;
     },
-    setGolfersState(state, action: PayloadAction<Golfers>) {
-      state.golfers = action.payload;
+    setGolfersState(state, action: PayloadAction<GolferScores>) {
+      state.golferScores = action.payload;
     },
     setGolferRankings(state, action: PayloadAction<GolferMoneyRankings>) {
       state.golferRankings = action.payload;

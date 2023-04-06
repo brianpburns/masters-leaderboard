@@ -25,7 +25,11 @@ export const useAddPrizeMoney = () => {
 
   useEffect(() => {
     const calculateTeamMoney = (team: Team) => {
-      if (!golfersData || !rankingsWithPrizeMoney || selectionPhase) {
+      if (
+        !golfersData ||
+        Object.keys(rankingsWithPrizeMoney).length === 0 ||
+        selectionPhase
+      ) {
         return {
           ...team,
           prizeMoney: 0,
@@ -37,6 +41,7 @@ export const useAddPrizeMoney = () => {
           const { position } = golfersData[id];
           return accum + rankingsWithPrizeMoney[position].prizeMoney;
         } catch (err) {
+          console.error('err', err);
           throw new Error(`No ID for ${id}`);
         }
       }, 0);

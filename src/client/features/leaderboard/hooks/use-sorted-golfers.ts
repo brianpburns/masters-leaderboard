@@ -5,6 +5,8 @@ import { Team } from '../../../../types';
 export const useSortedGolfers = (row: Team) => {
   const golfers = useSelector(selectGolfersList);
 
+  if (!golfers) return row.golfer_ids;
+
   if (Object.keys(golfers).length === 0) return row.golfer_ids;
 
   const positionsSortKey = (aId: number, bId: number) => {

@@ -7,9 +7,9 @@ import { normaliseCutLine } from './normalise-cut-line';
 export const fetchLeaderboardData = async () => {
   try {
     const response = await getLeaderboard();
-    // const { data }: { data: LeaderboardData } = await response.json();
+    const { data }: { data: LeaderboardData } = await response.json();
     // Used when the Masters URL isn't live yet
-    const { data }: { data: LeaderboardData } = response;
+    // const { data }: { data: LeaderboardData } = response;
     const { currentRound, player, cutLine } = data;
     // const currentRound = data.currentRound ? data.currentRound : '1000';
     // const player = data.player ? data.player : [];

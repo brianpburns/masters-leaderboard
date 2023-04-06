@@ -2,12 +2,12 @@ import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { top10Ids } from 'src/client/data/golfers-data';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
-import { GolferData } from 'src/types';
+import { GolferScoreData } from 'src/types';
 import { displayToPar } from '../utils/display-to-par';
 import { StyledPlayerType } from './styled';
 
 interface Props {
-  golfer: GolferData;
+  golfer: GolferScoreData;
   prizeMoney: string;
 }
 

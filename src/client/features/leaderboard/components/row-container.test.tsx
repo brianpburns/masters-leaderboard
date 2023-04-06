@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
-import { GolferMoneyRankings, Golfers } from 'src/types';
+import { GolferMoneyRankings, GolferScores } from 'src/types';
 import { generalFieldGolfer, top10Golfer } from 'test/mocks';
 import { RowContainer } from './row-container';
 
@@ -14,7 +14,7 @@ const {
   last_name: lastName10,
 } = top10Golfer;
 
-const mockGolfersData: Golfers = {
+const mockGolfersData: GolferScores = {
   [id]: {
     id: parseInt(id),
     name: `${first_name} ${last_name}`,
@@ -59,7 +59,7 @@ const mockPrizeMoney = {
 
 const renderRowContainer = (
   selectionPhase = false,
-  golferData: Golfers = mockGolfersData,
+  golferData: GolferScores = mockGolfersData,
   prizeMoney: GolferMoneyRankings = mockPrizeMoney
 ) => {
   renderWithProviders(
@@ -73,7 +73,7 @@ const renderRowContainer = (
         global: {
           ...initialGlobalState,
           selectionPhase,
-          golfers: golferData,
+          golferScores: golferData,
           golferRankings: prizeMoney,
         },
       },
