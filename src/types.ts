@@ -21,7 +21,7 @@ export interface LeaderboardData {
   statusRound: string;
 }
 
-export interface GolferData {
+export interface GolferScoreData {
   id: number;
   name: string;
   position: number;
@@ -31,7 +31,7 @@ export interface GolferData {
   teetime: string;
 }
 
-export type Golfers = Record<number, GolferData>;
+export type GolferScores = Record<number, GolferScoreData>;
 
 interface Ranking {
   golfers: number[];

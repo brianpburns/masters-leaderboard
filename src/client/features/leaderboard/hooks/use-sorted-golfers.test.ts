@@ -34,7 +34,7 @@ const mockTeam = {
 
 const renderHook = () =>
   reduxHookTestWrapper(() => useSortedGolfers(mockTeam), {
-    global: { ...initialGlobalState, golfers: mockGolfersData },
+    global: { ...initialGlobalState, golferScores: mockGolfersData },
   });
 
 describe('useSortedGolfers', () => {

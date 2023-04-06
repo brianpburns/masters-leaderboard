@@ -64,7 +64,7 @@ describe('BodyContainer', () => {
           leaderboard: { teams: mockTeams, cutLine: 0 },
           global: {
             ...initialGlobalState,
-            golfers: mockGolfers,
+            golferScores: mockGolfers,
             golferRankings: mockPrizeMoney,
           },
         },

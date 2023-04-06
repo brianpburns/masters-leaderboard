@@ -51,7 +51,7 @@ const renderHook = (prizeMoney = mockPrizeMoney) =>
     leaderboard: { teams: mockTeams, cutLine: 0 },
     global: {
       ...initialGlobalState,
-      golfers: mockGolfersData,
+      golferScores: mockGolfersData,
       golferRankings: prizeMoney,
       selectionPhase: false,
     },
