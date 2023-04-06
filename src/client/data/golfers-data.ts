@@ -1143,7 +1143,7 @@ export const golfersData = {
     {
       last_name: 'McClean',
       first_name: 'Matthew',
-      id: '51785',
+      id: '57736',
       countryCode: 'NIR',
       countryName: 'Northern Ireland',
       display_name: 'M. McClean',
@@ -1756,7 +1756,7 @@ export const golfersData = {
       past_champion: true,
       Past: '1',
       amateur: false,
-      Amateur: '',
+      Amateur: 'x',
       first_masters: false,
       First: '',
       international: false,
