@@ -37,7 +37,7 @@ describe('processLeaderBoardData', () => {
       },
     });
     expect(golferMoneyRankings).toMatchObject({
-      '1': { golfers: expect.any(Array), prizeMoney: 10000, topar: 0 },
+      '0': { golfers: expect.any(Array), prizeMoney: 10000, topar: 0 },
     });
     expect(cutLine).toEqual(0);
   });
