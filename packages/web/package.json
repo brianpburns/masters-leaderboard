@@ -11,7 +11,6 @@
     "build:prod": "npm run build:server; npm run build:ui",
     "build:server": "NODE_ENV=production tsc --project tsconfig.server.json",
     "build:ui": "webpack --config webpack/prod.config.ts",
-    "deploy": "git push heroku main",
     "check-types": "tsc --noEmit && tsc --project tsconfig.server.json --noEmit",
     "lint": "npm run lint:prettier && npm run lint:eslint",
     "lint:eslint": "eslint src --ext .ts,.tsx",
