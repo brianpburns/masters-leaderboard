@@ -13,6 +13,7 @@
     "lint": "npm run lint:prettier && npm run lint:eslint",
     "lint:eslint": "eslint src --ext .ts,.tsx",
     "lint:prettier": "prettier --check \"packages/**/*.{js,jsx,ts,tsx}\"",
+    "test:coverage": "npm run test:coverage -w packages/web",
     "render:startup": "npm run render:startup -w packages/web"
   },
   "repository": {
