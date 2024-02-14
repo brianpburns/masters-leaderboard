@@ -28,7 +28,7 @@ app.get('*', (_req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 8080, function () {
+app.listen(process.env.PORT || 8090, function () {
   // eslint-disable-next-line no-console
-  console.log('listening on port ', process.env.PORT || 8080);
+  console.log('listening on port ', process.env.PORT || 8090);
 });
