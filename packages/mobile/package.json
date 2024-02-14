@@ -2,9 +2,9 @@
   "name": "@masters/mobile",
   "version": "1.0.0",
   "description": "React Native App",
-  "main": "index.js",
+  "main": "expo-router/entry",
   "scripts": {
-    "start": "expo start --port 19001",
+    "start": "react-native run-ios",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",

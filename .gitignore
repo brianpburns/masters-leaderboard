@@ -5,5 +5,18 @@ dist
 .DS_Store
 build
 .env
-
+*.tsbuildinfo
 coverage
+ios/
+
+# Mobile
+.expo/
+expo-env.d.ts
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision

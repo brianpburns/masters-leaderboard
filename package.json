@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "npm run start -w packages/web",
+    "start:mobile": "npm run start -w packages/mobile",
     "start:standalone": "npm run start:standalone -w packages/web",
     "server": "npm run server -w packages/web",
     "build:prod": "npm run build:prod -w packages/web",

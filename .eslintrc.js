@@ -6,7 +6,7 @@ module.exports = {
     'prettier',
   ],
   parserOptions: {
-    project: ['packages/web/tsconfig.json'],
+    project: ['packages/web/tsconfig.json', 'packages/web/tsconfig.server.json', 'packages/mobile/tsconfig.json'],
     sourceType: 'module',
   },
   plugins: ['react-hooks', 'jsx-a11y', '@typescript-eslint'],
