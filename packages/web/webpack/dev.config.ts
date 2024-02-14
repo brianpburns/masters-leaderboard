@@ -1,7 +1,7 @@
-import { DefinePlugin } from 'webpack';
-import 'webpack-dev-server';
 import CopyPlugin from 'copy-webpack-plugin';
 import path from 'path';
+import { DefinePlugin } from 'webpack';
+import 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 import base from './base.config';
 
@@ -36,7 +36,7 @@ const config = (env: Record<string, string>) =>
       historyApiFallback: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:8080',
+          target: 'http://localhost:8090',
           secure: false,
         },
       },
