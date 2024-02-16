@@ -4,6 +4,7 @@
   "description": "React Native App",
   "main": "expo-router/entry",
   "scripts": {
+    "install": "npm run install",
     "start": "react-native run-ios",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -14,6 +15,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@babel/core": "^7.20.0",
     "@expo/vector-icons": "^13.0.0",
     "@react-navigation/native": "^6.0.2",
     "expo": "~49.0.15",
