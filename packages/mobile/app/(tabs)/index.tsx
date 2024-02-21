@@ -1,3 +1,4 @@
+import React from 'react';
 import { ScrollView, TextInput, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
