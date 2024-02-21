@@ -4,7 +4,6 @@
   "description": "React Native App",
   "main": "expo-router/entry",
   "scripts": {
-    "install": "npm run install",
     "start": "react-native run-ios",
     "android": "expo run:android",
     "ios": "expo run:ios",

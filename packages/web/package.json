@@ -4,7 +4,6 @@
   "description": "Web UI and Server",
   "main": "dist/index.js",
   "scripts": {
-    "install": "npm run install",
     "start": "webpack serve --config webpack/dev.config.ts",
     "start:standalone": "npm run start -- --env standalone=true",
     "server": "NODE_ENV=development ts-node-dev --project tsconfig.server.json src/server/index.ts",

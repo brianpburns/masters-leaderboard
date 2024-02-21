@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "install": "lerna run install",
     "test": "lerna run test",
     "test:ci": "lerna run test:ci --since refs/remotes/origin/main",
     "check-types": "lerna run check-types",
