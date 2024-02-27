@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Image, TextInput, View } from 'react-native';
+import { FlatList, Image, StyleSheet, TextInput, View } from 'react-native';
 import { FlagWrapper, GolferListItem, StyledText } from './styled';
 
 export const TeamPage = () => {
@@ -7,9 +7,9 @@ export const TeamPage = () => {
     <>
       <View>
         <FlagWrapper>
-          <Image source={{ uri: `https://www.masters.com/assets/images/flags/IRL_sm.gif` }} />
+          <Image style={styles.image} source={{ uri: `https://www.masters.com/assets/images/flags/IRL_sm.gif` }} />
         </FlagWrapper>
-        <StyledText>Styled Text Updating 2</StyledText>
+        <StyledText>Styled Text</StyledText>
         <FlatList
           data={[{ key: 'testItem' }]}
           renderItem={({ item }) => (
@@ -31,3 +31,10 @@ export const TeamPage = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: 200,
+    height: 200,
+  },
+});
