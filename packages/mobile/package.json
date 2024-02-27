@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@types/react": "~18.2.14",
+    "babel-plugin-styled-components": "^2.1.4",
     "expo-dev-client": "^2.4.12",
     "jest-expo": "~49.0.0",
     "react-test-renderer": "18.2.0"
