@@ -5,15 +5,14 @@ import { SplashScreen, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
-
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary
+  ErrorBoundary,
 } from 'expo-router';
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: 'tabs',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -49,8 +48,7 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="tabs/index" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );

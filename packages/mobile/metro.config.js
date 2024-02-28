@@ -8,6 +8,7 @@ const config = getDefaultConfig(__dirname, {
   server: {
     port: 19001,
   },
+  resolverMainFields: ['styled-components'],
 });
 
 module.exports = config;

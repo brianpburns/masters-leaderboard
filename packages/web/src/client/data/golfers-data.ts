@@ -1,15 +1,4 @@
-export const top10Ids = [
-  '46046',
-  '28237',
-  '46970',
-  '35450',
-  '39977',
-  '35891',
-  '48081',
-  '47483',
-  '46717',
-  '33448',
-];
+export const top10Ids = ['46046', '28237', '46970', '35450', '39977', '35891', '48081', '47483', '46717', '33448'];
 
 // Grabbed this data from
 // https://www.masters.com/en_US/cms/feeds/players/2023/players.json

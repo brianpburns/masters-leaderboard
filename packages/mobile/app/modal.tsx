@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Platform, StyleSheet } from 'react-native';
 
-import Leaderboard from '../components/EditScreenInfo';
+import Leaderboard from '../components/edit-screen';
 import { Text, View } from '../components/Themed';
 
 export default function ModalScreen() {
