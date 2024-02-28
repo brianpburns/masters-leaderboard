@@ -10,8 +10,8 @@ export const thirteenthTeeBox =
   'https://d9hhrg4mnvzow.cloudfront.net/unbouncepages.com/dadd721f-48ec-497c-974d-ce09c0297264/masters-13th-hole.jpeg';
 
 const StyledHeroImage = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
+  align-self: stretch;
+  height: 200;
 `;
 
 export default function TabOneScreen() {
