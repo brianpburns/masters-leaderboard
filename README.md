@@ -48,6 +48,15 @@ npm run build:prod
 - After merging a change to main, open the Render [dashboard](https://dashboard.render.com/web/srv-cev1439gp3jjsh1cej2g).
 - Select manual deploy from the dropdown
 
+## Setting up the DB running on Render
+
+Once the Masters has finished the DB is torn down to avoid having to pay for it. A new instance needs to be brought up.
+- On the render dashboard, click on "New" and "PostgresQL"
+- Give the DB instance a name. It doesn't really matter. Save and create.
+- Once the instance has been provisioned, copy the "External Database URL"
+- Update the `DATABASE_URL` env variable for the web service. **Append** `?ssl=true` to the end of the URL!
+- Redeploy the web service
+
 ## Testing
 
 ```
