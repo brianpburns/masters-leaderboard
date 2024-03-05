@@ -4,7 +4,7 @@ import React from 'react';
 import { useColorScheme } from 'react-native';
 
 import { ProfileMenu } from '../../components/header/profile-menu';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/color';
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/

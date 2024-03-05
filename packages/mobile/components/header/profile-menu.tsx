@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React, { useState } from 'react';
 import { Text, useColorScheme } from 'react-native';
-import { colors } from '../../constants/colors';
+import { colors } from '../../constants/color';
 
 export const ProfileMenu = () => {
   const colorScheme = useColorScheme();
