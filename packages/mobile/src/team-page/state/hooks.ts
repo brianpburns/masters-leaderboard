@@ -1,13 +1,7 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { TeamState } from '../types';
-import {
-  addGolferId,
-  removeGolferId,
-  setGolferIds,
-  setGolfersRef,
-  setTeam,
-} from './current-team-slice';
+import { TeamState } from 'src/types';
+import { addGolferId, removeGolferId, setGolferIds, setGolfersRef, setTeam } from './current-team-slice';
 
 export const useSetCurrentTeam = () => {
   const dispatch = useDispatch();

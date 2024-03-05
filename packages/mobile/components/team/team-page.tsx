@@ -1,5 +1,7 @@
 import React from 'react';
-import { FlatList, Image, ListRenderItem, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectCurrentTeam } from 'src/team-page/state/selectors';
 
 type Player = {
   countryCode: string;
@@ -32,9 +34,14 @@ const renderGolfer: ListRenderItem<Player> = ({ item }: { item: Player }) => {
 };
 
 export const TeamPage = () => {
+  const currentTeam = useSelector(selectCurrentTeam);
+  console.log('currentTeam', currentTeam);
+
   return (
     <View>
-      <FlatList style={styles.listContainer} data={player} renderItem={renderGolfer} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <FlatList style={styles.listContainer} data={player} renderItem={renderGolfer} />
+      </SafeAreaView>
     </View>
   );
 };
