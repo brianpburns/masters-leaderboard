@@ -1,7 +1,14 @@
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectCurrentTeam } from 'src/team-page/state/selectors';
 
-const golfers = [
+type Player = {
+  countryCode: string;
+  name: string;
+};
+
+const player: Player[] = [
   {
     countryCode: 'IRL',
     name: 'Rory McIlroy',
@@ -12,24 +19,29 @@ const golfers = [
   },
 ];
 
+const renderGolfer: ListRenderItem<Player> = ({ item }: { item: Player }) => {
+  return (
+    <View style={styles.listItem}>
+      <View style={styles.flagContainer}>
+        <Image
+          style={styles.flag}
+          source={{ uri: `https://www.masters.com/assets/images/flags/${item.countryCode}_sm.gif` }}
+        />
+      </View>
+      <Text style={styles.golferName}>{item.name}</Text>
+    </View>
+  );
+};
+
 export const TeamPage = () => {
+  const currentTeam = useSelector(selectCurrentTeam);
+  console.log('currentTeam', currentTeam);
+
   return (
     <View>
-      <FlatList
-        style={styles.listContainer}
-        data={golfers}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <View style={styles.flagContainer}>
-              <Image
-                style={styles.flag}
-                source={{ uri: `https://www.masters.com/assets/images/flags/${item.countryCode}_sm.gif` }}
-              />
-            </View>
-            <Text style={styles.golferName}>{item.name}</Text>
-          </View>
-        )}
-      />
+      <SafeAreaView style={{ flex: 1 }}>
+        <FlatList style={styles.listContainer} data={player} renderItem={renderGolfer} />
+      </SafeAreaView>
     </View>
   );
 };

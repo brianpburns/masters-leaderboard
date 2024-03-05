@@ -2,7 +2,12 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "forceConsistentCasingInFileNames": false,
+    "paths": {
+      // This needs to be mirrored in babel.config.js
+      "src/*": ["src/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }
