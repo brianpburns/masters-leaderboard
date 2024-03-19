@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { leaderboardReducer } from 'src/leaderboard/leaderboard-slice';
+import { leaderboardReducer } from 'src/leaderboard/state/leaderboard-slice';
 import { currentTeamReducer } from 'src/team-page/state/current-team-slice';
-import { apiReducer, apiSlice } from '../api/api-slice';
+import { apiReducer, apiSlice } from '../api/state/api-slice';
 import { globalReducer } from './global-slice';
 
 const rootReducer = combineReducers({
