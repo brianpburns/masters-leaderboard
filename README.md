@@ -70,6 +70,9 @@ Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch 
 
 [OAuth config](https://console.developers.google.com/apis/credentials/oauthclient/723926103233-g005d40jcth75hr0o09r088n2ug2cqv8.apps.googleusercontent.com?authuser=1&project=graphite-byte-156900&supportedpurview=project)
 
+React Native:
+Followed this [guide](https://ibjects.medium.com/google-signin-tutorial-for-react-native-81a57fb67b18) to set it up for iOS. Still needs to be done for Android.
+
 ## Feature Flags
 
 The phase of selection needs to be updated manually. The initial state for `selectionPhase` in `global-slice/index` needs to be changed.
