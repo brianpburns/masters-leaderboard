@@ -1,8 +1,14 @@
+import { Player } from 'src/types';
+
 export const top10Ids = ['46046', '28237', '46970', '35450', '39977', '35891', '48081', '47483', '46717', '33448'];
+
+interface GolfersData {
+  players: Player[];
+}
 
 // Grabbed this data from
 // https://www.masters.com/en_US/cms/feeds/players/2023/players.json
-export const golfersData = {
+export const golfersData: GolfersData = {
   players: [
     {
       last_name: 'Ancer',
