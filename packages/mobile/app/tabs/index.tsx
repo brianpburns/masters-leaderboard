@@ -1,8 +1,7 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Login } from 'src/login/components/login';
-import { HeroImage } from 'src/shared/components/hero-image';
 import { selectAuthToken } from 'src/store';
 import { TeamPage } from '../../components/team';
 
@@ -13,9 +12,8 @@ export default function TabOneScreen() {
   const authToken = useSelector(selectAuthToken);
 
   return (
-    <ScrollView>
-      <HeroImage />
-      {authToken ? <TeamPage /> : <Login />}
-    </ScrollView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View>{authToken ? <TeamPage /> : <Login />}</View>
+    </SafeAreaView>
   );
 }
