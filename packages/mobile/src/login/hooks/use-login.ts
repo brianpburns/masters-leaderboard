@@ -1,10 +1,16 @@
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { ConfigureParams, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { useEffect, useState } from 'react';
 import { useGlobalAction } from 'src/store';
 
+const googleConfig: ConfigureParams = {
+  iosClientId: '564051064112-pjb0jk68lh2aldca0c2uo4041961er0u.apps.googleusercontent.com',
+};
+
+GoogleSignin.configure(googleConfig);
+
 export const useLogin = () => {
   const [signedIn, setSignedIn] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { setAuthToken } = useGlobalAction();
 
   useEffect(() => {
@@ -12,7 +18,6 @@ export const useLogin = () => {
       const userInfo = await GoogleSignin.signInSilently();
 
       if (userInfo.idToken) {
-        console.log('silently signed in');
         setAuthToken(userInfo.idToken);
         setSignedIn(true);
         setLoading(false);
@@ -29,12 +34,13 @@ export const useLogin = () => {
       const userInfo = await GoogleSignin.signIn();
 
       // setState
-      console.log('userInfo', userInfo);
       setAuthToken(userInfo.idToken);
       setSignedIn(true);
       setLoading(false);
     } catch (err: unknown) {
+      setLoading(false);
       const error = err as { code: string };
+      console.log('signin error', error);
 
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('SIGN_IN_CANCELLED');
