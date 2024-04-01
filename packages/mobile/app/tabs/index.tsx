@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Login } from 'src/login/components/login';
 import { selectAuthToken } from 'src/store';
@@ -11,9 +11,5 @@ export const mastersLogoSrc =
 export default function TabOneScreen() {
   const authToken = useSelector(selectAuthToken);
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View>{authToken ? <TeamPage /> : <Login />}</View>
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={{ flex: 1 }}>{authToken ? <TeamPage /> : <Login />}</SafeAreaView>;
 }
