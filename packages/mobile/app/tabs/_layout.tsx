@@ -3,6 +3,8 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from 'react-native';
 
+import { useSelector } from 'react-redux';
+import { selectPhaseSelection } from 'src/store';
 import { ProfileMenu } from '../../components/header/profile-menu';
 import { colors } from '../../constants/color';
 
@@ -15,6 +17,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>['nam
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const selectionPhase = useSelector(selectPhaseSelection);
 
   return (
     <Tabs
@@ -30,8 +33,18 @@ export default function TabLayout() {
           headerRight: () => <ProfileMenu />,
         }}
       />
+      {selectionPhase && (
+        <Tabs.Screen
+          name="players"
+          options={{
+            title: 'Players',
+            tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+            headerRight: () => <ProfileMenu />,
+          }}
+        />
+      )}
       <Tabs.Screen
-        name="two"
+        name="leaderboard"
         options={{
           title: 'Leaderboard',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
