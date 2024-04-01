@@ -1,28 +1,48 @@
 import React from 'react';
-import { FlatList, Image, ListRenderItem, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ListRenderItem, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector } from 'react-redux';
 import { top10Ids } from 'src/data/golfers-data';
+import { useManageGolfers } from 'src/shared/hooks/use-manage-golfers';
 import { selectPhaseSelection } from 'src/store';
 import { Player } from 'src/types';
 
 interface Props {
   data: Player[];
+  selectedView: boolean;
 }
 
 interface ListItemProps {
   selectionPhase: boolean;
   selectedView: boolean;
+  addGolfer: (id: number) => void;
+  removeGolfer: (id: number) => void;
 }
 
-const generateRenderList = ({ selectedView, selectionPhase }: ListItemProps): ListRenderItem<Player> => {
+const generateRenderList = ({
+  selectedView,
+  selectionPhase,
+  addGolfer,
+  removeGolfer,
+}: ListItemProps): ListRenderItem<Player> => {
   return ({ item }: { item: Player }) => {
     const rookie = item.First === '1';
     const amateur = item.Amateur === '1';
     const top10 = top10Ids.includes(item.id);
 
+    const handlePress = () => {
+      if (selectedView) {
+        if (selectionPhase) {
+          console.log('remove golfer');
+          removeGolfer(parseInt(item.id));
+        }
+      } else {
+        addGolfer(parseInt(item.id));
+      }
+    };
+
     return (
-      <View style={styles.listItem}>
+      <Pressable style={styles.listItem} onPress={handlePress}>
         <View style={styles.flagContainer}>
           <Image
             style={styles.flag}
@@ -41,16 +61,16 @@ const generateRenderList = ({ selectedView, selectionPhase }: ListItemProps): Li
             {!selectedView && <Icon name="plus" size={15} />}
           </View>
         </View>
-      </View>
+      </Pressable>
     );
   };
 };
 
-export const GolfersList = ({ data }: Props) => {
+export const GolfersList = ({ data, selectedView }: Props) => {
   const selectionPhase = useSelector(selectPhaseSelection);
-  const selectedView = false;
+  const { addGolfer, removeGolfer } = useManageGolfers();
 
-  const renderGolfer = generateRenderList({ selectedView, selectionPhase });
+  const renderGolfer = generateRenderList({ selectedView, selectionPhase, removeGolfer, addGolfer });
 
   return (
     <ScrollView>

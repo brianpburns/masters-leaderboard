@@ -35,7 +35,7 @@ export const AvailableGolfersList = () => {
 
         <Text style={remainingPicks === 0 ? styles.noPicksLeft : {}}>Picks Left: {remainingPicks}</Text>
       </View>
-      <GolfersList data={results} />
+      <GolfersList data={results} selectedView={false} />
     </View>
   );
 };

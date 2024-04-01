@@ -19,7 +19,11 @@ export const SelectedTeam = ({ selectedGolfers }: Props) => {
   return (
     <View style={styles.container}>
       <Text>{currentTeam.name}</Text>
-      <GolfersList data={golfers} />
+      {golfers.length > 0 ? (
+        <GolfersList data={golfers} selectedView={true} />
+      ) : (
+        <Text>Pick golfers from the list below.</Text>
+      )}
       <Button
         onPress={() => deleteTeam(currentTeam.id)}
         title="Delete Team"
