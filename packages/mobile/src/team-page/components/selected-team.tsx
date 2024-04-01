@@ -18,7 +18,6 @@ export const SelectedTeam = ({ selectedGolfers }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text>{currentTeam.name}</Text>
       {golfers.length > 0 ? (
         <GolfersList data={golfers} selectedView={true} />
       ) : (

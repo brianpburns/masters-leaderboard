@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 0,
     margin: 0,
-    marginBottom: 50,
   },
   listItem: {
     alignSelf: 'stretch',

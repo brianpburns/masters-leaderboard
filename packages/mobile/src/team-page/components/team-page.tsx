@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { useGetTeam } from 'src/api/hooks/use-get-team';
 import { HeroImage } from 'src/shared/components/hero-image';
 import { Loader } from 'src/shared/components/loader';
 import { useManageGolfers } from 'src/shared/hooks/use-manage-golfers';
 import { selectPhaseSelection } from 'src/store';
-import { AvailableGolfersList } from './available-golfers';
 import { SelectedTeam } from './selected-team';
 
 export const TeamPage = () => {
@@ -22,15 +22,14 @@ export const TeamPage = () => {
   return loading ? (
     <Loader />
   ) : (
-    <>
-      {!selectionPhase && <HeroImage />}
-      <View>
-        <>
-          <SelectedTeam selectedGolfers={selectedGolfers} />
-          <Text>{`Team Page, selection phase: ${selectionPhase}`}</Text>
-          {selectionPhase && <AvailableGolfersList />}
-        </>
-      </View>
-    </>
+    <ScrollView>
+      <HeroImage />
+      <SelectedTeam selectedGolfers={selectedGolfers} />
+      {selectionPhase && (
+        <Text>
+          Requirements: {'\n'} - 10 players.{'\n'} - Max 4 top 10.{'\n'} - 1 rookie.{'\n'} - 1 amateur
+        </Text>
+      )}
+    </ScrollView>
   );
 };
