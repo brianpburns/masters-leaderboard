@@ -10,16 +10,13 @@ import { displayNumber } from '../utils/display-number';
 import { displayToPar } from '../utils/display-to-par';
 
 interface Props {
-  // open: boolean;
-  // setOpen: (isOpen: boolean) => void;
   position: number;
   row: TeamWithPrizeMoney;
-  // selectionPhase: boolean;
 }
 
 export const PlayerRow = ({ position, row }: Props) => {
   const { owner, prizeMoney } = row;
-  const ownerData = [position, owner, prizeMoney];
+  const ownerData = [position, owner, displayNumber(prizeMoney)];
   const [open, setOpen] = useState(false);
   const selectionPhase = useSelector(selectPhaseSelection);
   const rankedGolfers = useSortedGolfers(row);
@@ -28,7 +25,6 @@ export const PlayerRow = ({ position, row }: Props) => {
 
   const subData: (string | number)[][] = [];
 
-  // Loop through rankedGolfers, destructure the data and add it to the subTableData array
   rankedGolfers.forEach((id: number) => {
     if (golfers) {
       const golfer = golfers[id];
@@ -45,9 +41,9 @@ export const PlayerRow = ({ position, row }: Props) => {
   };
 
   const handleTap = (isOpen: boolean) => {
-    // if (!selectionPhase) {
-    setOpen(isOpen);
-    // }
+    if (!selectionPhase) {
+      setOpen(isOpen);
+    }
   };
 
   return (
