@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
-export default function Leaderboard({ path }: { path: string }) {
+export default function EditScreen({ path }: { path: string }) {
   return (
     <View>
       <View style={styles.getStartedContainer}>
