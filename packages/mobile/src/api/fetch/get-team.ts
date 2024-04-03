@@ -1,4 +1,5 @@
 import { Team } from 'src/types';
+import { baseUrl } from '../config';
 
 interface GetTeamResponse {
   team: Team;
@@ -6,7 +7,7 @@ interface GetTeamResponse {
 }
 
 export const getTeam = async (token: string) => {
-  const res = await fetch('http://localhost:8090/api/team', {
+  const res = await fetch(`${baseUrl}/api/team`, {
     headers: {
       Authorization: `bearer ${token}`,
     },
