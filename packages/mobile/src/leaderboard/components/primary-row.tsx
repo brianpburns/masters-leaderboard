@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Row, Rows, Table, TableWrapper } from 'react-native-reanimated-table';
 import { useSelector } from 'react-redux';
 import { selectGolfersList, selectPhaseSelection } from 'src/store';
@@ -51,9 +51,9 @@ export const PlayerRow = ({ position, row }: Props) => {
   };
 
   return (
-    <>
+    <View style={[styles.container, open ? styles.containerOpen : {}]}>
       <Pressable onPress={() => handleTap(!open)}>
-        <Row data={ownerData} textStyle={styles.headText} />
+        <Row data={ownerData} style={open ? styles.owner : {}} textStyle={styles.headText} />
       </Pressable>
       {open && (
         <Table>
@@ -68,19 +68,35 @@ export const PlayerRow = ({ position, row }: Props) => {
           </TableWrapper>
         </Table>
       )}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'silver',
+    borderRadius: 5,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  containerOpen: { backgroundColor: 'rgba(25, 118, 210, 0.12)' },
+  owner: {
+    borderBottomWidth: 1,
+    paddingBottom: 5,
+    borderStyle: 'solid',
+  },
   headRow: {
     flex: 1,
     borderBottomWidth: 1,
     paddingBottom: 1,
+    marginTop: 5,
   },
   tableWrapper: {
     flex: 1,
+    marginTop: 5,
   },
-  headText: { marginLeft: 2 },
-  rowText: { marginLeft: 3 },
+  headText: { marginLeft: 2, textAlign: 'center' },
+  rowText: { textAlign: 'center' },
 });

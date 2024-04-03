@@ -7,7 +7,6 @@ export const useGolferMoney = () => {
 
   return (golferId: number) => {
     if (!golfers || Object.keys(golfers).length === 0) return 0;
-    console.log('golferId', golferId);
     const position = golfers[golferId].position;
 
     if (!prizeMoney || Object.keys(prizeMoney).length === 0) return 0;

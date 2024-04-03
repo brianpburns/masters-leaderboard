@@ -109,7 +109,12 @@ export const GolfersList = ({ data, selectedView }: Props) => {
 
   return (
     <ScrollView>
-      <FlatList style={styles.listContainer} data={data} renderItem={(item) => renderGolfer(item)} />
+      <FlatList
+        style={styles.listContainer}
+        contentContainerStyle={{ justifyContent: 'center' }}
+        data={data}
+        renderItem={(item) => renderGolfer(item)}
+      />
     </ScrollView>
   );
 };
@@ -140,10 +145,10 @@ const styles = StyleSheet.create({
   flag: {
     resizeMode: 'stretch',
     width: 18,
-    height: 14,
+    height: 16,
   },
   golferName: {
-    fontSize: 20,
+    fontSize: 18,
   },
   iconsContainer: {
     flex: 1,
