@@ -17,7 +17,7 @@ interface Props {
   // selectionPhase: boolean;
 }
 
-export const PrimaryRow = ({ position, row }: Props) => {
+export const PlayerRow = ({ position, row }: Props) => {
   const { owner, prizeMoney } = row;
   const ownerData = [position, owner, prizeMoney];
   const [open, setOpen] = useState(false);
@@ -50,8 +50,6 @@ export const PrimaryRow = ({ position, row }: Props) => {
     // }
   };
 
-  console.log('subTableData', subTableData.tableData);
-
   return (
     <>
       <Pressable onPress={() => handleTap(!open)}>
@@ -78,6 +76,7 @@ const styles = StyleSheet.create({
   headRow: {
     flex: 1,
     borderBottomWidth: 1,
+    paddingBottom: 1,
   },
   tableWrapper: {
     flex: 1,
