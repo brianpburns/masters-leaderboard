@@ -4,6 +4,7 @@ import React from 'react';
 import { useColorScheme } from 'react-native';
 
 import { useSelector } from 'react-redux';
+import { useInitializeState } from 'src/data/hooks/use-initialize-state';
 import { selectPhaseSelection } from 'src/store';
 import { ProfileMenu } from '../../components/header/profile-menu';
 import { colors } from '../../constants/color';
@@ -18,6 +19,7 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>['nam
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const selectionPhase = useSelector(selectPhaseSelection);
+  useInitializeState();
 
   return (
     <Tabs
