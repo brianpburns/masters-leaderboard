@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Image, ListRenderItem, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
+import { useUpdateTeam } from 'src/api/hooks/use-update-team';
 import { top10Ids } from 'src/data/golfers-data';
 import { PressIcon } from 'src/shared/components/press-icon';
 import { useManageGolfers } from 'src/shared/hooks/use-manage-golfers';
@@ -23,6 +24,7 @@ interface ListItemProps {
     top10: boolean;
     other: boolean;
   };
+  updateTeamDetails: () => Promise<void>;
 }
 
 const generateRenderList = ({
@@ -31,6 +33,7 @@ const generateRenderList = ({
   addGolfer,
   removeGolfer,
   disabled,
+  updateTeamDetails,
 }: ListItemProps): ListRenderItem<Player> => {
   return ({ item }: { item: Player }) => {
     const rookie = item.First === '1';
@@ -50,11 +53,21 @@ const generateRenderList = ({
       <View style={[styles.listItem, addDisabled ? styles.disabled : {}]}>
         <View style={styles.iconsWrapper}>
           {selectedView && selectionPhase && (
-            <PressIcon onPress={() => removeGolfer(parseInt(item.id))} name="minus-square-o" color="red" />
+            <PressIcon
+              onPress={() => {
+                removeGolfer(parseInt(item.id));
+                updateTeamDetails();
+              }}
+              name="minus-square-o"
+              color="red"
+            />
           )}
           {!selectedView && (
             <PressIcon
-              onPress={() => addGolfer(parseInt(item.id))}
+              onPress={() => {
+                addGolfer(parseInt(item.id));
+                updateTeamDetails();
+              }}
               disabled={addDisabled}
               name="plus-square-o"
               color="green"
@@ -83,8 +96,16 @@ export const GolfersList = ({ data, selectedView }: Props) => {
   const selectionPhase = useSelector(selectPhaseSelection);
   const { addGolfer, removeGolfer } = useManageGolfers();
   const disabled = useSelectionLimits(selectedView);
+  const updateTeamDetails = useUpdateTeam();
 
-  const renderGolfer = generateRenderList({ selectedView, selectionPhase, removeGolfer, addGolfer, disabled });
+  const renderGolfer = generateRenderList({
+    selectedView,
+    selectionPhase,
+    removeGolfer,
+    addGolfer,
+    disabled,
+    updateTeamDetails,
+  });
 
   return (
     <ScrollView>
