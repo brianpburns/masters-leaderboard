@@ -1,6 +1,6 @@
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { HeroImage } from 'src/shared/components/hero-image';
 import { useLogin } from '../hooks/use-login';
 
@@ -8,7 +8,7 @@ export const Login = () => {
   const { signIn, loading } = useLogin();
 
   return (
-    <ScrollView>
+    <SafeAreaView>
       <HeroImage />
       <View style={styles.loginContainer}>
         <GoogleSigninButton
@@ -18,7 +18,7 @@ export const Login = () => {
           disabled={loading}
         />
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 

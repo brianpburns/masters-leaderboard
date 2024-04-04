@@ -1,120 +1,52 @@
 import React from 'react';
-import { FlatList, Image, ListRenderItem, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { useUpdateTeam } from 'src/api/hooks/use-update-team';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { top10Ids } from 'src/data/golfers-data';
-import { PressIcon } from 'src/shared/components/press-icon';
-import { useManageGolfers } from 'src/shared/hooks/use-manage-golfers';
-import { selectPhaseSelection } from 'src/store';
 import { Player } from 'src/types';
 import { useSelectionLimits } from '../hooks/use-selection-limits';
+import { AddRemoveButton } from './add-remove-button';
 
 interface Props {
   data: Player[];
   selectedView: boolean;
 }
 
-interface ListItemProps {
-  selectionPhase: boolean;
-  selectedView: boolean;
-  addGolfer: (id: number) => void;
-  removeGolfer: (id: number) => void;
-  disabled: {
-    all: boolean;
-    top10: boolean;
-    other: boolean;
-  };
-  updateTeamDetails: () => Promise<void>;
-}
-
-const generateRenderList = ({
-  selectedView,
-  selectionPhase,
-  addGolfer,
-  removeGolfer,
-  disabled,
-  updateTeamDetails,
-}: ListItemProps): ListRenderItem<Player> => {
-  return ({ item }: { item: Player }) => {
-    const rookie = item.First === '1';
-    const amateur = item.Amateur === '1';
-    const top10 = top10Ids.includes(item.id);
-    const other = !rookie && !amateur && !top10;
-    const addDisabled = disabled.all || (top10 && disabled.top10) || (other && disabled.other);
-
-    const teamPickedMessage = 'Team full';
-    const rookieMessage = 'Must pick A/rookie';
-    const top10Text = disabled.other ? rookieMessage : disabled.top10 ? 'At top 10 limit' : 'Top 10';
-    const otherText = disabled.all ? teamPickedMessage : addDisabled ? rookieMessage : '';
-    const text = disabled.all ? teamPickedMessage : top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : otherText;
-    const textStyle = top10 ? styles.top10 : amateur ? styles.amateur : rookie ? styles.rookie : styles.error;
-
-    return (
-      <View style={[styles.listItem, addDisabled ? styles.disabled : {}]}>
-        <View style={styles.iconsWrapper}>
-          {selectedView && selectionPhase && (
-            <PressIcon
-              onPress={() => {
-                removeGolfer(parseInt(item.id));
-                updateTeamDetails();
-              }}
-              name="minus-square-o"
-              color="red"
-            />
-          )}
-          {!selectedView && (
-            <PressIcon
-              onPress={() => {
-                addGolfer(parseInt(item.id));
-                updateTeamDetails();
-              }}
-              disabled={addDisabled}
-              name="plus-square-o"
-              color="green"
-            />
-          )}
-        </View>
-        <View style={styles.flagContainer}>
-          <Image
-            style={styles.flag}
-            source={{ uri: `https://www.masters.com/assets/images/flags/${item.countryCode}_sm.gif` }}
-          />
-        </View>
-        <Text style={styles.golferName}>{item.name}</Text>
-
-        <View style={styles.iconsContainer}>
-          <View style={styles.iconsWrapper}>
-            <Text style={[textStyle, addDisabled ? { color: 'red' } : {}]}>{text}</Text>
-          </View>
-        </View>
-      </View>
-    );
-  };
-};
-
 export const GolfersList = ({ data, selectedView }: Props) => {
-  const selectionPhase = useSelector(selectPhaseSelection);
-  const { addGolfer, removeGolfer } = useManageGolfers();
   const disabled = useSelectionLimits(selectedView);
-  const updateTeamDetails = useUpdateTeam();
-
-  const renderGolfer = generateRenderList({
-    selectedView,
-    selectionPhase,
-    removeGolfer,
-    addGolfer,
-    disabled,
-    updateTeamDetails,
-  });
 
   return (
     <ScrollView>
-      <FlatList
-        style={styles.listContainer}
-        contentContainerStyle={{ justifyContent: 'center' }}
-        data={data}
-        renderItem={(item) => renderGolfer(item)}
-      />
+      {data.map((golfer) => {
+        const rookie = golfer.First === '1';
+        const amateur = golfer.Amateur === '1';
+        const top10 = top10Ids.includes(golfer.id);
+        const other = !rookie && !amateur && !top10;
+        const addDisabled = disabled.all || (top10 && disabled.top10) || (other && disabled.other);
+
+        const teamPickedMessage = 'Team full';
+        const rookieMessage = 'Must pick A/rookie';
+        const top10Text = disabled.other ? rookieMessage : disabled.top10 ? 'At top 10 limit' : 'Top 10';
+        const otherText = disabled.all ? teamPickedMessage : addDisabled ? rookieMessage : '';
+        const text = disabled.all ? teamPickedMessage : top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : otherText;
+        const textStyle = top10 ? styles.top10 : amateur ? styles.amateur : rookie ? styles.rookie : styles.error;
+
+        return (
+          <View key={golfer.id} style={[styles.listItem, addDisabled ? styles.disabled : {}]}>
+            <AddRemoveButton golfer={golfer} selectedView={selectedView} addDisabled={addDisabled} />
+            <View style={styles.flagContainer}>
+              <Image
+                style={styles.flag}
+                source={{ uri: `https://www.masters.com/assets/images/flags/${golfer.countryCode}_sm.gif` }}
+              />
+            </View>
+            <Text style={styles.golferName}>{golfer.name}</Text>
+            <View style={styles.iconsContainer}>
+              <View style={styles.iconsWrapper}>
+                <Text style={[textStyle, addDisabled ? { color: 'red' } : {}]}>{text}</Text>
+              </View>
+            </View>
+          </View>
+        );
+      })}
     </ScrollView>
   );
 };
