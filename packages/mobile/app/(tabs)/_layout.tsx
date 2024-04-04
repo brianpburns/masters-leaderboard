@@ -5,8 +5,8 @@ import { useColorScheme } from 'react-native';
 
 import { useSelector } from 'react-redux';
 import { useInitializeState } from 'src/data/hooks/use-initialize-state';
+import { ProfileMenu } from 'src/header/profile-menu';
 import { selectPhaseSelection } from 'src/store';
-import { ProfileMenu } from '../../components/header/profile-menu';
 import { colors } from '../../constants/color';
 
 /**
@@ -35,16 +35,16 @@ export default function TabLayout() {
           headerRight: () => <ProfileMenu />,
         }}
       />
-      {selectionPhase && (
-        <Tabs.Screen
-          name="players"
-          options={{
-            title: 'Players',
-            tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-            headerRight: () => <ProfileMenu />,
-          }}
-        />
-      )}
+      {/* {selectionPhase && ( */}
+      <Tabs.Screen
+        name="players"
+        options={{
+          title: 'Players',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerRight: () => <ProfileMenu />,
+        }}
+      />
+      {/* )} */}
       <Tabs.Screen
         name="leaderboard"
         options={{
