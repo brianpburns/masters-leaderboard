@@ -10,7 +10,6 @@ export const HeroImage = () => {
 
 const styles = StyleSheet.create({
   heroImage: {
-    flex: 1,
     alignSelf: 'stretch',
     height: 150,
   },

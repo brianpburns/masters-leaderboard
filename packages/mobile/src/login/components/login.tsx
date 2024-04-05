@@ -8,7 +8,7 @@ export const Login = () => {
   const { signIn, loading } = useLogin();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <HeroImage />
       <View style={styles.loginContainer}>
         <GoogleSigninButton
@@ -24,7 +24,6 @@ export const Login = () => {
 
 const styles = StyleSheet.create({
   loginContainer: {
-    margin: 'auto',
     marginTop: 50,
     marginLeft: 'auto',
     marginRight: 'auto',
