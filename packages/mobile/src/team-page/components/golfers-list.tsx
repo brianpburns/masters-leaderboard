@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 import { top10Ids } from 'src/data/golfers-data';
+import { selectPhaseSelection } from 'src/store';
 import { Player } from 'src/types';
 import { useSelectionLimits } from '../hooks/use-selection-limits';
 import { AddRemoveButton } from './add-remove-button';
@@ -12,6 +14,7 @@ interface Props {
 
 export const GolfersList = ({ data, selectedView }: Props) => {
   const disabled = useSelectionLimits(selectedView);
+  const selectionPhase = useSelector(selectPhaseSelection);
 
   return (
     <ScrollView>
@@ -20,13 +23,17 @@ export const GolfersList = ({ data, selectedView }: Props) => {
         const amateur = golfer.Amateur === '1';
         const top10 = top10Ids.includes(golfer.id);
         const other = !rookie && !amateur && !top10;
-        const addDisabled = disabled.all || (top10 && disabled.top10) || (other && disabled.other);
+        const addDisabled = !selectionPhase || disabled.all || (top10 && disabled.top10) || (other && disabled.other);
 
+        const deadlineMessage = 'Deadline passed';
         const teamPickedMessage = 'Team full';
         const rookieMessage = 'Must pick A/rookie';
         const top10Text = disabled.other ? rookieMessage : disabled.top10 ? 'At top 10 limit' : 'Top 10';
         const otherText = disabled.all ? teamPickedMessage : addDisabled ? rookieMessage : '';
-        const text = disabled.all ? teamPickedMessage : top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : otherText;
+        const playerType = top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : '';
+        const typeText = top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : otherText;
+        const textWithWarnings = !selectionPhase ? deadlineMessage : disabled.all ? teamPickedMessage : typeText;
+        const finalText = selectedView ? playerType : textWithWarnings;
         const textStyle = top10 ? styles.top10 : amateur ? styles.amateur : rookie ? styles.rookie : styles.error;
 
         return (
@@ -41,7 +48,7 @@ export const GolfersList = ({ data, selectedView }: Props) => {
             <Text style={styles.golferName}>{golfer.name}</Text>
             <View style={styles.iconsContainer}>
               <View style={styles.iconsWrapper}>
-                <Text style={[textStyle, addDisabled ? { color: 'red' } : {}]}>{text}</Text>
+                <Text style={[textStyle, addDisabled && !selectedView ? { color: 'red' } : {}]}>{finalText}</Text>
               </View>
             </View>
           </View>
