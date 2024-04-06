@@ -4,7 +4,7 @@ import { Player } from 'src/types';
 import { Filter } from '../types';
 
 export const useFilter = (players: Player[], searchTerm: string) => {
-  const [filter, setFilter] = useState<Filter>('none');
+  const [filter, setFilter] = useState<Filter | ''>('none');
   const [filteredResults, setFilteredResults] = useState<Player[]>([]);
 
   useEffect(() => {

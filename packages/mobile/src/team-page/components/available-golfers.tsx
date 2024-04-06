@@ -1,3 +1,4 @@
+import { SearchBar } from '@rneui/themed';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useGetGolferData } from 'src/data/hooks/use-get-golfer-data';
@@ -7,7 +8,6 @@ import { useFilter } from '../hooks/use-filter';
 import { GolfersList } from './golfers-list';
 
 export const AvailableGolfersList = () => {
-  const { addGolfer } = useManageGolfers();
   const { selectedGolfers } = useManageGolfers();
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
   const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
@@ -15,7 +15,16 @@ export const AvailableGolfersList = () => {
 
   return (
     <View style={styles.listContainer}>
-      {/* <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> */}
+      <SearchBar
+        style={styles.searchBar}
+        placeholder="Find golfer"
+        onChangeText={(term) => {
+          setSearchTerm(term);
+          setFilter('');
+        }}
+        value={searchTerm}
+        lightTheme
+      />
       <View style={styles.filtersContainer}>
         <Checkbox
           label="Top 10"
@@ -46,6 +55,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 0,
   },
+  searchBar: {},
   filtersContainer: {
     flexDirection: 'row',
     marginTop: 5,
