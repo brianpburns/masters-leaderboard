@@ -1,4 +1,5 @@
 import { ConfigureParams, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { useGlobalAction } from 'src/store';
 
@@ -37,6 +38,7 @@ export const useLogin = () => {
       setAuthToken(userInfo.idToken);
       setSignedIn(true);
       setLoading(false);
+      router.replace('/');
     } catch (err: unknown) {
       setLoading(false);
       const error = err as { code: string };

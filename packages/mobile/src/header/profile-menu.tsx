@@ -1,23 +1,27 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import React, { useState } from 'react';
-import { Text, useColorScheme } from 'react-native';
-import { colors } from '../../constants/color';
+import React from 'react';
+
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { useSelector } from 'react-redux';
+import { useLogout } from 'src/login/hooks/use-logout';
+import { selectAuthToken } from 'src/store';
 
 export const ProfileMenu = () => {
-  const colorScheme = useColorScheme();
-  const [profileOpen, setProfileOpen] = useState(false);
+  const authToken = useSelector(selectAuthToken);
+  const logout = useLogout();
 
   return (
-    <>
-      <FontAwesome
-        name="info-circle"
-        size={25}
-        color={colors[colorScheme ?? 'light'].text}
-        style={{ marginRight: 15, opacity: profileOpen ? 0.5 : 1 }}
-        onPress={() => setProfileOpen(true)}
-        onPressOut={() => setProfileOpen(false)}
-      />
-      {profileOpen && <Text>Open</Text>}
-    </>
+    authToken && (
+      <>
+        <Pressable onPress={logout}>
+          <Text style={styles.text}>Logout</Text>
+        </Pressable>
+      </>
+    )
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    marginRight: 5,
+  },
+});
