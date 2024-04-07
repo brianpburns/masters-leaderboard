@@ -31,6 +31,5 @@ const globalSlice = createSlice({
   },
 });
 
-export const { setToken, setGolfersState, setGolferRankings } =
-  globalSlice.actions;
+export const { setToken, setGolfersState, setGolferRankings } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;

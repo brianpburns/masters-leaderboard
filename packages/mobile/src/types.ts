@@ -75,12 +75,26 @@ export interface Player {
   id: string;
   countryName: string;
   countryCode: string;
-  // TODO: Replace Amateur with first_masters
   Amateur: string;
   first_masters: boolean;
   First: string;
   Past: string;
   image: boolean;
+
+  // Don't care about these values
+  display_name?: string;
+  name?: string;
+  sort_name?: string;
+  age?: string;
+  height?: string;
+  weight?: string;
+  stats?: boolean;
+  past_champion?: boolean;
+  amateur?: boolean;
+  international?: boolean;
+  masters_wins?: string;
+  real_player?: boolean;
+  share_url?: string;
 }
 
 export interface PlayersResponseData {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { top10Ids } from 'src/client/data/golfers-data';
+import { top10Ids } from 'src/data/golfers-data';
 import { Player } from 'src/types';
-import { Filter } from '../../team-page/types';
+import { Filter } from '../types';
 
 export const useFilter = (players: Player[], searchTerm: string) => {
-  const [filter, setFilter] = useState<Filter>('none');
+  const [filter, setFilter] = useState<Filter | ''>('none');
   const [filteredResults, setFilteredResults] = useState<Player[]>([]);
 
   useEffect(() => {
