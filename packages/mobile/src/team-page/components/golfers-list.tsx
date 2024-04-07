@@ -10,9 +10,11 @@ import { AddRemoveButton } from './add-remove-button';
 interface Props {
   data: Player[];
   selectedView: boolean;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
 }
 
-export const GolfersList = ({ data, selectedView }: Props) => {
+export const GolfersList = ({ data, selectedView, loading, setLoading }: Props) => {
   const disabled = useSelectionLimits(selectedView);
   const selectionPhase = useSelector(selectPhaseSelection);
 
@@ -38,7 +40,13 @@ export const GolfersList = ({ data, selectedView }: Props) => {
 
         return (
           <View key={golfer.id} style={[styles.listItem, addDisabled ? styles.disabled : {}]}>
-            <AddRemoveButton golfer={golfer} selectedView={selectedView} addDisabled={addDisabled} />
+            <AddRemoveButton
+              golfer={golfer}
+              selectedView={selectedView}
+              addDisabled={addDisabled}
+              loading={loading}
+              setLoading={setLoading}
+            />
             <View style={styles.flagContainer}>
               <Image
                 style={styles.flag}

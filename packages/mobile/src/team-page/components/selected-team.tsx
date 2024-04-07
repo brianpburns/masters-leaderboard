@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { useDeleteTeam } from 'src/api/hooks/use-delete-team';
@@ -15,11 +15,12 @@ export const SelectedTeam = ({ selectedGolfers }: Props) => {
   const currentTeam = useSelector(selectCurrentTeam);
   const { getGolfersData } = useGetGolferData();
   const { golfers } = getGolfersData(selectedGolfers);
+  const [loading, setLoading] = useState(false);
 
   return (
     <View style={styles.container}>
       {golfers.length > 0 ? (
-        <GolfersList data={golfers} selectedView={true} />
+        <GolfersList data={golfers} selectedView={true} loading={loading} setLoading={setLoading} />
       ) : (
         <Text>Pick golfers from the list below.</Text>
       )}
