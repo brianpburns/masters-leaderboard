@@ -1,7 +1,8 @@
 import { ConfigureParams, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { useGlobalAction } from 'src/store';
+import { useSelector } from 'react-redux';
+import { selectAuthToken, useGlobalAction } from 'src/store';
 
 const googleConfig: ConfigureParams = {
   iosClientId: '564051064112-pjb0jk68lh2aldca0c2uo4041961er0u.apps.googleusercontent.com',
@@ -13,19 +14,30 @@ export const useLogin = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const { setAuthToken } = useGlobalAction();
+  const authToken = useSelector(selectAuthToken);
 
   useEffect(() => {
     const silentSignIn = async () => {
-      const userInfo = await GoogleSignin.signInSilently();
+      try {
+        const userInfo = await GoogleSignin.signInSilently();
 
-      if (userInfo.idToken) {
-        setAuthToken(userInfo.idToken);
-        setSignedIn(true);
+        if (userInfo.idToken) {
+          setAuthToken(userInfo.idToken);
+          setSignedIn(true);
+          setLoading(false);
+          console.log('signed in silently');
+          router.replace('/');
+        }
+      } catch (err: unknown) {
+        console.log('silentSignIn error', err);
+        setAuthToken(null);
         setLoading(false);
       }
     };
 
-    silentSignIn();
+    if (!authToken && !loading) {
+      silentSignIn();
+    }
   });
 
   const signIn = async () => {
@@ -42,7 +54,6 @@ export const useLogin = () => {
     } catch (err: unknown) {
       setLoading(false);
       const error = err as { code: string };
-      console.log('signin error', error);
 
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('SIGN_IN_CANCELLED');
@@ -60,5 +71,5 @@ export const useLogin = () => {
     }
   };
 
-  return { signIn, signedIn, loading };
+  return { signIn, signedIn, loading, authToken };
 };

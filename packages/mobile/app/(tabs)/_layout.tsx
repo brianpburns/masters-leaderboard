@@ -14,12 +14,9 @@ import { colors } from '../../constants/color';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   useInitializeState();
-
   const authToken = useSelector(selectAuthToken);
 
   if (!authToken) {
-    console.log('redirect to login');
-    // router.replace('/login');
     return <Redirect href="/sign-in" />;
   }
 

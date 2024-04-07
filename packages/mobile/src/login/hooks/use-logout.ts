@@ -8,6 +8,6 @@ export const useLogout = () => {
   return async () => {
     await GoogleSignin.signOut();
     setAuthToken(null);
-    router.replace('/login');
+    router.replace('/sign-in');
   };
 };
