@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import * as path from 'path';
-import { deleteTeam, getMastersLeaderboard, getTeam, listTeams, updateTeam } from './handlers';
+import { deleteTeam, getConfig, getMastersLeaderboard, getTeam, listTeams, updateTeam } from './handlers';
 import { auth } from './middlewares/auth';
 
 const app = express();
@@ -21,6 +21,8 @@ app.post('/api/team', auth(), updateTeam());
 app.delete('/api/teams/:id', deleteTeam());
 
 app.get('/api/masters-leaderboard', getMastersLeaderboard());
+
+app.get('/api/config', getConfig());
 
 app.get('*', (_req, res) => {
   res.sendFile(path.resolve(path.join(__dirname, '../../public'), 'heroku.html'));
