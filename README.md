@@ -37,6 +37,24 @@ Development of just the UI. This runs the UI locally on port 8082 and mocks the 
 npm run start:standalone
 ```
 
+### App Development
+
+iOS
+
+```
+npm run ios
+```
+
+If there are errors, try running `pod install` in the ios directory.
+
+Android:
+
+- First start the emulator in Android Sudio -> Virtual Devices.
+
+```
+npm run android
+```
+
 ## Production Build
 
 ```
@@ -51,6 +69,7 @@ npm run build:prod
 ## Setting up the DB running on Render
 
 Once the Masters has finished the DB is torn down to avoid having to pay for it. A new instance needs to be brought up.
+
 - On the render dashboard, click on "New" and "PostgresQL"
 - Give the DB instance a name. It doesn't really matter. Save and create.
 - Once the instance has been provisioned, copy the "External Database URL"
