@@ -55,6 +55,12 @@ Android:
 npm run android
 ```
 
+## App Credentials
+
+Ran into a lot of issues setting up credentials for Android, see message [here](https://github.com/react-native-google-signin/google-signin/issues/1192#issuecomment-1670369305).
+
+I made the mistake of generating keystore values but one already existed under `android/app/debug.keystore`. There will likely need to be a production one generated.
+
 ## Production Build
 
 ```
