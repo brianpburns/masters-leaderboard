@@ -17,11 +17,7 @@ export const useGetGolferData = () => {
       if (!top10Ids.includes(playerB.id) && playerA.First === '') {
         return -1;
       }
-      if (
-        !top10Ids.includes(playerB.id) &&
-        playerB.First !== '' &&
-        playerA.Amateur === '1'
-      ) {
+      if (!top10Ids.includes(playerB.id) && playerB.First !== '' && playerA.Amateur === '1') {
         return -1;
       }
       return 0;
@@ -45,9 +41,7 @@ export const useGetGolferData = () => {
   }, [unselectedGolfers, searchTerm, allGolfers]);
 
   const getGolferData = (id: number) => {
-    const matchingGolfer = allGolfers.find(
-      (golfer) => golfer.id === id.toString()
-    );
+    const matchingGolfer = allGolfers.find((golfer) => golfer.id === id.toString());
 
     if (!matchingGolfer) throw new Error(`Golfer with ID ${id} not found`);
 
@@ -57,14 +51,10 @@ export const useGetGolferData = () => {
   const getGolfersData = (ids: number[]) => {
     const golfers = ids.map((id) => getGolferData(id));
     const rookieCount = golfers.filter(
-      (golfer) => golfer.First === '1' && golfer.Amateur !== '1'
+      (golfer) => golfer.First === '1' && golfer.Amateur !== '1' && !top10Ids.includes(golfer.id),
     ).length;
-    const amateurCount = golfers.filter(
-      (golfer) => golfer.Amateur === '1'
-    ).length;
-    const top10Count = golfers.filter((golfer) =>
-      top10Ids.includes(golfer.id)
-    ).length;
+    const amateurCount = golfers.filter((golfer) => golfer.Amateur === '1').length;
+    const top10Count = golfers.filter((golfer) => top10Ids.includes(golfer.id)).length;
 
     return { golfers, rookieCount, top10Count, amateurCount };
   };
