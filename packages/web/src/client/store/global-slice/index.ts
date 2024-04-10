@@ -10,7 +10,7 @@ export interface GlobalState {
 
 export const initialState: GlobalState = {
   token: null,
-  selectionPhase: false,
+  selectionPhase: true,
   golferScores: null,
   golferRankings: {},
 };

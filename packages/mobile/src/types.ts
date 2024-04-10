@@ -95,6 +95,9 @@ export interface Player {
   masters_wins?: string;
   real_player?: boolean;
   share_url?: string;
+  swing?: string;
+  dq?: boolean;
+  wd?: boolean;
 }
 
 export interface PlayersResponseData {
