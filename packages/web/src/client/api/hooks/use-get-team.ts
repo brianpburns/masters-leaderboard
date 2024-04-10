@@ -17,8 +17,7 @@ export const useGetTeam = () => {
   const sendAlert = useSendAlert();
 
   const fetchTeam = async () => {
-    // If we already have a team, don't fetch it again
-    if (!authToken || currentTeam.id !== 0) {
+    if (!authToken) {
       setLoading(false);
       return;
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { top10Ids } from 'src/data/golfers-data';
+import { useManageGolfers } from 'src/shared/hooks/use-manage-golfers';
 import { selectPhaseSelection } from 'src/store';
 import { Player } from 'src/types';
 import { useSelectionLimits } from '../hooks/use-selection-limits';
@@ -17,23 +18,34 @@ interface Props {
 export const GolfersList = ({ data, selectedView, loading, setLoading }: Props) => {
   const disabled = useSelectionLimits(selectedView);
   const selectionPhase = useSelector(selectPhaseSelection);
+  const { selectedGolfers } = useManageGolfers();
 
   return (
     <ScrollView>
       {data.map((golfer) => {
+        const alreadySelected = selectedGolfers.includes(parseInt(golfer.id));
         const rookie = golfer.First === '1';
         const amateur = golfer.Amateur === '1';
         const top10 = top10Ids.includes(golfer.id);
         const other = !rookie && !amateur && !top10;
         const addDisabled = !selectionPhase || disabled.all || (top10 && disabled.top10) || (other && disabled.other);
 
+        const alreadySelectedMessage = 'Already selected';
         const deadlineMessage = 'Deadline passed';
         const teamPickedMessage = 'Team full';
         const rookieMessage = 'Must pick A/rookie';
         const top10Text = disabled.other ? rookieMessage : disabled.top10 ? 'At top 10 limit' : 'Top 10';
         const otherText = disabled.all ? teamPickedMessage : addDisabled ? rookieMessage : '';
         const playerType = top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : '';
-        const typeText = top10 ? top10Text : amateur ? 'A' : rookie ? 'R' : otherText;
+        const typeText = alreadySelected
+          ? alreadySelectedMessage
+          : top10
+            ? top10Text
+            : amateur
+              ? 'A'
+              : rookie
+                ? 'R'
+                : otherText;
         const textWithWarnings = !selectionPhase ? deadlineMessage : disabled.all ? teamPickedMessage : typeText;
         const finalText = selectedView ? playerType : textWithWarnings;
         const textStyle = top10 ? styles.top10 : amateur ? styles.amateur : rookie ? styles.rookie : styles.error;

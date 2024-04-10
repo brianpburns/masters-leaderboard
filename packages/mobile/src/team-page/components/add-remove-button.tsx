@@ -18,21 +18,21 @@ interface Props {
 export const AddRemoveButton = ({ selectedView, golfer, addDisabled, loading, setLoading }: Props) => {
   const selectionPhase = useSelector(selectPhaseSelection);
   const { addGolfer, removeGolfer } = useManageGolfers();
-  const updateTeamDetails = useUpdateTeam();
+  const { addGolferApi, removeGolferApi } = useUpdateTeam();
   const addColor = loading ? 'gray' : 'green';
   const removeColor = loading ? 'gray' : 'red';
 
   const handleRemove = () => {
     setLoading(true);
     removeGolfer(parseInt(golfer.id));
-    updateTeamDetails();
+    removeGolferApi(golfer.id);
     setLoading(false);
   };
 
   const handleAdd = () => {
     setLoading(true);
     addGolfer(parseInt(golfer.id));
-    updateTeamDetails();
+    addGolferApi(golfer.id);
     setLoading(false);
   };
 

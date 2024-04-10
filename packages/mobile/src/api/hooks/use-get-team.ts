@@ -15,8 +15,8 @@ export const useGetTeam = () => {
   // const sendAlert = useSendAlert();
 
   const fetchTeam = async () => {
-    // If we already have a team, don't fetch it again
-    if (!authToken || currentTeam.id !== 0) {
+    console.log('fetchTeam');
+    if (!authToken) {
       setLoading(false);
       return;
     }
@@ -26,6 +26,12 @@ export const useGetTeam = () => {
     try {
       const { team, new_team } = await getTeam(authToken);
       const { golfer_ids, ...rest } = team;
+
+      console.log('setCurrentTeam', {
+        ...rest,
+        golferIds: golfer_ids,
+        savedRef: golfer_ids,
+      });
 
       setCurrentTeam({
         ...rest,

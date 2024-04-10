@@ -14,7 +14,7 @@ export default function TabTwoScreen() {
   const { searchTerm, setSearchTerm, searchResults } = useGetGolferData();
   const { filter, setFilter, results } = useFilter(searchResults, searchTerm);
   const remainingPicks = 10 - selectedGolfers.length;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <SafeAreaView>
@@ -24,7 +24,7 @@ export default function TabTwoScreen() {
           placeholder="Find golfer"
           onChangeText={(term) => {
             setSearchTerm(term);
-            setFilter('');
+            setFilter('none');
           }}
           value={searchTerm}
           lightTheme

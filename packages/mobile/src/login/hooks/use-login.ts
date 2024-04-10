@@ -6,6 +6,8 @@ import { selectAuthToken, useGlobalAction } from 'src/store';
 
 const googleConfig: ConfigureParams = {
   iosClientId: '564051064112-pjb0jk68lh2aldca0c2uo4041961er0u.apps.googleusercontent.com',
+  webClientId: '564051064112-7ju4dqapders3rts5s8b55p29pcnp16p.apps.googleusercontent.com',
+  offlineAccess: true,
 };
 
 GoogleSignin.configure(googleConfig);
@@ -25,11 +27,9 @@ export const useLogin = () => {
           setAuthToken(userInfo.idToken);
           setSignedIn(true);
           setLoading(false);
-          console.log('signed in silently');
           router.replace('/');
         }
       } catch (err: unknown) {
-        console.log('silentSignIn error', err);
         setAuthToken(null);
         setLoading(false);
       }
@@ -56,17 +56,17 @@ export const useLogin = () => {
       const error = err as { code: string };
 
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('SIGN_IN_CANCELLED');
+        console.log('SIGN_IN_CANCELLED', error);
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('IN_PROGRESS');
+        console.log('IN_PROGRESS', error);
         // operation (e.g. sign in) is in progress already
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('PLAY_SERVICES_NOT_AVAILABLE');
+        console.log('PLAY_SERVICES_NOT_AVAILABLE', error);
         // play services not available or outdated
       } else {
         // some other error happened
-        console.log('other error');
+        console.log('other error', error);
       }
     }
   };

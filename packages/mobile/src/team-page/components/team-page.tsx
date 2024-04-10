@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { useGetTeam } from 'src/api/hooks/use-get-team';
@@ -26,10 +26,16 @@ export const TeamPage = () => {
       <HeroImage />
       <SelectedTeam selectedGolfers={selectedGolfers} />
       {selectionPhase && (
-        <Text>
+        <Text style={styles.text}>
           Requirements: {'\n'} - 10 players.{'\n'} - Max 4 top 10.{'\n'} - 1 rookie.{'\n'} - 1 amateur
         </Text>
       )}
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    paddingLeft: 20,
+  },
+});

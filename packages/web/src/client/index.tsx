@@ -22,7 +22,7 @@ const bootstrap = async () => {
         <Root />
       </Provider>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 };
 

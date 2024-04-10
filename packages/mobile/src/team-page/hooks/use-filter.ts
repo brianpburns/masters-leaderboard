@@ -4,7 +4,7 @@ import { Player } from 'src/types';
 import { Filter } from '../types';
 
 export const useFilter = (players: Player[], searchTerm: string) => {
-  const [filter, setFilter] = useState<Filter | ''>('none');
+  const [filter, setFilter] = useState<Filter>('none');
   const [filteredResults, setFilteredResults] = useState<Player[]>([]);
 
   useEffect(() => {
@@ -13,7 +13,9 @@ export const useFilter = (players: Player[], searchTerm: string) => {
 
   useEffect(() => {
     if (filter === 'rookies') {
-      const rookies = players.filter((golfer) => golfer.First === '1' || golfer.Amateur === '1');
+      const rookies = players.filter(
+        (golfer) => !top10Ids.includes(golfer.id) && (golfer.First === '1' || golfer.Amateur === '1'),
+      );
       setFilteredResults(rookies);
     } else if (filter === 'top10') {
       const top10 = players.filter((golfer) => top10Ids.includes(golfer.id));

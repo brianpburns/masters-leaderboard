@@ -2,6 +2,11 @@
 
 Hosted app on [Render](https://masters-app.onrender.com).
 
+## Updates for a new year
+
+1. Update the golfersData object retrieved from https://www.masters.com/en_US/cms/feeds/players/2023/players.json to the new year.
+2. Set selection phase to true in environment variables on Render.
+
 ## Installation
 
 If you're using NVM to manage your node version, you can sync your node version with that of the project by running:
@@ -37,6 +42,30 @@ Development of just the UI. This runs the UI locally on port 8082 and mocks the 
 npm run start:standalone
 ```
 
+### App Development
+
+iOS
+
+```
+npm run ios
+```
+
+If there are errors, try running `pod install` in the ios directory.
+
+Android:
+
+- First start the emulator in Android Sudio -> Virtual Devices.
+
+```
+npm run android
+```
+
+## App Credentials
+
+Ran into a lot of issues setting up credentials for Android, see message [here](https://github.com/react-native-google-signin/google-signin/issues/1192#issuecomment-1670369305).
+
+I made the mistake of generating keystore values but one already existed under `android/app/debug.keystore`. There will likely need to be a production one generated.
+
 ## Production Build
 
 ```
@@ -51,6 +80,7 @@ npm run build:prod
 ## Setting up the DB running on Render
 
 Once the Masters has finished the DB is torn down to avoid having to pay for it. A new instance needs to be brought up.
+
 - On the render dashboard, click on "New" and "PostgresQL"
 - Give the DB instance a name. It doesn't really matter. Save and create.
 - Once the instance has been provisioned, copy the "External Database URL"

@@ -1,9 +1,7 @@
+import { Link } from 'expo-router';
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { useDeleteTeam } from 'src/api/hooks/use-delete-team';
+import { StyleSheet, Text, View } from 'react-native';
 import { useGetGolferData } from 'src/data/hooks/use-get-golfer-data';
-import { selectCurrentTeam } from 'src/team-page/state/selectors';
 import { GolfersList } from './golfers-list';
 
 interface Props {
@@ -11,8 +9,8 @@ interface Props {
 }
 
 export const SelectedTeam = ({ selectedGolfers }: Props) => {
-  const deleteTeam = useDeleteTeam();
-  const currentTeam = useSelector(selectCurrentTeam);
+  // const deleteTeam = useDeleteTeam();
+  // const currentTeam = useSelector(selectCurrentTeam);
   const { getGolfersData } = useGetGolferData();
   const { golfers } = getGolfersData(selectedGolfers);
   const [loading, setLoading] = useState(false);
@@ -22,14 +20,16 @@ export const SelectedTeam = ({ selectedGolfers }: Props) => {
       {golfers.length > 0 ? (
         <GolfersList data={golfers} selectedView={true} loading={loading} setLoading={setLoading} />
       ) : (
-        <Text>Pick golfers from the list below.</Text>
+        <Link href={'/players'} style={styles.text}>
+          <Text style={styles.linkText}>Go to players tab</Text>
+        </Link>
       )}
-      <Button
+      {/* <Button
         onPress={() => deleteTeam(currentTeam.id)}
         title="Delete Team"
         color="black"
         accessibilityLabel="Delete team"
-      />
+      /> */}
     </View>
   );
 };
@@ -41,5 +41,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 0,
     margin: 10,
+  },
+  text: {
+    padding: 10,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  linkText: {
+    fontSize: 14,
+    color: '#2e78b7',
   },
 });
