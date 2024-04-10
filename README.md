@@ -2,6 +2,11 @@
 
 Hosted app on [Render](https://masters-app.onrender.com).
 
+## Updates for a new year
+
+1. Update the golfersData object retrieved from https://www.masters.com/en_US/cms/feeds/players/2023/players.json to the new year.
+2. Set selection phase to true.
+
 ## Installation
 
 If you're using NVM to manage your node version, you can sync your node version with that of the project by running:
