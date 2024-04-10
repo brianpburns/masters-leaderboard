@@ -53,8 +53,7 @@ export const SelectionControls = () => {
         <Button size="small" variant="contained" color="secondary" onClick={handleCancel} disabled={noChanges}>
           Cancel
         </Button>
-        <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button>
-        <button onClick={() => deleteTeam(1)}>Delete Burns</button>
+        {/* <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button> */}
         <Tooltip triggerText="Rules" tooltipMessage="10 players, max 4 top 10. 1 rookie, 1 amateur." />
       </ButtonsContainer>
     </>
