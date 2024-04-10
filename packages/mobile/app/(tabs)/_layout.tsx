@@ -1,11 +1,13 @@
 import { Redirect, Tabs } from 'expo-router';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useColorScheme } from 'react-native';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
+import { useGetAppConfig } from 'src/api/hooks/use-get-app-config';
 import { useInitializeState } from 'src/data/hooks/use-initialize-state';
 import { ProfileMenu } from 'src/header/profile-menu';
 import { selectAuthToken } from 'src/store';
@@ -15,6 +17,13 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   useInitializeState();
   const authToken = useSelector(selectAuthToken);
+  const loadConfig = useGetAppConfig();
+
+  useFocusEffect(
+    useCallback(() => {
+      loadConfig();
+    }, [loadConfig]),
+  );
 
   if (!authToken) {
     return <Redirect href="/sign-in" />;

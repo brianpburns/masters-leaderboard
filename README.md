@@ -5,7 +5,7 @@ Hosted app on [Render](https://masters-app.onrender.com).
 ## Updates for a new year
 
 1. Update the golfersData object retrieved from https://www.masters.com/en_US/cms/feeds/players/2023/players.json to the new year.
-2. Set selection phase to true.
+2. Set selection phase to true in environment variables on Render.
 
 ## Installation
 

@@ -21,13 +21,13 @@ export const Root = () => {
         <NavBar />
 
         <Switch>
-          <Route exact path='/'>
-            <Redirect to='/team' />
+          <Route exact path="/">
+            <Redirect to="/team" />
           </Route>
-          <Route path='/team' component={TeamPage} />
-          <Route path='/leaderboard' component={Leaderboard} />
-          <Route path='/admin' component={Admin} />
-          <Route path='/login' component={Login} />
+          <Route path="/team" component={TeamPage} />
+          <Route path="/leaderboard" component={Leaderboard} />
+          <Route path="/admin" component={Admin} />
+          <Route path="/login" component={Login} />
         </Switch>
         <AlertContainer />
       </BrowserRouter>

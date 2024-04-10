@@ -28,8 +28,11 @@ const globalSlice = createSlice({
     setGolferRankings(state, action: PayloadAction<GolferMoneyRankings>) {
       state.golferRankings = action.payload;
     },
+    setSelectionPhaseState(state, action: PayloadAction<boolean>) {
+      state.selectionPhase = action.payload;
+    },
   },
 });
 
-export const { setToken, setGolfersState, setGolferRankings } = globalSlice.actions;
+export const { setToken, setGolfersState, setGolferRankings, setSelectionPhaseState } = globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
