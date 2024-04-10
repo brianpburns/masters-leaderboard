@@ -12,7 +12,7 @@ import { useGetTeam } from 'src/api/hooks/use-get-team';
 import { useInitializeState } from 'src/data/hooks/use-initialize-state';
 import { ProfileMenu } from 'src/header/profile-menu';
 import { selectAuthToken } from 'src/store';
-import { colors } from '../../constants/color';
+import { colors } from '../../../constants/color';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
