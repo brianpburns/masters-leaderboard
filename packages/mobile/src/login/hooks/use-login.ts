@@ -4,9 +4,15 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAuthToken, useGlobalAction } from 'src/store';
 
+// Local webClientId for development
+// 564051064112-a764u4ama3144nkt7nte8uggjs0n68vq.apps.googleusercontent.com
+
+// Production webClientId
+// 564051064112-7ju4dqapders3rts5s8b55p29pcnp16p.apps.googleusercontent.com
+
 const googleConfig: ConfigureParams = {
   iosClientId: '564051064112-pjb0jk68lh2aldca0c2uo4041961er0u.apps.googleusercontent.com',
-  webClientId: '564051064112-7ju4dqapders3rts5s8b55p29pcnp16p.apps.googleusercontent.com',
+  webClientId: '564051064112-a764u4ama3144nkt7nte8uggjs0n68vq.apps.googleusercontent.com',
   offlineAccess: true,
 };
 

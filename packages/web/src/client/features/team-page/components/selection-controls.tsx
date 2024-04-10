@@ -15,8 +15,7 @@ import { ButtonsContainer, Error } from './styled';
 export const SelectionControls = () => {
   const { getGolfersData } = useGetGolferData();
   const { selectedGolfers, setGolfers } = useManageGolfers();
-  const { golfers, rookieCount, top10Count, amateurCount } =
-    getGolfersData(selectedGolfers);
+  const { golfers, rookieCount, top10Count, amateurCount } = getGolfersData(selectedGolfers);
   const deleteTeam = useDeleteTeam();
   const updateTeam = useUpdateTeam();
   const { setGolferIdsRef } = useCurrentTeamGolfersRef();
@@ -48,29 +47,15 @@ export const SelectionControls = () => {
       {rookieError && <Error>Rookie error. You need at least 1.</Error>}
       {top10Error && <Error>Too many top 10 players. Max 4.</Error>}
       <ButtonsContainer>
-        <Button
-          size='small'
-          variant='contained'
-          color='primary'
-          onClick={onSave}
-          disabled={noChanges || error}
-        >
+        <Button size="small" variant="contained" color="primary" onClick={onSave} disabled={noChanges || error}>
           Save
         </Button>
-        <Button
-          size='small'
-          variant='contained'
-          color='secondary'
-          onClick={handleCancel}
-          disabled={noChanges}
-        >
+        <Button size="small" variant="contained" color="secondary" onClick={handleCancel} disabled={noChanges}>
           Cancel
         </Button>
-        {/* <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button> */}
-        <Tooltip
-          triggerText='Rules'
-          tooltipMessage='10 players, max 4 top 10. 1 rookie, 1 amateur.'
-        />
+        <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button>
+        <button onClick={() => deleteTeam(1)}>Delete Burns</button>
+        <Tooltip triggerText="Rules" tooltipMessage="10 players, max 4 top 10. 1 rookie, 1 amateur." />
       </ButtonsContainer>
     </>
   );
