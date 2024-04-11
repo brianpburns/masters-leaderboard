@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectGolfersList, useAppSelector } from 'src/client/store';
-import {
-  selectGolferRankings,
-  selectPhaseSelection,
-} from 'src/client/store/global-slice/selectors';
+import { selectGolferRankings, selectPhaseSelection } from 'src/client/store/global-slice/selectors';
 import { Team, TeamWithPrizeMoney } from 'src/types';
 import { selectTeams } from '../state/selectors';
 import { rankTeams } from '../utils/rank-teams';
@@ -25,11 +22,7 @@ export const useAddPrizeMoney = () => {
 
   useEffect(() => {
     const calculateTeamMoney = (team: Team) => {
-      if (
-        !golfersData ||
-        Object.keys(rankingsWithPrizeMoney).length === 0 ||
-        selectionPhase
-      ) {
+      if (!golfersData || Object.keys(rankingsWithPrizeMoney).length === 0 || selectionPhase) {
         return {
           ...team,
           prizeMoney: 0,
@@ -55,13 +48,7 @@ export const useAddPrizeMoney = () => {
     const cashTotals = rankTeams(teams.map((team) => calculateTeamMoney(team)));
 
     setRankedTeams(cashTotals);
-  }, [
-    golfersData,
-    rankingsWithPrizeMoney,
-    selectionPhase,
-    setRankedTeams,
-    teams,
-  ]);
+  }, [golfersData, rankingsWithPrizeMoney, selectionPhase, setRankedTeams, teams]);
 
   return rankedTeams;
 };

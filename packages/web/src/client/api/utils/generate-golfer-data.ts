@@ -30,11 +30,7 @@ export const fetchLeaderboardData = async () => {
   }
 };
 
-export const processLeaderBoardData = (
-  cutLine: number,
-  rawGolfersData: RawGolferData[],
-  currentRound: string
-) => {
+export const processLeaderBoardData = (cutLine: number, rawGolfersData: RawGolferData[], currentRound: string) => {
   if (rawGolfersData.length === 0) {
     return {
       golfers: [],
@@ -51,8 +47,7 @@ export const processLeaderBoardData = (
 };
 
 export const generateGolferData = async () => {
-  const { cutLine, rawGolfersData, currentRound } =
-    await fetchLeaderboardData();
+  const { cutLine, rawGolfersData, currentRound } = await fetchLeaderboardData();
 
   return processLeaderBoardData(cutLine, rawGolfersData, currentRound);
 };

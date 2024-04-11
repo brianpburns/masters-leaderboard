@@ -9,8 +9,7 @@ export const useInitializeState = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { golfers, golferMoneyRankings, cutLine } =
-        await generateGolferData();
+      const { golfers, golferMoneyRankings, cutLine } = await generateGolferData();
       setCutLine(cutLine);
       setGolfersList(golfers);
       setGolferMoneyRankings(golferMoneyRankings);
