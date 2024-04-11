@@ -12,14 +12,13 @@ export const Leaderboard = () => {
   return (
     <StyledTableContainer>
       <Loader open={loading} />
-      <Table aria-label='collapsible table'>
+      <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell size='small' />
-            <TableCell size='small'>Pos</TableCell>
-            <TableCell align='left'>Name</TableCell>
-            <TableCell align='left'>Owner</TableCell>
-            <TableCell align='left'>Money</TableCell>
+            <TableCell size="small" />
+            <TableCell size="small">Pos</TableCell>
+            <TableCell align="left">Owner</TableCell>
+            <TableCell align="left">Money</TableCell>
           </TableRow>
         </TableHead>
         <TableBody />
