@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { thirteenthTeeBox } from 'src/client/data';
 import styled from 'styled-components';
 
@@ -46,13 +47,44 @@ export const MastersLogoWrapper = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  background-image: linear-gradient(
-      to top,
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0)
-    ),
-    url(${thirteenthTeeBox});
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)), url(${thirteenthTeeBox});
   background-size: cover;
   background-position: center;
   height: 15vh;
+`;
+
+export const StyledLoginLogoutContainer = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+`;
+
+export const StyledLoginLink = styled(Link)`
+  margin: 0;
+  font-size: 1rem;
+  text-decoration: none;
+
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+  &:visited {
+    color: white;
+  }
+`;
+
+export const StyledLogoutButton = styled.button`
+  border: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0;
+  font-size: 1rem;
+
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
 `;

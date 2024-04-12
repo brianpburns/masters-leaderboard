@@ -10,6 +10,7 @@ import { Login } from '../../login';
 import { Scoreboard } from '../../scoreboard/components/scoreboard';
 import { TeamPage } from '../../team-page';
 import { HeaderImage } from './header-image';
+import { LoginLogoutButton } from './login-logout-button';
 import { NavBar } from './nav-bar';
 
 export const Root = () => {
@@ -19,6 +20,7 @@ export const Root = () => {
     <GoogleOAuthProvider clientId={googleConfig.clientId}>
       <HeaderImage />
       <BrowserRouter>
+        <LoginLogoutButton />
         <NavBar />
 
         <Switch>
