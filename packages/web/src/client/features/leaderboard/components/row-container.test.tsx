@@ -1,18 +1,14 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
+import { initialGlobalState } from 'src/client/store';
 import { GolferMoneyRankings, GolferScores } from 'src/types';
 import { generalFieldGolfer, top10Golfer } from 'test/mocks';
 import { RowContainer } from './row-container';
 
 const { id, first_name, last_name } = generalFieldGolfer;
-const {
-  id: id10,
-  first_name: firstName10,
-  last_name: lastName10,
-} = top10Golfer;
+const { id: id10, first_name: firstName10, last_name: lastName10 } = top10Golfer;
 
 const mockGolfersData: GolferScores = {
   [id]: {
@@ -60,7 +56,7 @@ const mockPrizeMoney = {
 const renderRowContainer = (
   selectionPhase = false,
   golferData: GolferScores = mockGolfersData,
-  prizeMoney: GolferMoneyRankings = mockPrizeMoney
+  prizeMoney: GolferMoneyRankings = mockPrizeMoney,
 ) => {
   renderWithProviders(
     <table>
@@ -77,7 +73,7 @@ const renderRowContainer = (
           golferRankings: prizeMoney,
         },
       },
-    }
+    },
   );
 };
 
@@ -92,7 +88,7 @@ describe('RowContainer', () => {
   test('subtable opens on clicking row', () => {
     renderRowContainer();
 
-    userEvent.click(screen.getByText('Team Logan'));
+    userEvent.click(screen.getByText('Logan'));
 
     expect(screen.getByTestId('toggle-up')).toBeTruthy();
     expect(screen.getByTestId('sub-table-row')).toBeTruthy();
@@ -101,7 +97,7 @@ describe('RowContainer', () => {
   test('subtable does not open when there is no leaderboard data', () => {
     renderRowContainer(false, [], []);
 
-    userEvent.click(screen.getByText('Team Logan'));
+    userEvent.click(screen.getByText('Logan'));
 
     expect(screen.queryByTestId('toggle-up')).toBeFalsy();
     expect(screen.queryByTestId('sub-table-row')).toBeFalsy();
@@ -110,7 +106,7 @@ describe('RowContainer', () => {
   test('subtable does not open when selectionPhase is true', () => {
     renderRowContainer(true);
 
-    userEvent.click(screen.getByText('Team Logan'));
+    userEvent.click(screen.getByText('Logan'));
 
     expect(screen.queryByTestId('toggle-up')).toBeFalsy();
     expect(screen.queryByTestId('sub-table-row')).toBeFalsy();

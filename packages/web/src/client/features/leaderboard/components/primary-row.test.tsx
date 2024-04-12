@@ -12,15 +12,9 @@ const renderPrimaryRow = (open = true) => {
   render(
     <table>
       <tbody>
-        <PrimaryRow
-          open={open}
-          setOpen={mockSetOpen}
-          position={1}
-          row={teams[0]}
-          selectionPhase={false}
-        />
+        <PrimaryRow open={open} setOpen={mockSetOpen} position={1} row={teams[0]} selectionPhase={false} />
       </tbody>
-    </table>
+    </table>,
   );
 };
 
@@ -40,7 +34,7 @@ describe('PrimaryRow', () => {
   test('calls setOpen on click', () => {
     renderPrimaryRow();
 
-    userEvent.click(screen.getByText('Team Logan'));
+    userEvent.click(screen.getByText('Logan'));
 
     expect(mockSetOpen).toBeCalledWith(false);
   });

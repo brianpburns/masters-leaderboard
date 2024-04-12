@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
+import { initialGlobalState } from 'src/client/store';
 import { setupMockServer } from 'test/mocks';
 import { TeamState } from '../../team-page';
 import { TableBody } from './table-body';
@@ -68,10 +68,10 @@ describe('BodyContainer', () => {
             golferRankings: mockPrizeMoney,
           },
         },
-      }
+      },
     );
 
-    await waitFor(() => expect(screen.getByText('Team Logan')).toBeTruthy(), {
+    await waitFor(() => expect(screen.getByText('Logan')).toBeTruthy(), {
       timeout: 5000,
     });
   });
