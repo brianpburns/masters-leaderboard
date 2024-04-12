@@ -13,12 +13,5 @@ export const SubRowContainer = ({ golferId }: Props) => {
   const golfers = useSelector(selectGolfersList);
   const prizeMoney = useGolferPrizeMoney(golferId);
 
-  return (
-    golfers && (
-      <SubRow
-        golfer={golfers[golferId]}
-        prizeMoney={displayNumber(prizeMoney)}
-      />
-    )
-  );
+  return golfers && <SubRow golfer={golfers[golferId]} prizeMoney={displayNumber(prizeMoney)} />;
 };
