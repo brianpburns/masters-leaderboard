@@ -10,6 +10,12 @@ const StyleScoreboardContainer = styled.div`
 
 export const Scoreboard = () => {
   const rankingsWithPrizeMoney = useAppSelector(selectGolferRankings);
+  const sortedRankings = Object.keys(rankingsWithPrizeMoney).sort((posA, posB) => {
+    const aPos = parseInt(posA);
+    const bPos = parseInt(posB);
+
+    return aPos > 0 && bPos > 0 ? aPos - bPos : bPos - aPos;
+  });
 
   return (
     <StyleScoreboardContainer>
@@ -25,7 +31,7 @@ export const Scoreboard = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.keys(rankingsWithPrizeMoney).map((position) => {
+          {sortedRankings.map((position) => {
             const { golfers } = rankingsWithPrizeMoney[parseInt(position)];
 
             return golfers.map((id) => {
