@@ -1,23 +1,15 @@
 import { prizeMoney } from 'src/client/data';
 import { GolferMoneyRankings } from '../../types';
 
-export const getPrizeMoney = (
-  position: string,
-  golferIds: number[],
-  currentRound: string
-) => {
+export const getPrizeMoney = (position: string, golferIds: number[], currentRound: string) => {
   const rank = parseInt(position);
   if (rank === 0) {
-    // If player misses the cut they get $10,000
     // golferRankings[rank].prizeMoney = 10000;
-    return 10000;
-  } else if (
-    (currentRound === '1000' || currentRound === '0100') &&
-    rank > 50
-  ) {
+    return 0;
+  } else if ((currentRound === '1000' || currentRound === '0100') && rank > 50) {
     // It's round one or two and they're outside the top 50 they get $10,000
     // golferRankings[rank].prizeMoney = 10000;
-    return 10000;
+    return 0;
   } else if (rank > 50) {
     // If they make the cut but are outside the top 50 they get ~$25,000
     // golferRankings[rank].prizeMoney = 25000;
@@ -30,10 +22,7 @@ export const getPrizeMoney = (
   }
 };
 
-export const addPrizeMoney = (
-  rankings: GolferMoneyRankings,
-  currentRound: string
-) => {
+export const addPrizeMoney = (rankings: GolferMoneyRankings, currentRound: string) => {
   for (const [position, ranking] of Object.entries(rankings)) {
     ranking.prizeMoney = getPrizeMoney(position, ranking.golfers, currentRound);
   }
