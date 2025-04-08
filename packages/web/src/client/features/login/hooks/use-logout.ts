@@ -9,6 +9,7 @@ export const useLogout = () => {
   return () => {
     googleLogout();
     setAuthToken(null);
+    localStorage.removeItem('authToken');
     history.push('leaderboard');
   };
 };

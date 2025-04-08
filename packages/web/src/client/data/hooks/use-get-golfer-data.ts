@@ -43,7 +43,9 @@ export const useGetGolferData = () => {
   const getGolferData = (id: number) => {
     const matchingGolfer = allGolfers.find((golfer) => golfer.id === id.toString());
 
-    if (!matchingGolfer) throw new Error(`Golfer with ID ${id} not found`);
+    if (!matchingGolfer) {
+      throw new Error(`Golfer with ID ${id} not found`);
+    }
 
     return matchingGolfer;
   };
