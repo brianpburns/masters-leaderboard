@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useManageGolfers } from 'src/client/features/shared';
+import { selectGofersData } from 'src/client/store/global-slice/selectors';
 import { Player } from 'src/types';
-import { golfersData, top10Ids } from '../golfers-data';
+import { top10Ids } from '../golfers-data';
 
 export const useGetGolferData = () => {
-  const allGolfers = golfersData.players;
+  const allGolfers = useSelector(selectGofersData);
   const { unselectedGolfers } = useManageGolfers();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchResults, setSearchResults] = useState<Player[]>([]);

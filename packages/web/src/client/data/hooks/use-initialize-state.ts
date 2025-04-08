@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { generateGolferData } from 'src/client/api';
 import { useCutLine } from 'src/client/features/leaderboard';
 import { useGlobalAction } from 'src/client/store';
-import { setToken } from 'src/client/store/global-slice';
+import { setGolfersDataState, setToken } from 'src/client/store/global-slice';
+import { golfersData } from '../golfers-data';
 
 export const useInitializeState = () => {
   const dispatch = useDispatch();
@@ -31,8 +32,11 @@ export const useInitializeState = () => {
       setCutLine(cutLine);
       setGolfersList(golfers);
       setGolferMoneyRankings(golferMoneyRankings);
+
+      // TODO: In future this should be fetched
+      dispatch(setGolfersDataState(golfersData.players));
     };
 
     fetchData();
-  }, [setCutLine, setGolferMoneyRankings, setGolfersList]);
+  }, [setCutLine, setGolferMoneyRankings, setGolfersList, dispatch]);
 };

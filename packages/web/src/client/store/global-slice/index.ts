@@ -1,23 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GolferMoneyRankings, GolferScores } from 'src/types';
+import { GolferMoneyRankings, GolferScores, Player } from 'src/types';
 
 export interface GlobalState {
   token: string | null;
   selectionPhase: boolean;
   golferScores: GolferScores | null;
   golferRankings: GolferMoneyRankings;
+  golfersData: Player[];
 }
 
-export const initialState: GlobalState = {
+export const initialGlobalState: GlobalState = {
   token: null,
   selectionPhase: false,
   golferScores: null,
   golferRankings: {},
+  golfersData: [],
 };
 
 const globalSlice = createSlice({
   name: 'global',
-  initialState,
+  initialState: initialGlobalState,
   reducers: {
     setToken(state, action: PayloadAction<string | null>) {
       state.token = action.payload;
@@ -31,8 +33,12 @@ const globalSlice = createSlice({
     setSelectionPhaseState(state, action: PayloadAction<boolean>) {
       state.selectionPhase = action.payload;
     },
+    setGolfersDataState(state, action: PayloadAction<Player[]>) {
+      state.golfersData = action.payload;
+    },
   },
 });
 
-export const { setToken, setGolfersState, setGolferRankings, setSelectionPhaseState } = globalSlice.actions;
+export const { setToken, setGolfersState, setGolferRankings, setSelectionPhaseState, setGolfersDataState } =
+  globalSlice.actions;
 export const globalReducer = globalSlice.reducer;
