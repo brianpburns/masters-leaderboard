@@ -8,7 +8,6 @@ export const useLoadAppConfig = () => {
     try {
       const { selectionPhase } = await getConfig();
 
-      console.log('setting selection phase to', selectionPhase);
       setSelectionPhase(selectionPhase);
     } catch (err) {
       if (err instanceof Error) {
