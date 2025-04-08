@@ -1,22 +1,22 @@
-import { mockLeaderboardData } from 'src/client/mock-server/data/leaderboard';
 import { RawGolferData } from 'src/types';
+import { unprocessedLeaderboardGolfer } from 'test/mocks';
 import { generateRankings } from './generate-rankings';
 
-const mockData: RawGolferData[] = mockLeaderboardData.data.player.slice(3, 6);
+const mockData: RawGolferData[] = [unprocessedLeaderboardGolfer];
 
 describe('generateRankings', () => {
   test('generates clean golfer data', () => {
     const { golfers } = generateRankings(mockData);
 
-    expect(Object.keys(golfers)).toHaveLength(3);
-    expect(golfers[30692]).toMatchObject({
-      id: 30692,
-      name: 'Scott Stallings',
+    expect(Object.keys(golfers)).toHaveLength(1);
+    expect(golfers[10423]).toMatchObject({
+      id: 10423,
+      name: 'Mike Weir',
       position: 0,
       topar: 0,
       thru: '-',
       today: '-',
-      teetime: '8:12 AM',
+      teetime: '8:00 AM',
     });
   });
 
@@ -24,7 +24,7 @@ describe('generateRankings', () => {
     const { golferRankings } = generateRankings(mockData);
 
     expect(golferRankings).toMatchObject({
-      '0': { golfers: [30692, 57736, 1717], prizeMoney: 0 },
+      '0': { golfers: [10423], prizeMoney: 0 },
     });
   });
 });

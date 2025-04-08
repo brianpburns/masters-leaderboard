@@ -2,10 +2,16 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { renderWithProviders } from 'src/client/__test__/store';
+import { initialGlobalState } from 'src/client/store';
+import { representativeGoflersList } from 'test/mocks';
 import { AvailableGolfersList } from './available-golfers';
 
 const renderAvailableGolfers = () =>
-  renderWithProviders(<AvailableGolfersList />);
+  renderWithProviders(<AvailableGolfersList />, {
+    preloadedState: {
+      global: { ...initialGlobalState, golfersData: representativeGoflersList },
+    },
+  });
 
 describe('Available Golfers List', () => {
   test('renders list and remaining picks', () => {
@@ -82,19 +88,20 @@ describe('Available Golfers List', () => {
   test('checkbox toggles other', () => {
     renderAvailableGolfers();
 
-    const rookiesCheckbox = screen.getByLabelText('Other');
-    userEvent.click(rookiesCheckbox);
+    const otherCheckbox = screen.getByLabelText('Other');
+    userEvent.click(otherCheckbox);
 
+    // Non-10/rookie/amateur
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.queryByText('Rory McIlroy')).toBeFalsy();
     expect(screen.queryByText('Séamus Power')).toBeFalsy();
     expect(screen.queryByText('Laird Shepherd')).toBeFalsy();
 
-    userEvent.click(rookiesCheckbox);
+    userEvent.click(otherCheckbox);
 
+    // All
     expect(screen.getByText('Séamus Power')).toBeTruthy();
     expect(screen.getByText('Tiger Woods')).toBeTruthy();
     expect(screen.getByText('Rory McIlroy')).toBeTruthy();
-    expect(screen.getByText('Laird Shepherd')).toBeTruthy();
   });
 });

@@ -1,9 +1,9 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { screen } from '@testing-library/react';
 import React from 'react';
-import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
-import { generalFieldGolfer } from 'test/mocks';
+import { initialGlobalState } from 'src/client/store';
+import { generalFieldGolfer, representativeGoflersList } from 'test/mocks';
 import { TeamState } from '../types';
 import { TeamPage } from './team-page';
 
@@ -25,15 +25,15 @@ jest.mock('react-router-dom', () => ({
 
 const renderTeamDetails = (selectionPhase = true) => {
   renderWithProviders(
-    <GoogleOAuthProvider clientId='dummy-client-id'>
+    <GoogleOAuthProvider clientId="dummy-client-id">
       <TeamPage />
     </GoogleOAuthProvider>,
     {
       preloadedState: {
-        global: { ...initialGlobalState, token: 'auth-token', selectionPhase },
+        global: { ...initialGlobalState, token: 'auth-token', selectionPhase, golfersData: representativeGoflersList },
         currentTeam: { team: selectedTeam, isNewTeam: false },
       },
-    }
+    },
   );
 };
 
