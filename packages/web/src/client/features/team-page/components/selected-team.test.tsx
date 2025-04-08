@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { initialGlobalState } from 'src/client/store';
 import { renderWithProviders } from 'src/client/__test__/store';
-import { generalFieldGolfer } from 'test/mocks';
+import { initialGlobalState } from 'src/client/store';
+import { generalFieldGolfer, representativeGoflersList } from 'test/mocks';
 import { TeamState } from '..';
 import { initialCurrentTeamState } from '../state/current-team-slice';
 import { SelectedTeam } from './selected-team';
@@ -22,13 +22,13 @@ const golferName = `${first_name} ${last_name}`;
 const renderSelectedTeam = (selectionPhase = true) => {
   renderWithProviders(<SelectedTeam />, {
     preloadedState: {
-      global: { ...initialGlobalState, selectionPhase },
+      global: { ...initialGlobalState, selectionPhase, golfersData: representativeGoflersList },
       currentTeam: { ...initialCurrentTeamState, team: selectedTeam },
     },
   });
 };
 
-describe('SelectedTeam', () => {
+describe(SelectedTeam, () => {
   test(`doesn't display buttons when selectionPhase is false`, () => {
     renderSelectedTeam(false);
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { renderWithProviders } from 'src/client/__test__/store';
 import { initialGlobalState } from 'src/client/store';
 import { GolferMoneyRankings, GolferScores } from 'src/types';
-import { generalFieldGolfer, top10Golfer } from 'test/mocks';
+import { generalFieldGolfer, representativeGoflersList, top10Golfer } from 'test/mocks';
 import { RowContainer } from './row-container';
 
 const { id, first_name, last_name } = generalFieldGolfer;
@@ -71,13 +71,14 @@ const renderRowContainer = (
           selectionPhase,
           golferScores: golferData,
           golferRankings: prizeMoney,
+          golfersData: representativeGoflersList,
         },
       },
     },
   );
 };
 
-describe('RowContainer', () => {
+describe(RowContainer, () => {
   test('subtable is closed by default', () => {
     renderRowContainer();
 

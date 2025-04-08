@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
-import { golfersData } from 'src/client/data/golfers-data';
+import { useSelector } from 'react-redux';
 import { useAppSelector } from 'src/client/store';
+import { selectGofersData } from 'src/client/store/global-slice/selectors';
 import { Player } from '../../../../types';
 import { useCurrentTeamGolferIds } from '../../team-page/state/hooks';
 import { selectCurrentTeamGolferIds } from '../../team-page/state/selectors';
 
 export const useManageGolfers = () => {
-  const allGolfers = golfersData.players;
+  const allGolfers = useSelector(selectGofersData);
   const [unselectedGolfers, setUnselectedGolfers] = useState<Player[]>([]);
   const { addGolfer, removeGolfer, setGolfers } = useCurrentTeamGolferIds();
   const selectedGolfers = useAppSelector(selectCurrentTeamGolferIds);
 
   useEffect(() => {
-    const unpickedGolfers = allGolfers.filter(
-      (golfer) => !selectedGolfers.includes(parseInt(golfer.id))
-    );
+    const unpickedGolfers = allGolfers.filter((golfer) => !selectedGolfers.includes(parseInt(golfer.id)));
     setUnselectedGolfers(unpickedGolfers);
   }, [allGolfers, selectedGolfers]);
 

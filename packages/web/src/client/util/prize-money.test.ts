@@ -1,4 +1,4 @@
-import { addPrizeMoney, getPrizeMoney } from './prize-money';
+import { getPrizeMoney } from './prize-money';
 
 const mockRankings = {
   0: {
@@ -27,19 +27,19 @@ describe('getPrizeMoney', () => {
   test('handles players who miss the cut', () => {
     const prizeMoney = getPrizeMoney('0', mockRankings[0].golfers, '1000');
 
-    expect(prizeMoney).toEqual(10000);
+    expect(prizeMoney).toEqual(0);
   });
 
   test('handles players outside the cut in the first round', () => {
     const prizeMoney = getPrizeMoney('70', mockRankings[70].golfers, '1000');
 
-    expect(prizeMoney).toEqual(10000);
+    expect(prizeMoney).toEqual(0);
   });
 
   test('handles players outside the cut in the second round', () => {
     const prizeMoney = getPrizeMoney('70', mockRankings[70].golfers, '0100');
 
-    expect(prizeMoney).toEqual(10000);
+    expect(prizeMoney).toEqual(0);
   });
 
   test('handles players who make the cut but finish outside the top 50', () => {

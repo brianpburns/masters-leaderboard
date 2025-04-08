@@ -7,7 +7,6 @@ import { useDeleteTeam } from 'src/client/api/hooks/use-delete-team';
 import { useGetGolferData } from 'src/client/data/hooks/use-get-golfer-data';
 import { useAppSelector } from 'src/client/store';
 import { useManageGolfers, useSendAlert } from '../../shared';
-import { Tooltip } from '../../shared/components/tooltip';
 import { useCurrentTeamGolfersRef } from '../state/hooks';
 import { selectCurrentTeam, selectGolfersSavedRef } from '../state/selectors';
 import { ButtonsContainer, Error } from './styled';
@@ -54,8 +53,8 @@ export const SelectionControls = () => {
           Cancel
         </Button>
         {/* <button onClick={() => deleteTeam(currentTeam.id)}>Delete</button> */}
-        <Tooltip triggerText="Rules" tooltipMessage="10 players, max 4 top 10. 1 rookie, 1 amateur." />
       </ButtonsContainer>
+      <p>10 players: 4 top ten. 1 rookie, 1 amateur.</p>
     </>
   );
 };

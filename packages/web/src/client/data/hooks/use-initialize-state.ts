@@ -1,11 +1,30 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { generateGolferData } from 'src/client/api';
 import { useCutLine } from 'src/client/features/leaderboard';
 import { useGlobalAction } from 'src/client/store';
+import { setGolfersDataState, setToken } from 'src/client/store/global-slice';
+import { golfersData } from '../golfers-data';
 
 export const useInitializeState = () => {
+  const dispatch = useDispatch();
   const setCutLine = useCutLine();
   const { setGolfersList, setGolferMoneyRankings } = useGlobalAction();
+
+  useEffect(() => {
+    const rawTokenData = localStorage.getItem('authToken');
+    if (rawTokenData) {
+      const { token, timestamp }: { token: string; timestamp: number } = JSON.parse(rawTokenData);
+      const isExpired = Date.now() - timestamp > 24 * 60 * 60 * 1000; // 24 hours
+
+      if (!isExpired) {
+        dispatch(setToken(token));
+      } else {
+        dispatch(setToken(null));
+        localStorage.removeItem('authToken');
+      }
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,8 +32,11 @@ export const useInitializeState = () => {
       setCutLine(cutLine);
       setGolfersList(golfers);
       setGolferMoneyRankings(golferMoneyRankings);
+
+      // TODO: In future this should be fetched
+      dispatch(setGolfersDataState(golfersData.players));
     };
 
     fetchData();
-  }, [setCutLine, setGolferMoneyRankings, setGolfersList]);
+  }, [setCutLine, setGolferMoneyRankings, setGolfersList, dispatch]);
 };

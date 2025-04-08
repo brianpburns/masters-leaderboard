@@ -1,15 +1,7 @@
-import {
-  CredentialResponse,
-  PromptMomentNotification,
-  useGoogleOneTapLogin,
-} from '@react-oauth/google';
+import { CredentialResponse, PromptMomentNotification, useGoogleOneTapLogin } from '@react-oauth/google';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  selectAuthToken,
-  useAppSelector,
-  useGlobalAction,
-} from 'src/client/store';
+import { selectAuthToken, useAppSelector, useGlobalAction } from 'src/client/store';
 
 export const useLogin = (oneTap = true) => {
   const [finishedSignIn, setFinishedSignIn] = useState(false);
@@ -24,6 +16,8 @@ export const useLogin = (oneTap = true) => {
   }, [authToken]);
 
   const onSuccess = (res: CredentialResponse) => {
+    if (authToken) return;
+
     if (res.credential) {
       setAuthToken(res.credential);
       setFinishedSignIn(true);

@@ -4,7 +4,7 @@ Hosted app on [Render](https://masters-app.onrender.com).
 
 ## Updates for a new year
 
-1. Update the golfersData object retrieved from https://www.masters.com/en_US/cms/feeds/players/2023/players.json to the new year.
+1. Update the golfersData object retrieved from https://www.masters.com/en_US/cms/feeds/players/5/players.json to the new year.
 2. Set selection phase to true in environment variables on Render.
 3. For the DB, see "Setting up the DB running on Render" below.
 
@@ -83,7 +83,8 @@ npm run build:prod
 Once the Masters has finished the DB is torn down to avoid having to pay for it. A new instance needs to be brought up.
 
 - On the render dashboard, click on "New" and "PostgresQL"
-- Give the DB instance a name. It doesn't really matter. Save and create.
+- Give the DB instance a name. It doesn't really matter.
+- Set 1GB for the size, save and create
 - Once the instance has been provisioned, copy the "External Database URL"
 - Update the `DATABASE_URL` env variable for the web service. **Append** `?ssl=true` to the end of the URL!
 - Redeploy the web service

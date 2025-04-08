@@ -19,12 +19,12 @@ export const GolfersListItem = ({ golfer, availableView, onIconClick }: Props) =
   const selectionPhase = useSelector(selectPhaseSelection);
 
   const remainingPicks = 10 - selectedGolfers.length;
-  const { id, first_name, last_name, First, countryCode, countryName, Amateur } = golfer;
+  const { id, first_name, last_name, first_masters, countryCode, countryName, Amateur } = golfer;
   const alreadySelected = selectedGolfers.includes(parseInt(id));
   const amateur = Amateur === '1';
   const showFlag = availableView || !selectionPhase;
   const top10 = top10Ids.includes(id.toString());
-  const rookie = First === '1' && !top10;
+  const rookie = first_masters && !top10;
 
   return (
     <GolferListItem

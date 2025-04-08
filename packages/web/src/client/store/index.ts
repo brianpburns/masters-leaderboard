@@ -1,4 +1,4 @@
-export { initialState as initialGlobalState } from './global-slice';
+export { initialGlobalState } from './global-slice';
 export { useGlobalAction } from './global-slice/hooks';
 export {
   selectAuthToken,
