@@ -1,2 +1,2 @@
+export { mastersLogoSrc, thirteenthTeeBox } from './image-srcs';
 export { prizeMoney } from './prize-money';
-export { mastersLogoSrc, twelfthBridge, thirteenthTeeBox } from './image-srcs';

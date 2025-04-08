@@ -18,7 +18,7 @@ export const fetchLeaderboardData = async () => {
     return {
       cutLine: normaliseCutLine(cutLine),
       rawGolfersData: player || [],
-      currentRound: currentRound,
+      currentRound,
     };
   } catch (err) {
     console.error(`Failed to fetch leaderboard data, ${err}`);
