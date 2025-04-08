@@ -83,7 +83,8 @@ npm run build:prod
 Once the Masters has finished the DB is torn down to avoid having to pay for it. A new instance needs to be brought up.
 
 - On the render dashboard, click on "New" and "PostgresQL"
-- Give the DB instance a name. It doesn't really matter. Save and create.
+- Give the DB instance a name. It doesn't really matter.
+- Set 1GB for the size, save and create
 - Once the instance has been provisioned, copy the "External Database URL"
 - Update the `DATABASE_URL` env variable for the web service. **Append** `?ssl=true` to the end of the URL!
 - Redeploy the web service
