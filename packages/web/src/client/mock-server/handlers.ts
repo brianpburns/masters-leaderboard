@@ -21,9 +21,8 @@ export const teamsList: Record<string, Team> = {
 };
 
 export const handlers = [
-  rest.get(
-    'https://www.masters.com/en_US/scores/feeds/2023/scores.json',
-    (_req, res, ctx) => res(ctx.status(200), ctx.json(mockLeaderboardData))
+  rest.get('https://www.masters.com/en_US/scores/feeds/2025/scores.json', (_req, res, ctx) =>
+    res(ctx.status(200), ctx.json(mockLeaderboardData)),
   ),
 
   rest.get('/api/team', (_req, res, ctx) => {

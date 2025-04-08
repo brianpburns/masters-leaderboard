@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 export function getMastersLeaderboard() {
   return asyncHandler(async (_req, res) => {
     try {
-      const response = await fetch('https://www.masters.com/en_US/scores/feeds/2024/scores.json');
+      const response = await fetch('https://www.masters.com/en_US/scores/feeds/2025/scores.json');
       const data = await response.json();
 
       res.status(200).send(data);

@@ -11,7 +11,7 @@ interface GolfersData {
 }
 
 // Grabbed this data from
-// https://www.masters.com/en_US/cms/feeds/players/2023/players.json
+// https://www.masters.com/en_US/cms/feeds/players/2025/players.json
 export const golfersData: GolfersData = {
   players: [
     {
