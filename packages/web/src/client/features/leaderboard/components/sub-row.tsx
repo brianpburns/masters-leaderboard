@@ -14,14 +14,14 @@ interface Props {
 export const SubRow = ({ golfer, prizeMoney }: Props) => {
   const { id, name, position, topar, today, thru } = golfer;
   const { getGolferData } = useGetGolferData();
-  const { First, Amateur } = getGolferData(id);
-  const rookie = First === '1';
+  const { first_masters, Amateur } = getGolferData(id);
+  const rookie = first_masters;
   const amateur = Amateur === '1';
   const top10 = top10Ids.includes(id.toString());
 
   return (
     <TableRow key={id}>
-      <TableCell component='th' scope='row'>
+      <TableCell component="th" scope="row">
         {position === 0 ? '-' : position}
       </TableCell>
       <TableCell>

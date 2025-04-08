@@ -61,8 +61,8 @@ export interface Player {
   countryCode: string;
   Amateur: string;
   first_masters: boolean;
-  First: string;
-  Past: string;
+  // First: string;
+  // Past: string;
   image: boolean;
 
   // Don't care about these values

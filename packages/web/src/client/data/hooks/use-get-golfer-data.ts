@@ -14,10 +14,10 @@ export const useGetGolferData = () => {
       if (top10Ids.includes(playerA.id)) {
         return -1;
       }
-      if (!top10Ids.includes(playerB.id) && playerA.First === '') {
+      if (!top10Ids.includes(playerB.id) && !playerA.first_masters) {
         return -1;
       }
-      if (!top10Ids.includes(playerB.id) && playerB.First !== '' && playerA.Amateur === '1') {
+      if (!top10Ids.includes(playerB.id) && !playerB.first_masters && playerA.Amateur === '1') {
         return -1;
       }
       return 0;
@@ -51,7 +51,7 @@ export const useGetGolferData = () => {
   const getGolfersData = (ids: number[]) => {
     const golfers = ids.map((id) => getGolferData(id));
     const rookieCount = golfers.filter(
-      (golfer) => golfer.First === '1' && golfer.Amateur !== '1' && !top10Ids.includes(golfer.id),
+      (golfer) => golfer.first_masters && golfer.Amateur !== '1' && !top10Ids.includes(golfer.id),
     ).length;
     const amateurCount = golfers.filter((golfer) => golfer.Amateur === '1').length;
     const top10Count = golfers.filter((golfer) => top10Ids.includes(golfer.id)).length;
