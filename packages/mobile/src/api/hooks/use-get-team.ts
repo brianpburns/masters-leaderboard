@@ -15,7 +15,6 @@ export const useGetTeam = () => {
   // const sendAlert = useSendAlert();
 
   const fetchTeam = async () => {
-    console.log('fetchTeam');
     if (!authToken) {
       setLoading(false);
       return;
