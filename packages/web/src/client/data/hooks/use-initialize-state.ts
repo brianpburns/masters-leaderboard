@@ -15,7 +15,7 @@ export const useInitializeState = () => {
     const rawTokenData = localStorage.getItem('authToken');
     if (rawTokenData) {
       const { token, timestamp }: { token: string; timestamp: number } = JSON.parse(rawTokenData);
-      const isExpired = Date.now() - timestamp > 24 * 60 * 60 * 1000; // 24 hours
+      const isExpired = Date.now() - timestamp > 59 * 60 * 1000; // 59 mins
 
       if (!isExpired) {
         dispatch(setToken(token));
