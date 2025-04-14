@@ -4,7 +4,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { googleConfig } from 'src/client/config';
 import { useInitializeState } from 'src/client/data/hooks/use-initialize-state';
 import { Leaderboard } from 'src/client/features/leaderboard';
-import { AlertContainer } from 'src/client/features/shared';
+import { AlertContainer, Loader } from 'src/client/features/shared';
 import { Admin } from '../../admin';
 import { Login } from '../../login';
 import { Scoreboard } from '../../scoreboard/components/scoreboard';
@@ -14,7 +14,11 @@ import { LoginLogoutButton } from './login-logout-button';
 import { NavBar } from './nav-bar';
 
 export const Root = () => {
-  useInitializeState();
+  const { loading } = useInitializeState();
+
+  if (loading) {
+    return <Loader open={true} />;
+  }
 
   return (
     <GoogleOAuthProvider clientId={googleConfig.clientId}>

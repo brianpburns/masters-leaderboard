@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { generateGolferData } from 'src/client/api';
 import { useCutLine } from 'src/client/features/leaderboard';
@@ -10,6 +10,7 @@ export const useInitializeState = () => {
   const dispatch = useDispatch();
   const setCutLine = useCutLine();
   const { setGolfersList, setGolferMoneyRankings } = useGlobalAction();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const rawTokenData = localStorage.getItem('authToken');
@@ -35,8 +36,11 @@ export const useInitializeState = () => {
 
       // TODO: In future this should be fetched
       dispatch(setGolfersDataState(golfersData.players));
+      setLoading(false);
     };
 
     fetchData();
   }, [setCutLine, setGolferMoneyRankings, setGolfersList, dispatch]);
+
+  return { loading };
 };
